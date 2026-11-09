@@ -1,0 +1,70 @@
+{
+  "board_id": "northwind",
+  "note": "The six people of the fleet demo: one Linux desk each (desk1..desk6 on the mini). pre_approved: the person said yes to this skill ahead of time (SCHEMA §11), so their run starts with the first do_it when FLOWLINE_FLEET=1. The PM answers live on the Mac.",
+  "people": [
+    {
+      "id": "pm-1",
+      "name": "Dana Whitfield",
+      "role": "PM",
+      "target": "desk1",
+      "skill_id": "fill_deck_from_sheet",
+      "pre_approved": false,
+      "inputs": {}
+    },
+    {
+      "id": "fin-1",
+      "name": "Marcus Reyes",
+      "role": "Finance",
+      "target": "desk2",
+      "skill_id": "reconcile_quotes",
+      "pre_approved": true,
+      "inputs": {
+        "proposal": 173
+      }
+    },
+    {
+      "id": "sales-1",
+      "name": "Priya Natarajan",
+      "role": "Sales",
+      "target": "desk3",
+      "skill_id": "proposal_packet",
+      "pre_approved": true,
+      "inputs": {
+        "proposal": 171
+      }
+    },
+    {
+      "id": "ops-1",
+      "name": "Tomás Herrera",
+      "role": "Ops",
+      "target": "desk4",
+      "skill_id": "signature_packet",
+      "pre_approved": true,
+      "inputs": {
+        "proposal": 172
+      }
+    },
+    {
+      "id": "studio-1",
+      "name": "Lena Okafor",
+      "role": "BranchMgr",
+      "target": "desk5",
+      "skill_id": "proposal_packet",
+      "pre_approved": true,
+      "inputs": {
+        "proposal": 173
+      }
+    },
+    {
+      "id": "asst-1",
+      "name": "Sam Kowalski",
+      "role": "Assistant",
+      "target": "desk6",
+      "skill_id": "reconcile_quotes",
+      "pre_approved": true,
+      "inputs": {
+        "proposal": 171
+      }
+    }
+  ]
+}

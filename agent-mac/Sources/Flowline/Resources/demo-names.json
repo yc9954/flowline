@@ -1,0 +1,75 @@
+{
+ "steps": [
+  {
+   "idx": 1,
+   "name": "Read the client brief for #167",
+   "kind": "hands_on",
+   "case_id": "proposal #167",
+   "tools": [
+    "mail",
+    "docs"
+   ],
+   "handoff_from": "Sales"
+  },
+  {
+   "idx": 2,
+   "name": "Built the estimate",
+   "kind": "hands_on",
+   "case_id": "proposal #167",
+   "tools": [
+    "sheets"
+   ],
+   "handoff_from": "Sales"
+  },
+  {
+   "idx": 3,
+   "name": "Asked the Director to approve the quote",
+   "kind": "hands_on",
+   "case_id": "proposal #167",
+   "tools": [
+    "mail"
+   ],
+   "handoff_to": "Director"
+  },
+  {
+   "idx": 4,
+   "name": "Waited for approval",
+   "kind": "waiting",
+   "case_id": "proposal #167",
+   "waiting_on": "Director",
+   "handoff_to": "Director"
+  },
+  {
+   "idx": 5,
+   "name": "Copied figures from sheet into deck",
+   "kind": "hands_on",
+   "case_id": "proposal #167",
+   "tools": [
+    "sheets",
+    "slides"
+   ]
+  },
+  {
+   "idx": 6,
+   "name": "Revised the deck with Design",
+   "kind": "hands_on",
+   "case_id": "proposal #167",
+   "tools": [
+    "slides",
+    "chat",
+    "call"
+   ]
+  },
+  {
+   "idx": 7,
+   "name": "Handed proposal #167 to Sales",
+   "kind": "hands_on",
+   "case_id": "proposal #167",
+   "tools": [
+    "mail"
+   ],
+   "handoff_to": "Sales"
+  }
+ ],
+ "summary": "Most of today went to proposal #167 — and 2 h 10 m of it was waiting on a signature."
+}

@@ -1,0 +1,129 @@
+{
+ "person_id": "pm-1",
+ "role": "PM",
+ "date": "2026-11-09",
+ "board_id": "northwind",
+ "steps": [
+  {
+   "idx": 1,
+   "start": "2026-11-09T03:47:42+09:00",
+   "end": "2026-11-09T03:50:38+09:00",
+   "name": "Away from desk",
+   "kind": "waiting",
+   "tools": [],
+   "share": true
+  },
+  {
+   "idx": 2,
+   "start": "2026-11-09T03:50:38+09:00",
+   "end": "2026-11-09T04:02:44+09:00",
+   "name": "Prepare pricing sheet",
+   "kind": "hands_on",
+   "tools": [
+    "sheets"
+   ],
+   "share": true
+  },
+  {
+   "idx": 3,
+   "start": "2026-11-09T04:02:44+09:00",
+   "end": "2026-11-09T04:14:29+09:00",
+   "name": "Draft proposal email",
+   "kind": "hands_on",
+   "tools": [
+    "docs"
+   ],
+   "share": true,
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 4,
+   "start": "2026-11-09T04:16:32+09:00",
+   "end": "2026-11-09T04:24:09+09:00",
+   "name": "Away from desk",
+   "kind": "waiting",
+   "tools": [],
+   "share": true,
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 5,
+   "start": "2026-11-09T04:26:24+09:00",
+   "end": "2026-11-09T04:28:28+09:00",
+   "name": "Review email and pricing",
+   "kind": "hands_on",
+   "tools": [
+    "docs"
+   ],
+   "share": true,
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 6,
+   "start": "2026-11-09T04:28:28+09:00",
+   "end": "2026-11-09T04:36:24+09:00",
+   "name": "Fill proposal deck",
+   "kind": "hands_on",
+   "tools": [
+    "slides"
+   ],
+   "share": true,
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 7,
+   "start": "2026-11-09T04:36:24+09:00",
+   "end": "2026-11-09T04:44:41+09:00",
+   "name": "Finalize proposal deck",
+   "kind": "hands_on",
+   "tools": [
+    "slides"
+   ],
+   "share": true,
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 8,
+   "start": "2026-11-09T04:44:41+09:00",
+   "end": "2026-11-09T04:48:18+09:00",
+   "name": "Review contract document",
+   "kind": "hands_on",
+   "tools": [
+    "docs"
+   ],
+   "share": true
+  },
+  {
+   "idx": 9,
+   "start": "2026-11-09T04:48:18+09:00",
+   "end": "2026-11-09T04:53:39+09:00",
+   "name": "Polish proposal deck",
+   "kind": "hands_on",
+   "tools": [
+    "slides"
+   ],
+   "share": true,
+   "case_id": "proposal #172"
+  }
+ ],
+ "left_out": [
+  {
+   "kind": "name_in_filename",
+   "label": "[name] contract.odt",
+   "action": "renamed"
+  },
+  {
+   "kind": "personal_chat",
+   "label": "Personal chat",
+   "minutes": 2,
+   "action": "counted_as_away"
+  },
+  {
+   "kind": "banking",
+   "label": "Banking",
+   "minutes": 2,
+   "action": "removed"
+  }
+ ],
+ "summary": "9 steps, 51 min hands-on and 11 min waiting; 3 items kept private."
+}

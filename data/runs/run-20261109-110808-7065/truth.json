@@ -1,0 +1,99 @@
+{
+ "seed": 4033651885,
+ "sheet_before": [
+  [
+   "Memberships, 120 seats",
+   2600
+  ],
+  [
+   "Lunchtime classes, 8 / mo",
+   1150
+  ],
+  [
+   "Onboarding week",
+   540
+  ]
+ ],
+ "total_before": 4290,
+ "quotes": [
+  {
+   "file": "Downtown Athletic Club - memberships quote.pdf",
+   "vendor": "Downtown Athletic Club",
+   "item": "Memberships, 120 seats",
+   "amount": 2600,
+   "sheet_amount": 2600,
+   "differs": false,
+   "quote_no": "Q-2026-6222",
+   "date": "2026-11-01"
+  },
+  {
+   "file": "MoveWell Studio - lunchtime classes quote.pdf",
+   "vendor": "MoveWell Studio",
+   "item": "Lunchtime classes, 8 / mo",
+   "amount": 1150,
+   "sheet_amount": 1150,
+   "differs": false,
+   "quote_no": "Q-2026-1703",
+   "date": "2026-11-04"
+  },
+  {
+   "file": "Kickoff Coaching - onboarding week quote.pdf",
+   "vendor": "Kickoff Coaching",
+   "item": "Onboarding week",
+   "amount": 500,
+   "sheet_amount": 540,
+   "differs": true,
+   "quote_no": "Q-2026-4818",
+   "date": "2026-11-03"
+  }
+ ],
+ "changed": {
+  "index": 2,
+  "vendor": "Kickoff Coaching",
+  "item": "Onboarding week",
+  "from": 540,
+  "to": 500,
+  "delta": -40
+ },
+ "sheet_after": [
+  [
+   "Memberships, 120 seats",
+   2600
+  ],
+  [
+   "Lunchtime classes, 8 / mo",
+   1150
+  ],
+  [
+   "Onboarding week",
+   500
+  ]
+ ],
+ "total_after": 4250,
+ "skill_id": "reconcile_quotes",
+ "run_id": "run-20261109-110808-7065",
+ "steps": [
+  "READ THE QUOTES",
+  "UPDATE THE SHEET",
+  "HAND IT OVER"
+ ],
+ "sheet": "/config/Documents/pricing-sheet.ods",
+ "deck": "/config/Documents/proposal-172.odp",
+ "slide": 6,
+ "quotes_dir": "/config/Documents/Quotes",
+ "out_dir": "/config/Documents/For signature",
+ "pdf": null,
+ "mail": {
+  "to": "pm",
+  "cc": null,
+  "subject": "Quotes reconciled \u2014 proposal 172",
+  "attachment": "pricing-sheet.ods"
+ },
+ "expected_amounts": [
+  2600,
+  1150,
+  500,
+  4250
+ ],
+ "dressed": null
+}

@@ -1,0 +1,114 @@
+{
+ "source": "simulated",
+ "board_id": "northwind",
+ "process": "client proposals",
+ "records": 268,
+ "people": 8,
+ "weeks": 11,
+ "headline": "Quotes wait 25 hours for one signature.",
+ "sub": "The quote approval itself takes 17 minutes. Across 22 proposals, nobody is working on a proposal for 78% of its cycle — and the longest single wait is this signature.",
+ "kpis": {
+  "cycle_time_h": 108.8,
+  "waiting_share": 0.782,
+  "small_quotes_share": 0.741,
+  "small_quotes_unchanged": 1.0,
+  "repeated_by_hand_h_per_wk": 2.3
+ },
+ "map": [
+  {
+   "role": "Sales",
+   "name": "Brief",
+   "hands_on_h": 5.5,
+   "artifact": "brief (doc)",
+   "wait_after_h": 2.6
+  },
+  {
+   "role": "PM",
+   "name": "Estimate",
+   "hands_on_h": 22.6,
+   "artifact": "pricing sheet",
+   "wait_after_h": 0.7
+  },
+  {
+   "role": "Finance",
+   "name": "Margin check",
+   "hands_on_h": 0.8,
+   "artifact": "pricing sheet",
+   "wait_after_h": 24.7,
+   "longest_wait": true
+  },
+  {
+   "role": "Director",
+   "name": "Approval",
+   "hands_on_h": 0.3,
+   "artifact": "quote",
+   "wait_after_h": 0.0,
+   "selected": true
+  },
+  {
+   "role": "Design",
+   "name": "Deck",
+   "hands_on_h": 29.4,
+   "artifact": "deck",
+   "wait_after_h": 19.9
+  },
+  {
+   "role": "Director",
+   "name": "Review",
+   "hands_on_h": 2.2,
+   "artifact": "deck",
+   "wait_after_h": 0.0
+  },
+  {
+   "role": "Sales",
+   "name": "Send",
+   "hands_on_h": 0.1,
+   "artifact": "email",
+   "wait_after_h": 0.0
+  }
+ ],
+ "to_scale": {
+  "hands_on_h": 60.9,
+  "waiting_h": 47.9
+ },
+ "sent_back": [
+  {
+   "reason": "Review changes",
+   "by": "Director",
+   "back_to": "Deck",
+   "cost": "+9.0 h",
+   "share": 0.383
+  },
+  {
+   "reason": "Revise quote",
+   "by": "Client",
+   "back_to": "Estimate",
+   "cost": "+5 days",
+   "share": 0.333
+  },
+  {
+   "reason": "Margin under 25%",
+   "by": "Finance",
+   "back_to": "Estimate",
+   "cost": "+4.6 h",
+   "share": 0.22
+  },
+  {
+   "reason": "Missing figures",
+   "by": "Director",
+   "back_to": "Estimate",
+   "cost": "+1 day",
+   "share": 0.111
+  }
+ ],
+ "repeated": [
+  {
+   "task": "Copy figures from sheet into deck",
+   "who": "PM",
+   "count_per_wk": 8.5,
+   "minutes": 16,
+   "agent_can_do": true
+  }
+ ],
+ "recomputed_at": "2026-12-18T18:25:00-06:00"
+}

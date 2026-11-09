@@ -1,0 +1,106 @@
+{
+ "measured_at": "2026-11-09T11:51:46+09:00",
+ "target": "desk6",
+ "skill": "reconcile_quotes",
+ "runs": 1,
+ "success": 1,
+ "success_rate": 1.0,
+ "median_s": 172.91,
+ "p90_s": 172.91,
+ "min_s": 172.91,
+ "max_s": 172.91,
+ "median_s_successful": 172.91,
+ "stop_honoured": null,
+ "stop_latency_s": null,
+ "model": "claude-sonnet-5-5",
+ "mode": "agent-ts (Vercel AI SDK, computer toolset; tools computer + report_step only) via the desktop bridge; deterministic verification: saved .ods, live deck via UNO, exported PDF text, NOTE.txt, Documents tree diff",
+ "per_action_ms": {
+  "screenshot": {
+   "n": 14,
+   "max_ms": 4457.6,
+   "mean_ms": 1047.0
+  },
+  "double_click": {
+   "n": 3,
+   "max_ms": 818.8,
+   "mean_ms": 503.9
+  },
+  "key": {
+   "n": 4,
+   "max_ms": 1192.7,
+   "mean_ms": 535.5
+  },
+  "click": {
+   "n": 11,
+   "max_ms": 1386.3,
+   "mean_ms": 492.5
+  },
+  "type": {
+   "n": 4,
+   "max_ms": 4387.1,
+   "mean_ms": 1598.8
+  }
+ },
+ "median_model_turns": 15,
+ "median_screenshots": 12,
+ "median_zooms": 1,
+ "median_computer_actions": 49,
+ "failures": [],
+ "results": [
+  {
+   "id": "run-20261109-114239-73d8",
+   "status": "done",
+   "seconds": 172.91,
+   "success": true,
+   "error": null,
+   "failed_checks": [],
+   "steps_at_s": {
+    "READ THE QUOTES": 0.001,
+    "UPDATE THE SHEET": 59.223,
+    "HAND IT OVER": 88.545
+   },
+   "step_details": {
+    "READ THE QUOTES": "Downtown Athletic Club $2,600 · MoveWell Studio $1,040 · Kickoff Coaching $540",
+    "UPDATE THE SHEET": "MoveWell Studio lunchtime classes $1,150 → $1,040; new total $4,180; saved",
+    "HAND IT OVER": "Mail sent to pm@northwind.local; back in the inbox"
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 150.23
+   },
+   "model_turns": 15,
+   "screenshots": 12,
+   "zooms": 1,
+   "computer_actions": 49,
+   "timing": {
+    "screenshot": {
+     "n": 14,
+     "mean_ms": 1047.0,
+     "max_ms": 4457.6
+    },
+    "double_click": {
+     "n": 3,
+     "mean_ms": 503.9,
+     "max_ms": 818.8
+    },
+    "key": {
+     "n": 4,
+     "mean_ms": 535.5,
+     "max_ms": 1192.7
+    },
+    "click": {
+     "n": 11,
+     "mean_ms": 492.5,
+     "max_ms": 1386.3
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 1598.8,
+     "max_ms": 4387.1
+    }
+   }
+  }
+ ],
+ "stop_run": null,
+ "source": "measured (assembled from 1 saved run(s), no Stop run)"
+}

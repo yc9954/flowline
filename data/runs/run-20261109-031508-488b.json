@@ -1,0 +1,197 @@
+{
+ "id": "run-20261109-031508-488b",
+ "skill_id": "fill_deck_from_sheet",
+ "target": "desk1",
+ "status": "failed",
+ "started_at": "2026-11-09T03:15:08.451+09:00",
+ "elapsed_s": 12.58,
+ "steps": [
+  {
+   "n": 1,
+   "label": "READ THE SHEET",
+   "detail": "3 line items and the total from pricing-sheet.ods: $4,290",
+   "status": "done",
+   "progress": null,
+   "at_s": 0.002
+  },
+  {
+   "n": 2,
+   "label": "FILL THE DECK",
+   "detail": "Typed 4 amounts into slide 6, Investment",
+   "status": "done",
+   "progress": [
+    4,
+    4
+   ],
+   "at_s": 1.443
+  },
+  {
+   "n": 3,
+   "label": "CHECK THE TOTAL",
+   "detail": "Deck total must equal $4,290",
+   "status": "now",
+   "progress": null,
+   "at_s": 11.69
+  },
+  {
+   "n": 4,
+   "label": "LEAVE IT FOR YOU",
+   "detail": "",
+   "status": "pending",
+   "progress": null,
+   "at_s": null
+  }
+ ],
+ "checks": [
+  {
+   "name": "sheet_has_item_amount_total",
+   "ok": true,
+   "detail": "3 items, Total row present"
+  },
+  {
+   "name": "sheet_total_equals_sum",
+   "ok": true,
+   "detail": "sum 4290 vs total 4290"
+  },
+  {
+   "name": "cell_1",
+   "ok": false,
+   "detail": "Memberships, 120 seats: deck says '$2,600$2,600$2,600', sheet says $2,600"
+  },
+  {
+   "name": "cell_2",
+   "ok": false,
+   "detail": "Lunchtime classes, 8 / mo: deck says '$1,150$1,150$1,150', sheet says $1,150"
+  },
+  {
+   "name": "cell_3",
+   "ok": false,
+   "detail": "Onboarding week: deck says '$540$540$540', sheet says $540"
+  },
+  {
+   "name": "cell_4",
+   "ok": false,
+   "detail": "Total: deck says '$4,29$4,2900$4,290', sheet says $4,290"
+  },
+  {
+   "name": "deck_items_sum_equals_sheet_total",
+   "ok": false,
+   "detail": "375578044290 vs 4290"
+  },
+  {
+   "name": "deck_total_equals_sheet_total",
+   "ok": false,
+   "detail": "429429004290 vs 4290"
+  }
+ ],
+ "suggestion_id": "sug-1",
+ "inputs": {},
+ "model": null,
+ "actions": [
+  {
+   "at": "2026-11-09T03:15:09.890+09:00",
+   "at_s": 1.439,
+   "kind": "read_sheet",
+   "detail": "3 items, total 4290",
+   "seconds": 1.436,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T03:15:12.919+09:00",
+   "at_s": 4.468,
+   "kind": "open_deck",
+   "detail": "proposal-172.odp slide 6",
+   "seconds": 2.743,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:15:14.043+09:00",
+   "at_s": 5.592,
+   "kind": "screenshot",
+   "detail": "before filling",
+   "seconds": 0.739,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:15:14.097+09:00",
+   "at_s": 5.646,
+   "kind": "positions",
+   "detail": "from geometry + slide rect (183, 195, 1374, 772): [(1238, 514), (1238, 602), (1238, 690), (1238, 778)]",
+   "seconds": 0.0,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:15:15.255+09:00",
+   "at_s": 6.804,
+   "kind": "fill_cell",
+   "detail": "row 1 at (1238, 514): $2,600",
+   "seconds": 1.157,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:15:16.410+09:00",
+   "at_s": 7.958,
+   "kind": "fill_cell",
+   "detail": "row 2 at (1238, 602): $1,150",
+   "seconds": 1.153,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:15:17.863+09:00",
+   "at_s": 9.412,
+   "kind": "fill_cell",
+   "detail": "row 3 at (1238, 690): $540",
+   "seconds": 1.453,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:15:19.030+09:00",
+   "at_s": 10.578,
+   "kind": "fill_cell",
+   "detail": "row 4 at (1238, 778): $4,290",
+   "seconds": 1.165,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:15:20.139+09:00",
+   "at_s": 11.688,
+   "kind": "screenshot",
+   "detail": "after filling",
+   "seconds": 0.438,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:15:20.520+09:00",
+   "at_s": 12.069,
+   "kind": "read_back",
+   "detail": "uno: ['$2,600$2,600$2,600', '$1,150$1,150$1,150', '$540$540$540', '$4,29$4,2900$4,290']",
+   "seconds": 0.379,
+   "step": 3
+  }
+ ],
+ "final_screenshot": "/Users/yuchanlee/flowline/data/runs/run-20261109-031508-488b/final.png",
+ "error": "SkillError: deck cells ['$2,600$2,600$2,600', '$1,150$1,150$1,150', '$540$540$540', '$4,29$4,2900$4,290'] do not match the sheet",
+ "finished_at": "2026-11-09T03:15:21.031+09:00",
+ "timing": {
+  "screenshot": {
+   "n": 3,
+   "mean_ms": 561.1,
+   "max_ms": 739.1
+  },
+  "click": {
+   "n": 4,
+   "mean_ms": 425.0,
+   "max_ms": 533.3
+  },
+  "type": {
+   "n": 4,
+   "mean_ms": 399.8,
+   "max_ms": 512.2
+  },
+  "key": {
+   "n": 2,
+   "mean_ms": 335.3,
+   "max_ms": 344.0
+  }
+ }
+}

@@ -1,0 +1,555 @@
+{
+ "measured_at": "2026-11-09T03:59:48+09:00",
+ "target": "desk1",
+ "runs": 10,
+ "success": 10,
+ "success_rate": 1.0,
+ "median_s": 36.5,
+ "p90_s": 40.26,
+ "min_s": 33.61,
+ "max_s": 45.93,
+ "stop_honoured": true,
+ "stop_latency_s": 2.07,
+ "model": "claude-sonnet-5-5",
+ "mode": "agent-ts (Vercel AI SDK, computer toolset) via the desktop bridge; deterministic UNO read-back verification",
+ "per_action_ms": {
+  "active_window_title": {
+   "n": 10,
+   "max_ms": 288.7,
+   "mean_ms": 283.8
+  },
+  "screenshot": {
+   "n": 30,
+   "max_ms": 1098.8,
+   "mean_ms": 500.9
+  },
+  "click": {
+   "n": 40,
+   "max_ms": 541.9,
+   "mean_ms": 409.9
+  },
+  "type": {
+   "n": 40,
+   "max_ms": 716.2,
+   "mean_ms": 391.1
+  },
+  "key": {
+   "n": 20,
+   "max_ms": 692.6,
+   "mean_ms": 403.0
+  }
+ },
+ "median_model_turns": 8.0,
+ "results": [
+  {
+   "id": "run-20261109-035302-46c3",
+   "status": "done",
+   "seconds": 35.57,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 9.022,
+    "FILL THE DECK": 11.628,
+    "CHECK THE TOTAL": 17.003,
+    "LEAVE IT FOR YOU": 31.931
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 27.25
+   },
+   "model_turns": 7,
+   "screenshots": 1,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 282.8,
+     "max_ms": 282.8
+    },
+    "screenshot": {
+     "n": 2,
+     "mean_ms": 415.1,
+     "max_ms": 420.5
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 447.4,
+     "max_ms": 520.6
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 397.0,
+     "max_ms": 496.4
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 381.9,
+     "max_ms": 421.8
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035339-a956",
+   "status": "done",
+   "seconds": 40.26,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 8.854,
+    "FILL THE DECK": 11.572,
+    "CHECK THE TOTAL": 32.957,
+    "LEAVE IT FOR YOU": 36.268
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 31.97
+   },
+   "model_turns": 8,
+   "screenshots": 3,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 280.8,
+     "max_ms": 280.8
+    },
+    "screenshot": {
+     "n": 5,
+     "mean_ms": 438.9,
+     "max_ms": 516.3
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 393.7,
+     "max_ms": 407.7
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 384.9,
+     "max_ms": 434.3
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 324.3,
+     "max_ms": 326.3
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035420-dcd8",
+   "status": "done",
+   "seconds": 38.61,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 8.944,
+    "FILL THE DECK": 11.779,
+    "CHECK THE TOTAL": 30.94,
+    "LEAVE IT FOR YOU": 33.843
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 29.8
+   },
+   "model_turns": 9,
+   "screenshots": 2,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 282.3,
+     "max_ms": 282.3
+    },
+    "screenshot": {
+     "n": 3,
+     "mean_ms": 490.1,
+     "max_ms": 594.7
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 427.5,
+     "max_ms": 541.9
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 459.8,
+     "max_ms": 716.2
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 329.0,
+     "max_ms": 336.6
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035500-21bb",
+   "status": "done",
+   "seconds": 35.05,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 8.988,
+    "FILL THE DECK": 11.606,
+    "CHECK THE TOTAL": 19.073,
+    "LEAVE IT FOR YOU": 31.76
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 26.77
+   },
+   "model_turns": 8,
+   "screenshots": 1,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 288.7,
+     "max_ms": 288.7
+    },
+    "screenshot": {
+     "n": 2,
+     "mean_ms": 409.7,
+     "max_ms": 410.2
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 410.8,
+     "max_ms": 436.2
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 360.1,
+     "max_ms": 368.1
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 330.9,
+     "max_ms": 333.9
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035536-e7fc",
+   "status": "done",
+   "seconds": 45.93,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 10.078,
+    "FILL THE DECK": 12.66,
+    "CHECK THE TOTAL": 20.081,
+    "LEAVE IT FOR YOU": 40.569
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 36.32
+   },
+   "model_turns": 11,
+   "screenshots": 3,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 284.6,
+     "max_ms": 284.6
+    },
+    "screenshot": {
+     "n": 4,
+     "mean_ms": 749.5,
+     "max_ms": 1098.8
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 405.6,
+     "max_ms": 475.4
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 381.0,
+     "max_ms": 404.1
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 568.2,
+     "max_ms": 622.2
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035623-8a4a",
+   "status": "done",
+   "seconds": 36.64,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 8.828,
+    "FILL THE DECK": 11.634,
+    "CHECK THE TOTAL": 29.758,
+    "LEAVE IT FOR YOU": 32.599
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 27.89
+   },
+   "model_turns": 9,
+   "screenshots": 2,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 281.2,
+     "max_ms": 281.2
+    },
+    "screenshot": {
+     "n": 3,
+     "mean_ms": 646.6,
+     "max_ms": 1096.7
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 399.2,
+     "max_ms": 414.8
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 388.4,
+     "max_ms": 425.8
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 368.5,
+     "max_ms": 415.4
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035701-e0a0",
+   "status": "done",
+   "seconds": 33.61,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 8.986,
+    "FILL THE DECK": 11.579,
+    "CHECK THE TOTAL": 17.562,
+    "LEAVE IT FOR YOU": 29.655
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 24.95
+   },
+   "model_turns": 6,
+   "screenshots": 1,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 282.0,
+     "max_ms": 282.0
+    },
+    "screenshot": {
+     "n": 2,
+     "mean_ms": 476.6,
+     "max_ms": 556.2
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 417.3,
+     "max_ms": 437.0
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 365.8,
+     "max_ms": 381.5
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 327.9,
+     "max_ms": 331.4
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035736-2ced",
+   "status": "done",
+   "seconds": 36.42,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 9.214,
+    "FILL THE DECK": 11.816,
+    "CHECK THE TOTAL": 18.948,
+    "LEAVE IT FOR YOU": 32.674
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 27.93
+   },
+   "model_turns": 8,
+   "screenshots": 2,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 287.1,
+     "max_ms": 287.1
+    },
+    "screenshot": {
+     "n": 3,
+     "mean_ms": 433.5,
+     "max_ms": 443.6
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 395.2,
+     "max_ms": 400.9
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 406.0,
+     "max_ms": 475.7
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 687.0,
+     "max_ms": 692.6
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035813-40d9",
+   "status": "done",
+   "seconds": 36.57,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 10.302,
+    "FILL THE DECK": 12.879,
+    "CHECK THE TOTAL": 20.328,
+    "LEAVE IT FOR YOU": 33.376
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 27.08
+   },
+   "model_turns": 8,
+   "screenshots": 2,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 283.9,
+     "max_ms": 283.9
+    },
+    "screenshot": {
+     "n": 3,
+     "mean_ms": 423.7,
+     "max_ms": 440.2
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 390.5,
+     "max_ms": 397.2
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 395.1,
+     "max_ms": 438.6
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 328.2,
+     "max_ms": 333.4
+    }
+   }
+  },
+  {
+   "id": "run-20261109-035851-f05c",
+   "status": "done",
+   "seconds": 35.11,
+   "success": true,
+   "error": null,
+   "steps_at_s": {
+    "READ THE SHEET": 9.88,
+    "FILL THE DECK": 12.494,
+    "CHECK THE TOTAL": 20.339,
+    "LEAVE IT FOR YOU": 31.485
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 26.65
+   },
+   "model_turns": 7,
+   "screenshots": 2,
+   "timing": {
+    "active_window_title": {
+     "n": 1,
+     "mean_ms": 284.3,
+     "max_ms": 284.3
+    },
+    "screenshot": {
+     "n": 3,
+     "mean_ms": 416.4,
+     "max_ms": 437.9
+    },
+    "click": {
+     "n": 4,
+     "mean_ms": 411.9,
+     "max_ms": 471.2
+    },
+    "type": {
+     "n": 4,
+     "mean_ms": 372.8,
+     "max_ms": 390.1
+    },
+    "key": {
+     "n": 2,
+     "mean_ms": 384.3,
+     "max_ms": 430.5
+    }
+   }
+  }
+ ],
+ "stop_run": {
+  "id": "run-20261109-035927-0255",
+  "status": "stopped",
+  "seconds": 19.2,
+  "success": false,
+  "error": null,
+  "steps_at_s": {
+   "READ THE SHEET": 8.636,
+   "FILL THE DECK": 11.198,
+   "CHECK THE TOTAL": null,
+   "LEAVE IT FOR YOU": null
+  },
+  "agent": {
+   "exit_code": 130,
+   "seconds": 11.56
+  },
+  "model_turns": 3,
+  "screenshots": 2,
+  "timing": {
+   "active_window_title": {
+    "n": 1,
+    "mean_ms": 285.7,
+    "max_ms": 285.7
+   },
+   "screenshot": {
+    "n": 3,
+    "mean_ms": 588.8,
+    "max_ms": 913.9
+   },
+   "click": {
+    "n": 1,
+    "mean_ms": 703.2,
+    "max_ms": 703.2
+   },
+   "type": {
+    "n": 1,
+    "mean_ms": 623.2,
+    "max_ms": 623.2
+   },
+   "key": {
+    "n": 1,
+    "mean_ms": 335.4,
+    "max_ms": 335.4
+   }
+  },
+  "stop_requested_at_s": 17.14,
+  "stop_latency_s": 2.07,
+  "stop_honoured": true
+ },
+ "source": "measured"
+}

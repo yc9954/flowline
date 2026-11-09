@@ -1,0 +1,110 @@
+{
+ "seed": 7,
+ "proposal": 171,
+ "sheet_before": [
+  [
+   "Physio sessions, 60",
+   3900
+  ],
+  [
+   "Staff wellness classes, 6 / mo",
+   1320
+  ],
+  [
+   "Ergonomics audit",
+   780
+  ]
+ ],
+ "total_before": 6000,
+ "quotes": [
+  {
+   "file": "Lakeside Physio Partners - physio sessions quote.pdf",
+   "vendor": "Lakeside Physio Partners",
+   "item": "Physio sessions, 60",
+   "amount": 3900,
+   "sheet_amount": 3900,
+   "differs": false,
+   "quote_no": "Q-2026-3471",
+   "date": "2026-11-02"
+  },
+  {
+   "file": "MoveWell Studio - staff wellness classes quote.pdf",
+   "vendor": "MoveWell Studio",
+   "item": "Staff wellness classes, 6 / mo",
+   "amount": 1060,
+   "sheet_amount": 1320,
+   "differs": true,
+   "quote_no": "Q-2026-2186",
+   "date": "2026-11-07"
+  },
+  {
+   "file": "Upright Ergonomics - ergonomics audit quote.pdf",
+   "vendor": "Upright Ergonomics",
+   "item": "Ergonomics audit",
+   "amount": 780,
+   "sheet_amount": 780,
+   "differs": false,
+   "quote_no": "Q-2026-6991",
+   "date": "2026-11-08"
+  }
+ ],
+ "changed": {
+  "index": 1,
+  "vendor": "MoveWell Studio",
+  "item": "Staff wellness classes, 6 / mo",
+  "from": 1320,
+  "to": 1060,
+  "delta": -260
+ },
+ "sheet_after": [
+  [
+   "Physio sessions, 60",
+   3900
+  ],
+  [
+   "Staff wellness classes, 6 / mo",
+   1060
+  ],
+  [
+   "Ergonomics audit",
+   780
+  ]
+ ],
+ "total_after": 5740,
+ "skill_id": "proposal_packet",
+ "run_id": "run-20261109-123821-17fa",
+ "steps": [
+  "READ THE QUOTES",
+  "UPDATE THE SHEET",
+  "FILL THE DECK",
+  "EXPORT FOR SIGNATURE",
+  "HAND IT OVER"
+ ],
+ "client": "Harbor Ridge Clinic",
+ "sheet": "/config/Documents/pricing-sheet-171.ods",
+ "deck": "/config/Documents/proposal-171.odp",
+ "slide": 6,
+ "quotes_dir": "/config/Documents/Quotes",
+ "out_dir": "/config/Documents/For signature",
+ "pdf": "/config/Documents/For signature/proposal-171.pdf",
+ "mail": {
+  "to": "director",
+  "cc": "finance",
+  "subject": "Proposal 171 \u2014 for signature \u00b7 Sales",
+  "attachment": "proposal-171.pdf",
+  "sender": "sales",
+  "role": "Sales"
+ },
+ "expected_amounts": [
+  3900,
+  1060,
+  780,
+  5740
+ ],
+ "dressed": {
+  "sheet": "left half",
+  "deck": "right half, slide 6",
+  "thunar": "Quotes, bottom-left",
+  "inbox": "untouched"
+ }
+}

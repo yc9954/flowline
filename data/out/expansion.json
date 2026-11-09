@@ -1,0 +1,4631 @@
+{
+ "source": "measured",
+ "board_id": "northwind",
+ "city": "Austin, TX",
+ "industries": [
+  {
+   "naics": "713940",
+   "name": "Fitness centers"
+  },
+  {
+   "naics": "621111",
+   "name": "Physician offices"
+  },
+  {
+   "naics": "722515",
+   "name": "Coffee and snack bars"
+  }
+ ],
+ "default": "713940",
+ "records": 309,
+ "branches": 3,
+ "note": "Backtest computed on 2026-11-08 from reference/us-backtest/scripts (same code as demand.backtest); loaded, not recomputed.",
+ "by_industry": {
+  "713940": {
+   "board_id": "northwind",
+   "city": "Austin, TX",
+   "industries": [
+    {
+     "naics": "713940",
+     "name": "Fitness centers"
+    },
+    {
+     "naics": "621111",
+     "name": "Physician offices"
+    },
+    {
+     "naics": "722515",
+     "name": "Coffee and snack bars"
+    }
+   ],
+   "industry": "713940",
+   "headline": "Branch 4 goes to 78704, South Austin — where demand for gyms is growing fastest.",
+   "sub": "Tech and media employers, dense office base pull new gyms in. Predicted from 2020 conditions; 38 of 98 ZIPs added gyms by 2023. Source: US Census ZBP/CBP 2014–2023, ACS 2015–19.",
+   "zips_considered": 98,
+   "branches": 3,
+   "records": 309,
+   "rank_of": 98,
+   "opening": {
+    "date": "2027-01-20",
+    "was": "2027-02-07",
+    "blockers_cleared": 2
+   },
+   "zips": [
+    {
+     "zip": "78704",
+     "name": "South Austin",
+     "why": [
+      "tech and media employers",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 3.38,
+     "happened": 5.0,
+     "rank": 1,
+     "pick": true,
+     "lat": 30.24303,
+     "lon": -97.76508
+    },
+    {
+     "zip": "78738",
+     "name": "Lakeway / Bee Cave",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "real-estate activity"
+     ],
+     "predicted": 2.87,
+     "happened": 6.0,
+     "rank": 2,
+     "pick": false,
+     "lat": 30.32012,
+     "lon": -97.95819
+    },
+    {
+     "zip": "78660",
+     "name": "Pflugerville",
+     "why": [
+      "schools and campuses",
+      "large population",
+      "tech and media employers"
+     ],
+     "predicted": 2.76,
+     "happened": 2.0,
+     "rank": 3,
+     "pick": false,
+     "lat": 30.43963,
+     "lon": -97.59469
+    },
+    {
+     "zip": "78701",
+     "name": "Downtown",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "jobs hub"
+     ],
+     "predicted": 2.64,
+     "happened": 4.0,
+     "rank": 4,
+     "pick": false,
+     "lat": 30.27057,
+     "lon": -97.74259
+    },
+    {
+     "zip": "78613",
+     "name": "Cedar Park",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "health-care cluster"
+     ],
+     "predicted": 2.57,
+     "happened": 2.0,
+     "rank": 5,
+     "pick": false,
+     "lat": 30.50391,
+     "lon": -97.82418
+    },
+    {
+     "zip": "78746",
+     "name": "West Lake Hills",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "real-estate activity"
+     ],
+     "predicted": 2.31,
+     "happened": -2.0,
+     "rank": 6,
+     "pick": false,
+     "lat": 30.29686,
+     "lon": -97.80957
+    },
+    {
+     "zip": "78759",
+     "name": "Great Hills",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": 2.27,
+     "happened": 4.0,
+     "rank": 7,
+     "pick": false,
+     "lat": 30.40267,
+     "lon": -97.76104
+    },
+    {
+     "zip": "78745",
+     "name": "South Austin",
+     "why": [
+      "dense office base",
+      "real-estate activity",
+      "schools and campuses"
+     ],
+     "predicted": 2.25,
+     "happened": 5.0,
+     "rank": 8,
+     "pick": false,
+     "lat": 30.20685,
+     "lon": -97.79738
+    },
+    {
+     "zip": "78628",
+     "name": "Georgetown",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "real-estate activity"
+     ],
+     "predicted": 1.93,
+     "happened": 2.0,
+     "rank": 9,
+     "pick": false,
+     "lat": 30.66454,
+     "lon": -97.77862
+    },
+    {
+     "zip": "78681",
+     "name": "Round Rock West",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "health-care cluster"
+     ],
+     "predicted": 1.91,
+     "happened": 0.0,
+     "rank": 10,
+     "pick": false,
+     "lat": 30.53442,
+     "lon": -97.72574
+    },
+    {
+     "zip": "78749",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "dense housing",
+      "schools and campuses"
+     ],
+     "predicted": 1.83,
+     "happened": 5.0,
+     "rank": 11,
+     "pick": false,
+     "lat": 30.21617,
+     "lon": -97.85583
+    },
+    {
+     "zip": "78641",
+     "name": "Leander",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "tech and media employers"
+     ],
+     "predicted": 1.74,
+     "happened": 7.0,
+     "rank": 12,
+     "pick": false,
+     "lat": 30.56256,
+     "lon": -97.90785
+    },
+    {
+     "zip": "78731",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "tech and media employers"
+     ],
+     "predicted": 1.66,
+     "happened": 1.0,
+     "rank": 13,
+     "pick": false,
+     "lat": 30.34824,
+     "lon": -97.76814
+    },
+    {
+     "zip": "78727",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "people within 5 km"
+     ],
+     "predicted": 1.32,
+     "happened": 2.0,
+     "rank": 14,
+     "pick": false,
+     "lat": 30.42994,
+     "lon": -97.7178
+    },
+    {
+     "zip": "78750",
+     "name": "Anderson Mill",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 1.32,
+     "happened": 1.0,
+     "rank": 15,
+     "pick": false,
+     "lat": 30.41878,
+     "lon": -97.80227
+    },
+    {
+     "zip": "78620",
+     "name": "Dripping Springs",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "jobs growing"
+     ],
+     "predicted": 1.26,
+     "happened": 2.0,
+     "rank": 16,
+     "pick": false,
+     "lat": 30.22561,
+     "lon": -98.1363
+    },
+    {
+     "zip": "78735",
+     "name": "Austin",
+     "why": [
+      "well-paid jobs",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 1.21,
+     "happened": -1.0,
+     "rank": 17,
+     "pick": false,
+     "lat": 30.26912,
+     "lon": -97.86882
+    },
+    {
+     "zip": "78734",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "real-estate activity"
+     ],
+     "predicted": 1.19,
+     "happened": 2.0,
+     "rank": 18,
+     "pick": false,
+     "lat": 30.37855,
+     "lon": -97.95063
+    },
+    {
+     "zip": "78665",
+     "name": "Round Rock East",
+     "why": [
+      "people within 5 km",
+      "jobs within 5 km",
+      "dense office base"
+     ],
+     "predicted": 1.1,
+     "happened": -1.0,
+     "rank": 19,
+     "pick": false,
+     "lat": 30.54325,
+     "lon": -97.6452
+    },
+    {
+     "zip": "78610",
+     "name": "Buda",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "large population"
+     ],
+     "predicted": 1.07,
+     "happened": 9.0,
+     "rank": 20,
+     "pick": false,
+     "lat": 30.07851,
+     "lon": -97.83801
+    },
+    {
+     "zip": "78757",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": 1.04,
+     "happened": 1.0,
+     "rank": 21,
+     "pick": false,
+     "lat": 30.35154,
+     "lon": -97.73257
+    },
+    {
+     "zip": "78756",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "people within 5 km",
+      "dense housing"
+     ],
+     "predicted": 1.02,
+     "happened": 8.0,
+     "rank": 22,
+     "pick": false,
+     "lat": 30.32222,
+     "lon": -97.74017
+    },
+    {
+     "zip": "78744",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "large population",
+      "real-estate activity"
+     ],
+     "predicted": 0.94,
+     "happened": 2.0,
+     "rank": 23,
+     "pick": false,
+     "lat": 30.17779,
+     "lon": -97.72515
+    },
+    {
+     "zip": "78751",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "transit riders",
+      "dense housing"
+     ],
+     "predicted": 0.93,
+     "happened": 2.0,
+     "rank": 24,
+     "pick": false,
+     "lat": 30.31079,
+     "lon": -97.72275
+    },
+    {
+     "zip": "78717",
+     "name": "Avery Ranch",
+     "why": [
+      "tech and media employers",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 0.88,
+     "happened": 1.0,
+     "rank": 25,
+     "pick": false,
+     "lat": 30.48954,
+     "lon": -97.75384
+    },
+    {
+     "zip": "78723",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "schools and campuses",
+      "jobs within 5 km"
+     ],
+     "predicted": 0.82,
+     "happened": 3.0,
+     "rank": 26,
+     "pick": false,
+     "lat": 30.30427,
+     "lon": -97.68571
+    },
+    {
+     "zip": "78741",
+     "name": "Austin",
+     "why": [
+      "transit riders",
+      "dense housing",
+      "tech and media employers"
+     ],
+     "predicted": 0.77,
+     "happened": 2.0,
+     "rank": 27,
+     "pick": false,
+     "lat": 30.23046,
+     "lon": -97.7142
+    },
+    {
+     "zip": "78626",
+     "name": "Georgetown",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": 0.76,
+     "happened": 2.0,
+     "rank": 28,
+     "pick": false,
+     "lat": 30.65789,
+     "lon": -97.61784
+    },
+    {
+     "zip": "78752",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "jobs within 5 km",
+      "young professionals"
+     ],
+     "predicted": 0.71,
+     "happened": 2.0,
+     "rank": 29,
+     "pick": false,
+     "lat": 30.33181,
+     "lon": -97.70428
+    },
+    {
+     "zip": "78624",
+     "name": "Fredericksburg",
+     "why": [
+      "restaurants and bars nearby",
+      "retail corridor",
+      "health-care cluster"
+     ],
+     "predicted": 0.68,
+     "happened": 0.0,
+     "rank": 30,
+     "pick": false,
+     "lat": 30.28094,
+     "lon": -98.87668
+    },
+    {
+     "zip": "78666",
+     "name": "San Marcos",
+     "why": [
+      "retail corridor",
+      "restaurants and bars nearby",
+      "real-estate activity"
+     ],
+     "predicted": 0.62,
+     "happened": 3.0,
+     "rank": 31,
+     "pick": false,
+     "lat": 29.88016,
+     "lon": -97.96616
+    },
+    {
+     "zip": "78748",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "dense housing",
+      "schools and campuses"
+     ],
+     "predicted": 0.51,
+     "happened": 0.0,
+     "rank": 32,
+     "pick": false,
+     "lat": 30.16643,
+     "lon": -97.82339
+    },
+    {
+     "zip": "78633",
+     "name": "Georgetown",
+     "why": [
+      "jobs growing",
+      "work-from-home share",
+      "college-educated"
+     ],
+     "predicted": 0.47,
+     "happened": 0.0,
+     "rank": 33,
+     "pick": false,
+     "lat": 30.74118,
+     "lon": -97.7561
+    },
+    {
+     "zip": "78737",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "dense office base",
+      "high incomes"
+     ],
+     "predicted": 0.44,
+     "happened": 1.0,
+     "rank": 34,
+     "pick": false,
+     "lat": 30.18993,
+     "lon": -97.95664
+    },
+    {
+     "zip": "78702",
+     "name": "East Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "dense office base"
+     ],
+     "predicted": 0.43,
+     "happened": 3.0,
+     "rank": 35,
+     "pick": false,
+     "lat": 30.26338,
+     "lon": -97.71448
+    },
+    {
+     "zip": "78640",
+     "name": "Kyle",
+     "why": [
+      "large population",
+      "schools and campuses",
+      "businesses growing"
+     ],
+     "predicted": 0.39,
+     "happened": 3.0,
+     "rank": 36,
+     "pick": false,
+     "lat": 29.99911,
+     "lon": -97.82822
+    },
+    {
+     "zip": "78669",
+     "name": "Spicewood",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "college-educated"
+     ],
+     "predicted": 0.35,
+     "happened": 2.0,
+     "rank": 37,
+     "pick": false,
+     "lat": 30.43072,
+     "lon": -98.11278
+    },
+    {
+     "zip": "78722",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "people within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.3,
+     "happened": 0.0,
+     "rank": 38,
+     "pick": false,
+     "lat": 30.28996,
+     "lon": -97.7147
+    },
+    {
+     "zip": "78758",
+     "name": "North Austin",
+     "why": [
+      "tech and media employers",
+      "jobs within 5 km",
+      "dense office base"
+     ],
+     "predicted": 0.25,
+     "happened": 3.0,
+     "rank": 39,
+     "pick": false,
+     "lat": 30.38799,
+     "lon": -97.70685
+    },
+    {
+     "zip": "78644",
+     "name": "Lockhart",
+     "why": [
+      "schools and campuses",
+      "businesses growing",
+      "tech and media employers"
+     ],
+     "predicted": 0.23,
+     "happened": 0.0,
+     "rank": 40,
+     "pick": false,
+     "lat": 29.87164,
+     "lon": -97.67682
+    },
+    {
+     "zip": "78733",
+     "name": "Austin",
+     "why": [
+      "high incomes",
+      "work-from-home share",
+      "college-educated"
+     ],
+     "predicted": 0.22,
+     "happened": 0.0,
+     "rank": 41,
+     "pick": false,
+     "lat": 30.3214,
+     "lon": -97.88474
+    },
+    {
+     "zip": "78653",
+     "name": "Manor",
+     "why": [
+      "businesses growing",
+      "young professionals",
+      "large population"
+     ],
+     "predicted": 0.21,
+     "happened": 0.0,
+     "rank": 42,
+     "pick": false,
+     "lat": 30.33969,
+     "lon": -97.52349
+    },
+    {
+     "zip": "78754",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "people within 5 km"
+     ],
+     "predicted": 0.19,
+     "happened": 0.0,
+     "rank": 43,
+     "pick": false,
+     "lat": 30.3554,
+     "lon": -97.64185
+    },
+    {
+     "zip": "78728",
+     "name": "Austin",
+     "why": [
+      "young professionals",
+      "jobs within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.19,
+     "happened": 0.0,
+     "rank": 44,
+     "pick": false,
+     "lat": 30.45417,
+     "lon": -97.69218
+    },
+    {
+     "zip": "78724",
+     "name": "Austin",
+     "why": [
+      "young professionals",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.15,
+     "happened": 0.0,
+     "rank": 45,
+     "pick": false,
+     "lat": 30.29271,
+     "lon": -97.61795
+    },
+    {
+     "zip": "78617",
+     "name": "Del Valle",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "large population"
+     ],
+     "predicted": 0.14,
+     "happened": 0.0,
+     "rank": 46,
+     "pick": false,
+     "lat": 30.14853,
+     "lon": -97.59303
+    },
+    {
+     "zip": "78611",
+     "name": "Burnet",
+     "why": [
+      "work-from-home share",
+      "restaurants and bars nearby",
+      "jobs growing"
+     ],
+     "predicted": 0.13,
+     "happened": 0.0,
+     "rank": 47,
+     "pick": false,
+     "lat": 30.80105,
+     "lon": -98.28349
+    },
+    {
+     "zip": "78721",
+     "name": "Austin",
+     "why": [
+      "transit riders",
+      "jobs within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.11,
+     "happened": 3.0,
+     "rank": 48,
+     "pick": false,
+     "lat": 30.26997,
+     "lon": -97.68356
+    },
+    {
+     "zip": "78747",
+     "name": "Austin",
+     "why": [
+      "businesses growing",
+      "young professionals",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.11,
+     "happened": 0.0,
+     "rank": 49,
+     "pick": false,
+     "lat": 30.12697,
+     "lon": -97.73997
+    },
+    {
+     "zip": "78705",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "jobs within 5 km",
+      "walkable"
+     ],
+     "predicted": 0.1,
+     "happened": -5.0,
+     "rank": 50,
+     "pick": false,
+     "lat": 30.29433,
+     "lon": -97.73852
+    },
+    {
+     "zip": "78657",
+     "name": "Horseshoe Bay",
+     "why": [
+      "businesses growing",
+      "college-educated",
+      "real-estate activity"
+     ],
+     "predicted": 0.07,
+     "happened": 0.0,
+     "rank": 51,
+     "pick": false,
+     "lat": 30.53143,
+     "lon": -98.37805
+    },
+    {
+     "zip": "78612",
+     "name": "Cedar Creek",
+     "why": [
+      "businesses growing",
+      "work-from-home share",
+      "large population"
+     ],
+     "predicted": 0.06,
+     "happened": 0.0,
+     "rank": 52,
+     "pick": false,
+     "lat": 30.09407,
+     "lon": -97.49509
+    },
+    {
+     "zip": "78645",
+     "name": "Leander",
+     "why": [
+      "work-from-home share",
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.06,
+     "happened": 3.0,
+     "rank": 53,
+     "pick": false,
+     "lat": 30.45004,
+     "lon": -97.97198
+    },
+    {
+     "zip": "78732",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "dense office base"
+     ],
+     "predicted": 0.05,
+     "happened": 2.0,
+     "rank": 54,
+     "pick": false,
+     "lat": 30.37789,
+     "lon": -97.89502
+    },
+    {
+     "zip": "78629",
+     "name": "Gonzales",
+     "why": [
+      "retail corridor",
+      "tech and media employers",
+      "restaurants and bars nearby"
+     ],
+     "predicted": 0.04,
+     "happened": 0.0,
+     "rank": 55,
+     "pick": false,
+     "lat": 29.47684,
+     "lon": -97.44894
+    },
+    {
+     "zip": "78619",
+     "name": "Driftwood",
+     "why": [
+      "high incomes",
+      "work-from-home share",
+      "businesses growing"
+     ],
+     "predicted": 0.03,
+     "happened": 0.0,
+     "rank": 56,
+     "pick": false,
+     "lat": 30.11221,
+     "lon": -98.03327
+    },
+    {
+     "zip": "78719",
+     "name": "Austin",
+     "why": [
+      "jobs hub",
+      "businesses growing",
+      "jobs growing"
+     ],
+     "predicted": 0.03,
+     "happened": 0.0,
+     "rank": 57,
+     "pick": false,
+     "lat": 30.19729,
+     "lon": -97.66742
+    },
+    {
+     "zip": "78652",
+     "name": "Manchaca",
+     "why": [
+      "high incomes",
+      "college-educated",
+      "young professionals"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 58,
+     "pick": false,
+     "lat": 30.13282,
+     "lon": -97.87469
+    },
+    {
+     "zip": "78712",
+     "name": "Austin",
+     "why": [
+      "walkable",
+      "jobs within 5 km",
+      "people within 5 km"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 59,
+     "pick": false,
+     "lat": 30.28217,
+     "lon": -97.731
+    },
+    {
+     "zip": "78636",
+     "name": "Johnson City",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 60,
+     "pick": false,
+     "lat": 30.3169,
+     "lon": -98.42499
+    },
+    {
+     "zip": "78606",
+     "name": "Blanco",
+     "why": [
+      "businesses growing",
+      "work-from-home share",
+      "schools and campuses"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 61,
+     "pick": false,
+     "lat": 30.08379,
+     "lon": -98.47616
+    },
+    {
+     "zip": "78614",
+     "name": "Cost",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 62,
+     "pick": false,
+     "lat": 29.41041,
+     "lon": -97.58717
+    },
+    {
+     "zip": "78659",
+     "name": "Paige",
+     "why": [
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 63,
+     "pick": false,
+     "lat": 30.20742,
+     "lon": -97.12539
+    },
+    {
+     "zip": "78656",
+     "name": "Maxwell",
+     "why": [
+      "jobs growing",
+      "young professionals",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 64,
+     "pick": false,
+     "lat": 29.90451,
+     "lon": -97.80731
+    },
+    {
+     "zip": "78655",
+     "name": "Martindale",
+     "why": [
+      "jobs growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 65,
+     "pick": false,
+     "lat": 29.81606,
+     "lon": -97.83505
+    },
+    {
+     "zip": "78616",
+     "name": "Dale",
+     "why": [
+      "businesses growing",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 66,
+     "pick": false,
+     "lat": 29.94007,
+     "lon": -97.56829
+    },
+    {
+     "zip": "78631",
+     "name": "Harper",
+     "why": [
+      "businesses growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 67,
+     "pick": false,
+     "lat": 30.33977,
+     "lon": -99.30658
+    },
+    {
+     "zip": "78615",
+     "name": "Coupland",
+     "why": [
+      "businesses growing",
+      "work-from-home share"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 68,
+     "pick": false,
+     "lat": 30.46546,
+     "lon": -97.38411
+    },
+    {
+     "zip": "78609",
+     "name": "Buchanan Dam",
+     "why": [
+      "near the metro average on every driver"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 69,
+     "pick": false,
+     "lat": 30.76522,
+     "lon": -98.45098
+    },
+    {
+     "zip": "78650",
+     "name": "Mc Dade",
+     "why": [
+      "businesses growing",
+      "20s and 30s crowd",
+      "jobs growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 70,
+     "pick": false,
+     "lat": 30.30389,
+     "lon": -97.2189
+    },
+    {
+     "zip": "78638",
+     "name": "Kingsbury",
+     "why": [
+      "transit riders",
+      "well-paid jobs"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 71,
+     "pick": false,
+     "lat": 29.65959,
+     "lon": -97.7852
+    },
+    {
+     "zip": "78639",
+     "name": "Kingsland",
+     "why": [
+      "walkable",
+      "work-from-home share"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 72,
+     "pick": false,
+     "lat": 30.67368,
+     "lon": -98.44104
+    },
+    {
+     "zip": "78605",
+     "name": "Bertram",
+     "why": [
+      "businesses growing",
+      "well-paid jobs",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 73,
+     "pick": false,
+     "lat": 30.7733,
+     "lon": -98.04518
+    },
+    {
+     "zip": "78648",
+     "name": "Luling",
+     "why": [
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 74,
+     "pick": false,
+     "lat": 29.69018,
+     "lon": -97.63356
+    },
+    {
+     "zip": "78671",
+     "name": "Stonewall",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "jobs hub"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 75,
+     "pick": false,
+     "lat": 30.21896,
+     "lon": -98.6299
+    },
+    {
+     "zip": "78672",
+     "name": "Tow",
+     "why": [
+      "near the metro average on every driver"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 76,
+     "pick": false,
+     "lat": 30.85884,
+     "lon": -98.46951
+    },
+    {
+     "zip": "78643",
+     "name": "Llano",
+     "why": [
+      "businesses growing",
+      "tech and media employers"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 77,
+     "pick": false,
+     "lat": 30.68854,
+     "lon": -98.68989
+    },
+    {
+     "zip": "78663",
+     "name": "Round Mountain",
+     "why": [
+      "work-from-home share",
+      "jobs growing",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 78,
+     "pick": false,
+     "lat": 30.40226,
+     "lon": -98.35957
+    },
+    {
+     "zip": "78623",
+     "name": "Fischer",
+     "why": [
+      "work-from-home share",
+      "businesses growing",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 79,
+     "pick": false,
+     "lat": 29.97114,
+     "lon": -98.22823
+    },
+    {
+     "zip": "78725",
+     "name": "Austin",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "young professionals"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 80,
+     "pick": false,
+     "lat": 30.23001,
+     "lon": -97.60858
+    },
+    {
+     "zip": "78662",
+     "name": "Red Rock",
+     "why": [
+      "well-paid jobs",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 81,
+     "pick": false,
+     "lat": 29.92413,
+     "lon": -97.42471
+    },
+    {
+     "zip": "78632",
+     "name": "Harwood",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 82,
+     "pick": false,
+     "lat": 29.69611,
+     "lon": -97.47066
+    },
+    {
+     "zip": "78635",
+     "name": "Hye",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 83,
+     "pick": false,
+     "lat": 30.20608,
+     "lon": -98.56486
+    },
+    {
+     "zip": "78742",
+     "name": "Austin",
+     "why": [
+      "jobs hub",
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 84,
+     "pick": false,
+     "lat": 30.24235,
+     "lon": -97.6592
+    },
+    {
+     "zip": "78703",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "tech and media employers"
+     ],
+     "predicted": -0.09,
+     "happened": 1.0,
+     "rank": 85,
+     "pick": false,
+     "lat": 30.29327,
+     "lon": -97.76605
+    },
+    {
+     "zip": "78729",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "well-paid jobs",
+      "jobs within 5 km"
+     ],
+     "predicted": -0.13,
+     "happened": -3.0,
+     "rank": 86,
+     "pick": false,
+     "lat": 30.4584,
+     "lon": -97.75534
+    },
+    {
+     "zip": "78753",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "dense housing"
+     ],
+     "predicted": -0.13,
+     "happened": 2.0,
+     "rank": 87,
+     "pick": false,
+     "lat": 30.38202,
+     "lon": -97.67364
+    },
+    {
+     "zip": "78654",
+     "name": "Marble Falls",
+     "why": [
+      "tech and media employers",
+      "retail corridor",
+      "schools and campuses"
+     ],
+     "predicted": -0.18,
+     "happened": -3.0,
+     "rank": 88,
+     "pick": false,
+     "lat": 30.58122,
+     "lon": -98.20873
+    },
+    {
+     "zip": "78634",
+     "name": "Hutto",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "young professionals"
+     ],
+     "predicted": -0.19,
+     "happened": 0.0,
+     "rank": 89,
+     "pick": false,
+     "lat": 30.5606,
+     "lon": -97.54626
+    },
+    {
+     "zip": "78730",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "work-from-home share",
+      "well-paid jobs"
+     ],
+     "predicted": -0.22,
+     "happened": 0.0,
+     "rank": 90,
+     "pick": false,
+     "lat": 30.37028,
+     "lon": -97.83615
+    },
+    {
+     "zip": "78739",
+     "name": "Austin",
+     "why": [
+      "high incomes",
+      "jobs growing",
+      "work-from-home share"
+     ],
+     "predicted": -0.22,
+     "happened": -3.0,
+     "rank": 91,
+     "pick": false,
+     "lat": 30.17847,
+     "lon": -97.88869
+    },
+    {
+     "zip": "78676",
+     "name": "Wimberley",
+     "why": [
+      "work-from-home share",
+      "schools and campuses",
+      "college-educated"
+     ],
+     "predicted": -0.25,
+     "happened": -1.0,
+     "rank": 92,
+     "pick": false,
+     "lat": 30.03445,
+     "lon": -98.14278
+    },
+    {
+     "zip": "78726",
+     "name": "Austin",
+     "why": [
+      "college-educated",
+      "well-paid jobs",
+      "jobs within 5 km"
+     ],
+     "predicted": -0.3,
+     "happened": -2.0,
+     "rank": 93,
+     "pick": false,
+     "lat": 30.4295,
+     "lon": -97.84207
+    },
+    {
+     "zip": "78642",
+     "name": "Liberty Hill",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "transit riders"
+     ],
+     "predicted": -0.37,
+     "happened": 0.0,
+     "rank": 94,
+     "pick": false,
+     "lat": 30.69088,
+     "lon": -97.94143
+    },
+    {
+     "zip": "78664",
+     "name": "Round Rock",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "retail corridor"
+     ],
+     "predicted": -0.53,
+     "happened": 3.0,
+     "rank": 95,
+     "pick": false,
+     "lat": 30.50541,
+     "lon": -97.64728
+    },
+    {
+     "zip": "78736",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "tech and media employers"
+     ],
+     "predicted": -0.63,
+     "happened": 2.0,
+     "rank": 96,
+     "pick": false,
+     "lat": 30.26108,
+     "lon": -97.95944
+    },
+    {
+     "zip": "78602",
+     "name": "Bastrop",
+     "why": [
+      "restaurants and bars nearby",
+      "health-care cluster",
+      "retail corridor"
+     ],
+     "predicted": -0.67,
+     "happened": 0.0,
+     "rank": 97,
+     "pick": false,
+     "lat": 30.12382,
+     "lon": -97.32771
+    },
+    {
+     "zip": "78621",
+     "name": "Elgin",
+     "why": [
+      "large population",
+      "jobs growing",
+      "well-paid jobs"
+     ],
+     "predicted": -0.87,
+     "happened": -2.0,
+     "rank": 98,
+     "pick": false,
+     "lat": 30.33885,
+     "lon": -97.36179
+    }
+   ],
+   "backtest": {
+    "frozen_at": 2020,
+    "scored_on": 2023,
+    "n_zips": 20937,
+    "lift": 7.4,
+    "ci": [
+     7.1,
+     7.7
+    ],
+    "by_industry": [
+     {
+      "naics": "713940",
+      "name": "Fitness centers",
+      "lift": 7.4,
+      "population_lift": 5.7,
+      "ci": [
+       7.1,
+       7.7
+      ],
+      "verdict": "better"
+     },
+     {
+      "naics": "621111",
+      "name": "Physician offices",
+      "lift": 5.4,
+      "population_lift": 5.5,
+      "ci": [
+       5.1,
+       5.8
+      ],
+      "verdict": "tie"
+     },
+     {
+      "naics": "722515",
+      "name": "Coffee and snack bars",
+      "lift": 6.0,
+      "population_lift": 5.1,
+      "ci": [
+       5.7,
+       6.2
+      ],
+      "verdict": "better"
+     }
+    ],
+    "pooled": {
+     "lift": 6.3,
+     "population_lift": 5.2
+    }
+   },
+   "source": "measured"
+  },
+  "621111": {
+   "board_id": "northwind",
+   "city": "Austin, TX",
+   "industries": [
+    {
+     "naics": "713940",
+     "name": "Fitness centers"
+    },
+    {
+     "naics": "621111",
+     "name": "Physician offices"
+    },
+    {
+     "naics": "722515",
+     "name": "Coffee and snack bars"
+    }
+   ],
+   "industry": "621111",
+   "headline": "Branch 4 goes to 78704, South Austin — where demand for clinics is growing fastest.",
+   "sub": "Tech and media employers, dense office base pull new clinics in. Predicted from 2020 conditions; 47 of 98 ZIPs added clinics by 2023. Source: US Census ZBP/CBP 2014–2023, ACS 2015–19.",
+   "zips_considered": 98,
+   "branches": 3,
+   "records": 309,
+   "rank_of": 98,
+   "opening": {
+    "date": "2027-01-20",
+    "was": "2027-02-07",
+    "blockers_cleared": 2
+   },
+   "zips": [
+    {
+     "zip": "78704",
+     "name": "South Austin",
+     "why": [
+      "tech and media employers",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 8.15,
+     "happened": 10.0,
+     "rank": 1,
+     "pick": true,
+     "lat": 30.24303,
+     "lon": -97.76508
+    },
+    {
+     "zip": "78613",
+     "name": "Cedar Park",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "health-care cluster"
+     ],
+     "predicted": 7.29,
+     "happened": 18.0,
+     "rank": 2,
+     "pick": false,
+     "lat": 30.50391,
+     "lon": -97.82418
+    },
+    {
+     "zip": "78701",
+     "name": "Downtown",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "jobs hub"
+     ],
+     "predicted": 6.57,
+     "happened": 4.0,
+     "rank": 3,
+     "pick": false,
+     "lat": 30.27057,
+     "lon": -97.74259
+    },
+    {
+     "zip": "78731",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "tech and media employers"
+     ],
+     "predicted": 5.53,
+     "happened": 17.0,
+     "rank": 4,
+     "pick": false,
+     "lat": 30.34824,
+     "lon": -97.76814
+    },
+    {
+     "zip": "78746",
+     "name": "West Lake Hills",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "real-estate activity"
+     ],
+     "predicted": 5.47,
+     "happened": -1.0,
+     "rank": 5,
+     "pick": false,
+     "lat": 30.29686,
+     "lon": -97.80957
+    },
+    {
+     "zip": "78738",
+     "name": "Lakeway / Bee Cave",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "real-estate activity"
+     ],
+     "predicted": 4.91,
+     "happened": 13.0,
+     "rank": 6,
+     "pick": false,
+     "lat": 30.32012,
+     "lon": -97.95819
+    },
+    {
+     "zip": "78717",
+     "name": "Avery Ranch",
+     "why": [
+      "tech and media employers",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 4.64,
+     "happened": 0.0,
+     "rank": 7,
+     "pick": false,
+     "lat": 30.48954,
+     "lon": -97.75384
+    },
+    {
+     "zip": "78703",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "tech and media employers"
+     ],
+     "predicted": 4.51,
+     "happened": 4.0,
+     "rank": 8,
+     "pick": false,
+     "lat": 30.29327,
+     "lon": -97.76605
+    },
+    {
+     "zip": "78641",
+     "name": "Leander",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "tech and media employers"
+     ],
+     "predicted": 3.79,
+     "happened": 7.0,
+     "rank": 9,
+     "pick": false,
+     "lat": 30.56256,
+     "lon": -97.90785
+    },
+    {
+     "zip": "78664",
+     "name": "Round Rock",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "retail corridor"
+     ],
+     "predicted": 3.78,
+     "happened": 3.0,
+     "rank": 10,
+     "pick": false,
+     "lat": 30.50541,
+     "lon": -97.64728
+    },
+    {
+     "zip": "78745",
+     "name": "South Austin",
+     "why": [
+      "dense office base",
+      "real-estate activity",
+      "schools and campuses"
+     ],
+     "predicted": 3.67,
+     "happened": -14.0,
+     "rank": 11,
+     "pick": false,
+     "lat": 30.20685,
+     "lon": -97.79738
+    },
+    {
+     "zip": "78660",
+     "name": "Pflugerville",
+     "why": [
+      "schools and campuses",
+      "large population",
+      "tech and media employers"
+     ],
+     "predicted": 3.59,
+     "happened": -1.0,
+     "rank": 12,
+     "pick": false,
+     "lat": 30.43963,
+     "lon": -97.59469
+    },
+    {
+     "zip": "78723",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "schools and campuses",
+      "jobs within 5 km"
+     ],
+     "predicted": 3.41,
+     "happened": 7.0,
+     "rank": 13,
+     "pick": false,
+     "lat": 30.30427,
+     "lon": -97.68571
+    },
+    {
+     "zip": "78620",
+     "name": "Dripping Springs",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "jobs growing"
+     ],
+     "predicted": 2.19,
+     "happened": 5.0,
+     "rank": 14,
+     "pick": false,
+     "lat": 30.22561,
+     "lon": -98.1363
+    },
+    {
+     "zip": "78759",
+     "name": "Great Hills",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": 2.14,
+     "happened": 7.0,
+     "rank": 15,
+     "pick": false,
+     "lat": 30.40267,
+     "lon": -97.76104
+    },
+    {
+     "zip": "78737",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "dense office base",
+      "high incomes"
+     ],
+     "predicted": 2.03,
+     "happened": 4.0,
+     "rank": 16,
+     "pick": false,
+     "lat": 30.18993,
+     "lon": -97.95664
+    },
+    {
+     "zip": "78749",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "dense housing",
+      "schools and campuses"
+     ],
+     "predicted": 1.94,
+     "happened": 6.0,
+     "rank": 17,
+     "pick": false,
+     "lat": 30.21617,
+     "lon": -97.85583
+    },
+    {
+     "zip": "78640",
+     "name": "Kyle",
+     "why": [
+      "large population",
+      "schools and campuses",
+      "businesses growing"
+     ],
+     "predicted": 1.94,
+     "happened": 6.0,
+     "rank": 18,
+     "pick": false,
+     "lat": 29.99911,
+     "lon": -97.82822
+    },
+    {
+     "zip": "78665",
+     "name": "Round Rock East",
+     "why": [
+      "people within 5 km",
+      "jobs within 5 km",
+      "dense office base"
+     ],
+     "predicted": 1.74,
+     "happened": 3.0,
+     "rank": 19,
+     "pick": false,
+     "lat": 30.54325,
+     "lon": -97.6452
+    },
+    {
+     "zip": "78702",
+     "name": "East Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "dense office base"
+     ],
+     "predicted": 1.7,
+     "happened": 9.0,
+     "rank": 20,
+     "pick": false,
+     "lat": 30.26338,
+     "lon": -97.71448
+    },
+    {
+     "zip": "78748",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "dense housing",
+      "schools and campuses"
+     ],
+     "predicted": 1.62,
+     "happened": 2.0,
+     "rank": 21,
+     "pick": false,
+     "lat": 30.16643,
+     "lon": -97.82339
+    },
+    {
+     "zip": "78735",
+     "name": "Austin",
+     "why": [
+      "well-paid jobs",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 1.56,
+     "happened": 8.0,
+     "rank": 22,
+     "pick": false,
+     "lat": 30.26912,
+     "lon": -97.86882
+    },
+    {
+     "zip": "78741",
+     "name": "Austin",
+     "why": [
+      "transit riders",
+      "dense housing",
+      "tech and media employers"
+     ],
+     "predicted": 1.51,
+     "happened": 6.0,
+     "rank": 23,
+     "pick": false,
+     "lat": 30.23046,
+     "lon": -97.7142
+    },
+    {
+     "zip": "78734",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "real-estate activity"
+     ],
+     "predicted": 1.48,
+     "happened": 1.0,
+     "rank": 24,
+     "pick": false,
+     "lat": 30.37855,
+     "lon": -97.95063
+    },
+    {
+     "zip": "78739",
+     "name": "Austin",
+     "why": [
+      "high incomes",
+      "jobs growing",
+      "work-from-home share"
+     ],
+     "predicted": 1.47,
+     "happened": 1.0,
+     "rank": 25,
+     "pick": false,
+     "lat": 30.17847,
+     "lon": -97.88869
+    },
+    {
+     "zip": "78610",
+     "name": "Buda",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "large population"
+     ],
+     "predicted": 1.37,
+     "happened": 4.0,
+     "rank": 26,
+     "pick": false,
+     "lat": 30.07851,
+     "lon": -97.83801
+    },
+    {
+     "zip": "78750",
+     "name": "Anderson Mill",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 1.37,
+     "happened": 0.0,
+     "rank": 27,
+     "pick": false,
+     "lat": 30.41878,
+     "lon": -97.80227
+    },
+    {
+     "zip": "78729",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "well-paid jobs",
+      "jobs within 5 km"
+     ],
+     "predicted": 1.2,
+     "happened": 0.0,
+     "rank": 28,
+     "pick": false,
+     "lat": 30.4584,
+     "lon": -97.75534
+    },
+    {
+     "zip": "78730",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "work-from-home share",
+      "well-paid jobs"
+     ],
+     "predicted": 1.1,
+     "happened": 1.0,
+     "rank": 29,
+     "pick": false,
+     "lat": 30.37028,
+     "lon": -97.83615
+    },
+    {
+     "zip": "78744",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "large population",
+      "real-estate activity"
+     ],
+     "predicted": 1.04,
+     "happened": 4.0,
+     "rank": 30,
+     "pick": false,
+     "lat": 30.17779,
+     "lon": -97.72515
+    },
+    {
+     "zip": "78733",
+     "name": "Austin",
+     "why": [
+      "high incomes",
+      "work-from-home share",
+      "college-educated"
+     ],
+     "predicted": 1.03,
+     "happened": 3.0,
+     "rank": 31,
+     "pick": false,
+     "lat": 30.3214,
+     "lon": -97.88474
+    },
+    {
+     "zip": "78628",
+     "name": "Georgetown",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "real-estate activity"
+     ],
+     "predicted": 1.01,
+     "happened": 1.0,
+     "rank": 32,
+     "pick": false,
+     "lat": 30.66454,
+     "lon": -97.77862
+    },
+    {
+     "zip": "78666",
+     "name": "San Marcos",
+     "why": [
+      "retail corridor",
+      "restaurants and bars nearby",
+      "real-estate activity"
+     ],
+     "predicted": 1.01,
+     "happened": 6.0,
+     "rank": 33,
+     "pick": false,
+     "lat": 29.88016,
+     "lon": -97.96616
+    },
+    {
+     "zip": "78732",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "dense office base"
+     ],
+     "predicted": 1.01,
+     "happened": -2.0,
+     "rank": 34,
+     "pick": false,
+     "lat": 30.37789,
+     "lon": -97.89502
+    },
+    {
+     "zip": "78751",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "transit riders",
+      "dense housing"
+     ],
+     "predicted": 1.0,
+     "happened": 5.0,
+     "rank": 35,
+     "pick": false,
+     "lat": 30.31079,
+     "lon": -97.72275
+    },
+    {
+     "zip": "78727",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "people within 5 km"
+     ],
+     "predicted": 0.99,
+     "happened": 2.0,
+     "rank": 36,
+     "pick": false,
+     "lat": 30.42994,
+     "lon": -97.7178
+    },
+    {
+     "zip": "78753",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "dense housing"
+     ],
+     "predicted": 0.97,
+     "happened": 0.0,
+     "rank": 37,
+     "pick": false,
+     "lat": 30.38202,
+     "lon": -97.67364
+    },
+    {
+     "zip": "78634",
+     "name": "Hutto",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "young professionals"
+     ],
+     "predicted": 0.89,
+     "happened": 2.0,
+     "rank": 38,
+     "pick": false,
+     "lat": 30.5606,
+     "lon": -97.54626
+    },
+    {
+     "zip": "78754",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "people within 5 km"
+     ],
+     "predicted": 0.82,
+     "happened": 3.0,
+     "rank": 39,
+     "pick": false,
+     "lat": 30.3554,
+     "lon": -97.64185
+    },
+    {
+     "zip": "78681",
+     "name": "Round Rock West",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "health-care cluster"
+     ],
+     "predicted": 0.75,
+     "happened": 1.0,
+     "rank": 40,
+     "pick": false,
+     "lat": 30.53442,
+     "lon": -97.72574
+    },
+    {
+     "zip": "78642",
+     "name": "Liberty Hill",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "transit riders"
+     ],
+     "predicted": 0.74,
+     "happened": 2.0,
+     "rank": 41,
+     "pick": false,
+     "lat": 30.69088,
+     "lon": -97.94143
+    },
+    {
+     "zip": "78669",
+     "name": "Spicewood",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "college-educated"
+     ],
+     "predicted": 0.61,
+     "happened": 1.0,
+     "rank": 42,
+     "pick": false,
+     "lat": 30.43072,
+     "lon": -98.11278
+    },
+    {
+     "zip": "78726",
+     "name": "Austin",
+     "why": [
+      "college-educated",
+      "well-paid jobs",
+      "jobs within 5 km"
+     ],
+     "predicted": 0.61,
+     "happened": -1.0,
+     "rank": 43,
+     "pick": false,
+     "lat": 30.4295,
+     "lon": -97.84207
+    },
+    {
+     "zip": "78626",
+     "name": "Georgetown",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": 0.56,
+     "happened": -3.0,
+     "rank": 44,
+     "pick": false,
+     "lat": 30.65789,
+     "lon": -97.61784
+    },
+    {
+     "zip": "78633",
+     "name": "Georgetown",
+     "why": [
+      "jobs growing",
+      "work-from-home share",
+      "college-educated"
+     ],
+     "predicted": 0.51,
+     "happened": 4.0,
+     "rank": 45,
+     "pick": false,
+     "lat": 30.74118,
+     "lon": -97.7561
+    },
+    {
+     "zip": "78752",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "jobs within 5 km",
+      "young professionals"
+     ],
+     "predicted": 0.32,
+     "happened": 0.0,
+     "rank": 46,
+     "pick": false,
+     "lat": 30.33181,
+     "lon": -97.70428
+    },
+    {
+     "zip": "78747",
+     "name": "Austin",
+     "why": [
+      "businesses growing",
+      "young professionals",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.29,
+     "happened": 0.0,
+     "rank": 47,
+     "pick": false,
+     "lat": 30.12697,
+     "lon": -97.73997
+    },
+    {
+     "zip": "78724",
+     "name": "Austin",
+     "why": [
+      "young professionals",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.26,
+     "happened": 0.0,
+     "rank": 48,
+     "pick": false,
+     "lat": 30.29271,
+     "lon": -97.61795
+    },
+    {
+     "zip": "78728",
+     "name": "Austin",
+     "why": [
+      "young professionals",
+      "jobs within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.24,
+     "happened": 0.0,
+     "rank": 49,
+     "pick": false,
+     "lat": 30.45417,
+     "lon": -97.69218
+    },
+    {
+     "zip": "78722",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "people within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.24,
+     "happened": -2.0,
+     "rank": 50,
+     "pick": false,
+     "lat": 30.28996,
+     "lon": -97.7147
+    },
+    {
+     "zip": "78645",
+     "name": "Leander",
+     "why": [
+      "work-from-home share",
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.2,
+     "happened": -1.0,
+     "rank": 51,
+     "pick": false,
+     "lat": 30.45004,
+     "lon": -97.97198
+    },
+    {
+     "zip": "78736",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "tech and media employers"
+     ],
+     "predicted": 0.16,
+     "happened": 1.0,
+     "rank": 52,
+     "pick": false,
+     "lat": 30.26108,
+     "lon": -97.95944
+    },
+    {
+     "zip": "78725",
+     "name": "Austin",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "young professionals"
+     ],
+     "predicted": 0.16,
+     "happened": 0.0,
+     "rank": 53,
+     "pick": false,
+     "lat": 30.23001,
+     "lon": -97.60858
+    },
+    {
+     "zip": "78712",
+     "name": "Austin",
+     "why": [
+      "walkable",
+      "jobs within 5 km",
+      "people within 5 km"
+     ],
+     "predicted": 0.15,
+     "happened": 0.0,
+     "rank": 54,
+     "pick": false,
+     "lat": 30.28217,
+     "lon": -97.731
+    },
+    {
+     "zip": "78657",
+     "name": "Horseshoe Bay",
+     "why": [
+      "businesses growing",
+      "college-educated",
+      "real-estate activity"
+     ],
+     "predicted": 0.13,
+     "happened": 0.0,
+     "rank": 55,
+     "pick": false,
+     "lat": 30.53143,
+     "lon": -98.37805
+    },
+    {
+     "zip": "78742",
+     "name": "Austin",
+     "why": [
+      "jobs hub",
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.13,
+     "happened": 0.0,
+     "rank": 56,
+     "pick": false,
+     "lat": 30.24235,
+     "lon": -97.6592
+    },
+    {
+     "zip": "78721",
+     "name": "Austin",
+     "why": [
+      "transit riders",
+      "jobs within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.12,
+     "happened": 1.0,
+     "rank": 57,
+     "pick": false,
+     "lat": 30.26997,
+     "lon": -97.68356
+    },
+    {
+     "zip": "78606",
+     "name": "Blanco",
+     "why": [
+      "businesses growing",
+      "work-from-home share",
+      "schools and campuses"
+     ],
+     "predicted": 0.12,
+     "happened": 0.0,
+     "rank": 58,
+     "pick": false,
+     "lat": 30.08379,
+     "lon": -98.47616
+    },
+    {
+     "zip": "78617",
+     "name": "Del Valle",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "large population"
+     ],
+     "predicted": 0.1,
+     "happened": 2.0,
+     "rank": 59,
+     "pick": false,
+     "lat": 30.14853,
+     "lon": -97.59303
+    },
+    {
+     "zip": "78616",
+     "name": "Dale",
+     "why": [
+      "businesses growing",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.1,
+     "happened": 0.0,
+     "rank": 60,
+     "pick": false,
+     "lat": 29.94007,
+     "lon": -97.56829
+    },
+    {
+     "zip": "78621",
+     "name": "Elgin",
+     "why": [
+      "large population",
+      "jobs growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.1,
+     "happened": 2.0,
+     "rank": 61,
+     "pick": false,
+     "lat": 30.33885,
+     "lon": -97.36179
+    },
+    {
+     "zip": "78612",
+     "name": "Cedar Creek",
+     "why": [
+      "businesses growing",
+      "work-from-home share",
+      "large population"
+     ],
+     "predicted": 0.1,
+     "happened": 0.0,
+     "rank": 62,
+     "pick": false,
+     "lat": 30.09407,
+     "lon": -97.49509
+    },
+    {
+     "zip": "78639",
+     "name": "Kingsland",
+     "why": [
+      "walkable",
+      "work-from-home share"
+     ],
+     "predicted": 0.09,
+     "happened": 0.0,
+     "rank": 63,
+     "pick": false,
+     "lat": 30.67368,
+     "lon": -98.44104
+    },
+    {
+     "zip": "78652",
+     "name": "Manchaca",
+     "why": [
+      "high incomes",
+      "college-educated",
+      "young professionals"
+     ],
+     "predicted": 0.08,
+     "happened": 0.0,
+     "rank": 64,
+     "pick": false,
+     "lat": 30.13282,
+     "lon": -97.87469
+    },
+    {
+     "zip": "78619",
+     "name": "Driftwood",
+     "why": [
+      "high incomes",
+      "work-from-home share",
+      "businesses growing"
+     ],
+     "predicted": 0.07,
+     "happened": 0.0,
+     "rank": 65,
+     "pick": false,
+     "lat": 30.11221,
+     "lon": -98.03327
+    },
+    {
+     "zip": "78636",
+     "name": "Johnson City",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.06,
+     "happened": 0.0,
+     "rank": 66,
+     "pick": false,
+     "lat": 30.3169,
+     "lon": -98.42499
+    },
+    {
+     "zip": "78653",
+     "name": "Manor",
+     "why": [
+      "businesses growing",
+      "young professionals",
+      "large population"
+     ],
+     "predicted": 0.06,
+     "happened": 3.0,
+     "rank": 67,
+     "pick": false,
+     "lat": 30.33969,
+     "lon": -97.52349
+    },
+    {
+     "zip": "78605",
+     "name": "Bertram",
+     "why": [
+      "businesses growing",
+      "well-paid jobs",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.06,
+     "happened": 0.0,
+     "rank": 68,
+     "pick": false,
+     "lat": 30.7733,
+     "lon": -98.04518
+    },
+    {
+     "zip": "78676",
+     "name": "Wimberley",
+     "why": [
+      "work-from-home share",
+      "schools and campuses",
+      "college-educated"
+     ],
+     "predicted": 0.05,
+     "happened": 2.0,
+     "rank": 69,
+     "pick": false,
+     "lat": 30.03445,
+     "lon": -98.14278
+    },
+    {
+     "zip": "78644",
+     "name": "Lockhart",
+     "why": [
+      "schools and campuses",
+      "businesses growing",
+      "tech and media employers"
+     ],
+     "predicted": 0.05,
+     "happened": 1.0,
+     "rank": 70,
+     "pick": false,
+     "lat": 29.87164,
+     "lon": -97.67682
+    },
+    {
+     "zip": "78631",
+     "name": "Harper",
+     "why": [
+      "businesses growing"
+     ],
+     "predicted": 0.02,
+     "happened": 0.0,
+     "rank": 71,
+     "pick": false,
+     "lat": 30.33977,
+     "lon": -99.30658
+    },
+    {
+     "zip": "78655",
+     "name": "Martindale",
+     "why": [
+      "jobs growing"
+     ],
+     "predicted": 0.02,
+     "happened": 0.0,
+     "rank": 72,
+     "pick": false,
+     "lat": 29.81606,
+     "lon": -97.83505
+    },
+    {
+     "zip": "78656",
+     "name": "Maxwell",
+     "why": [
+      "jobs growing",
+      "young professionals",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.02,
+     "happened": 0.0,
+     "rank": 73,
+     "pick": false,
+     "lat": 29.90451,
+     "lon": -97.80731
+    },
+    {
+     "zip": "78659",
+     "name": "Paige",
+     "why": [
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.02,
+     "happened": 0.0,
+     "rank": 74,
+     "pick": false,
+     "lat": 30.20742,
+     "lon": -97.12539
+    },
+    {
+     "zip": "78719",
+     "name": "Austin",
+     "why": [
+      "jobs hub",
+      "businesses growing",
+      "jobs growing"
+     ],
+     "predicted": 0.02,
+     "happened": 0.0,
+     "rank": 75,
+     "pick": false,
+     "lat": 30.19729,
+     "lon": -97.66742
+    },
+    {
+     "zip": "78623",
+     "name": "Fischer",
+     "why": [
+      "work-from-home share",
+      "businesses growing",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 76,
+     "pick": false,
+     "lat": 29.97114,
+     "lon": -98.22823
+    },
+    {
+     "zip": "78638",
+     "name": "Kingsbury",
+     "why": [
+      "transit riders",
+      "well-paid jobs"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 77,
+     "pick": false,
+     "lat": 29.65959,
+     "lon": -97.7852
+    },
+    {
+     "zip": "78662",
+     "name": "Red Rock",
+     "why": [
+      "well-paid jobs",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 78,
+     "pick": false,
+     "lat": 29.92413,
+     "lon": -97.42471
+    },
+    {
+     "zip": "78757",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": 0.01,
+     "happened": 7.0,
+     "rank": 79,
+     "pick": false,
+     "lat": 30.35154,
+     "lon": -97.73257
+    },
+    {
+     "zip": "78609",
+     "name": "Buchanan Dam",
+     "why": [
+      "near the metro average on every driver"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 80,
+     "pick": false,
+     "lat": 30.76522,
+     "lon": -98.45098
+    },
+    {
+     "zip": "78643",
+     "name": "Llano",
+     "why": [
+      "businesses growing",
+      "tech and media employers"
+     ],
+     "predicted": 0.01,
+     "happened": 1.0,
+     "rank": 81,
+     "pick": false,
+     "lat": 30.68854,
+     "lon": -98.68989
+    },
+    {
+     "zip": "78650",
+     "name": "Mc Dade",
+     "why": [
+      "businesses growing",
+      "20s and 30s crowd",
+      "jobs growing"
+     ],
+     "predicted": 0.0,
+     "happened": 0.0,
+     "rank": 82,
+     "pick": false,
+     "lat": 30.30389,
+     "lon": -97.2189
+    },
+    {
+     "zip": "78615",
+     "name": "Coupland",
+     "why": [
+      "businesses growing",
+      "work-from-home share"
+     ],
+     "predicted": -0.0,
+     "happened": 0.0,
+     "rank": 83,
+     "pick": false,
+     "lat": 30.46546,
+     "lon": -97.38411
+    },
+    {
+     "zip": "78635",
+     "name": "Hye",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "high incomes"
+     ],
+     "predicted": -0.0,
+     "happened": 0.0,
+     "rank": 84,
+     "pick": false,
+     "lat": 30.20608,
+     "lon": -98.56486
+    },
+    {
+     "zip": "78671",
+     "name": "Stonewall",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "jobs hub"
+     ],
+     "predicted": -0.0,
+     "happened": 0.0,
+     "rank": 85,
+     "pick": false,
+     "lat": 30.21896,
+     "lon": -98.6299
+    },
+    {
+     "zip": "78632",
+     "name": "Harwood",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": -0.0,
+     "happened": 0.0,
+     "rank": 86,
+     "pick": false,
+     "lat": 29.69611,
+     "lon": -97.47066
+    },
+    {
+     "zip": "78614",
+     "name": "Cost",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "well-paid jobs"
+     ],
+     "predicted": -0.0,
+     "happened": 0.0,
+     "rank": 87,
+     "pick": false,
+     "lat": 29.41041,
+     "lon": -97.58717
+    },
+    {
+     "zip": "78672",
+     "name": "Tow",
+     "why": [
+      "near the metro average on every driver"
+     ],
+     "predicted": -0.01,
+     "happened": 0.0,
+     "rank": 88,
+     "pick": false,
+     "lat": 30.85884,
+     "lon": -98.46951
+    },
+    {
+     "zip": "78663",
+     "name": "Round Mountain",
+     "why": [
+      "work-from-home share",
+      "jobs growing",
+      "high incomes"
+     ],
+     "predicted": -0.01,
+     "happened": 0.0,
+     "rank": 89,
+     "pick": false,
+     "lat": 30.40226,
+     "lon": -98.35957
+    },
+    {
+     "zip": "78611",
+     "name": "Burnet",
+     "why": [
+      "work-from-home share",
+      "restaurants and bars nearby",
+      "jobs growing"
+     ],
+     "predicted": -0.05,
+     "happened": 5.0,
+     "rank": 90,
+     "pick": false,
+     "lat": 30.80105,
+     "lon": -98.28349
+    },
+    {
+     "zip": "78629",
+     "name": "Gonzales",
+     "why": [
+      "retail corridor",
+      "tech and media employers",
+      "restaurants and bars nearby"
+     ],
+     "predicted": -0.07,
+     "happened": -5.0,
+     "rank": 91,
+     "pick": false,
+     "lat": 29.47684,
+     "lon": -97.44894
+    },
+    {
+     "zip": "78602",
+     "name": "Bastrop",
+     "why": [
+      "restaurants and bars nearby",
+      "health-care cluster",
+      "retail corridor"
+     ],
+     "predicted": -0.1,
+     "happened": 8.0,
+     "rank": 92,
+     "pick": false,
+     "lat": 30.12382,
+     "lon": -97.32771
+    },
+    {
+     "zip": "78648",
+     "name": "Luling",
+     "why": [
+      "20s and 30s crowd"
+     ],
+     "predicted": -0.11,
+     "happened": -1.0,
+     "rank": 93,
+     "pick": false,
+     "lat": 29.69018,
+     "lon": -97.63356
+    },
+    {
+     "zip": "78654",
+     "name": "Marble Falls",
+     "why": [
+      "tech and media employers",
+      "retail corridor",
+      "schools and campuses"
+     ],
+     "predicted": -0.28,
+     "happened": -1.0,
+     "rank": 94,
+     "pick": false,
+     "lat": 30.58122,
+     "lon": -98.20873
+    },
+    {
+     "zip": "78756",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "people within 5 km",
+      "dense housing"
+     ],
+     "predicted": -0.57,
+     "happened": -5.0,
+     "rank": 95,
+     "pick": false,
+     "lat": 30.32222,
+     "lon": -97.74017
+    },
+    {
+     "zip": "78624",
+     "name": "Fredericksburg",
+     "why": [
+      "restaurants and bars nearby",
+      "retail corridor",
+      "health-care cluster"
+     ],
+     "predicted": -0.8,
+     "happened": -3.0,
+     "rank": 96,
+     "pick": false,
+     "lat": 30.28094,
+     "lon": -98.87668
+    },
+    {
+     "zip": "78758",
+     "name": "North Austin",
+     "why": [
+      "tech and media employers",
+      "jobs within 5 km",
+      "dense office base"
+     ],
+     "predicted": -1.66,
+     "happened": 10.0,
+     "rank": 97,
+     "pick": false,
+     "lat": 30.38799,
+     "lon": -97.70685
+    },
+    {
+     "zip": "78705",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "jobs within 5 km",
+      "walkable"
+     ],
+     "predicted": -13.49,
+     "happened": -38.0,
+     "rank": 98,
+     "pick": false,
+     "lat": 30.29433,
+     "lon": -97.73852
+    }
+   ],
+   "backtest": {
+    "frozen_at": 2020,
+    "scored_on": 2023,
+    "n_zips": 16548,
+    "lift": 5.4,
+    "ci": [
+     5.1,
+     5.8
+    ],
+    "by_industry": [
+     {
+      "naics": "713940",
+      "name": "Fitness centers",
+      "lift": 7.4,
+      "population_lift": 5.7,
+      "ci": [
+       7.1,
+       7.7
+      ],
+      "verdict": "better"
+     },
+     {
+      "naics": "621111",
+      "name": "Physician offices",
+      "lift": 5.4,
+      "population_lift": 5.5,
+      "ci": [
+       5.1,
+       5.8
+      ],
+      "verdict": "tie"
+     },
+     {
+      "naics": "722515",
+      "name": "Coffee and snack bars",
+      "lift": 6.0,
+      "population_lift": 5.1,
+      "ci": [
+       5.7,
+       6.2
+      ],
+      "verdict": "better"
+     }
+    ],
+    "pooled": {
+     "lift": 6.3,
+     "population_lift": 5.2
+    }
+   },
+   "source": "measured"
+  },
+  "722515": {
+   "board_id": "northwind",
+   "city": "Austin, TX",
+   "industries": [
+    {
+     "naics": "713940",
+     "name": "Fitness centers"
+    },
+    {
+     "naics": "621111",
+     "name": "Physician offices"
+    },
+    {
+     "naics": "722515",
+     "name": "Coffee and snack bars"
+    }
+   ],
+   "industry": "722515",
+   "headline": "Branch 4 goes to 78641, Leander — where demand for coffee shops is growing fastest.",
+   "sub": "Dense office base, schools and campuses pull new coffee shops in. Predicted from 2020 conditions; 52 of 98 ZIPs added coffee shops by 2023. Source: US Census ZBP/CBP 2014–2023, ACS 2015–19.",
+   "zips_considered": 98,
+   "branches": 3,
+   "records": 309,
+   "rank_of": 98,
+   "opening": {
+    "date": "2027-01-20",
+    "was": "2027-02-07",
+    "blockers_cleared": 2
+   },
+   "zips": [
+    {
+     "zip": "78641",
+     "name": "Leander",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "tech and media employers"
+     ],
+     "predicted": 3.47,
+     "happened": 10.0,
+     "rank": 1,
+     "pick": true,
+     "lat": 30.56256,
+     "lon": -97.90785
+    },
+    {
+     "zip": "78666",
+     "name": "San Marcos",
+     "why": [
+      "retail corridor",
+      "restaurants and bars nearby",
+      "real-estate activity"
+     ],
+     "predicted": 3.39,
+     "happened": 3.0,
+     "rank": 2,
+     "pick": false,
+     "lat": 29.88016,
+     "lon": -97.96616
+    },
+    {
+     "zip": "78660",
+     "name": "Pflugerville",
+     "why": [
+      "schools and campuses",
+      "large population",
+      "tech and media employers"
+     ],
+     "predicted": 3.31,
+     "happened": 6.0,
+     "rank": 3,
+     "pick": false,
+     "lat": 30.43963,
+     "lon": -97.59469
+    },
+    {
+     "zip": "78701",
+     "name": "Downtown",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "jobs hub"
+     ],
+     "predicted": 3.08,
+     "happened": 3.0,
+     "rank": 4,
+     "pick": false,
+     "lat": 30.27057,
+     "lon": -97.74259
+    },
+    {
+     "zip": "78613",
+     "name": "Cedar Park",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "health-care cluster"
+     ],
+     "predicted": 2.84,
+     "happened": 10.0,
+     "rank": 5,
+     "pick": false,
+     "lat": 30.50391,
+     "lon": -97.82418
+    },
+    {
+     "zip": "78640",
+     "name": "Kyle",
+     "why": [
+      "large population",
+      "schools and campuses",
+      "businesses growing"
+     ],
+     "predicted": 2.21,
+     "happened": 7.0,
+     "rank": 6,
+     "pick": false,
+     "lat": 29.99911,
+     "lon": -97.82822
+    },
+    {
+     "zip": "78665",
+     "name": "Round Rock East",
+     "why": [
+      "people within 5 km",
+      "jobs within 5 km",
+      "dense office base"
+     ],
+     "predicted": 2.19,
+     "happened": 6.0,
+     "rank": 7,
+     "pick": false,
+     "lat": 30.54325,
+     "lon": -97.6452
+    },
+    {
+     "zip": "78704",
+     "name": "South Austin",
+     "why": [
+      "tech and media employers",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 2.02,
+     "happened": 8.0,
+     "rank": 8,
+     "pick": false,
+     "lat": 30.24303,
+     "lon": -97.76508
+    },
+    {
+     "zip": "78758",
+     "name": "North Austin",
+     "why": [
+      "tech and media employers",
+      "jobs within 5 km",
+      "dense office base"
+     ],
+     "predicted": 1.64,
+     "happened": 6.0,
+     "rank": 9,
+     "pick": false,
+     "lat": 30.38799,
+     "lon": -97.70685
+    },
+    {
+     "zip": "78745",
+     "name": "South Austin",
+     "why": [
+      "dense office base",
+      "real-estate activity",
+      "schools and campuses"
+     ],
+     "predicted": 1.57,
+     "happened": -5.0,
+     "rank": 10,
+     "pick": false,
+     "lat": 30.20685,
+     "lon": -97.79738
+    },
+    {
+     "zip": "78753",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "dense housing"
+     ],
+     "predicted": 1.47,
+     "happened": -1.0,
+     "rank": 11,
+     "pick": false,
+     "lat": 30.38202,
+     "lon": -97.67364
+    },
+    {
+     "zip": "78741",
+     "name": "Austin",
+     "why": [
+      "transit riders",
+      "dense housing",
+      "tech and media employers"
+     ],
+     "predicted": 1.34,
+     "happened": -2.0,
+     "rank": 12,
+     "pick": false,
+     "lat": 30.23046,
+     "lon": -97.7142
+    },
+    {
+     "zip": "78731",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "tech and media employers"
+     ],
+     "predicted": 1.32,
+     "happened": 4.0,
+     "rank": 13,
+     "pick": false,
+     "lat": 30.34824,
+     "lon": -97.76814
+    },
+    {
+     "zip": "78744",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "large population",
+      "real-estate activity"
+     ],
+     "predicted": 1.26,
+     "happened": 6.0,
+     "rank": 14,
+     "pick": false,
+     "lat": 30.17779,
+     "lon": -97.72515
+    },
+    {
+     "zip": "78624",
+     "name": "Fredericksburg",
+     "why": [
+      "restaurants and bars nearby",
+      "retail corridor",
+      "health-care cluster"
+     ],
+     "predicted": 1.26,
+     "happened": 3.0,
+     "rank": 15,
+     "pick": false,
+     "lat": 30.28094,
+     "lon": -98.87668
+    },
+    {
+     "zip": "78702",
+     "name": "East Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "dense office base"
+     ],
+     "predicted": 1.13,
+     "happened": 1.0,
+     "rank": 16,
+     "pick": false,
+     "lat": 30.26338,
+     "lon": -97.71448
+    },
+    {
+     "zip": "78620",
+     "name": "Dripping Springs",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "jobs growing"
+     ],
+     "predicted": 1.01,
+     "happened": 4.0,
+     "rank": 17,
+     "pick": false,
+     "lat": 30.22561,
+     "lon": -98.1363
+    },
+    {
+     "zip": "78634",
+     "name": "Hutto",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "young professionals"
+     ],
+     "predicted": 0.91,
+     "happened": 9.0,
+     "rank": 18,
+     "pick": false,
+     "lat": 30.5606,
+     "lon": -97.54626
+    },
+    {
+     "zip": "78610",
+     "name": "Buda",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "large population"
+     ],
+     "predicted": 0.9,
+     "happened": 4.0,
+     "rank": 19,
+     "pick": false,
+     "lat": 30.07851,
+     "lon": -97.83801
+    },
+    {
+     "zip": "78705",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "jobs within 5 km",
+      "walkable"
+     ],
+     "predicted": 0.85,
+     "happened": 1.0,
+     "rank": 20,
+     "pick": false,
+     "lat": 30.29433,
+     "lon": -97.73852
+    },
+    {
+     "zip": "78748",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "dense housing",
+      "schools and campuses"
+     ],
+     "predicted": 0.75,
+     "happened": 6.0,
+     "rank": 21,
+     "pick": false,
+     "lat": 30.16643,
+     "lon": -97.82339
+    },
+    {
+     "zip": "78759",
+     "name": "Great Hills",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": 0.73,
+     "happened": 1.0,
+     "rank": 22,
+     "pick": false,
+     "lat": 30.40267,
+     "lon": -97.76104
+    },
+    {
+     "zip": "78664",
+     "name": "Round Rock",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "retail corridor"
+     ],
+     "predicted": 0.69,
+     "happened": 2.0,
+     "rank": 23,
+     "pick": false,
+     "lat": 30.50541,
+     "lon": -97.64728
+    },
+    {
+     "zip": "78717",
+     "name": "Avery Ranch",
+     "why": [
+      "tech and media employers",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 0.67,
+     "happened": 1.0,
+     "rank": 24,
+     "pick": false,
+     "lat": 30.48954,
+     "lon": -97.75384
+    },
+    {
+     "zip": "78728",
+     "name": "Austin",
+     "why": [
+      "young professionals",
+      "jobs within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.54,
+     "happened": 3.0,
+     "rank": 25,
+     "pick": false,
+     "lat": 30.45417,
+     "lon": -97.69218
+    },
+    {
+     "zip": "78739",
+     "name": "Austin",
+     "why": [
+      "high incomes",
+      "jobs growing",
+      "work-from-home share"
+     ],
+     "predicted": 0.54,
+     "happened": 0.0,
+     "rank": 26,
+     "pick": false,
+     "lat": 30.17847,
+     "lon": -97.88869
+    },
+    {
+     "zip": "78721",
+     "name": "Austin",
+     "why": [
+      "transit riders",
+      "jobs within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.45,
+     "happened": 5.0,
+     "rank": 27,
+     "pick": false,
+     "lat": 30.26997,
+     "lon": -97.68356
+    },
+    {
+     "zip": "78732",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "dense office base"
+     ],
+     "predicted": 0.45,
+     "happened": 1.0,
+     "rank": 28,
+     "pick": false,
+     "lat": 30.37789,
+     "lon": -97.89502
+    },
+    {
+     "zip": "78629",
+     "name": "Gonzales",
+     "why": [
+      "retail corridor",
+      "tech and media employers",
+      "restaurants and bars nearby"
+     ],
+     "predicted": 0.42,
+     "happened": 2.0,
+     "rank": 29,
+     "pick": false,
+     "lat": 29.47684,
+     "lon": -97.44894
+    },
+    {
+     "zip": "78723",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "schools and campuses",
+      "jobs within 5 km"
+     ],
+     "predicted": 0.39,
+     "happened": 1.0,
+     "rank": 30,
+     "pick": false,
+     "lat": 30.30427,
+     "lon": -97.68571
+    },
+    {
+     "zip": "78621",
+     "name": "Elgin",
+     "why": [
+      "large population",
+      "jobs growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.38,
+     "happened": 4.0,
+     "rank": 31,
+     "pick": false,
+     "lat": 30.33885,
+     "lon": -97.36179
+    },
+    {
+     "zip": "78754",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "people within 5 km"
+     ],
+     "predicted": 0.37,
+     "happened": 0.0,
+     "rank": 32,
+     "pick": false,
+     "lat": 30.3554,
+     "lon": -97.64185
+    },
+    {
+     "zip": "78654",
+     "name": "Marble Falls",
+     "why": [
+      "tech and media employers",
+      "retail corridor",
+      "schools and campuses"
+     ],
+     "predicted": 0.37,
+     "happened": 3.0,
+     "rank": 33,
+     "pick": false,
+     "lat": 30.58122,
+     "lon": -98.20873
+    },
+    {
+     "zip": "78749",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "dense housing",
+      "schools and campuses"
+     ],
+     "predicted": 0.37,
+     "happened": 1.0,
+     "rank": 34,
+     "pick": false,
+     "lat": 30.21617,
+     "lon": -97.85583
+    },
+    {
+     "zip": "78653",
+     "name": "Manor",
+     "why": [
+      "businesses growing",
+      "young professionals",
+      "large population"
+     ],
+     "predicted": 0.35,
+     "happened": 4.0,
+     "rank": 35,
+     "pick": false,
+     "lat": 30.33969,
+     "lon": -97.52349
+    },
+    {
+     "zip": "78729",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "well-paid jobs",
+      "jobs within 5 km"
+     ],
+     "predicted": 0.35,
+     "happened": 1.0,
+     "rank": 36,
+     "pick": false,
+     "lat": 30.4584,
+     "lon": -97.75534
+    },
+    {
+     "zip": "78633",
+     "name": "Georgetown",
+     "why": [
+      "jobs growing",
+      "work-from-home share",
+      "college-educated"
+     ],
+     "predicted": 0.32,
+     "happened": 0.0,
+     "rank": 37,
+     "pick": false,
+     "lat": 30.74118,
+     "lon": -97.7561
+    },
+    {
+     "zip": "78737",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "dense office base",
+      "high incomes"
+     ],
+     "predicted": 0.31,
+     "happened": -1.0,
+     "rank": 38,
+     "pick": false,
+     "lat": 30.18993,
+     "lon": -97.95664
+    },
+    {
+     "zip": "78617",
+     "name": "Del Valle",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "large population"
+     ],
+     "predicted": 0.3,
+     "happened": 2.0,
+     "rank": 39,
+     "pick": false,
+     "lat": 30.14853,
+     "lon": -97.59303
+    },
+    {
+     "zip": "78669",
+     "name": "Spicewood",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "college-educated"
+     ],
+     "predicted": 0.29,
+     "happened": 2.0,
+     "rank": 40,
+     "pick": false,
+     "lat": 30.43072,
+     "lon": -98.11278
+    },
+    {
+     "zip": "78738",
+     "name": "Lakeway / Bee Cave",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "real-estate activity"
+     ],
+     "predicted": 0.29,
+     "happened": 8.0,
+     "rank": 41,
+     "pick": false,
+     "lat": 30.32012,
+     "lon": -97.95819
+    },
+    {
+     "zip": "78645",
+     "name": "Leander",
+     "why": [
+      "work-from-home share",
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.27,
+     "happened": 6.0,
+     "rank": 42,
+     "pick": false,
+     "lat": 30.45004,
+     "lon": -97.97198
+    },
+    {
+     "zip": "78724",
+     "name": "Austin",
+     "why": [
+      "young professionals",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.25,
+     "happened": 0.0,
+     "rank": 43,
+     "pick": false,
+     "lat": 30.29271,
+     "lon": -97.61795
+    },
+    {
+     "zip": "78747",
+     "name": "Austin",
+     "why": [
+      "businesses growing",
+      "young professionals",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.24,
+     "happened": 0.0,
+     "rank": 44,
+     "pick": false,
+     "lat": 30.12697,
+     "lon": -97.73997
+    },
+    {
+     "zip": "78736",
+     "name": "Austin",
+     "why": [
+      "work-from-home share",
+      "high incomes",
+      "tech and media employers"
+     ],
+     "predicted": 0.2,
+     "happened": 0.0,
+     "rank": 45,
+     "pick": false,
+     "lat": 30.26108,
+     "lon": -97.95944
+    },
+    {
+     "zip": "78730",
+     "name": "Austin",
+     "why": [
+      "tech and media employers",
+      "work-from-home share",
+      "well-paid jobs"
+     ],
+     "predicted": 0.2,
+     "happened": 0.0,
+     "rank": 46,
+     "pick": false,
+     "lat": 30.37028,
+     "lon": -97.83615
+    },
+    {
+     "zip": "78681",
+     "name": "Round Rock West",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "health-care cluster"
+     ],
+     "predicted": 0.17,
+     "happened": 6.0,
+     "rank": 47,
+     "pick": false,
+     "lat": 30.53442,
+     "lon": -97.72574
+    },
+    {
+     "zip": "78643",
+     "name": "Llano",
+     "why": [
+      "businesses growing",
+      "tech and media employers"
+     ],
+     "predicted": 0.15,
+     "happened": 0.0,
+     "rank": 48,
+     "pick": false,
+     "lat": 30.68854,
+     "lon": -98.68989
+    },
+    {
+     "zip": "78612",
+     "name": "Cedar Creek",
+     "why": [
+      "businesses growing",
+      "work-from-home share",
+      "large population"
+     ],
+     "predicted": 0.15,
+     "happened": 0.0,
+     "rank": 49,
+     "pick": false,
+     "lat": 30.09407,
+     "lon": -97.49509
+    },
+    {
+     "zip": "78735",
+     "name": "Austin",
+     "why": [
+      "well-paid jobs",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": 0.12,
+     "happened": 0.0,
+     "rank": 50,
+     "pick": false,
+     "lat": 30.26912,
+     "lon": -97.86882
+    },
+    {
+     "zip": "78725",
+     "name": "Austin",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "young professionals"
+     ],
+     "predicted": 0.11,
+     "happened": 0.0,
+     "rank": 51,
+     "pick": false,
+     "lat": 30.23001,
+     "lon": -97.60858
+    },
+    {
+     "zip": "78626",
+     "name": "Georgetown",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": 0.1,
+     "happened": 6.0,
+     "rank": 52,
+     "pick": false,
+     "lat": 30.65789,
+     "lon": -97.61784
+    },
+    {
+     "zip": "78606",
+     "name": "Blanco",
+     "why": [
+      "businesses growing",
+      "work-from-home share",
+      "schools and campuses"
+     ],
+     "predicted": 0.1,
+     "happened": 5.0,
+     "rank": 53,
+     "pick": false,
+     "lat": 30.08379,
+     "lon": -98.47616
+    },
+    {
+     "zip": "78639",
+     "name": "Kingsland",
+     "why": [
+      "walkable",
+      "work-from-home share"
+     ],
+     "predicted": 0.09,
+     "happened": 2.0,
+     "rank": 54,
+     "pick": false,
+     "lat": 30.67368,
+     "lon": -98.44104
+    },
+    {
+     "zip": "78616",
+     "name": "Dale",
+     "why": [
+      "businesses growing",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.08,
+     "happened": 0.0,
+     "rank": 55,
+     "pick": false,
+     "lat": 29.94007,
+     "lon": -97.56829
+    },
+    {
+     "zip": "78712",
+     "name": "Austin",
+     "why": [
+      "walkable",
+      "jobs within 5 km",
+      "people within 5 km"
+     ],
+     "predicted": 0.06,
+     "happened": 0.0,
+     "rank": 56,
+     "pick": false,
+     "lat": 30.28217,
+     "lon": -97.731
+    },
+    {
+     "zip": "78756",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "people within 5 km",
+      "dense housing"
+     ],
+     "predicted": 0.05,
+     "happened": 1.0,
+     "rank": 57,
+     "pick": false,
+     "lat": 30.32222,
+     "lon": -97.74017
+    },
+    {
+     "zip": "78605",
+     "name": "Bertram",
+     "why": [
+      "businesses growing",
+      "well-paid jobs",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.04,
+     "happened": 0.0,
+     "rank": 58,
+     "pick": false,
+     "lat": 30.7733,
+     "lon": -98.04518
+    },
+    {
+     "zip": "78652",
+     "name": "Manchaca",
+     "why": [
+      "high incomes",
+      "college-educated",
+      "young professionals"
+     ],
+     "predicted": 0.04,
+     "happened": 0.0,
+     "rank": 59,
+     "pick": false,
+     "lat": 30.13282,
+     "lon": -97.87469
+    },
+    {
+     "zip": "78636",
+     "name": "Johnson City",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.03,
+     "happened": 0.0,
+     "rank": 60,
+     "pick": false,
+     "lat": 30.3169,
+     "lon": -98.42499
+    },
+    {
+     "zip": "78619",
+     "name": "Driftwood",
+     "why": [
+      "high incomes",
+      "work-from-home share",
+      "businesses growing"
+     ],
+     "predicted": 0.03,
+     "happened": 0.0,
+     "rank": 61,
+     "pick": false,
+     "lat": 30.11221,
+     "lon": -98.03327
+    },
+    {
+     "zip": "78719",
+     "name": "Austin",
+     "why": [
+      "jobs hub",
+      "businesses growing",
+      "jobs growing"
+     ],
+     "predicted": 0.01,
+     "happened": 3.0,
+     "rank": 62,
+     "pick": false,
+     "lat": 30.19729,
+     "lon": -97.66742
+    },
+    {
+     "zip": "78742",
+     "name": "Austin",
+     "why": [
+      "jobs hub",
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 63,
+     "pick": false,
+     "lat": 30.24235,
+     "lon": -97.6592
+    },
+    {
+     "zip": "78609",
+     "name": "Buchanan Dam",
+     "why": [
+      "near the metro average on every driver"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 64,
+     "pick": false,
+     "lat": 30.76522,
+     "lon": -98.45098
+    },
+    {
+     "zip": "78632",
+     "name": "Harwood",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 65,
+     "pick": false,
+     "lat": 29.69611,
+     "lon": -97.47066
+    },
+    {
+     "zip": "78659",
+     "name": "Paige",
+     "why": [
+      "jobs growing",
+      "businesses growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 66,
+     "pick": false,
+     "lat": 30.20742,
+     "lon": -97.12539
+    },
+    {
+     "zip": "78655",
+     "name": "Martindale",
+     "why": [
+      "jobs growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 67,
+     "pick": false,
+     "lat": 29.81606,
+     "lon": -97.83505
+    },
+    {
+     "zip": "78623",
+     "name": "Fischer",
+     "why": [
+      "work-from-home share",
+      "businesses growing",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 68,
+     "pick": false,
+     "lat": 29.97114,
+     "lon": -98.22823
+    },
+    {
+     "zip": "78631",
+     "name": "Harper",
+     "why": [
+      "businesses growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 69,
+     "pick": false,
+     "lat": 30.33977,
+     "lon": -99.30658
+    },
+    {
+     "zip": "78662",
+     "name": "Red Rock",
+     "why": [
+      "well-paid jobs",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 70,
+     "pick": false,
+     "lat": 29.92413,
+     "lon": -97.42471
+    },
+    {
+     "zip": "78615",
+     "name": "Coupland",
+     "why": [
+      "businesses growing",
+      "work-from-home share"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 71,
+     "pick": false,
+     "lat": 30.46546,
+     "lon": -97.38411
+    },
+    {
+     "zip": "78663",
+     "name": "Round Mountain",
+     "why": [
+      "work-from-home share",
+      "jobs growing",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 72,
+     "pick": false,
+     "lat": 30.40226,
+     "lon": -98.35957
+    },
+    {
+     "zip": "78650",
+     "name": "Mc Dade",
+     "why": [
+      "businesses growing",
+      "20s and 30s crowd",
+      "jobs growing"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 73,
+     "pick": false,
+     "lat": 30.30389,
+     "lon": -97.2189
+    },
+    {
+     "zip": "78638",
+     "name": "Kingsbury",
+     "why": [
+      "transit riders",
+      "well-paid jobs"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 74,
+     "pick": false,
+     "lat": 29.65959,
+     "lon": -97.7852
+    },
+    {
+     "zip": "78671",
+     "name": "Stonewall",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "jobs hub"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 75,
+     "pick": false,
+     "lat": 30.21896,
+     "lon": -98.6299
+    },
+    {
+     "zip": "78672",
+     "name": "Tow",
+     "why": [
+      "near the metro average on every driver"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 76,
+     "pick": false,
+     "lat": 30.85884,
+     "lon": -98.46951
+    },
+    {
+     "zip": "78614",
+     "name": "Cost",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "well-paid jobs"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 77,
+     "pick": false,
+     "lat": 29.41041,
+     "lon": -97.58717
+    },
+    {
+     "zip": "78635",
+     "name": "Hye",
+     "why": [
+      "jobs growing",
+      "businesses growing",
+      "high incomes"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 78,
+     "pick": false,
+     "lat": 30.20608,
+     "lon": -98.56486
+    },
+    {
+     "zip": "78656",
+     "name": "Maxwell",
+     "why": [
+      "jobs growing",
+      "young professionals",
+      "20s and 30s crowd"
+     ],
+     "predicted": 0.01,
+     "happened": 0.0,
+     "rank": 79,
+     "pick": false,
+     "lat": 29.90451,
+     "lon": -97.80731
+    },
+    {
+     "zip": "78726",
+     "name": "Austin",
+     "why": [
+      "college-educated",
+      "well-paid jobs",
+      "jobs within 5 km"
+     ],
+     "predicted": -0.01,
+     "happened": 2.0,
+     "rank": 80,
+     "pick": false,
+     "lat": 30.4295,
+     "lon": -97.84207
+    },
+    {
+     "zip": "78752",
+     "name": "Austin",
+     "why": [
+      "dense housing",
+      "jobs within 5 km",
+      "young professionals"
+     ],
+     "predicted": -0.03,
+     "happened": 1.0,
+     "rank": 81,
+     "pick": false,
+     "lat": 30.33181,
+     "lon": -97.70428
+    },
+    {
+     "zip": "78611",
+     "name": "Burnet",
+     "why": [
+      "work-from-home share",
+      "restaurants and bars nearby",
+      "jobs growing"
+     ],
+     "predicted": -0.03,
+     "happened": 1.0,
+     "rank": 82,
+     "pick": false,
+     "lat": 30.80105,
+     "lon": -98.28349
+    },
+    {
+     "zip": "78722",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "people within 5 km",
+      "dense housing"
+     ],
+     "predicted": -0.21,
+     "happened": 1.0,
+     "rank": 83,
+     "pick": false,
+     "lat": 30.28996,
+     "lon": -97.7147
+    },
+    {
+     "zip": "78676",
+     "name": "Wimberley",
+     "why": [
+      "work-from-home share",
+      "schools and campuses",
+      "college-educated"
+     ],
+     "predicted": -0.29,
+     "happened": 1.0,
+     "rank": 84,
+     "pick": false,
+     "lat": 30.03445,
+     "lon": -98.14278
+    },
+    {
+     "zip": "78602",
+     "name": "Bastrop",
+     "why": [
+      "restaurants and bars nearby",
+      "health-care cluster",
+      "retail corridor"
+     ],
+     "predicted": -0.48,
+     "happened": -1.0,
+     "rank": 85,
+     "pick": false,
+     "lat": 30.12382,
+     "lon": -97.32771
+    },
+    {
+     "zip": "78734",
+     "name": "Austin",
+     "why": [
+      "dense office base",
+      "schools and campuses",
+      "real-estate activity"
+     ],
+     "predicted": -0.6,
+     "happened": -3.0,
+     "rank": 86,
+     "pick": false,
+     "lat": 30.37855,
+     "lon": -97.95063
+    },
+    {
+     "zip": "78628",
+     "name": "Georgetown",
+     "why": [
+      "schools and campuses",
+      "dense office base",
+      "real-estate activity"
+     ],
+     "predicted": -0.61,
+     "happened": 5.0,
+     "rank": 87,
+     "pick": false,
+     "lat": 30.66454,
+     "lon": -97.77862
+    },
+    {
+     "zip": "78746",
+     "name": "West Lake Hills",
+     "why": [
+      "dense office base",
+      "tech and media employers",
+      "real-estate activity"
+     ],
+     "predicted": -0.64,
+     "happened": -3.0,
+     "rank": 88,
+     "pick": false,
+     "lat": 30.29686,
+     "lon": -97.80957
+    },
+    {
+     "zip": "78733",
+     "name": "Austin",
+     "why": [
+      "high incomes",
+      "work-from-home share",
+      "college-educated"
+     ],
+     "predicted": -0.66,
+     "happened": -2.0,
+     "rank": 89,
+     "pick": false,
+     "lat": 30.3214,
+     "lon": -97.88474
+    },
+    {
+     "zip": "78642",
+     "name": "Liberty Hill",
+     "why": [
+      "businesses growing",
+      "jobs growing",
+      "transit riders"
+     ],
+     "predicted": -0.68,
+     "happened": 3.0,
+     "rank": 90,
+     "pick": false,
+     "lat": 30.69088,
+     "lon": -97.94143
+    },
+    {
+     "zip": "78757",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "schools and campuses"
+     ],
+     "predicted": -0.69,
+     "happened": -1.0,
+     "rank": 91,
+     "pick": false,
+     "lat": 30.35154,
+     "lon": -97.73257
+    },
+    {
+     "zip": "78703",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "tech and media employers"
+     ],
+     "predicted": -0.74,
+     "happened": 2.0,
+     "rank": 92,
+     "pick": false,
+     "lat": 30.29327,
+     "lon": -97.76605
+    },
+    {
+     "zip": "78657",
+     "name": "Horseshoe Bay",
+     "why": [
+      "businesses growing",
+      "college-educated",
+      "real-estate activity"
+     ],
+     "predicted": -0.87,
+     "happened": -2.0,
+     "rank": 93,
+     "pick": false,
+     "lat": 30.53143,
+     "lon": -98.37805
+    },
+    {
+     "zip": "78648",
+     "name": "Luling",
+     "why": [
+      "20s and 30s crowd"
+     ],
+     "predicted": -0.88,
+     "happened": 2.0,
+     "rank": 94,
+     "pick": false,
+     "lat": 29.69018,
+     "lon": -97.63356
+    },
+    {
+     "zip": "78751",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "transit riders",
+      "dense housing"
+     ],
+     "predicted": -0.92,
+     "happened": 1.0,
+     "rank": 95,
+     "pick": false,
+     "lat": 30.31079,
+     "lon": -97.72275
+    },
+    {
+     "zip": "78750",
+     "name": "Anderson Mill",
+     "why": [
+      "jobs within 5 km",
+      "dense office base",
+      "schools and campuses"
+     ],
+     "predicted": -1.07,
+     "happened": 0.0,
+     "rank": 96,
+     "pick": false,
+     "lat": 30.41878,
+     "lon": -97.80227
+    },
+    {
+     "zip": "78644",
+     "name": "Lockhart",
+     "why": [
+      "schools and campuses",
+      "businesses growing",
+      "tech and media employers"
+     ],
+     "predicted": -1.1,
+     "happened": -1.0,
+     "rank": 97,
+     "pick": false,
+     "lat": 29.87164,
+     "lon": -97.67682
+    },
+    {
+     "zip": "78727",
+     "name": "Austin",
+     "why": [
+      "jobs within 5 km",
+      "tech and media employers",
+      "people within 5 km"
+     ],
+     "predicted": -1.15,
+     "happened": 2.0,
+     "rank": 98,
+     "pick": false,
+     "lat": 30.42994,
+     "lon": -97.7178
+    }
+   ],
+   "backtest": {
+    "frozen_at": 2020,
+    "scored_on": 2023,
+    "n_zips": 18859,
+    "lift": 6.0,
+    "ci": [
+     5.7,
+     6.2
+    ],
+    "by_industry": [
+     {
+      "naics": "713940",
+      "name": "Fitness centers",
+      "lift": 7.4,
+      "population_lift": 5.7,
+      "ci": [
+       7.1,
+       7.7
+      ],
+      "verdict": "better"
+     },
+     {
+      "naics": "621111",
+      "name": "Physician offices",
+      "lift": 5.4,
+      "population_lift": 5.5,
+      "ci": [
+       5.1,
+       5.8
+      ],
+      "verdict": "tie"
+     },
+     {
+      "naics": "722515",
+      "name": "Coffee and snack bars",
+      "lift": 6.0,
+      "population_lift": 5.1,
+      "ci": [
+       5.7,
+       6.2
+      ],
+      "verdict": "better"
+     }
+    ],
+    "pooled": {
+     "lift": 6.3,
+     "population_lift": 5.2
+    }
+   },
+   "source": "measured"
+  }
+ },
+ "recomputed_at": "2026-12-18T23:10:00-06:00"
+}

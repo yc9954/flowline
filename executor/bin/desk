@@ -1,0 +1,13 @@
+#!/bin/sh
+# Run a shell command inside the desk container as user abc with the display set.
+# Usage: bin/desk [container] -- 'shell command'   (default container desk1)
+C=desk1
+if [ "$1" != "--" ] && [ -n "$2" ]; then C="$1"; shift; fi
+[ "$1" = "--" ] && shift
+H="${FLOWLINE_DESK_HOST:-mini}"
+if [ "$H" = "local" ]; then
+  D=/opt/homebrew/bin/docker; [ -x "$D" ] || D=docker
+  exec "$D" exec -u abc -e DISPLAY=:1 -e HOME=/config "$C" sh -c "$1"
+fi
+exec ssh -o ControlMaster=auto -o ControlPath=/tmp/flowline-ssh-%r@%h:%p -o ControlPersist=600 -o BatchMode=yes "$H" \
+  /opt/homebrew/bin/docker exec -u abc -e DISPLAY=:1 -e HOME=/config "$C" sh -c "$(printf '%q' "$1")"

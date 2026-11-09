@@ -1,0 +1,3199 @@
+{
+  "source": "prototype",
+  "board_id": "northwind",
+  "city": "Austin, TX",
+  "industries": [
+    {
+      "naics": "713940",
+      "name": "Fitness"
+    },
+    {
+      "naics": "621111",
+      "name": "Physicians"
+    },
+    {
+      "naics": "722515",
+      "name": "Coffee"
+    }
+  ],
+  "default": "713940",
+  "records": 412,
+  "branches": 3,
+  "by_industry": {
+    "621111": {
+      "industry": "621111",
+      "headline": "For physician offices the model ties population: 78660, Pflugerville leads, but only by a little.",
+      "sub": "Clinics follow households, not offices. The ranking is shown, not hidden — and it is no better than picking the fastest-growing suburb by population.",
+      "zips_considered": 85,
+      "rank_of": 85,
+      "opening": {
+        "date": "2027-01-12",
+        "was": "2027-01-30",
+        "blockers_cleared": 2
+      },
+      "zips": [
+        {
+          "zip": "78704",
+          "name": "South Austin",
+          "why": [
+            "520 pro-services firms",
+            "49% aged 25–44"
+          ],
+          "predicted": 0.4,
+          "happened": 0,
+          "rank": 43,
+          "pick": false,
+          "lat": 30.245,
+          "lon": -97.765
+        },
+        {
+          "zip": "78738",
+          "name": "Lakeway / Bee Cave",
+          "why": [
+            "pro-services firms",
+            "businesses +17.5%"
+          ],
+          "predicted": 2.2,
+          "happened": 3,
+          "rank": 4,
+          "pick": false,
+          "lat": 30.32,
+          "lon": -97.96
+        },
+        {
+          "zip": "78660",
+          "name": "Pflugerville",
+          "why": [
+            "households +18%",
+            "aged 30–44"
+          ],
+          "predicted": 3.4,
+          "happened": 4,
+          "rank": 1,
+          "pick": true,
+          "lat": 30.44,
+          "lon": -97.62
+        },
+        {
+          "zip": "78701",
+          "name": "Downtown",
+          "why": [
+            "1,130 pro-services firms",
+            "income $122k"
+          ],
+          "predicted": 1.3,
+          "happened": 0,
+          "rank": 12,
+          "pick": false,
+          "lat": 30.27,
+          "lon": -97.742
+        },
+        {
+          "zip": "78613",
+          "name": "Cedar Park",
+          "why": [
+            "pro-services firms",
+            "income $104k"
+          ],
+          "predicted": 2.5,
+          "happened": 4,
+          "rank": 3,
+          "pick": false,
+          "lat": 30.5,
+          "lon": -97.83
+        },
+        {
+          "zip": "78759",
+          "name": "Great Hills",
+          "why": [
+            "office base",
+            "income $98k"
+          ],
+          "predicted": 2.2,
+          "happened": 3,
+          "rank": 5,
+          "pick": false,
+          "lat": 30.4,
+          "lon": -97.76
+        },
+        {
+          "zip": "78664",
+          "name": "Round Rock",
+          "why": [
+            "households +12%"
+          ],
+          "predicted": 2.1,
+          "happened": 2,
+          "rank": 6,
+          "pick": false,
+          "lat": 30.51,
+          "lon": -97.66
+        },
+        {
+          "zip": "78745",
+          "name": "South Manchaca",
+          "why": [
+            "households +9%",
+            "aged 25–44"
+          ],
+          "predicted": 2,
+          "happened": 3,
+          "rank": 7,
+          "pick": false,
+          "lat": 30.21,
+          "lon": -97.8
+        },
+        {
+          "zip": "78746",
+          "name": "West Lake Hills",
+          "why": [
+            "income $160k",
+            "pro-services firms"
+          ],
+          "predicted": 1.1,
+          "happened": 1,
+          "rank": 16,
+          "pick": false,
+          "lat": 30.3,
+          "lon": -97.81
+        },
+        {
+          "zip": "78750",
+          "name": "Anderson Mill",
+          "why": [
+            "households +7%"
+          ],
+          "predicted": 1.4,
+          "happened": 2,
+          "rank": 11,
+          "pick": false,
+          "lat": 30.42,
+          "lon": -97.8
+        },
+        {
+          "zip": "78641",
+          "name": "Leander",
+          "why": [
+            "households +21%",
+            "new subdivisions"
+          ],
+          "predicted": 3.1,
+          "happened": 4,
+          "rank": 2,
+          "pick": false,
+          "lat": 30.56,
+          "lon": -97.86
+        },
+        {
+          "zip": "78702",
+          "name": "East Austin",
+          "why": [
+            "aged 25–44",
+            "businesses +14%"
+          ],
+          "predicted": 1.8,
+          "happened": 3,
+          "rank": 8,
+          "pick": false,
+          "lat": 30.263,
+          "lon": -97.716
+        },
+        {
+          "zip": "78731",
+          "name": "Northwest Hills",
+          "why": [
+            "income $118k"
+          ],
+          "predicted": 1.6,
+          "happened": 2,
+          "rank": 10,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.76
+        },
+        {
+          "zip": "78681",
+          "name": "Round Rock West",
+          "why": [
+            "households +11%"
+          ],
+          "predicted": 0.4,
+          "happened": 0,
+          "rank": 44,
+          "pick": false,
+          "lat": 30.53,
+          "lon": -97.72
+        },
+        {
+          "zip": "78758",
+          "name": "North Burnet",
+          "why": [
+            "office base"
+          ],
+          "predicted": 0.5,
+          "happened": 0,
+          "rank": 38,
+          "pick": false,
+          "lat": 30.39,
+          "lon": -97.71
+        },
+        {
+          "zip": "78748",
+          "name": "Southwest",
+          "why": [
+            "households +8%"
+          ],
+          "predicted": 1,
+          "happened": 1,
+          "rank": 19,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.82
+        },
+        {
+          "zip": "78749",
+          "name": "Oak Hill",
+          "why": [
+            "income $110k"
+          ],
+          "predicted": 1,
+          "happened": 1,
+          "rank": 20,
+          "pick": false,
+          "lat": 30.21,
+          "lon": -97.86
+        },
+        {
+          "zip": "78735",
+          "name": "Barton Creek",
+          "why": [
+            "income $150k"
+          ],
+          "predicted": 1.7,
+          "happened": 3,
+          "rank": 9,
+          "pick": false,
+          "lat": 30.26,
+          "lon": -97.87
+        },
+        {
+          "zip": "78717",
+          "name": "Avery Ranch",
+          "why": [
+            "households +10%"
+          ],
+          "predicted": 0.5,
+          "happened": 0,
+          "rank": 39,
+          "pick": false,
+          "lat": 30.49,
+          "lon": -97.75
+        },
+        {
+          "zip": "78757",
+          "name": "Crestview",
+          "why": [
+            "aged 25–44"
+          ],
+          "predicted": 1.1,
+          "happened": 2,
+          "rank": 13,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.73
+        },
+        {
+          "zip": "78703",
+          "name": "Tarrytown",
+          "why": [
+            "income $140k"
+          ],
+          "predicted": 1.1,
+          "happened": 2,
+          "rank": 14,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.765
+        },
+        {
+          "zip": "78705",
+          "name": "Campus",
+          "why": [
+            "aged 18–24"
+          ],
+          "predicted": 0.7,
+          "happened": 1,
+          "rank": 29,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.74
+        },
+        {
+          "zip": "78729",
+          "name": "Jollyville",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 56,
+          "pick": false,
+          "lat": 30.455,
+          "lon": -97.77
+        },
+        {
+          "zip": "78665",
+          "name": "Round Rock East",
+          "why": [
+            "households +13%"
+          ],
+          "predicted": 0.7,
+          "happened": 1,
+          "rank": 30,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -97.65
+        },
+        {
+          "zip": "78628",
+          "name": "Georgetown West",
+          "why": [],
+          "predicted": 1.1,
+          "happened": 2,
+          "rank": 15,
+          "pick": false,
+          "lat": 30.65,
+          "lon": -97.72
+        },
+        {
+          "zip": "78626",
+          "name": "Georgetown",
+          "why": [],
+          "predicted": 0.8,
+          "happened": 1,
+          "rank": 25,
+          "pick": false,
+          "lat": 30.65,
+          "lon": -97.65
+        },
+        {
+          "zip": "78753",
+          "name": "North Lamar",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 51,
+          "pick": false,
+          "lat": 30.37,
+          "lon": -97.67
+        },
+        {
+          "zip": "78741",
+          "name": "Riverside",
+          "why": [
+            "aged 25–44"
+          ],
+          "predicted": 0.8,
+          "happened": 1,
+          "rank": 26,
+          "pick": false,
+          "lat": 30.23,
+          "lon": -97.72
+        },
+        {
+          "zip": "78744",
+          "name": "Southeast",
+          "why": [],
+          "predicted": 1,
+          "happened": 2,
+          "rank": 17,
+          "pick": false,
+          "lat": 30.18,
+          "lon": -97.74
+        },
+        {
+          "zip": "78739",
+          "name": "Circle C",
+          "why": [
+            "income $130k"
+          ],
+          "predicted": 0.7,
+          "happened": 1,
+          "rank": 31,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.89
+        },
+        {
+          "zip": "78733",
+          "name": "Bee Caves Rd",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 57,
+          "pick": false,
+          "lat": 30.33,
+          "lon": -97.87
+        },
+        {
+          "zip": "78734",
+          "name": "Lakeway",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 1,
+          "rank": 32,
+          "pick": false,
+          "lat": 30.38,
+          "lon": -97.95
+        },
+        {
+          "zip": "78732",
+          "name": "Steiner Ranch",
+          "why": [],
+          "predicted": 0.4,
+          "happened": 1,
+          "rank": 40,
+          "pick": false,
+          "lat": 30.38,
+          "lon": -97.89
+        },
+        {
+          "zip": "78730",
+          "name": "River Place",
+          "why": [],
+          "predicted": 0.5,
+          "happened": 1,
+          "rank": 37,
+          "pick": false,
+          "lat": 30.36,
+          "lon": -97.83
+        },
+        {
+          "zip": "78726",
+          "name": "Four Points",
+          "why": [],
+          "predicted": 1,
+          "happened": 2,
+          "rank": 18,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -97.84
+        },
+        {
+          "zip": "78727",
+          "name": "Scofield",
+          "why": [],
+          "predicted": 0.9,
+          "happened": 2,
+          "rank": 21,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -97.72
+        },
+        {
+          "zip": "78728",
+          "name": "Wells Branch",
+          "why": [],
+          "predicted": 0.4,
+          "happened": 1,
+          "rank": 41,
+          "pick": false,
+          "lat": 30.44,
+          "lon": -97.68
+        },
+        {
+          "zip": "78754",
+          "name": "Harris Branch",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 52,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.64
+        },
+        {
+          "zip": "78752",
+          "name": "St Johns",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 53,
+          "pick": false,
+          "lat": 30.33,
+          "lon": -97.7
+        },
+        {
+          "zip": "78751",
+          "name": "Hyde Park",
+          "why": [],
+          "predicted": 0.8,
+          "happened": 2,
+          "rank": 22,
+          "pick": false,
+          "lat": 30.31,
+          "lon": -97.72
+        },
+        {
+          "zip": "78756",
+          "name": "Rosedale",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 62,
+          "pick": false,
+          "lat": 30.32,
+          "lon": -97.74
+        },
+        {
+          "zip": "78723",
+          "name": "Mueller",
+          "why": [],
+          "predicted": 0.4,
+          "happened": 1,
+          "rank": 42,
+          "pick": false,
+          "lat": 30.3,
+          "lon": -97.69
+        },
+        {
+          "zip": "78721",
+          "name": "Govalle",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 2,
+          "rank": 27,
+          "pick": false,
+          "lat": 30.27,
+          "lon": -97.68
+        },
+        {
+          "zip": "78724",
+          "name": "Northeast",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 63,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.62
+        },
+        {
+          "zip": "78747",
+          "name": "Onion Creek",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 54,
+          "pick": false,
+          "lat": 30.13,
+          "lon": -97.76
+        },
+        {
+          "zip": "78617",
+          "name": "Del Valle",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 64,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.62
+        },
+        {
+          "zip": "78640",
+          "name": "Kyle",
+          "why": [],
+          "predicted": 0.8,
+          "happened": 2,
+          "rank": 23,
+          "pick": false,
+          "lat": 30,
+          "lon": -97.87
+        },
+        {
+          "zip": "78610",
+          "name": "Buda",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 45,
+          "pick": false,
+          "lat": 30.08,
+          "lon": -97.84
+        },
+        {
+          "zip": "78737",
+          "name": "Dripping Springs",
+          "why": [],
+          "predicted": 0.8,
+          "happened": 2,
+          "rank": 24,
+          "pick": false,
+          "lat": 30.19,
+          "lon": -97.95
+        },
+        {
+          "zip": "78736",
+          "name": "Oak Hill West",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 65,
+          "pick": false,
+          "lat": 30.25,
+          "lon": -97.93
+        },
+        {
+          "zip": "78645",
+          "name": "Lago Vista",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 66,
+          "pick": false,
+          "lat": 30.45,
+          "lon": -97.98
+        },
+        {
+          "zip": "78652",
+          "name": "Manchaca",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 2,
+          "rank": 33,
+          "pick": false,
+          "lat": 30.13,
+          "lon": -97.83
+        },
+        {
+          "zip": "78725",
+          "name": "Hornsby Bend",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 67,
+          "pick": false,
+          "lat": 30.23,
+          "lon": -97.6
+        },
+        {
+          "zip": "78653",
+          "name": "Manor",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 68,
+          "pick": false,
+          "lat": 30.34,
+          "lon": -97.52
+        },
+        {
+          "zip": "78634",
+          "name": "Hutto",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 69,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -97.55
+        },
+        {
+          "zip": "78612",
+          "name": "Cedar Creek",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 70,
+          "pick": false,
+          "lat": 30.1,
+          "lon": -97.5
+        },
+        {
+          "zip": "78621",
+          "name": "Elgin",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 71,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.37
+        },
+        {
+          "zip": "78602",
+          "name": "Bastrop",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 72,
+          "pick": false,
+          "lat": 30.11,
+          "lon": -97.32
+        },
+        {
+          "zip": "78666",
+          "name": "San Marcos",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 1,
+          "rank": 49,
+          "pick": false,
+          "lat": 29.88,
+          "lon": -97.94
+        },
+        {
+          "zip": "78620",
+          "name": "Dripping Springs W",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 1,
+          "rank": 50,
+          "pick": false,
+          "lat": 30.2,
+          "lon": -98.08
+        },
+        {
+          "zip": "78669",
+          "name": "Spicewood",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 2,
+          "rank": 34,
+          "pick": false,
+          "lat": 30.42,
+          "lon": -98.1
+        },
+        {
+          "zip": "78654",
+          "name": "Marble Falls",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 46,
+          "pick": false,
+          "lat": 30.57,
+          "lon": -98.27
+        },
+        {
+          "zip": "78615",
+          "name": "Coupland",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 58,
+          "pick": false,
+          "lat": 30.46,
+          "lon": -97.39
+        },
+        {
+          "zip": "78633",
+          "name": "Georgetown N",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 73,
+          "pick": false,
+          "lat": 30.72,
+          "lon": -97.74
+        },
+        {
+          "zip": "78642",
+          "name": "Liberty Hill",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 2,
+          "rank": 28,
+          "pick": false,
+          "lat": 30.66,
+          "lon": -97.92
+        },
+        {
+          "zip": "78605",
+          "name": "Bertram",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 74,
+          "pick": false,
+          "lat": 30.74,
+          "lon": -98.06
+        },
+        {
+          "zip": "78616",
+          "name": "Dale",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 75,
+          "pick": false,
+          "lat": 29.93,
+          "lon": -97.56
+        },
+        {
+          "zip": "78644",
+          "name": "Lockhart",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 47,
+          "pick": false,
+          "lat": 29.88,
+          "lon": -97.67
+        },
+        {
+          "zip": "78655",
+          "name": "Martindale",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 59,
+          "pick": false,
+          "lat": 29.84,
+          "lon": -97.84
+        },
+        {
+          "zip": "78656",
+          "name": "Maxwell",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 76,
+          "pick": false,
+          "lat": 29.89,
+          "lon": -97.82
+        },
+        {
+          "zip": "78619",
+          "name": "Driftwood",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 77,
+          "pick": false,
+          "lat": 30.11,
+          "lon": -98
+        },
+        {
+          "zip": "78676",
+          "name": "Wimberley",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 78,
+          "pick": false,
+          "lat": 30,
+          "lon": -98.1
+        },
+        {
+          "zip": "78623",
+          "name": "Fischer",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 2,
+          "rank": 35,
+          "pick": false,
+          "lat": 29.97,
+          "lon": -98.26
+        },
+        {
+          "zip": "78636",
+          "name": "Johnson City",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 79,
+          "pick": false,
+          "lat": 30.28,
+          "lon": -98.41
+        },
+        {
+          "zip": "78663",
+          "name": "Round Mountain",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 48,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -98.35
+        },
+        {
+          "zip": "78657",
+          "name": "Horseshoe Bay",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 80,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -98.37
+        },
+        {
+          "zip": "78611",
+          "name": "Burnet",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 81,
+          "pick": false,
+          "lat": 30.76,
+          "lon": -98.23
+        },
+        {
+          "zip": "78608",
+          "name": "Briggs",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 60,
+          "pick": false,
+          "lat": 30.88,
+          "lon": -97.93
+        },
+        {
+          "zip": "76574",
+          "name": "Taylor",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 82,
+          "pick": false,
+          "lat": 30.57,
+          "lon": -97.41
+        },
+        {
+          "zip": "76537",
+          "name": "Jarrell",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 83,
+          "pick": false,
+          "lat": 30.82,
+          "lon": -97.6
+        },
+        {
+          "zip": "76527",
+          "name": "Florence",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 84,
+          "pick": false,
+          "lat": 30.84,
+          "lon": -97.79
+        },
+        {
+          "zip": "78942",
+          "name": "Giddings",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 61,
+          "pick": false,
+          "lat": 30.18,
+          "lon": -96.94
+        },
+        {
+          "zip": "78957",
+          "name": "Smithville",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 85,
+          "pick": false,
+          "lat": 30.01,
+          "lon": -97.16
+        },
+        {
+          "zip": "78650",
+          "name": "McDade",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 1,
+          "rank": 55,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.23
+        },
+        {
+          "zip": "78953",
+          "name": "Rosanky",
+          "why": [],
+          "predicted": 0.5,
+          "happened": 2,
+          "rank": 36,
+          "pick": false,
+          "lat": 29.93,
+          "lon": -97.3
+        }
+      ],
+      "backtest": {
+        "frozen_at": 2020,
+        "scored_on": 2023,
+        "n_zips": 18422,
+        "lift": 5.4,
+        "ci": [
+          5,
+          5.8
+        ],
+        "by_industry": [
+          {
+            "naics": "713940",
+            "name": "Fitness centers",
+            "lift": 7.4,
+            "population_lift": 5.7,
+            "ci": [
+              7.1,
+              7.7
+            ],
+            "verdict": "better"
+          },
+          {
+            "naics": "722515",
+            "name": "Coffee and snacks",
+            "lift": 6,
+            "population_lift": 5.1,
+            "ci": [
+              5.6,
+              6.4
+            ],
+            "verdict": "better"
+          },
+          {
+            "naics": "621111",
+            "name": "Physician offices",
+            "lift": 5.4,
+            "population_lift": 5.5,
+            "ci": [
+              5,
+              5.8
+            ],
+            "verdict": "tie"
+          }
+        ],
+        "pooled": {
+          "lift": 6.3,
+          "population_lift": 5.2
+        }
+      }
+    },
+    "713940": {
+      "industry": "713940",
+      "headline": "Branch 4 goes to 78704, South Austin — where demand for gyms is growing fastest.",
+      "sub": "Young professionals and a dense office base pull new gyms in. Your own branches add the rest: weekday evenings are where you win, and 78704 is full of them.",
+      "zips_considered": 85,
+      "rank_of": 85,
+      "opening": {
+        "date": "2027-01-12",
+        "was": "2027-01-30",
+        "blockers_cleared": 2
+      },
+      "zips": [
+        {
+          "zip": "78704",
+          "name": "South Austin",
+          "why": [
+            "520 pro-services firms",
+            "49% aged 25–44"
+          ],
+          "predicted": 3.4,
+          "happened": 5,
+          "rank": 1,
+          "pick": true,
+          "lat": 30.245,
+          "lon": -97.765
+        },
+        {
+          "zip": "78738",
+          "name": "Lakeway / Bee Cave",
+          "why": [
+            "pro-services firms",
+            "businesses +17.5%"
+          ],
+          "predicted": 2.9,
+          "happened": 6,
+          "rank": 2,
+          "pick": false,
+          "lat": 30.32,
+          "lon": -97.96
+        },
+        {
+          "zip": "78660",
+          "name": "Pflugerville",
+          "why": [
+            "businesses +18.3%",
+            "income $88k"
+          ],
+          "predicted": 2.8,
+          "happened": 2,
+          "rank": 3,
+          "pick": false,
+          "lat": 30.44,
+          "lon": -97.62
+        },
+        {
+          "zip": "78701",
+          "name": "Downtown",
+          "why": [
+            "1,130 pro-services firms",
+            "income $122k"
+          ],
+          "predicted": 2.6,
+          "happened": 4,
+          "rank": 4,
+          "pick": false,
+          "lat": 30.27,
+          "lon": -97.742
+        },
+        {
+          "zip": "78613",
+          "name": "Cedar Park",
+          "why": [
+            "pro-services firms",
+            "income $104k"
+          ],
+          "predicted": 2.6,
+          "happened": 2,
+          "rank": 5,
+          "pick": false,
+          "lat": 30.5,
+          "lon": -97.83
+        },
+        {
+          "zip": "78759",
+          "name": "Great Hills",
+          "why": [
+            "office base",
+            "income $98k"
+          ],
+          "predicted": 2.3,
+          "happened": 3,
+          "rank": 6,
+          "pick": false,
+          "lat": 30.4,
+          "lon": -97.76
+        },
+        {
+          "zip": "78664",
+          "name": "Round Rock",
+          "why": [
+            "businesses +15%",
+            "households +12%"
+          ],
+          "predicted": 2.2,
+          "happened": 3,
+          "rank": 7,
+          "pick": false,
+          "lat": 30.51,
+          "lon": -97.66
+        },
+        {
+          "zip": "78745",
+          "name": "South Manchaca",
+          "why": [
+            "households +9%",
+            "aged 25–44"
+          ],
+          "predicted": 2.1,
+          "happened": 1,
+          "rank": 8,
+          "pick": false,
+          "lat": 30.21,
+          "lon": -97.8
+        },
+        {
+          "zip": "78746",
+          "name": "West Lake Hills",
+          "why": [
+            "income $160k",
+            "pro-services firms"
+          ],
+          "predicted": 2,
+          "happened": 2,
+          "rank": 9,
+          "pick": false,
+          "lat": 30.3,
+          "lon": -97.81
+        },
+        {
+          "zip": "78750",
+          "name": "Anderson Mill",
+          "why": [
+            "households +7%"
+          ],
+          "predicted": 1.9,
+          "happened": 2,
+          "rank": 11,
+          "pick": false,
+          "lat": 30.42,
+          "lon": -97.8
+        },
+        {
+          "zip": "78641",
+          "name": "Leander",
+          "why": [
+            "households +21%"
+          ],
+          "predicted": 1.9,
+          "happened": 4,
+          "rank": 10,
+          "pick": false,
+          "lat": 30.56,
+          "lon": -97.86
+        },
+        {
+          "zip": "78702",
+          "name": "East Austin",
+          "why": [
+            "aged 25–44",
+            "businesses +14%"
+          ],
+          "predicted": 1.8,
+          "happened": 3,
+          "rank": 12,
+          "pick": false,
+          "lat": 30.263,
+          "lon": -97.716
+        },
+        {
+          "zip": "78731",
+          "name": "Northwest Hills",
+          "why": [
+            "income $118k"
+          ],
+          "predicted": 1.7,
+          "happened": 1,
+          "rank": 14,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.76
+        },
+        {
+          "zip": "78681",
+          "name": "Round Rock West",
+          "why": [
+            "households +11%"
+          ],
+          "predicted": 1.7,
+          "happened": 2,
+          "rank": 13,
+          "pick": false,
+          "lat": 30.53,
+          "lon": -97.72
+        },
+        {
+          "zip": "78758",
+          "name": "North Burnet",
+          "why": [
+            "office base"
+          ],
+          "predicted": 1.6,
+          "happened": 2,
+          "rank": 15,
+          "pick": false,
+          "lat": 30.39,
+          "lon": -97.71
+        },
+        {
+          "zip": "78748",
+          "name": "Southwest",
+          "why": [
+            "households +8%"
+          ],
+          "predicted": 1.5,
+          "happened": 1,
+          "rank": 16,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.82
+        },
+        {
+          "zip": "78749",
+          "name": "Oak Hill",
+          "why": [
+            "income $110k"
+          ],
+          "predicted": 1.4,
+          "happened": 1,
+          "rank": 17,
+          "pick": false,
+          "lat": 30.21,
+          "lon": -97.86
+        },
+        {
+          "zip": "78735",
+          "name": "Barton Creek",
+          "why": [
+            "income $150k"
+          ],
+          "predicted": 1.3,
+          "happened": 1,
+          "rank": 19,
+          "pick": false,
+          "lat": 30.26,
+          "lon": -97.87
+        },
+        {
+          "zip": "78717",
+          "name": "Avery Ranch",
+          "why": [
+            "households +10%"
+          ],
+          "predicted": 1.3,
+          "happened": 2,
+          "rank": 18,
+          "pick": false,
+          "lat": 30.49,
+          "lon": -97.75
+        },
+        {
+          "zip": "78757",
+          "name": "Crestview",
+          "why": [
+            "aged 25–44"
+          ],
+          "predicted": 1.2,
+          "happened": 1,
+          "rank": 20,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.73
+        },
+        {
+          "zip": "78703",
+          "name": "Tarrytown",
+          "why": [
+            "income $140k"
+          ],
+          "predicted": 1.2,
+          "happened": 1,
+          "rank": 21,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.765
+        },
+        {
+          "zip": "78705",
+          "name": "Campus",
+          "why": [
+            "aged 18–24"
+          ],
+          "predicted": 1.1,
+          "happened": 2,
+          "rank": 22,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.74
+        },
+        {
+          "zip": "78729",
+          "name": "Jollyville",
+          "why": [],
+          "predicted": 1,
+          "happened": 1,
+          "rank": 23,
+          "pick": false,
+          "lat": 30.455,
+          "lon": -97.77
+        },
+        {
+          "zip": "78665",
+          "name": "Round Rock East",
+          "why": [
+            "households +13%"
+          ],
+          "predicted": 1,
+          "happened": 1,
+          "rank": 24,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -97.65
+        },
+        {
+          "zip": "78628",
+          "name": "Georgetown West",
+          "why": [],
+          "predicted": 0.9,
+          "happened": 1,
+          "rank": 25,
+          "pick": false,
+          "lat": 30.65,
+          "lon": -97.72
+        },
+        {
+          "zip": "78626",
+          "name": "Georgetown",
+          "why": [],
+          "predicted": 0.8,
+          "happened": 1,
+          "rank": 26,
+          "pick": false,
+          "lat": 30.65,
+          "lon": -97.65
+        },
+        {
+          "zip": "78753",
+          "name": "North Lamar",
+          "why": [],
+          "predicted": 0.8,
+          "happened": 0,
+          "rank": 28,
+          "pick": false,
+          "lat": 30.37,
+          "lon": -97.67
+        },
+        {
+          "zip": "78741",
+          "name": "Riverside",
+          "why": [
+            "aged 25–44"
+          ],
+          "predicted": 0.8,
+          "happened": 1,
+          "rank": 27,
+          "pick": false,
+          "lat": 30.23,
+          "lon": -97.72
+        },
+        {
+          "zip": "78744",
+          "name": "Southeast",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 0,
+          "rank": 30,
+          "pick": false,
+          "lat": 30.18,
+          "lon": -97.74
+        },
+        {
+          "zip": "78739",
+          "name": "Circle C",
+          "why": [
+            "income $130k"
+          ],
+          "predicted": 0.7,
+          "happened": 1,
+          "rank": 29,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.89
+        },
+        {
+          "zip": "78733",
+          "name": "Bee Caves Rd",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 0,
+          "rank": 32,
+          "pick": false,
+          "lat": 30.33,
+          "lon": -97.87
+        },
+        {
+          "zip": "78734",
+          "name": "Lakeway",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 1,
+          "rank": 31,
+          "pick": false,
+          "lat": 30.38,
+          "lon": -97.95
+        },
+        {
+          "zip": "78732",
+          "name": "Steiner Ranch",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 0,
+          "rank": 33,
+          "pick": false,
+          "lat": 30.38,
+          "lon": -97.89
+        },
+        {
+          "zip": "78730",
+          "name": "River Place",
+          "why": [],
+          "predicted": 0.5,
+          "happened": 0,
+          "rank": 35,
+          "pick": false,
+          "lat": 30.36,
+          "lon": -97.83
+        },
+        {
+          "zip": "78726",
+          "name": "Four Points",
+          "why": [],
+          "predicted": 0.5,
+          "happened": 1,
+          "rank": 34,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -97.84
+        },
+        {
+          "zip": "78727",
+          "name": "Scofield",
+          "why": [],
+          "predicted": 0.5,
+          "happened": 0,
+          "rank": 36,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -97.72
+        },
+        {
+          "zip": "78728",
+          "name": "Wells Branch",
+          "why": [],
+          "predicted": 0.4,
+          "happened": 0,
+          "rank": 37,
+          "pick": false,
+          "lat": 30.44,
+          "lon": -97.68
+        },
+        {
+          "zip": "78754",
+          "name": "Harris Branch",
+          "why": [],
+          "predicted": 0.4,
+          "happened": 0,
+          "rank": 38,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.64
+        },
+        {
+          "zip": "78752",
+          "name": "St Johns",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 0,
+          "rank": 40,
+          "pick": false,
+          "lat": 30.33,
+          "lon": -97.7
+        },
+        {
+          "zip": "78751",
+          "name": "Hyde Park",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 0,
+          "rank": 41,
+          "pick": false,
+          "lat": 30.31,
+          "lon": -97.72
+        },
+        {
+          "zip": "78756",
+          "name": "Rosedale",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 0,
+          "rank": 42,
+          "pick": false,
+          "lat": 30.32,
+          "lon": -97.74
+        },
+        {
+          "zip": "78723",
+          "name": "Mueller",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 39,
+          "pick": false,
+          "lat": 30.3,
+          "lon": -97.69
+        },
+        {
+          "zip": "78721",
+          "name": "Govalle",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 43,
+          "pick": false,
+          "lat": 30.27,
+          "lon": -97.68
+        },
+        {
+          "zip": "78724",
+          "name": "Northeast",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 44,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.62
+        },
+        {
+          "zip": "78747",
+          "name": "Onion Creek",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 45,
+          "pick": false,
+          "lat": 30.13,
+          "lon": -97.76
+        },
+        {
+          "zip": "78617",
+          "name": "Del Valle",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 47,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.62
+        },
+        {
+          "zip": "78640",
+          "name": "Kyle",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 1,
+          "rank": 46,
+          "pick": false,
+          "lat": 30,
+          "lon": -97.87
+        },
+        {
+          "zip": "78610",
+          "name": "Buda",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 48,
+          "pick": false,
+          "lat": 30.08,
+          "lon": -97.84
+        },
+        {
+          "zip": "78737",
+          "name": "Dripping Springs",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 50,
+          "pick": false,
+          "lat": 30.19,
+          "lon": -97.95
+        },
+        {
+          "zip": "78736",
+          "name": "Oak Hill West",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 51,
+          "pick": false,
+          "lat": 30.25,
+          "lon": -97.93
+        },
+        {
+          "zip": "78645",
+          "name": "Lago Vista",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 52,
+          "pick": false,
+          "lat": 30.45,
+          "lon": -97.98
+        },
+        {
+          "zip": "78652",
+          "name": "Manchaca",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 53,
+          "pick": false,
+          "lat": 30.13,
+          "lon": -97.83
+        },
+        {
+          "zip": "78725",
+          "name": "Hornsby Bend",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 54,
+          "pick": false,
+          "lat": 30.23,
+          "lon": -97.6
+        },
+        {
+          "zip": "78653",
+          "name": "Manor",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 55,
+          "pick": false,
+          "lat": 30.34,
+          "lon": -97.52
+        },
+        {
+          "zip": "78634",
+          "name": "Hutto",
+          "why": [],
+          "predicted": 0,
+          "happened": 1,
+          "rank": 49,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -97.55
+        },
+        {
+          "zip": "78612",
+          "name": "Cedar Creek",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 56,
+          "pick": false,
+          "lat": 30.1,
+          "lon": -97.5
+        },
+        {
+          "zip": "78621",
+          "name": "Elgin",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 57,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.37
+        },
+        {
+          "zip": "78602",
+          "name": "Bastrop",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 58,
+          "pick": false,
+          "lat": 30.11,
+          "lon": -97.32
+        },
+        {
+          "zip": "78666",
+          "name": "San Marcos",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 59,
+          "pick": false,
+          "lat": 29.88,
+          "lon": -97.94
+        },
+        {
+          "zip": "78620",
+          "name": "Dripping Springs W",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 60,
+          "pick": false,
+          "lat": 30.2,
+          "lon": -98.08
+        },
+        {
+          "zip": "78669",
+          "name": "Spicewood",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 61,
+          "pick": false,
+          "lat": 30.42,
+          "lon": -98.1
+        },
+        {
+          "zip": "78654",
+          "name": "Marble Falls",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 62,
+          "pick": false,
+          "lat": 30.57,
+          "lon": -98.27
+        },
+        {
+          "zip": "78615",
+          "name": "Coupland",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 63,
+          "pick": false,
+          "lat": 30.46,
+          "lon": -97.39
+        },
+        {
+          "zip": "78633",
+          "name": "Georgetown N",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 64,
+          "pick": false,
+          "lat": 30.72,
+          "lon": -97.74
+        },
+        {
+          "zip": "78642",
+          "name": "Liberty Hill",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 65,
+          "pick": false,
+          "lat": 30.66,
+          "lon": -97.92
+        },
+        {
+          "zip": "78605",
+          "name": "Bertram",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 66,
+          "pick": false,
+          "lat": 30.74,
+          "lon": -98.06
+        },
+        {
+          "zip": "78616",
+          "name": "Dale",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 67,
+          "pick": false,
+          "lat": 29.93,
+          "lon": -97.56
+        },
+        {
+          "zip": "78644",
+          "name": "Lockhart",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 68,
+          "pick": false,
+          "lat": 29.88,
+          "lon": -97.67
+        },
+        {
+          "zip": "78655",
+          "name": "Martindale",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 69,
+          "pick": false,
+          "lat": 29.84,
+          "lon": -97.84
+        },
+        {
+          "zip": "78656",
+          "name": "Maxwell",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 70,
+          "pick": false,
+          "lat": 29.89,
+          "lon": -97.82
+        },
+        {
+          "zip": "78619",
+          "name": "Driftwood",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 71,
+          "pick": false,
+          "lat": 30.11,
+          "lon": -98
+        },
+        {
+          "zip": "78676",
+          "name": "Wimberley",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 72,
+          "pick": false,
+          "lat": 30,
+          "lon": -98.1
+        },
+        {
+          "zip": "78623",
+          "name": "Fischer",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 73,
+          "pick": false,
+          "lat": 29.97,
+          "lon": -98.26
+        },
+        {
+          "zip": "78636",
+          "name": "Johnson City",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 74,
+          "pick": false,
+          "lat": 30.28,
+          "lon": -98.41
+        },
+        {
+          "zip": "78663",
+          "name": "Round Mountain",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 75,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -98.35
+        },
+        {
+          "zip": "78657",
+          "name": "Horseshoe Bay",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 76,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -98.37
+        },
+        {
+          "zip": "78611",
+          "name": "Burnet",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 77,
+          "pick": false,
+          "lat": 30.76,
+          "lon": -98.23
+        },
+        {
+          "zip": "78608",
+          "name": "Briggs",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 78,
+          "pick": false,
+          "lat": 30.88,
+          "lon": -97.93
+        },
+        {
+          "zip": "76574",
+          "name": "Taylor",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 79,
+          "pick": false,
+          "lat": 30.57,
+          "lon": -97.41
+        },
+        {
+          "zip": "76537",
+          "name": "Jarrell",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 80,
+          "pick": false,
+          "lat": 30.82,
+          "lon": -97.6
+        },
+        {
+          "zip": "76527",
+          "name": "Florence",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 81,
+          "pick": false,
+          "lat": 30.84,
+          "lon": -97.79
+        },
+        {
+          "zip": "78942",
+          "name": "Giddings",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 82,
+          "pick": false,
+          "lat": 30.18,
+          "lon": -96.94
+        },
+        {
+          "zip": "78957",
+          "name": "Smithville",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 83,
+          "pick": false,
+          "lat": 30.01,
+          "lon": -97.16
+        },
+        {
+          "zip": "78650",
+          "name": "McDade",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 84,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.23
+        },
+        {
+          "zip": "78953",
+          "name": "Rosanky",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 85,
+          "pick": false,
+          "lat": 29.93,
+          "lon": -97.3
+        }
+      ],
+      "backtest": {
+        "frozen_at": 2020,
+        "scored_on": 2023,
+        "n_zips": 20937,
+        "lift": 7.4,
+        "ci": [
+          7.1,
+          7.7
+        ],
+        "by_industry": [
+          {
+            "naics": "713940",
+            "name": "Fitness centers",
+            "lift": 7.4,
+            "population_lift": 5.7,
+            "ci": [
+              7.1,
+              7.7
+            ],
+            "verdict": "better"
+          },
+          {
+            "naics": "722515",
+            "name": "Coffee and snacks",
+            "lift": 6,
+            "population_lift": 5.1,
+            "ci": [
+              5.6,
+              6.4
+            ],
+            "verdict": "better"
+          },
+          {
+            "naics": "621111",
+            "name": "Physician offices",
+            "lift": 5.4,
+            "population_lift": 5.5,
+            "ci": [
+              5,
+              5.8
+            ],
+            "verdict": "tie"
+          }
+        ],
+        "pooled": {
+          "lift": 6.3,
+          "population_lift": 5.2
+        }
+      }
+    },
+    "722515": {
+      "industry": "722515",
+      "headline": "Coffee follows foot traffic: 78701, Downtown ranks first, with East Austin close behind.",
+      "sub": "Office density and walkable blocks pull new cafés in. Suburban ZIPs that lead for gyms fall back here.",
+      "zips_considered": 85,
+      "rank_of": 85,
+      "opening": {
+        "date": "2027-01-12",
+        "was": "2027-01-30",
+        "blockers_cleared": 2
+      },
+      "zips": [
+        {
+          "zip": "78704",
+          "name": "South Austin",
+          "why": [
+            "520 pro-services firms",
+            "49% aged 25–44"
+          ],
+          "predicted": 2,
+          "happened": 1,
+          "rank": 8,
+          "pick": false,
+          "lat": 30.245,
+          "lon": -97.765
+        },
+        {
+          "zip": "78738",
+          "name": "Lakeway / Bee Cave",
+          "why": [
+            "pro-services firms",
+            "businesses +17.5%"
+          ],
+          "predicted": 2.1,
+          "happened": 1,
+          "rank": 6,
+          "pick": false,
+          "lat": 30.32,
+          "lon": -97.96
+        },
+        {
+          "zip": "78660",
+          "name": "Pflugerville",
+          "why": [
+            "businesses +18.3%",
+            "income $88k"
+          ],
+          "predicted": 2.5,
+          "happened": 3,
+          "rank": 3,
+          "pick": false,
+          "lat": 30.44,
+          "lon": -97.62
+        },
+        {
+          "zip": "78701",
+          "name": "Downtown",
+          "why": [
+            "1,130 pro-services firms",
+            "walk score 88"
+          ],
+          "predicted": 3.1,
+          "happened": 2,
+          "rank": 1,
+          "pick": true,
+          "lat": 30.27,
+          "lon": -97.742
+        },
+        {
+          "zip": "78613",
+          "name": "Cedar Park",
+          "why": [
+            "pro-services firms",
+            "income $104k"
+          ],
+          "predicted": 2.3,
+          "happened": 2,
+          "rank": 5,
+          "pick": false,
+          "lat": 30.5,
+          "lon": -97.83
+        },
+        {
+          "zip": "78759",
+          "name": "Great Hills",
+          "why": [
+            "office base",
+            "income $98k"
+          ],
+          "predicted": 1.4,
+          "happened": 0,
+          "rank": 19,
+          "pick": false,
+          "lat": 30.4,
+          "lon": -97.76
+        },
+        {
+          "zip": "78664",
+          "name": "Round Rock",
+          "why": [
+            "businesses +15%",
+            "households +12%"
+          ],
+          "predicted": 1.7,
+          "happened": 1,
+          "rank": 10,
+          "pick": false,
+          "lat": 30.51,
+          "lon": -97.66
+        },
+        {
+          "zip": "78745",
+          "name": "South Manchaca",
+          "why": [
+            "households +9%",
+            "aged 25–44"
+          ],
+          "predicted": 1.4,
+          "happened": 1,
+          "rank": 17,
+          "pick": false,
+          "lat": 30.21,
+          "lon": -97.8
+        },
+        {
+          "zip": "78746",
+          "name": "West Lake Hills",
+          "why": [
+            "income $160k",
+            "pro-services firms"
+          ],
+          "predicted": 1.8,
+          "happened": 2,
+          "rank": 9,
+          "pick": false,
+          "lat": 30.3,
+          "lon": -97.81
+        },
+        {
+          "zip": "78750",
+          "name": "Anderson Mill",
+          "why": [
+            "households +7%"
+          ],
+          "predicted": 1.1,
+          "happened": 0,
+          "rank": 22,
+          "pick": false,
+          "lat": 30.42,
+          "lon": -97.8
+        },
+        {
+          "zip": "78641",
+          "name": "Leander",
+          "why": [
+            "households +21%"
+          ],
+          "predicted": 2.4,
+          "happened": 4,
+          "rank": 4,
+          "pick": false,
+          "lat": 30.56,
+          "lon": -97.86
+        },
+        {
+          "zip": "78702",
+          "name": "East Austin",
+          "why": [
+            "aged 25–44",
+            "walkable blocks"
+          ],
+          "predicted": 2.9,
+          "happened": 3,
+          "rank": 2,
+          "pick": false,
+          "lat": 30.263,
+          "lon": -97.716
+        },
+        {
+          "zip": "78731",
+          "name": "Northwest Hills",
+          "why": [
+            "income $118k"
+          ],
+          "predicted": 1.1,
+          "happened": 0,
+          "rank": 23,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.76
+        },
+        {
+          "zip": "78681",
+          "name": "Round Rock West",
+          "why": [
+            "households +11%"
+          ],
+          "predicted": 1.4,
+          "happened": 1,
+          "rank": 18,
+          "pick": false,
+          "lat": 30.53,
+          "lon": -97.72
+        },
+        {
+          "zip": "78758",
+          "name": "North Burnet",
+          "why": [
+            "office base"
+          ],
+          "predicted": 1.6,
+          "happened": 2,
+          "rank": 11,
+          "pick": false,
+          "lat": 30.39,
+          "lon": -97.71
+        },
+        {
+          "zip": "78748",
+          "name": "Southwest",
+          "why": [
+            "households +8%"
+          ],
+          "predicted": 1.4,
+          "happened": 2,
+          "rank": 16,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.82
+        },
+        {
+          "zip": "78749",
+          "name": "Oak Hill",
+          "why": [
+            "income $110k"
+          ],
+          "predicted": 0.9,
+          "happened": 0,
+          "rank": 27,
+          "pick": false,
+          "lat": 30.21,
+          "lon": -97.86
+        },
+        {
+          "zip": "78735",
+          "name": "Barton Creek",
+          "why": [
+            "income $150k"
+          ],
+          "predicted": 2,
+          "happened": 4,
+          "rank": 7,
+          "pick": false,
+          "lat": 30.26,
+          "lon": -97.87
+        },
+        {
+          "zip": "78717",
+          "name": "Avery Ranch",
+          "why": [
+            "households +10%"
+          ],
+          "predicted": 1,
+          "happened": 1,
+          "rank": 26,
+          "pick": false,
+          "lat": 30.49,
+          "lon": -97.75
+        },
+        {
+          "zip": "78757",
+          "name": "Crestview",
+          "why": [
+            "aged 25–44"
+          ],
+          "predicted": 1.5,
+          "happened": 2,
+          "rank": 14,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.73
+        },
+        {
+          "zip": "78703",
+          "name": "Tarrytown",
+          "why": [
+            "income $140k"
+          ],
+          "predicted": 0.8,
+          "happened": 0,
+          "rank": 30,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.765
+        },
+        {
+          "zip": "78705",
+          "name": "Campus",
+          "why": [
+            "aged 18–24",
+            "campus traffic"
+          ],
+          "predicted": 1.6,
+          "happened": 1,
+          "rank": 12,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.74
+        },
+        {
+          "zip": "78729",
+          "name": "Jollyville",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 55,
+          "pick": false,
+          "lat": 30.455,
+          "lon": -97.77
+        },
+        {
+          "zip": "78665",
+          "name": "Round Rock East",
+          "why": [
+            "households +13%"
+          ],
+          "predicted": 1.5,
+          "happened": 3,
+          "rank": 13,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -97.65
+        },
+        {
+          "zip": "78628",
+          "name": "Georgetown West",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 1,
+          "rank": 35,
+          "pick": false,
+          "lat": 30.65,
+          "lon": -97.72
+        },
+        {
+          "zip": "78626",
+          "name": "Georgetown",
+          "why": [],
+          "predicted": 1.4,
+          "happened": 3,
+          "rank": 15,
+          "pick": false,
+          "lat": 30.65,
+          "lon": -97.65
+        },
+        {
+          "zip": "78753",
+          "name": "North Lamar",
+          "why": [],
+          "predicted": 1.2,
+          "happened": 2,
+          "rank": 20,
+          "pick": false,
+          "lat": 30.37,
+          "lon": -97.67
+        },
+        {
+          "zip": "78741",
+          "name": "Riverside",
+          "why": [
+            "aged 25–44"
+          ],
+          "predicted": 0.4,
+          "happened": 0,
+          "rank": 44,
+          "pick": false,
+          "lat": 30.23,
+          "lon": -97.72
+        },
+        {
+          "zip": "78744",
+          "name": "Southeast",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 52,
+          "pick": false,
+          "lat": 30.18,
+          "lon": -97.74
+        },
+        {
+          "zip": "78739",
+          "name": "Circle C",
+          "why": [
+            "income $130k"
+          ],
+          "predicted": 0.5,
+          "happened": 0,
+          "rank": 42,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.89
+        },
+        {
+          "zip": "78733",
+          "name": "Bee Caves Rd",
+          "why": [],
+          "predicted": 0.4,
+          "happened": 0,
+          "rank": 45,
+          "pick": false,
+          "lat": 30.33,
+          "lon": -97.87
+        },
+        {
+          "zip": "78734",
+          "name": "Lakeway",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 53,
+          "pick": false,
+          "lat": 30.38,
+          "lon": -97.95
+        },
+        {
+          "zip": "78732",
+          "name": "Steiner Ranch",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 60,
+          "pick": false,
+          "lat": 30.38,
+          "lon": -97.89
+        },
+        {
+          "zip": "78730",
+          "name": "River Place",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 61,
+          "pick": false,
+          "lat": 30.36,
+          "lon": -97.83
+        },
+        {
+          "zip": "78726",
+          "name": "Four Points",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 56,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -97.84
+        },
+        {
+          "zip": "78727",
+          "name": "Scofield",
+          "why": [],
+          "predicted": 1.1,
+          "happened": 2,
+          "rank": 21,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -97.72
+        },
+        {
+          "zip": "78728",
+          "name": "Wells Branch",
+          "why": [],
+          "predicted": 0.5,
+          "happened": 1,
+          "rank": 41,
+          "pick": false,
+          "lat": 30.44,
+          "lon": -97.68
+        },
+        {
+          "zip": "78754",
+          "name": "Harris Branch",
+          "why": [],
+          "predicted": 1,
+          "happened": 2,
+          "rank": 25,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.64
+        },
+        {
+          "zip": "78752",
+          "name": "St Johns",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 1,
+          "rank": 38,
+          "pick": false,
+          "lat": 30.33,
+          "lon": -97.7
+        },
+        {
+          "zip": "78751",
+          "name": "Hyde Park",
+          "why": [],
+          "predicted": 1,
+          "happened": 3,
+          "rank": 24,
+          "pick": false,
+          "lat": 30.31,
+          "lon": -97.72
+        },
+        {
+          "zip": "78756",
+          "name": "Rosedale",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 62,
+          "pick": false,
+          "lat": 30.32,
+          "lon": -97.74
+        },
+        {
+          "zip": "78723",
+          "name": "Mueller",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 63,
+          "pick": false,
+          "lat": 30.3,
+          "lon": -97.69
+        },
+        {
+          "zip": "78721",
+          "name": "Govalle",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 0,
+          "rank": 54,
+          "pick": false,
+          "lat": 30.27,
+          "lon": -97.68
+        },
+        {
+          "zip": "78724",
+          "name": "Northeast",
+          "why": [],
+          "predicted": 0.8,
+          "happened": 2,
+          "rank": 28,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.62
+        },
+        {
+          "zip": "78747",
+          "name": "Onion Creek",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 64,
+          "pick": false,
+          "lat": 30.13,
+          "lon": -97.76
+        },
+        {
+          "zip": "78617",
+          "name": "Del Valle",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 46,
+          "pick": false,
+          "lat": 30.17,
+          "lon": -97.62
+        },
+        {
+          "zip": "78640",
+          "name": "Kyle",
+          "why": [],
+          "predicted": 0.4,
+          "happened": 1,
+          "rank": 43,
+          "pick": false,
+          "lat": 30,
+          "lon": -97.87
+        },
+        {
+          "zip": "78610",
+          "name": "Buda",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 65,
+          "pick": false,
+          "lat": 30.08,
+          "lon": -97.84
+        },
+        {
+          "zip": "78737",
+          "name": "Dripping Springs",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 47,
+          "pick": false,
+          "lat": 30.19,
+          "lon": -97.95
+        },
+        {
+          "zip": "78736",
+          "name": "Oak Hill West",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 57,
+          "pick": false,
+          "lat": 30.25,
+          "lon": -97.93
+        },
+        {
+          "zip": "78645",
+          "name": "Lago Vista",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 2,
+          "rank": 31,
+          "pick": false,
+          "lat": 30.45,
+          "lon": -97.98
+        },
+        {
+          "zip": "78652",
+          "name": "Manchaca",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 2,
+          "rank": 32,
+          "pick": false,
+          "lat": 30.13,
+          "lon": -97.83
+        },
+        {
+          "zip": "78725",
+          "name": "Hornsby Bend",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 66,
+          "pick": false,
+          "lat": 30.23,
+          "lon": -97.6
+        },
+        {
+          "zip": "78653",
+          "name": "Manor",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 67,
+          "pick": false,
+          "lat": 30.34,
+          "lon": -97.52
+        },
+        {
+          "zip": "78634",
+          "name": "Hutto",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 68,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -97.55
+        },
+        {
+          "zip": "78612",
+          "name": "Cedar Creek",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 58,
+          "pick": false,
+          "lat": 30.1,
+          "lon": -97.5
+        },
+        {
+          "zip": "78621",
+          "name": "Elgin",
+          "why": [],
+          "predicted": 0.5,
+          "happened": 2,
+          "rank": 39,
+          "pick": false,
+          "lat": 30.35,
+          "lon": -97.37
+        },
+        {
+          "zip": "78602",
+          "name": "Bastrop",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 69,
+          "pick": false,
+          "lat": 30.11,
+          "lon": -97.32
+        },
+        {
+          "zip": "78666",
+          "name": "San Marcos",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 2,
+          "rank": 33,
+          "pick": false,
+          "lat": 29.88,
+          "lon": -97.94
+        },
+        {
+          "zip": "78620",
+          "name": "Dripping Springs W",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 70,
+          "pick": false,
+          "lat": 30.2,
+          "lon": -98.08
+        },
+        {
+          "zip": "78669",
+          "name": "Spicewood",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 71,
+          "pick": false,
+          "lat": 30.42,
+          "lon": -98.1
+        },
+        {
+          "zip": "78654",
+          "name": "Marble Falls",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 72,
+          "pick": false,
+          "lat": 30.57,
+          "lon": -98.27
+        },
+        {
+          "zip": "78615",
+          "name": "Coupland",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 73,
+          "pick": false,
+          "lat": 30.46,
+          "lon": -97.39
+        },
+        {
+          "zip": "78633",
+          "name": "Georgetown N",
+          "why": [],
+          "predicted": 0.8,
+          "happened": 2,
+          "rank": 29,
+          "pick": false,
+          "lat": 30.72,
+          "lon": -97.74
+        },
+        {
+          "zip": "78642",
+          "name": "Liberty Hill",
+          "why": [],
+          "predicted": 0.5,
+          "happened": 2,
+          "rank": 40,
+          "pick": false,
+          "lat": 30.66,
+          "lon": -97.92
+        },
+        {
+          "zip": "78605",
+          "name": "Bertram",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 74,
+          "pick": false,
+          "lat": 30.74,
+          "lon": -98.06
+        },
+        {
+          "zip": "78616",
+          "name": "Dale",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 75,
+          "pick": false,
+          "lat": 29.93,
+          "lon": -97.56
+        },
+        {
+          "zip": "78644",
+          "name": "Lockhart",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 1,
+          "rank": 50,
+          "pick": false,
+          "lat": 29.88,
+          "lon": -97.67
+        },
+        {
+          "zip": "78655",
+          "name": "Martindale",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 76,
+          "pick": false,
+          "lat": 29.84,
+          "lon": -97.84
+        },
+        {
+          "zip": "78656",
+          "name": "Maxwell",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 2,
+          "rank": 36,
+          "pick": false,
+          "lat": 29.89,
+          "lon": -97.82
+        },
+        {
+          "zip": "78619",
+          "name": "Driftwood",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 77,
+          "pick": false,
+          "lat": 30.11,
+          "lon": -98
+        },
+        {
+          "zip": "78676",
+          "name": "Wimberley",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 48,
+          "pick": false,
+          "lat": 30,
+          "lon": -98.1
+        },
+        {
+          "zip": "78623",
+          "name": "Fischer",
+          "why": [],
+          "predicted": 0.7,
+          "happened": 2,
+          "rank": 34,
+          "pick": false,
+          "lat": 29.97,
+          "lon": -98.26
+        },
+        {
+          "zip": "78636",
+          "name": "Johnson City",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 78,
+          "pick": false,
+          "lat": 30.28,
+          "lon": -98.41
+        },
+        {
+          "zip": "78663",
+          "name": "Round Mountain",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 79,
+          "pick": false,
+          "lat": 30.43,
+          "lon": -98.35
+        },
+        {
+          "zip": "78657",
+          "name": "Horseshoe Bay",
+          "why": [],
+          "predicted": 0.2,
+          "happened": 1,
+          "rank": 51,
+          "pick": false,
+          "lat": 30.55,
+          "lon": -98.37
+        },
+        {
+          "zip": "78611",
+          "name": "Burnet",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 80,
+          "pick": false,
+          "lat": 30.76,
+          "lon": -98.23
+        },
+        {
+          "zip": "78608",
+          "name": "Briggs",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 81,
+          "pick": false,
+          "lat": 30.88,
+          "lon": -97.93
+        },
+        {
+          "zip": "76574",
+          "name": "Taylor",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 82,
+          "pick": false,
+          "lat": 30.57,
+          "lon": -97.41
+        },
+        {
+          "zip": "76537",
+          "name": "Jarrell",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 83,
+          "pick": false,
+          "lat": 30.82,
+          "lon": -97.6
+        },
+        {
+          "zip": "76527",
+          "name": "Florence",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 84,
+          "pick": false,
+          "lat": 30.84,
+          "lon": -97.79
+        },
+        {
+          "zip": "78942",
+          "name": "Giddings",
+          "why": [],
+          "predicted": 0,
+          "happened": 0,
+          "rank": 85,
+          "pick": false,
+          "lat": 30.18,
+          "lon": -96.94
+        },
+        {
+          "zip": "78957",
+          "name": "Smithville",
+          "why": [],
+          "predicted": 0.1,
+          "happened": 0,
+          "rank": 59,
+          "pick": false,
+          "lat": 30.01,
+          "lon": -97.16
+        },
+        {
+          "zip": "78650",
+          "name": "McDade",
+          "why": [],
+          "predicted": 0.3,
+          "happened": 1,
+          "rank": 49,
+          "pick": false,
+          "lat": 30.29,
+          "lon": -97.23
+        },
+        {
+          "zip": "78953",
+          "name": "Rosanky",
+          "why": [],
+          "predicted": 0.6,
+          "happened": 2,
+          "rank": 37,
+          "pick": false,
+          "lat": 29.93,
+          "lon": -97.3
+        }
+      ],
+      "backtest": {
+        "frozen_at": 2020,
+        "scored_on": 2023,
+        "n_zips": 24310,
+        "lift": 6,
+        "ci": [
+          5.6,
+          6.4
+        ],
+        "by_industry": [
+          {
+            "naics": "713940",
+            "name": "Fitness centers",
+            "lift": 7.4,
+            "population_lift": 5.7,
+            "ci": [
+              7.1,
+              7.7
+            ],
+            "verdict": "better"
+          },
+          {
+            "naics": "722515",
+            "name": "Coffee and snacks",
+            "lift": 6,
+            "population_lift": 5.1,
+            "ci": [
+              5.6,
+              6.4
+            ],
+            "verdict": "better"
+          },
+          {
+            "naics": "621111",
+            "name": "Physician offices",
+            "lift": 5.4,
+            "population_lift": 5.5,
+            "ci": [
+              5,
+              5.8
+            ],
+            "verdict": "tie"
+          }
+        ],
+        "pooled": {
+          "lift": 6.3,
+          "population_lift": 5.2
+        }
+      }
+    }
+  }
+}

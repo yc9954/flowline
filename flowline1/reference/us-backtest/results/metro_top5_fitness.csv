@@ -1,0 +1,16 @@
+metro,zip,city,county,pred_net_new_2020_23,actual_net_new_2020_23,gyms_2020,gyms_2023,drivers,metro_rank_of_actual,metro_n
+Austin TX,78704,AUSTIN,TRAVIS,3.38,5.0,19,24,"sector_s54=520 (national median 6, +1.45); sector_s53=168 (national median 3, +1.15); sh_age25_44=0.494 (national median 0.234, +0.91)",5,85
+Austin TX,78738,AUSTIN,TRAVIS,2.87,6.0,4,10,"sector_s54=254 (national median 6, +0.82); sector_s53=77 (national median 3, +0.77); all_estab_growth_lag=0.175 (national median 0, +0.69)",4,85
+Austin TX,78660,PFLUGERVILLE,TRAVIS,2.76,2.0,5,7,"all_estab_growth_lag=0.183 (national median 0, +1.10); sector_s54=153 (national median 6, +1.00); median_hh_income=8.82e+04 (national median 5.7e+04, +0.59)",18,85
+Austin TX,78701,AUSTIN,TRAVIS,2.64,4.0,10,14,"sector_s54=1.13e+03 (national median 6, +1.24); sector_s53=193 (national median 3, +0.84); median_hh_income=1.22e+05 (national median 5.7e+04, +0.78)",8,85
+Austin TX,78613,CEDAR PARK,WILLIAMSON,2.57,2.0,20,22,"sector_s54=302 (national median 6, +1.91); median_hh_income=1.04e+05 (national median 5.7e+04, +1.29); all_estab_growth_lag=0.13 (national median 0, +1.18)",18,85
+Denver CO,80134,PARKER,DOUGLAS,2.82,5.0,13,18,"sector_s54=363 (national median 6, +2.01); all_estab_growth_lag=0.107 (national median 0, +1.31); median_hh_income=1.15e+05 (national median 5.7e+04, +1.24)",2,100
+Denver CO,80021,BROOMFIELD,JEFFERSON,2.13,-1.0,7,6,"sh_bachelor_plus=0.464 (national median 0.212, +0.68); sector_s53=69 (national median 3, +0.53); median_hh_income=7.59e+04 (national median 5.7e+04, +0.50)",80,100
+Denver CO,80104,CASTLE ROCK,DOUGLAS,1.96,3.0,4,7,"sector_s54=158 (national median 6, +1.13); sector_s53=89 (national median 3, +0.90); all_estab_growth_lag=0.0776 (national median 0, +0.64)",9,100
+Denver CO,80401,GOLDEN,JEFFERSON,1.95,4.0,4,8,"sector_s54=450 (national median 6, +1.20); sector_s53=131 (national median 3, +0.33); jobs_growth_lag=0.0907 (national median 0.0229, +0.26)",5,100
+Denver CO,80205,DENVER,DENVER,1.73,6.0,7,13,"sector_s54=292 (national median 6, +1.02); sh_age25_44=0.484 (national median 0.234, +0.48); sector_s71=45 (national median 0, +0.45)",1,100
+Atlanta GA,30024,SUWANEE,GWINNETT,3.51,5.0,17,22,"sector_s54=597 (national median 6, +1.57); sector_s53=175 (national median 3, +1.17); all_estab_growth_lag=0.117 (national median 0, +0.95)",2,120
+Atlanta GA,30096,DULUTH,GWINNETT,3.03,0.0,9,9,"sector_s54=440 (national median 6, +1.29); sector_s53=180 (national median 3, +1.02); sector_s55=32 (national median 0, +0.70)",34,120
+Atlanta GA,30080,SMYRNA,COBB,2.96,3.0,9,12,"sector_s53=114 (national median 3, +1.94); sector_s54=222 (national median 6, +1.34); sh_age25_44=0.408 (national median 0.234, +0.72)",7,120
+Atlanta GA,30005,ALPHARETTA,FULTON,2.9,2.0,8,10,"sector_s54=487 (national median 6, +1.07); sector_s53=118 (national median 3, +1.00); median_hh_income=1.29e+05 (national median 5.7e+04, +0.43)",11,120
+Atlanta GA,30518,BUFORD,GWINNETT,2.75,2.0,7,9,"median_hh_income=8.08e+04 (national median 5.7e+04, +1.17); sector_s53=103 (national median 3, +1.13); sector_s54=215 (national median 6, +1.05)",11,120

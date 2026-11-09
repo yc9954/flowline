@@ -1,0 +1,106 @@
+{
+ "seed": 607475135,
+ "sheet_before": [
+  [
+   "Memberships, 120 seats",
+   2600
+  ],
+  [
+   "Lunchtime classes, 8 / mo",
+   1150
+  ],
+  [
+   "Onboarding week",
+   540
+  ]
+ ],
+ "total_before": 4290,
+ "quotes": [
+  {
+   "file": "Downtown Athletic Club - memberships quote.pdf",
+   "vendor": "Downtown Athletic Club",
+   "item": "Memberships, 120 seats",
+   "amount": 2600,
+   "sheet_amount": 2600,
+   "differs": false,
+   "quote_no": "Q-2026-5645",
+   "date": "2026-11-05"
+  },
+  {
+   "file": "MoveWell Studio - lunchtime classes quote.pdf",
+   "vendor": "MoveWell Studio",
+   "item": "Lunchtime classes, 8 / mo",
+   "amount": 1040,
+   "sheet_amount": 1150,
+   "differs": true,
+   "quote_no": "Q-2026-2712",
+   "date": "2026-11-05"
+  },
+  {
+   "file": "Kickoff Coaching - onboarding week quote.pdf",
+   "vendor": "Kickoff Coaching",
+   "item": "Onboarding week",
+   "amount": 540,
+   "sheet_amount": 540,
+   "differs": false,
+   "quote_no": "Q-2026-9824",
+   "date": "2026-11-06"
+  }
+ ],
+ "changed": {
+  "index": 1,
+  "vendor": "MoveWell Studio",
+  "item": "Lunchtime classes, 8 / mo",
+  "from": 1150,
+  "to": 1040,
+  "delta": -110
+ },
+ "sheet_after": [
+  [
+   "Memberships, 120 seats",
+   2600
+  ],
+  [
+   "Lunchtime classes, 8 / mo",
+   1040
+  ],
+  [
+   "Onboarding week",
+   540
+  ]
+ ],
+ "total_after": 4180,
+ "skill_id": "reconcile_quotes",
+ "run_id": "run-20261109-114239-73d8",
+ "steps": [
+  "READ THE QUOTES",
+  "UPDATE THE SHEET",
+  "HAND IT OVER"
+ ],
+ "sheet": "/config/Documents/pricing-sheet.ods",
+ "deck": "/config/Documents/proposal-172.odp",
+ "slide": 6,
+ "quotes_dir": "/config/Documents/Quotes",
+ "out_dir": "/config/Documents/For signature",
+ "pdf": null,
+ "mail": {
+  "to": "pm",
+  "cc": null,
+  "subject": "Quotes reconciled \u2014 proposal 172 \u00b7 Director",
+  "attachment": null,
+  "sender": "director",
+  "role": "Director"
+ },
+ "expected_amounts": [
+  2600,
+  1040,
+  540,
+  4180
+ ],
+ "dressed": {
+  "sheet": "left half",
+  "deck": "right half, slide 6",
+  "thunar": "Quotes, bottom-left",
+  "inbox": "untouched"
+ }
+}

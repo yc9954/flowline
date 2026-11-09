@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Board — how work flows</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;family=Host+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#fff}
+a{color:#000}a:hover{color:#4d5353}
+</style>
+</helmet>
+<div style="min-height: 900px; background: #fff; color: #000; font-family: 'Instrument Sans', system-ui, sans-serif; letter-spacing: -0.003em; display: flex; flex-wrap: wrap">
+
+  <aside style="flex: 1 1 200px; max-width: 100%; background: #eaecee; border-right: 1px solid #dcdfe1; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 8px 8px 10px">
+      <span style="width: 30px; height: 30px; border-radius: 7px; background: #000; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M3 17h6V7h6v6h6"></path></svg></span>
+      <div><div style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.15">Flowline</div><div style="font-size: 11px; color: #4d5353">Northwind Fitness</div></div>
+    </div>
+    <div style="padding: 12px 8px 4px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Decide</div>
+    <a href="Expand.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Where to open next</a>
+    <a href="Unblock.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Opening branch 4</a>
+    <div style="padding: 12px 8px 4px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Improve</div>
+    <a href="Plans.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Plans to test</a>
+    <a href="Measure.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Results</a>
+    <a href="Loop.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Process history</a>
+    <div style="padding: 12px 8px 4px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Know</div>
+    <a href="Ontology.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Company knowledge</a>
+    <a href="Board.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; font-weight: 600; background: #fff; box-shadow: 0 1px 2px rgba(20,20,25,0.05)">Where work waits</a>
+    <a href="Record.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Approved records</a>
+    <div style="padding: 12px 8px 4px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Trust</div>
+    <a href="ModelCheck.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Model check</a>
+    <div style="margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #dcdfe1; padding: 12px 8px 6px">
+      <div><div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Records</div><div style="font-family: 'Host Grotesk', sans-serif; font-size: 18px; font-weight: 500; margin-top: 4px">412</div></div>
+      <div><div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Screens shared</div><div style="font-family: 'Host Grotesk', sans-serif; font-size: 18px; font-weight: 500; margin-top: 4px">0</div></div>
+    </div>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 20px 32px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; align-items: center; gap: 10px; height: 30px; padding-bottom: 14px; border-bottom: 1px solid #edf0f2">
+      <nav aria-label="Breadcrumb" style="display: flex; align-items: center; gap: 8px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; white-space: nowrap">
+        <span>Northwind Fitness</span><span aria-hidden="true">/</span>
+        <a href="Board.dc.html" style="color: #4d5353; text-decoration: none">Client proposals</a><span aria-hidden="true">/</span>
+        <span aria-current="page" style="color: #000; font-weight: 500">Where work waits</span>
+      </nav>
+      <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353; white-space: nowrap"><span style="width: 6px; height: 6px; border-radius: 1px; background: #0F766E"></span>recomputed Wed 18:24</span>
+      <span style="width: 1px; height: 16px; background: #d8dddf; margin: 0 4px"></span>
+      <button type="button" style="height: 30px; padding: 0 10px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.12); background: #fff; color: #000; font: inherit; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; cursor: pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><path d="M12 15V3"></path><path d="M7 8l5-5 5 5"></path><path d="M5 13v8h14v-8"></path></svg>Share</button>
+      <button type="button" style="height: 30px; padding: 0 10px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.12); background: #fff; color: #000; font: inherit; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; cursor: pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>Export</button>
+    </header>
+
+    <div style="display: flex; gap: 40px; align-items: flex-start">
+      <div style="flex: 1; min-width: 0">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; white-space: nowrap">Finding · 46 approved records · 6 people · 2 weeks</span>
+          <span style="flex: 1; height: 1px; background: #d8dddf"></span>
+        </div>
+        <h1 style="margin: 14px 0 0; font-size: 36px; font-weight: 600; letter-spacing: -0.018em; line-height: 1.22">Quotes wait 19 hours for one signature.</h1>
+        <p style="margin: 10px 0 0; font-size: 16px; line-height: 26px; color: #4d5353; max-width: 640px">The approval itself takes 18 minutes. Across 23 proposals, more than half of every cycle is waiting — and most of that wait is here.</p>
+      </div>
+      <div style="flex: 0 0 340px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; row-gap: 14px">
+        <div style="padding: 12px 0 0; border-top: 1px solid #171717; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Cycle time</span><span style="font-family: 'Host Grotesk', sans-serif; font-weight: 500; font-variant-numeric: tabular-nums; font-size: 26px; line-height: 1">50.0 h</span><span style="font-size: 12px; color: #4d5353">brief → sent</span></div>
+        <div style="padding: 12px 0 0; border-top: 1px solid #171717; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Waiting</span><span style="font-family: 'Host Grotesk', sans-serif; font-weight: 500; font-variant-numeric: tabular-nums; font-size: 26px; line-height: 1">54%</span><span style="font-size: 12px; color: #4d5353">of each cycle</span></div>
+        <div style="padding: 12px 0 0; border-top: 1px solid #d8dddf; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Quotes under $5k</span><span style="font-family: 'Host Grotesk', sans-serif; font-weight: 500; font-variant-numeric: tabular-nums; font-size: 26px; line-height: 1">71%</span><span style="font-size: 12px; color: #4d5353">98% approved unchanged</span></div>
+        <div style="padding: 12px 0 0; border-top: 1px solid #d8dddf; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Repeated by hand</span><span style="font-family: 'Host Grotesk', sans-serif; font-weight: 500; font-variant-numeric: tabular-nums; font-size: 26px; line-height: 1">4 h / wk</span><span style="font-size: 12px; color: #4d5353">sheet → deck, PM</span></div>
+      </div>
+    </div>
+
+    <section aria-label="Process map" style="border: 1px solid #d8dddf; border-radius: 6px; padding: 14px 20px 12px; background: #fff">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px">
+        <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Process map · built from records, not interviews</span>
+        <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #4d5353"><span style="width: 8px; height: 8px; border-radius: 1px; background: #171717"></span>Hands-on</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #4d5353"><span style="width: 8px; height: 8px; border-radius: 1px; background: #FCBB00"></span>Waiting</span>
+        <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #4d5353">avg of 23 proposals</span>
+      </div>
+      <div style="display: flex; align-items: stretch">
+        <sc-for list="{{flow}}" as="s" hint-placeholder-count="6">
+          <sc-if value="{{s.hasWait}}" hint-placeholder-val="{{true}}">
+            <div style="flex: 0 0 {{s.cw}}; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; padding: 0 6px; box-sizing: border-box">
+              <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; font-weight: {{s.waitWeight}}; color: #000; background: {{s.chipBg}}; padding: 2px 6px; border-radius: 2px; white-space: nowrap">{{s.wait}}</span>
+              <span style="display: flex; align-items: center; width: 100%; color: #e0a800"><span style="flex: 1; height: {{s.waitH}}; background: #FCBB00"></span><svg width="7" height="10" viewBox="0 0 7 10" aria-hidden="true"><path d="M0 0l7 5-7 5z" fill="#FCBB00"></path></svg></span>
+              <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">{{s.waitNote}}</span>
+            </div>
+          </sc-if>
+          <div style="flex: 1 1 0; min-width: 0; border: 1px solid {{s.border}}; box-shadow: {{s.ring}}; border-radius: 4px; padding: 10px 12px; box-sizing: border-box; background: #fff">
+            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{s.role}}</div>
+            <div style="font-size: 15px; font-weight: 600; margin-top: 3px">{{s.name}}</div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 8px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px"><span style="width: 8px; height: 8px; border-radius: 1px; background: #171717"></span>{{s.hands}}</div>
+            <div style="font-size: 11px; color: #4d5353; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{s.art}}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid #edf0f2">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">To scale · one proposal, brief → sent</span>
+          <span style="margin-left: auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #4d5353">23.0 h hands-on · 27.0 h waiting</span>
+        </div>
+        <div style="position: relative; margin-top: 18px">
+          <span style="position: absolute; left: 57%; bottom: 100%; margin-bottom: 2px; transform: translateX(-50%); font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #000; white-space: nowrap">signature 0.3 h</span>
+          <span style="position: absolute; left: 57%; top: -2px; bottom: -2px; border-left: 1px solid #171717"></span>
+          <div style="display: flex; height: 22px; border-radius: 2px; overflow: hidden">
+            <sc-for list="{{track}}" as="t" hint-placeholder-count="11">
+              <span style="flex: 0 0 {{t.w}}; box-sizing: border-box; border-right: 1px solid #fff; background: {{t.bg}}; color: {{t.fg}}; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; font-weight: {{t.fw}}; display: flex; align-items: center; justify-content: center; white-space: nowrap; overflow: hidden">{{t.label}}</span>
+            </sc-for>
+          </div>
+          <div style="position: relative; height: 18px; border-top: 1px solid #c4c9cc; margin-top: 4px">
+            <sc-for list="{{ticks}}" as="k" hint-placeholder-count="6">
+              <span style="position: absolute; left: {{k.x}}; top: 0; height: 4px; border-left: 1px solid #c4c9cc"></span>
+              <span style="position: absolute; left: {{k.x}}; top: 5px; transform: translateX({{k.tx}}); font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353; white-space: nowrap">{{k.label}}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="display: flex; gap: 24px; align-items: flex-start">
+      <section aria-label="Sent back" style="flex: 1 1 0; min-width: 0">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px"><h2 style="margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -0.01em">Sent back</h2><span style="margin-left: auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; white-space: nowrap">Rework loops · share of proposals</span></div>
+        <div style="border: 1px solid #d8dddf; border-radius: 6px; overflow: hidden; background: #fff">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 84px 92px 128px; column-gap: 12px; padding: 0 14px; background: #edf0f2; height: 30px; align-items: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353"><span>Reason</span><span>Back to</span><span style="text-align: right">Cost each</span><span style="text-align: right">Share</span></div>
+          <sc-for list="{{onto}}" as="o" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) 84px 92px 128px; column-gap: 12px; padding: 0 14px; height: 36px; align-items: center; border-top: 1px solid #edf0f2; background: {{o.bg}}">
+              <span style="font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{o.kind}}<span style="font-size: 12px; color: #4d5353">{{o.by}}</span></span>
+              <span style="font-size: 13px; color: #30373f">{{o.to}}</span>
+              <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-align: right">{{o.cost}}</span>
+              <span style="display: flex; align-items: center; gap: 10px; justify-content: flex-end"><span style="width: 72px; height: 6px; background: #edf0f2; display: flex"><span style="width: {{o.bar}}; background: #C24D32"></span></span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; width: 32px; text-align: right">{{o.n}}</span></span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+      <section aria-label="Repeated by hand" style="flex: 1 1 0; min-width: 0">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px"><h2 style="margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -0.01em">Repeated by hand</h2><span style="margin-left: auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; white-space: nowrap">Per week · from records</span></div>
+        <div style="border: 1px solid #d8dddf; border-radius: 6px; overflow: hidden; background: #fff">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 88px 104px; column-gap: 12px; padding: 0 14px; background: #edf0f2; height: 30px; align-items: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353"><span>Task</span><span>Who</span><span style="text-align: right">Count · time</span><span>Owner next</span></div>
+          <sc-for list="{{reps}}" as="r" hint-placeholder-count="3">
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 88px 104px; column-gap: 12px; padding: 0 14px; height: 36px; align-items: center; border-top: 1px solid #edf0f2">
+              <span style="font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.what}}</span>
+              <span style="font-size: 13px; color: #30373f">{{r.who}}</span>
+              <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; text-align: right">{{r.cost}}</span>
+              <span style="display: flex">
+                <sc-if value="{{r.skill}}" hint-placeholder-val="{{false}}"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; height: 18px; padding: 0 6px; border-radius: 2px; background: rgba(109,91,208,0.1); color: #5a48c0; display: inline-flex; align-items: center; white-space: nowrap">Agent can do</span></sc-if>
+                <sc-if value="{{r.manual}}" hint-placeholder-val="{{false}}"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #4d5353">—</span></sc-if>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+
+    <div style="margin-top: auto; border-top: 1px solid #d8dddf; padding: 14px 0 18px; display: flex; align-items: center; gap: 12px">
+      <p style="margin: 0; flex: 1; min-width: 0; font-size: 15px; line-height: 24px; color: #4d5353"><strong style="color: #000">The constraint is approval, not effort.</strong> Test plans on the same team before anything changes.</p>
+      <a href="Plans.dc.html" style="height: 40px; padding: 0 18px; border-radius: 2px; background: #171717; color: #fff; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; white-space: nowrap">Next: Plans to test <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const steps = [
+      ['Sales', 'Brief', '3.0 h', 'client brief', null, 0],
+      ['PM', 'Estimate', '5.0 h', 'pricing sheet', '1.5 h', 1.5],
+      ['Director', 'Approval', '0.3 h', 'quote', '19.0 h', 19],
+      ['PM · Design', 'Deck', '9.4 h', 'proposal deck', '1.5 h', 1.5],
+      ['Sales', 'Review', '4.0 h', 'proposal deck', '2.0 h', 2],
+      ['Sales', 'Send', '1.3 h', 'sent proposal', '3.0 h', 3]
+    ];
+    const flow = steps.map(([role, name, hands, art, wait, w]) => {
+      const big = name === 'Approval';
+      return {
+        role, name, hands, art, wait: wait || '', hasWait: !!wait,
+        cw: big ? '112px' : '64px', waitH: big ? '6px' : '2px',
+        chipBg: big ? '#FCBB00' : 'transparent', waitWeight: big ? '600' : '400',
+        waitNote: big ? 'longest wait' : 'wait',
+        border: big ? '#171717' : '#d8dddf', ring: big ? '0 0 0 1px #171717' : 'none'
+      };
+    });
+    const total = 50.0;
+    const track = [];
+    steps.forEach(([role, name, hands, art, wait, w]) => {
+      if (w) {
+        const big = w >= 19;
+        track.push({ w: (w / total * 100).toFixed(2) + '%', bg: '#FCBB00', fg: '#000', fw: big ? '600' : '400',
+          label: big ? 'Waiting for the Director · 19.0 h' : (w >= 1.5 ? String(w.toFixed(1)) : '') });
+      }
+      const h = parseFloat(hands);
+      track.push({ w: (h / total * 100).toFixed(2) + '%', bg: '#171717', fg: '#fff', fw: '400',
+        label: h >= 3 ? name + ' ' + h.toFixed(1) : '' });
+    });
+    const ticks = [0, 10, 20, 30, 40, 50].map((v) => ({
+      x: (v / total * 100) + '%', label: v === 50 ? '50 h' : String(v),
+      tx: v === 0 ? '0' : (v === 50 ? '-100%' : '-50%')
+    }));
+    const onto = [
+      { kind: 'Review changes', by: '', to: 'Deck', cost: '+2.2 h', n: '35%' },
+      { kind: 'Revise quote', by: ' · client asks', to: 'Estimate', cost: '+1 day', n: '30%' },
+      { kind: 'Margin < 25%', by: ' · Finance', to: 'Estimate', cost: '+3.1 h', n: '22%' },
+      { kind: 'Missing figures', by: ' · Director', to: 'Estimate', cost: '+6.4 h', n: '13%' }
+    ].map((o, i) => ({ ...o, bar: o.n, bg: i === 0 ? '#f5f7f8' : '#fff' }));
+    const reps = [
+      { what: 'Copy figures from sheet into deck', who: 'PM', cost: '11× · 22 m', skill: true },
+      { what: 'Rename and export proposal PDF', who: 'Sales', cost: '9× · 4 m', skill: true },
+      { what: 'Re-attach latest deck to approval', who: 'Sales', cost: '7× · 3 m', skill: false }
+    ].map((r) => ({ ...r, manual: !r.skill }));
+    return { flow, track, ticks, onto, reps };
+  }
+}
+</script>
+</body>
+</html>

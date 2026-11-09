@@ -1,0 +1,545 @@
+{
+ "source": "simulated",
+ "board_id": "northwind",
+ "origin": "2026-10-05T00:00:00-05:00",
+ "weeks": 11,
+ "change_week": 8,
+ "hidden_rules": {
+  "approver_batches_per_day": 1,
+  "approver_hours": [
+   18.0
+  ],
+  "small_quote_threshold_usd": 5000.0,
+  "p_missing_small": 0.02,
+  "p_missing_large": 0.4,
+  "p_qualify": 0.82,
+  "p_margin_ok": 0.78,
+  "p_review_fail": {
+   "figures": 0.18,
+   "layout": 0.09,
+   "other": 0.08
+  },
+  "p_revise": 0.3,
+  "p_win": 0.41,
+  "p_new_client": 0.4,
+  "amount_lognormal": [
+   8.006367567650246,
+   0.92
+  ],
+  "step_median_min": {
+   "request_in": 1.0,
+   "qualify": 15.0,
+   "discovery": 45.0,
+   "brief": 180.0,
+   "scope": 72.0,
+   "availability": 20.0,
+   "estimate": 300.0,
+   "margin": 30.0,
+   "approval": 18.0,
+   "cases": 40.0,
+   "concept": 564.0,
+   "fill": 22.0,
+   "review": 60.0,
+   "terms": 120.0,
+   "send": 6.0,
+   "negotiate": 4320.0,
+   "signed": 5.0,
+   "kickoff": 60.0
+  },
+  "staff": {
+   "Sales": 2,
+   "PM": 1,
+   "Design": 2,
+   "Finance": 1,
+   "Director": 1,
+   "Legal": 1
+  },
+  "arrivals_per_weekday": [
+   1.0,
+   1.0,
+   0.8,
+   0.7,
+   0.5
+  ],
+  "skill_undo_p": 0.045454545454545456,
+  "bottleneck": "approval"
+ },
+ "name_key": {
+  "Inbound request": "request_in",
+  "Qualify lead": "qualify",
+  "Disco call": "discovery",
+  "Brief": "brief",
+  "Scope and staffing plan": "scope",
+  "Check availability": "availability",
+  "Quote calc": "estimate",
+  "Margin review": "margin",
+  "Approval $14,750": "approval",
+  "Sign off $14,750": "approval",
+  "Concept & deck": "concept",
+  "Case studies": "cases",
+  "Pricing into deck": "fill",
+  "Deck review": "review",
+  "Send to client": "send",
+  "Negotiation": "negotiate",
+  "Signed": "signed",
+  "Kickoff hand-off": "kickoff",
+  "Request in": "request_in",
+  "Qualify": "qualify",
+  "Write brief": "brief",
+  "Scoping": "scope",
+  "Estimate": "estimate",
+  "Quote approval $4,110": "approval",
+  "Concept and deck": "concept",
+  "Copy figures into deck": "fill",
+  "Deck concept": "concept",
+  "MSA": "terms",
+  "Margin check": "margin",
+  "Sign off $4,110": "approval",
+  "Internal deck review": "review",
+  "Review deck": "review",
+  "Kickoff": "kickoff",
+  "Discovery call": "discovery",
+  "Brief draft": "brief",
+  "Availability check": "availability",
+  "Quote approval $14,740": "approval",
+  "Proposal deck": "concept",
+  "Internal review": "review",
+  "Send proposal": "send",
+  "Fit check": "qualify",
+  "Avail. check": "availability",
+  "Approval $670": "approval",
+  "Case study selection": "cases",
+  "Fill pricing in deck": "fill",
+  "Send": "send",
+  "Contract signed": "signed",
+  "Handoff to delivery": "kickoff",
+  "Scope + staffing": "scope",
+  "GM check": "margin",
+  "Pricing build": "estimate",
+  "Sign off $1,950": "approval",
+  "Quote approval $1,950": "approval",
+  "Quote approval $11,480": "approval",
+  "Approval $11,480": "approval",
+  "New request": "request_in",
+  "Quote approval $1,790": "approval",
+  "Pick case studies": "cases",
+  "Fill pricing": "fill",
+  "Negotiate": "negotiate",
+  "Quote approval $3,710": "approval",
+  "Intro call with client": "discovery",
+  "Sign off $1,460": "approval",
+  "Scope & staffing": "scope",
+  "Quote approval $4,810": "approval",
+  "Cost estimate": "estimate",
+  "Quote approval $1,990": "approval",
+  "Terms / MSA": "terms",
+  "Client negotiation": "negotiate",
+  "Quote approval $1,020": "approval",
+  "Deal signed": "signed",
+  "Quote approval $4,860": "approval",
+  "Sign off $3,770": "approval",
+  "MSA redlines": "terms",
+  "Estimate v2": "estimate",
+  "Quote approval $3,930": "approval",
+  "Approve quote $630": "approval",
+  "Quote approval $2,100": "approval",
+  "Quote approval $2,870": "approval",
+  "Approval $330": "approval",
+  "Approval $9,730": "approval",
+  "Terms and MSA": "terms",
+  "Approve quote $9,270": "approval",
+  "Proposal brief": "brief",
+  "Choose case studies": "cases"
+ },
+ "kpis_before": {
+  "n": 22,
+  "cycle_h": 108.79669347419548,
+  "cycle_mean_h": 128.24692244231184,
+  "cycle_p80_h": 162.89304564520282,
+  "work_h": 26.93535921372459,
+  "waiting_h": 80.43617121370517,
+  "waiting_share": 0.7819077044452489,
+  "approval_wait_h": 21.45000959335721,
+  "approval_wait_signed_h": 22.21451145051742,
+  "signed_cases": 20,
+  "signoffs_per_day": 0.65,
+  "sends_per_day": 0.475,
+  "fills_per_week": 9.5,
+  "agent_fills": 0,
+  "fills_undone": 0
+ },
+ "kpis_after": {
+  "n": 8,
+  "cycle_h": 86.40004232960139,
+  "cycle_mean_h": 105.36336753616595,
+  "cycle_p80_h": 135.99165152115847,
+  "work_h": 26.221281086672267,
+  "waiting_h": 54.91582723321626,
+  "waiting_share": 0.7139683944638096,
+  "approval_wait_h": 0.0,
+  "approval_wait_signed_h": 18.954921232022752,
+  "signed_cases": 1,
+  "signoffs_per_day": 0.13333333333333333,
+  "sends_per_day": 1.0,
+  "fills_per_week": 17.333333333333332,
+  "agent_fills": 47,
+  "fills_undone": 1
+ },
+ "cases_before": [
+  {
+   "case": "proposal #160",
+   "brief_start": 671.301404364864,
+   "cycle_h": 95.97532949592382,
+   "work_h": 27.549962866621392,
+   "waiting_h": 68.42536662930243,
+   "approval_wait_h": 37.44145268033857,
+   "passes": 2
+  },
+  {
+   "case": "proposal #161",
+   "brief_start": 3853.3729389557257,
+   "cycle_h": 121.31490639468264,
+   "work_h": 37.374247772922686,
+   "waiting_h": 83.94065862175995,
+   "approval_wait_h": 23.41462528612048,
+   "passes": 1
+  },
+  {
+   "case": "proposal #162",
+   "brief_start": 5234.1947979393,
+   "cycle_h": 98.07101747234618,
+   "work_h": 28.995627359213554,
+   "waiting_h": 69.07539011313263,
+   "approval_wait_h": 22.794080706938438,
+   "passes": 1
+  },
+  {
+   "case": "proposal #168",
+   "brief_start": 23718.688821792635,
+   "cycle_h": 78.04179546154482,
+   "work_h": 23.107892603138982,
+   "waiting_h": 54.933902858405844,
+   "approval_wait_h": 17.415751744729096,
+   "passes": 1
+  },
+  {
+   "case": "proposal #169",
+   "brief_start": 25260.662187862996,
+   "cycle_h": 99.29111227379629,
+   "work_h": 25.35925153780912,
+   "waiting_h": 73.93186073598717,
+   "approval_wait_h": 23.524919009905776,
+   "passes": 1
+  },
+  {
+   "case": "proposal #170",
+   "brief_start": 25487.198609015286,
+   "cycle_h": 144.3116043874583,
+   "work_h": 36.021059632852484,
+   "waiting_h": 108.2905447546058,
+   "approval_wait_h": 55.00184492700191,
+   "passes": 3
+  },
+  {
+   "case": "proposal #173",
+   "brief_start": 33733.65589292222,
+   "cycle_h": 101.13205451558909,
+   "work_h": 26.929273027150337,
+   "waiting_h": 74.20278148843876,
+   "approval_wait_h": 18.936904558617,
+   "passes": 1
+  },
+  {
+   "case": "proposal #175",
+   "brief_start": 35407.325856194824,
+   "cycle_h": 95.37961658092354,
+   "work_h": 23.737578537681234,
+   "waiting_h": 71.64203804324231,
+   "approval_wait_h": 18.29068905832743,
+   "passes": 1
+  },
+  {
+   "case": "proposal #177",
+   "brief_start": 35578.516272390276,
+   "cycle_h": 116.46133243280188,
+   "work_h": 20.428732604948163,
+   "waiting_h": 96.03259982785373,
+   "approval_wait_h": 22.351261886795328,
+   "passes": 1
+  },
+  {
+   "case": "proposal #178",
+   "brief_start": 42764.45254031506,
+   "cycle_h": 94.32512375764479,
+   "work_h": 29.01304789147301,
+   "waiting_h": 65.31207586617178,
+   "approval_wait_h": 4.650189150163472,
+   "passes": 1
+  },
+  {
+   "case": "proposal #179",
+   "brief_start": 52456.914845501655,
+   "cycle_h": 95.10696918799027,
+   "work_h": 28.162878769152304,
+   "waiting_h": 66.94409041883797,
+   "approval_wait_h": 20.15693230492422,
+   "passes": 1
+  },
+  {
+   "case": "proposal #180",
+   "brief_start": 55290.09156225587,
+   "cycle_h": 96.13425560629754,
+   "work_h": 25.408782885055917,
+   "waiting_h": 70.72547272124163,
+   "approval_wait_h": 22.522230787836087,
+   "passes": 1
+  },
+  {
+   "case": "proposal #181",
+   "brief_start": 61360.735012685946,
+   "cycle_h": 260.36943033129535,
+   "work_h": 50.3720609306188,
+   "waiting_h": 209.99736940067658,
+   "approval_wait_h": 23.55204717879921,
+   "passes": 1
+  },
+  {
+   "case": "proposal #182",
+   "brief_start": 62610.12108881422,
+   "cycle_h": 97.35843017159034,
+   "work_h": 20.426746365939955,
+   "waiting_h": 76.9316838056504,
+   "approval_wait_h": 20.822258172474903,
+   "passes": 1
+  },
+  {
+   "case": "proposal #183",
+   "brief_start": 63975.16602300877,
+   "cycle_h": 145.79045841853414,
+   "work_h": 18.093308343000537,
+   "waiting_h": 127.69715007553363,
+   "approval_wait_h": 70.54288803860715,
+   "passes": 1
+  },
+  {
+   "case": "proposal #184",
+   "brief_start": 64335.38410170988,
+   "cycle_h": 92.77496583357437,
+   "work_h": 21.203655853340386,
+   "waiting_h": 71.57130998023398,
+   "approval_wait_h": 20.403209685980983,
+   "passes": 1
+  },
+  {
+   "case": "proposal #185",
+   "brief_start": 65879.48967186698,
+   "cycle_h": 211.53248676708463,
+   "work_h": 40.63714855732614,
+   "waiting_h": 170.89533820975848,
+   "approval_wait_h": 22.077761014239513,
+   "passes": 1
+  },
+  {
+   "case": "proposal #186",
+   "brief_start": 72832.50440953803,
+   "cycle_h": 119.25922451398147,
+   "work_h": 26.056503982623205,
+   "waiting_h": 93.20272053135825,
+   "approval_wait_h": 17.946276103094714,
+   "passes": 1
+  },
+  {
+   "case": "proposal #187",
+   "brief_start": 74006.03291724782,
+   "cycle_h": 171.55864485001828,
+   "work_h": 28.219928262054115,
+   "waiting_h": 143.33871658796414,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  },
+  {
+   "case": "proposal #188",
+   "brief_start": 74016.37101996635,
+   "cycle_h": 197.5750721584581,
+   "work_h": 26.941445400298836,
+   "waiting_h": 170.63362675815927,
+   "approval_wait_h": 16.39739361007329,
+   "passes": 1
+  },
+  {
+   "case": "proposal #189",
+   "brief_start": 74228.742390682,
+   "cycle_h": 167.16869245186996,
+   "work_h": 33.40221396388976,
+   "waiting_h": 133.7664784879802,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  },
+  {
+   "case": "proposal #190",
+   "brief_start": 76907.99255933636,
+   "cycle_h": 122.4997706674539,
+   "work_h": 17.89129854495841,
+   "waiting_h": 104.60847212249548,
+   "approval_wait_h": 23.50741680565334,
+   "passes": 1
+  }
+ ],
+ "cases_after": [
+  {
+   "case": "proposal #191",
+   "brief_start": 82689.40936377193,
+   "cycle_h": 98.34282641352353,
+   "work_h": 25.4949408158934,
+   "waiting_h": 72.84788559763014,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  },
+  {
+   "case": "proposal #192",
+   "brief_start": 83123.79162360217,
+   "cycle_h": 161.09086825958173,
+   "work_h": 24.24290929905716,
+   "waiting_h": 136.84795896052455,
+   "approval_wait_h": 18.954921232022752,
+   "passes": 1
+  },
+  {
+   "case": "proposal #194",
+   "brief_start": 85629.95954661744,
+   "cycle_h": 76.77927582388365,
+   "work_h": 26.947621357451133,
+   "waiting_h": 49.83165446643252,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  },
+  {
+   "case": "proposal #195",
+   "brief_start": 85841.80494290178,
+   "cycle_h": 215.7649214942777,
+   "work_h": 58.325364516670135,
+   "waiting_h": 157.43955697760757,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  },
+  {
+   "case": "proposal #197",
+   "brief_start": 95710.51801958983,
+   "cycle_h": 76.99172291659924,
+   "work_h": 28.6274145732886,
+   "waiting_h": 48.36430834331065,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  },
+  {
+   "case": "proposal #198",
+   "brief_start": 95996.63318373638,
+   "cycle_h": 67.70067204812828,
+   "work_h": 22.634005381461613,
+   "waiting_h": 45.06666666666667,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  },
+  {
+   "case": "proposal #199",
+   "brief_start": 104233.05905770345,
+   "cycle_h": 95.80836174260354,
+   "work_h": 35.808361742603545,
+   "waiting_h": 60.0,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  },
+  {
+   "case": "proposal #200",
+   "brief_start": 107137.37346537922,
+   "cycle_h": 50.428291590729835,
+   "work_h": 19.01740776212852,
+   "waiting_h": 31.410883828601314,
+   "approval_wait_h": 0.0,
+   "passes": 1
+  }
+ ],
+ "best_plan": {
+  "id": "auto_5k__agent",
+  "name": "Auto-approve under $5k + agent fills the deck (PM reviews)",
+  "rules": [
+   {
+    "type": "auto_approve_under",
+    "usd": 5000
+   },
+   {
+    "type": "skill",
+    "skill_id": "fill_deck_from_sheet",
+    "actor": "PM",
+    "reviewer": "PM"
+   }
+  ]
+ },
+ "calibration": [
+  {
+   "measure": "Hours per proposal (median)",
+   "simulated": 115.152,
+   "measured": 108.797,
+   "unit": "h",
+   "error": 0.058
+  },
+  {
+   "measure": "Share of time waiting",
+   "simulated": 0.765,
+   "measured": 0.776,
+   "unit": "%",
+   "error": 0.013
+  },
+  {
+   "measure": "Wait around the signature",
+   "simulated": 20.682,
+   "measured": 21.45,
+   "unit": "h",
+   "error": 0.036
+  },
+  {
+   "measure": "Director sign-offs / day",
+   "simulated": 0.775,
+   "measured": 0.65,
+   "unit": "/day",
+   "error": 0.192
+  },
+  {
+   "measure": "Proposals sent / day",
+   "simulated": 0.538,
+   "measured": 0.475,
+   "unit": "/day",
+   "error": 0.132
+  }
+ ],
+ "measured_from_records": {
+  "before": {
+   "n": 22,
+   "signoffs_per_day": 0.65,
+   "sends_per_week": 2.375,
+   "agent_fills": 0,
+   "fills_undone": 0,
+   "cycle_h": 108.79666666666665,
+   "work_h": 26.935555555555403,
+   "waiting_h": 80.43625000000011,
+   "waiting_share": 0.7819085167057123,
+   "approval_wait_h": 20.612916666666813,
+   "approval_wait_signed_h": 21.45013888888898,
+   "signed_cases": 20
+  },
+  "after": {
+   "n": 6,
+   "signoffs_per_day": 0.13333333333333333,
+   "sends_per_week": 5.0,
+   "agent_fills": 47,
+   "fills_undone": 1,
+   "cycle_h": 87.66722222222221,
+   "work_h": 26.221250000000026,
+   "waiting_h": 61.33972222222219,
+   "waiting_share": 0.7326249903808313,
+   "approval_wait_h": 0.0,
+   "approval_wait_signed_h": 18.954999999999806,
+   "signed_cases": 1
+  }
+ }
+}

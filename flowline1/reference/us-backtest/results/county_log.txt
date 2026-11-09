@@ -1,0 +1,326 @@
+/private/tmp/claude-501/-Users-yuchanlee-Library-Application-Support-Claude-scratch-workspaces-e690680b-23dc-4d57-b85b-61fd0fd3c76e-b695f9d4-331a-47ad-9b46-8f34f3d02782-scratch-2026-11-08-fa3746/adf280bf-3203-4f19-84d4-7f0c3ddb2163/scratchpad/us-backtest/scripts/backtest_county.py:24: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  pe["fips"] = pe.STATE + pe.COUNTY
+fitness {
+ "existing_emp_per_est": {
+  "model": {
+   "n": 1187,
+   "spearman": 0.8105625889145741,
+   "top10_mean": 28.407499187846593,
+   "median": 14.333333333333334,
+   "lift_top10_vs_median": 1.9819185479892971
+  },
+  "persistence": {
+   "n": 1187,
+   "spearman": 0.8203873003282555,
+   "top10_mean": 29.411722821392225,
+   "median": 14.333333333333334,
+   "lift_top10_vs_median": 2.051980661957597
+  },
+  "population": {
+   "n": 1187,
+   "spearman": 0.3129361281282172,
+   "top10_mean": 18.14200735472323,
+   "median": 14.333333333333334,
+   "lift_top10_vs_median": 1.2657214433527835
+  },
+  "local_wage": {
+   "n": 1187,
+   "spearman": 0.2636011324623778,
+   "top10_mean": 18.30484049893332,
+   "median": 14.333333333333334,
+   "lift_top10_vs_median": 1.2770818952744176
+  }
+ },
+ "cold_emp_per_est": {
+  "model": {
+   "n": 118,
+   "spearman": 0.29266743307517146,
+   "top10_mean": 13.947222222222221,
+   "median": 7.291666666666666,
+   "lift_top10_vs_median": 1.9127619047619047
+  },
+  "population": {
+   "n": 118,
+   "spearman": 0.13731091816898353,
+   "top10_mean": 13.83472222222222,
+   "median": 7.291666666666666,
+   "lift_top10_vs_median": 1.8973333333333333
+  },
+  "local_wage": {
+   "n": 118,
+   "spearman": 0.07784081394192102,
+   "top10_mean": 8.776388888888889,
+   "median": 7.291666666666666,
+   "lift_top10_vs_median": 1.2036190476190476
+  }
+ },
+ "existing_ap_per_est": {
+  "model": {
+   "n": 1187,
+   "spearman": 0.8140710540376236,
+   "top10_mean": 493.1684867588488,
+   "median": 219.66666666666666,
+   "lift_top10_vs_median": 2.2450765709811025
+  },
+  "persistence": {
+   "n": 1187,
+   "spearman": 0.8494570878623701,
+   "top10_mean": 495.02735937088005,
+   "median": 219.66666666666666,
+   "lift_top10_vs_median": 2.253538813524492
+  },
+  "population": {
+   "n": 1187,
+   "spearman": 0.43474779857896545,
+   "top10_mean": 363.41590143795804,
+   "median": 219.66666666666666,
+   "lift_top10_vs_median": 1.6543971233897938
+  },
+  "local_wage": {
+   "n": 1187,
+   "spearman": 0.37378950717693776,
+   "top10_mean": 364.17256191727876,
+   "median": 219.66666666666666,
+   "lift_top10_vs_median": 1.6578417082728927
+  }
+ },
+ "cold_ap_per_est": {
+  "model": {
+   "n": 118,
+   "spearman": 0.21594467809466772,
+   "top10_mean": 167.22638888888886,
+   "median": 104.35,
+   "lift_top10_vs_median": 1.6025528403343448
+  },
+  "population": {
+   "n": 118,
+   "spearman": 0.11923722361468665,
+   "top10_mean": 191.79999999999998,
+   "median": 104.35,
+   "lift_top10_vs_median": 1.8380450407283182
+  },
+  "local_wage": {
+   "n": 118,
+   "spearman": 0.08765391295219131,
+   "top10_mean": 138.40555555555557,
+   "median": 104.35,
+   "lift_top10_vs_median": 1.3263589415961243
+  }
+ }
+}
+physicians {
+ "existing_emp_per_est": {
+  "model": {
+   "n": 2062,
+   "spearman": 0.8052928973283313,
+   "top10_mean": 30.387863432131198,
+   "median": 10.058830794565665,
+   "lift_top10_vs_median": 3.0210134808658275
+  },
+  "persistence": {
+   "n": 2062,
+   "spearman": 0.8160890905081165,
+   "top10_mean": 30.091568205155728,
+   "median": 10.058830794565665,
+   "lift_top10_vs_median": 2.991557251506095
+  },
+  "population": {
+   "n": 2062,
+   "spearman": 0.37492355738746513,
+   "top10_mean": 15.45367050783652,
+   "median": 10.058830794565665,
+   "lift_top10_vs_median": 1.5363287069293823
+  },
+  "local_wage": {
+   "n": 2062,
+   "spearman": 0.26485207016789575,
+   "top10_mean": 15.843194125524334,
+   "median": 10.058830794565665,
+   "lift_top10_vs_median": 1.575053249139423
+  }
+ },
+ "cold_emp_per_est": {
+  "model": {
+   "n": 78,
+   "spearman": 0.10371738546846344,
+   "top10_mean": 12.916666666666668,
+   "median": 9.1,
+   "lift_top10_vs_median": 1.4194139194139197
+  },
+  "population": {
+   "n": 78,
+   "spearman": 0.358900099105811,
+   "top10_mean": 20.83125,
+   "median": 9.1,
+   "lift_top10_vs_median": 2.2891483516483517
+  },
+  "local_wage": {
+   "n": 78,
+   "spearman": 0.2218160718244443,
+   "top10_mean": 13.15,
+   "median": 9.1,
+   "lift_top10_vs_median": 1.4450549450549453
+  }
+ },
+ "existing_ap_per_est": {
+  "model": {
+   "n": 2062,
+   "spearman": 0.8566266719474668,
+   "top10_mean": 3361.8944096110663,
+   "median": 868.4080459770115,
+   "lift_top10_vs_median": 3.8713303327685455
+  },
+  "persistence": {
+   "n": 2062,
+   "spearman": 0.8618828844872535,
+   "top10_mean": 3376.674844238357,
+   "median": 868.4080459770115,
+   "lift_top10_vs_median": 3.8883504821047503
+  },
+  "population": {
+   "n": 2062,
+   "spearman": 0.48484686073494,
+   "top10_mean": 1711.7523414026011,
+   "median": 868.4080459770115,
+   "lift_top10_vs_median": 1.9711382792138648
+  },
+  "local_wage": {
+   "n": 2062,
+   "spearman": 0.3710743022875311,
+   "top10_mean": 1734.78560231171,
+   "median": 868.4080459770115,
+   "lift_top10_vs_median": 1.9976618253921994
+  }
+ },
+ "cold_ap_per_est": {
+  "model": {
+   "n": 78,
+   "spearman": 0.2501675539650223,
+   "top10_mean": 3557.895833333333,
+   "median": 583.25,
+   "lift_top10_vs_median": 6.100121445920846
+  },
+  "population": {
+   "n": 78,
+   "spearman": 0.40082702108018564,
+   "top10_mean": 2175.008333333333,
+   "median": 583.25,
+   "lift_top10_vs_median": 3.729118445492213
+  },
+  "local_wage": {
+   "n": 78,
+   "spearman": 0.30654155970611663,
+   "top10_mean": 1381.1833333333334,
+   "median": 583.25,
+   "lift_top10_vs_median": 2.368081154450636
+  }
+ }
+}
+coffee_snack {
+ "existing_emp_per_est": {
+  "model": {
+   "n": 1553,
+   "spearman": 0.7109810593674184,
+   "top10_mean": 14.037335826833937,
+   "median": 10.206896551724139,
+   "lift_top10_vs_median": 1.3752795235749464
+  },
+  "persistence": {
+   "n": 1553,
+   "spearman": NaN,
+   "top10_mean": 14.487874804933563,
+   "median": 10.206896551724139,
+   "lift_top10_vs_median": 1.4194201666995718
+  },
+  "population": {
+   "n": 1553,
+   "spearman": 0.5164741019254241,
+   "top10_mean": 12.461447464701212,
+   "median": 10.206896551724139,
+   "lift_top10_vs_median": 1.2208850556632944
+  },
+  "local_wage": {
+   "n": 1553,
+   "spearman": 0.3287698354593142,
+   "top10_mean": 11.67757970989708,
+   "median": 10.206896551724139,
+   "lift_top10_vs_median": 1.144087201307484
+  }
+ },
+ "cold_emp_per_est": {
+  "model": {
+   "n": 341,
+   "spearman": 0.26243503490809444,
+   "top10_mean": 9.937605042016807,
+   "median": 5.0,
+   "lift_top10_vs_median": 1.9875210084033614
+  },
+  "population": {
+   "n": 341,
+   "spearman": 0.2325784327415747,
+   "top10_mean": 7.0001750700280105,
+   "median": 5.0,
+   "lift_top10_vs_median": 1.4000350140056022
+  },
+  "local_wage": {
+   "n": 341,
+   "spearman": 0.013203511262864998,
+   "top10_mean": 6.348529411764707,
+   "median": 5.0,
+   "lift_top10_vs_median": 1.2697058823529415
+  }
+ },
+ "existing_ap_per_est": {
+  "model": {
+   "n": 1554,
+   "spearman": 0.7558105850345879,
+   "top10_mean": 272.57797105169175,
+   "median": 188.73439716312058,
+   "lift_top10_vs_median": 1.4442410877340304
+  },
+  "persistence": {
+   "n": 1554,
+   "spearman": 0.800777076525103,
+   "top10_mean": 298.75692156145624,
+   "median": 188.73439716312058,
+   "lift_top10_vs_median": 1.5829489804301262
+  },
+  "population": {
+   "n": 1554,
+   "spearman": 0.5954761995970546,
+   "top10_mean": 265.0754732030703,
+   "median": 188.73439716312058,
+   "lift_top10_vs_median": 1.4044894687319196
+  },
+  "local_wage": {
+   "n": 1554,
+   "spearman": 0.39312487839957155,
+   "top10_mean": 243.65969094912242,
+   "median": 188.73439716312058,
+   "lift_top10_vs_median": 1.2910189907700325
+  }
+ },
+ "cold_ap_per_est": {
+  "model": {
+   "n": 341,
+   "spearman": 0.2918539336721344,
+   "top10_mean": 151.79950980392155,
+   "median": 68.66666666666667,
+   "lift_top10_vs_median": 2.210672472872644
+  },
+  "population": {
+   "n": 341,
+   "spearman": 0.2828068596978666,
+   "top10_mean": 114.51658496732027,
+   "median": 68.66666666666667,
+   "lift_top10_vs_median": 1.6677172568056349
+  },
+  "local_wage": {
+   "n": 341,
+   "spearman": 0.0882262216410472,
+   "top10_mean": 94.89901960784314,
+   "median": 68.66666666666667,
+   "lift_top10_vs_median": 1.382024557395774
+  }
+ }
+}

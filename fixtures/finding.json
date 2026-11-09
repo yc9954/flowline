@@ -1,0 +1,37 @@
+{
+  "source": "prototype",
+  "board_id": "northwind",
+  "process": "client proposals",
+  "records": 46,
+  "people": 6,
+  "weeks": 2,
+  "headline": "Quotes wait 19 hours for one signature.",
+  "sub": "The approval itself takes 18 minutes. Across 23 proposals, more than half of every cycle is waiting — and most of that wait is here.",
+  "kpis": {
+    "cycle_time_h": 50.0,
+    "waiting_share": 0.54,
+    "small_quotes_share": 0.71,
+    "small_quotes_unchanged": 0.98,
+    "repeated_by_hand_h_per_wk": 4.0
+  },
+  "map": [
+    { "role": "Sales", "name": "Brief", "hands_on_h": 3.0, "artifact": "client brief", "wait_after_h": 1.5 },
+    { "role": "PM", "name": "Estimate", "hands_on_h": 5.0, "artifact": "pricing sheet", "wait_after_h": 19.0, "longest_wait": true },
+    { "role": "Director", "name": "Approval", "hands_on_h": 0.3, "artifact": "quote", "wait_after_h": 1.5, "selected": true },
+    { "role": "Design", "name": "Deck", "hands_on_h": 9.4, "artifact": "proposal deck", "wait_after_h": 2.0 },
+    { "role": "Sales", "name": "Review", "hands_on_h": 4.0, "artifact": "proposal deck", "wait_after_h": 3.0 },
+    { "role": "Sales", "name": "Send", "hands_on_h": 1.3, "artifact": "sent proposal" }
+  ],
+  "to_scale": { "hands_on_h": 23.0, "waiting_h": 27.0 },
+  "sent_back": [
+    { "reason": "Review changes", "back_to": "Deck", "cost": "+2.2 h", "share": 0.35 },
+    { "reason": "Revise quote", "by": "Client", "back_to": "Estimate", "cost": "+1 day", "share": 0.3 },
+    { "reason": "Margin < 25%", "by": "Finance", "back_to": "Estimate", "cost": "+3.1 h", "share": 0.22 },
+    { "reason": "Missing figures", "by": "Director", "back_to": "Estimate", "cost": "+6.4 h", "share": 0.13 }
+  ],
+  "repeated": [
+    { "task": "Copy figures from sheet into deck", "who": "PM", "count_per_wk": 11, "minutes": 22, "agent_can_do": true },
+    { "task": "Rename and export proposal PDF", "who": "Sales", "count_per_wk": 9, "minutes": 4, "agent_can_do": true },
+    { "task": "Re-attach latest deck to approval", "who": "Sales", "count_per_wk": 7, "minutes": 3, "agent_can_do": false }
+  ]
+}

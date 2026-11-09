@@ -1,0 +1,99 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Flowline — the simulated weeks</title>
+<!-- Time-lapse of the simulated chain: the approved records of the Flowline-1 world engine replayed day by day.
+     record_board.mjs fetches /api/boards/northwind/records and calls window.__play(records, ms). -->
+<style>
+  @font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSansSemiBold-600.ttf'); font-weight: 600; }
+  @font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSans-400.ttf'); font-weight: 400; }
+  @font-face { font-family: 'Geist Mono'; src: url('fonts/GeistMono-400.ttf'); }
+  html, body { margin: 0; width: 1920px; height: 1080px; background: #fff; color: #000; font-family: 'Instrument Sans', system-ui, sans-serif; overflow: hidden; }
+  .tag { position: absolute; left: 72px; top: 64px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; color: #4d5353; display: flex; gap: 14px; align-items: center; }
+  .tag i { width: 8px; height: 8px; border-radius: 1px; background: #6D5DF6; }
+  .speed { position: absolute; right: 72px; top: 60px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; color: #6D5DF6; border: 1px solid #6D5DF6; border-radius: 3px; padding: 6px 10px; }
+  .counters { position: absolute; left: 72px; top: 130px; display: flex; gap: 56px; }
+  .c .n { font-size: 84px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .c .n small { font-size: 30px; font-weight: 400; color: #4d5353; margin-left: 6px; letter-spacing: 0; }
+  .c .l { margin-top: 10px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; color: #4d5353; }
+  .grid { position: absolute; left: 72px; right: 72px; top: 300px; bottom: 150px; display: grid; grid-template-columns: 170px 1fr; row-gap: 10px; }
+  .role { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; display: flex; align-items: center; }
+  .row { position: relative; display: grid; gap: 4px; align-items: stretch; }
+  .day { position: relative; background: #F3F5F7; border-radius: 3px; overflow: hidden; opacity: 0; transform: scaleY(.6); transform-origin: bottom; transition: opacity .18s, transform .22s cubic-bezier(.2,.8,.2,1); }
+  .day.on { opacity: 1; transform: none; }
+  .day .h { position: absolute; left: 0; right: 0; bottom: 0; background: #111; }
+  .day .w { position: absolute; left: 0; right: 0; background: repeating-linear-gradient(135deg, #6D5DF6 0 4px, #9f94f8 4px 8px); }
+  .weeks { position: absolute; left: 242px; right: 72px; top: 272px; display: grid; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #8a9090; }
+  .legend { position: absolute; left: 72px; bottom: 100px; display: flex; gap: 28px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; }
+  .legend b { display: inline-block; width: 14px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 8px; }
+  .foot { position: absolute; left: 72px; right: 72px; bottom: 56px; display: flex; justify-content: space-between; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; }
+</style></head>
+<body>
+<div class="tag"><i></i><span>The simulation · Northwind Fitness · approved days, replayed</span></div>
+<div class="speed" id="speed">11 weeks in 8 s</div>
+<div class="counters">
+  <div class="c"><div class="n"><span id="week">1</span><small>/ 11</small></div><div class="l">week</div></div>
+  <div class="c"><div class="n" id="records">0</div><div class="l">approved days</div></div>
+  <div class="c"><div class="n" id="steps">0</div><div class="l">steps recorded</div></div>
+  <div class="c"><div class="n" id="hands">0<small>h</small></div><div class="l">hands-on</div></div>
+  <div class="c"><div class="n" id="wait" style="color:#6D5DF6">0<small>h</small></div><div class="l">waiting on someone</div></div>
+  <div class="c"><div class="n" id="cases">0</div><div class="l">proposals touched</div></div>
+</div>
+<div class="weeks" id="weeks"></div>
+<div class="grid" id="grid"></div>
+<div class="legend"><span><b style="background:#111"></b>hands-on</span><span><b style="background:repeating-linear-gradient(135deg,#6D5DF6 0 4px,#9f94f8 4px 8px)"></b>waiting on someone else</span><span>one column = one working day · one row = one person</span></div>
+<div class="foot"><span>Flowline-1 world engine (SimPy) · seed 15 · simulated team — only the Census backtest is real data</span><span>every record signed on its person's machine</span></div>
+<script>
+window.__play = (records, ms = 8000) => {
+  const recs = records.filter(r => r.date && Array.isArray(r.steps));
+  const days = [...new Set(recs.map(r => r.date))].sort();
+  const people = [...new Set(recs.map(r => r.person_id))];
+  people.sort((a, b) => roleOf(a).localeCompare(roleOf(b)));
+  function roleOf(pid) { const r = recs.find(x => x.person_id === pid); return r ? r.role : pid; }
+  const byKey = {}; for (const r of recs) byKey[r.person_id + '|' + r.date] = r;
+  const grid = document.getElementById('grid'); grid.innerHTML = '';
+  const cells = {};
+  const maxMin = Math.max(...recs.map(r => (r.hands_on_min || 0) + (r.waiting_min || 0)), 1);
+  for (const pid of people) {
+    const role = document.createElement('div'); role.className = 'role'; role.textContent = roleOf(pid) + ' · ' + pid; grid.appendChild(role);
+    const row = document.createElement('div'); row.className = 'row'; row.style.gridTemplateColumns = `repeat(${days.length}, 1fr)`;
+    for (const d of days) {
+      const c = document.createElement('div'); c.className = 'day';
+      const r = byKey[pid + '|' + d];
+      if (r) {
+        const h = (r.hands_on_min || 0) / maxMin, w = (r.waiting_min || 0) / maxMin;
+        c.innerHTML = `<div class="h" style="height:${(h * 100).toFixed(1)}%"></div><div class="w" style="bottom:${(h * 100).toFixed(1)}%;height:${(w * 100).toFixed(1)}%"></div>`;
+      } else { c.style.background = '#FAFBFC'; }
+      row.appendChild(c); cells[pid + '|' + d] = c;
+    }
+    grid.appendChild(row);
+  }
+  // week labels
+  const weeks = document.getElementById('weeks'); weeks.innerHTML = ''; weeks.style.gridTemplateColumns = `repeat(${days.length}, 1fr)`;
+  days.forEach((d, i) => { const s = document.createElement('span'); if (i % 5 === 0) s.textContent = 'W' + (Math.floor(i / 5) + 1); weeks.appendChild(s); });
+  document.getElementById('speed').textContent = `${Math.ceil(days.length / 5)} weeks in ${Math.round(ms / 1000)} s`;
+  // replay
+  let n = 0, steps = 0, hands = 0, wait = 0; const cases = new Set();
+  const t0 = performance.now();
+  const tick = () => {
+    const k = Math.min(1, (performance.now() - t0) / ms);
+    const upto = Math.floor(k * days.length);
+    for (let i = n; i < upto; i++) {
+      const d = days[i];
+      for (const pid of people) {
+        const r = byKey[pid + '|' + d]; const c = cells[pid + '|' + d]; if (c) c.classList.add('on');
+        if (r) { steps += r.steps.length; hands += (r.hands_on_min || 0) / 60; wait += (r.waiting_min || 0) / 60; r.steps.forEach(s => s.case_id && cases.add(s.case_id)); }
+      }
+      n = i + 1;
+    }
+    const recCount = recs.filter(r => days.indexOf(r.date) < n).length;
+    document.getElementById('week').textContent = Math.max(1, Math.ceil(n / 5));
+    document.getElementById('records').textContent = recCount;
+    document.getElementById('steps').textContent = steps;
+    document.getElementById('hands').innerHTML = Math.round(hands) + '<small>h</small>';
+    document.getElementById('wait').innerHTML = Math.round(wait) + '<small>h</small>';
+    document.getElementById('cases').textContent = cases.size;
+    if (k < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+</script>
+</body></html>

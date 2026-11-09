@@ -1,0 +1,112 @@
+{
+ "id": "1109-3fa9",
+ "board_id": "northwind",
+ "person_id": "pm-1",
+ "role": "PM",
+ "date": "2026-11-09",
+ "covers": {
+  "start": "2026-11-09T03:47:42+09:00",
+  "end": "2026-11-09T04:53:39+09:00"
+ },
+ "steps": [
+  {
+   "idx": 1,
+   "start": "2026-11-09T03:47:42+09:00",
+   "end": "2026-11-09T03:50:38+09:00",
+   "name": "Away from desk",
+   "kind": "waiting",
+   "tools": []
+  },
+  {
+   "idx": 2,
+   "start": "2026-11-09T03:50:38+09:00",
+   "end": "2026-11-09T04:02:44+09:00",
+   "name": "Prepare pricing sheet",
+   "kind": "hands_on",
+   "tools": [
+    "sheets"
+   ]
+  },
+  {
+   "idx": 3,
+   "start": "2026-11-09T04:02:44+09:00",
+   "end": "2026-11-09T04:14:29+09:00",
+   "name": "Draft proposal email",
+   "kind": "hands_on",
+   "tools": [
+    "docs"
+   ],
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 4,
+   "start": "2026-11-09T04:16:32+09:00",
+   "end": "2026-11-09T04:24:09+09:00",
+   "name": "Away from desk",
+   "kind": "waiting",
+   "tools": [],
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 5,
+   "start": "2026-11-09T04:26:24+09:00",
+   "end": "2026-11-09T04:28:28+09:00",
+   "name": "Review email and pricing",
+   "kind": "hands_on",
+   "tools": [
+    "docs"
+   ],
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 6,
+   "start": "2026-11-09T04:28:28+09:00",
+   "end": "2026-11-09T04:36:24+09:00",
+   "name": "Fill proposal deck",
+   "kind": "hands_on",
+   "tools": [
+    "slides"
+   ],
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 7,
+   "start": "2026-11-09T04:36:24+09:00",
+   "end": "2026-11-09T04:44:41+09:00",
+   "name": "Finalize proposal deck",
+   "kind": "hands_on",
+   "tools": [
+    "slides"
+   ],
+   "case_id": "proposal #172"
+  },
+  {
+   "idx": 8,
+   "start": "2026-11-09T04:44:41+09:00",
+   "end": "2026-11-09T04:48:18+09:00",
+   "name": "Review contract document",
+   "kind": "hands_on",
+   "tools": [
+    "docs"
+   ]
+  },
+  {
+   "idx": 9,
+   "start": "2026-11-09T04:48:18+09:00",
+   "end": "2026-11-09T04:53:39+09:00",
+   "name": "Polish proposal deck",
+   "kind": "hands_on",
+   "tools": [
+    "slides"
+   ],
+   "case_id": "proposal #172"
+  }
+ ],
+ "kept_private": 3,
+ "hands_on_min": 51,
+ "waiting_min": 11,
+ "approved_at": "2026-11-09T04:00:35+09:00",
+ "hash": "8d6bc3a6ea629b03cf6043d6b41ad38709d6ea73b106831437cbd6f4e154c3a9",
+ "pubkey": "qa7VDcWVqSxKPY+GSK1Mw3gYmeiqu3jl3VVf2M9FI3E=",
+ "sig": "tNO/5WPCzeJWwEgEEaW2/DHx5cBYF0avoEDiYr9d/eOWyVi1C+S/fB793J2p11TYQtUnHio1NvmiCaMShDhwAg=="
+}

@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+.env
+data/raw/
+data/out/*.tmp
+.build/
+*.xcuserstate
+DerivedData/
+.DS_Store
+# runtime / capture artefacts (kept locally, not in the repo)
+data/runs/**/*.png
+data/runs/observer/
+data/api.sqlite
+data/*.log
+data/mail/*.png
+data/mail/run-*/
+video/out/
+agent-mac/build/
+agent-mac/shots/
+.flowline-tmp/

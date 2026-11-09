@@ -1,0 +1,118 @@
+{
+ "source": "simulated",
+ "board_id": "northwind",
+ "recomputed_at": "2026-12-18T18:32:00-06:00",
+ "baseline_h": 108.8,
+ "now_h": 87.7,
+ "headline": "This process changed itself 3 times in 11 weeks. People said yes each time.",
+ "loop": [
+  {
+   "n": 1,
+   "name": "Record",
+   "at": "18:00–18:22",
+   "status": "done",
+   "note": "8 of 8 approved"
+  },
+  {
+   "n": 2,
+   "name": "Map",
+   "at": "18:24",
+   "status": "done",
+   "note": "v15: 18 steps, 46 names merged"
+  },
+  {
+   "n": 3,
+   "name": "Find",
+   "at": "18:25",
+   "status": "done",
+   "note": "Longest wait now before Approval"
+  },
+  {
+   "n": 4,
+   "name": "Test",
+   "at": "18:31",
+   "status": "done",
+   "note": "9 plans, same team, same luck"
+  },
+  {
+   "n": 5,
+   "name": "Approve",
+   "status": "now",
+   "note": "v15 needs your yes · predicted -0.4 h"
+  },
+  {
+   "n": 6,
+   "name": "Ask & do",
+   "status": "pending",
+   "note": "each change goes only to the person it touches"
+  },
+  {
+   "n": 7,
+   "name": "Measure",
+   "status": "pending",
+   "note": "two weeks of records, then predicted vs measured"
+  }
+ ],
+ "next_run_at": "2026-12-21T18:00:00-06:00",
+ "versions": [
+  {
+   "v": 1,
+   "when": "week 1",
+   "title": "How proposals moved before any change",
+   "found": "Measured from records: 108.8 h per proposal, 78% waiting",
+   "status": "baseline",
+   "delta_h": 0.0
+  },
+  {
+   "v": 12,
+   "when": "week 9",
+   "title": "Quotes under $5k skip the Director",
+   "found": "20.3 h wait for one signature · 9 plans tested · Director approved · simulated -7.5 h",
+   "status": "live",
+   "delta_h": -7.5,
+   "predicted_delta_h": -7.5
+  },
+  {
+   "v": 13,
+   "when": "week 9",
+   "title": "Agent fills the deck, PM reviews",
+   "found": "14 m · 12×/wk by hand · Director approved · 46 of 47 kept · simulated -9.9 h",
+   "status": "live",
+   "delta_h": -9.9,
+   "predicted_delta_h": -9.9
+  },
+  {
+   "v": 14,
+   "when": "week 10",
+   "title": "Agent renames and exports the PDF (Sales)",
+   "found": "5× / wk · tested · Sales lead approved · simulated -0.1 h",
+   "status": "live",
+   "delta_h": -0.1,
+   "predicted_delta_h": -0.1
+  },
+  {
+   "v": 15,
+   "when": "tonight",
+   "title": "Sign-off twice a day for the quotes the Director still signs",
+   "found": "Longest wait now before Approval (19.6 h) · 9 plans tested · not yet approved",
+   "status": "needs_yes",
+   "delta_h": 0.0,
+   "predicted_delta_h": -0.4
+  }
+ ],
+ "learned": [
+  {
+   "finding": "The PM undid 1 of 47 deck fills.",
+   "action": "Fills kept: 98%. Below 90% the agent stops offering and asks what went wrong."
+  },
+  {
+   "finding": "6 proposals went through in the two weeks after the change; the Director signed 0.1 a day instead of 0.7.",
+   "action": "Kept the rule. Quotes the Director still signs are the ones over $5k."
+  },
+  {
+   "finding": "46 step names across 8 people were merged into 18 steps; none were contested at end-of-day review.",
+   "action": "Merges above 0.8 similarity are automatic; the rest are asked."
+  }
+ ],
+ "sub": "108.8 h at v1 · 87.7 h now (measured over the weeks after the change; the simulated v12–v14 deltas sum to -17.4 h, the measured change is -21.1 h)"
+}

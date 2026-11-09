@@ -1,0 +1,102 @@
+{
+ "speed": 10.0,
+ "origin": 1794163287.8835359,
+ "steps": [
+  {
+   "name": "Prepare pricing sheet",
+   "kind": "step",
+   "planted": null,
+   "start_real": 1794163314.0773141,
+   "start": "2026-11-09T03:45:49+09:00",
+   "end_real": 1794163390.3498182,
+   "end": "2026-11-09T03:58:32+09:00",
+   "minutes_scaled": 12.7
+  },
+  {
+   "name": "Write mail to client",
+   "kind": "step",
+   "planted": null,
+   "start_real": 1794163390.350039,
+   "start": "2026-11-09T03:58:32+09:00",
+   "end_real": 1794163456.755591,
+   "end": "2026-11-09T04:09:36+09:00",
+   "minutes_scaled": 11.1
+  },
+  {
+   "name": "Personal chat · Mom",
+   "kind": "away",
+   "planted": "chat",
+   "start_real": 1794163456.7558038,
+   "start": "2026-11-09T04:09:36+09:00",
+   "end_real": 1794163471.7360482,
+   "end": "2026-11-09T04:12:06+09:00",
+   "minutes_scaled": 2.5
+  },
+  {
+   "name": "Away from desk",
+   "kind": "waiting",
+   "planted": null,
+   "start_real": 1794163471.736097,
+   "start": "2026-11-09T04:12:06+09:00",
+   "end_real": 1794163514.282206,
+   "end": "2026-11-09T04:19:11+09:00",
+   "minutes_scaled": 7.1
+  },
+  {
+   "name": "First National Bank — Login",
+   "kind": "removed",
+   "planted": "bank",
+   "start_real": 1794163514.282453,
+   "start": "2026-11-09T04:19:11+09:00",
+   "end_real": 1794163533.1478121,
+   "end": "2026-11-09T04:22:20+09:00",
+   "minutes_scaled": 3.1
+  },
+  {
+   "name": "Fill deck from sheet",
+   "kind": "step",
+   "planted": null,
+   "start_real": 1794163533.147899,
+   "start": "2026-11-09T04:22:20+09:00",
+   "end_real": 1794163534.021024,
+   "end": "2026-11-09T04:22:29+09:00",
+   "minutes_scaled": 0.1
+  }
+ ],
+ "planted": [
+  {
+   "id": "chat",
+   "kind": "personal_chat",
+   "needle": [
+    "Mom",
+    "Personal chat"
+   ]
+  },
+  {
+   "id": "bank",
+   "kind": "banking",
+   "needle": [
+    "First National Bank",
+    "Bank"
+   ]
+  },
+  {
+   "id": "contract",
+   "kind": "name_in_filename",
+   "needle": [
+    "Kim Minji",
+    "Minji"
+   ]
+  }
+ ],
+ "log": [
+  "[actor 03:41:27] setup: documents, bank page",
+  "[actor 03:41:35] bank page served: '200'",
+  "[actor 03:41:54] ▶ Prepare pricing sheet",
+  "[actor 03:43:10] ▶ Write mail to client",
+  "[actor 03:44:16] ▶ Personal chat · Mom",
+  "[actor 03:44:31] ▶ Away from desk",
+  "[actor 03:45:14] ▶ First National Bank — Login",
+  "[actor 03:45:33] ▶ Fill deck from sheet"
+ ]
+}

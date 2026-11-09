@@ -1,0 +1,40 @@
+{
+ "source": "simulated",
+ "ceo_line": "Next club · 78704. South Austin, #1 of 98 ZIPs. Opens 18 days sooner. One decision is yours.",
+ "finance_inbox": [
+  {
+   "title": "1 approval · equipment order over $25k, club 4",
+   "sub": "Matched vendor and terms to branch 3; one-line approval. Was: Sat 6 days waiting for a finance sign-off at branch 3.",
+   "actions": [
+    "Approve",
+    "Ask why"
+   ]
+  }
+ ],
+ "branch_mgr_blocker": {
+  "title": "Occupancy and health-club permit is filled in. Check and submit?",
+  "actions": [
+   "Open it",
+   "Not now"
+  ]
+ },
+ "expansion_lead": [
+  {
+   "zip": "78704",
+   "rank": 1
+  },
+  {
+   "zip": "78738",
+   "rank": 2
+  },
+  {
+   "zip": "78660",
+   "rank": 3
+  }
+ ],
+ "trainer_record": {
+  "steps": 2,
+  "left_out": 1
+ },
+ "recomputed_at": "2026-12-18T18:24:00-06:00"
+}

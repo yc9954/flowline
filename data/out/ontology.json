@@ -1,0 +1,613 @@
+{
+ "source": "simulated",
+ "board_id": "northwind",
+ "version": 15,
+ "recomputed_at": "2026-12-18T18:14:00-06:00",
+ "records_used": 309,
+ "roles": [
+  {
+   "role": "Client",
+   "steps": 3,
+   "external": true
+  },
+  {
+   "role": "Sales",
+   "steps": 6
+  },
+  {
+   "role": "PM",
+   "steps": 4
+  },
+  {
+   "role": "Design",
+   "steps": 1
+  },
+  {
+   "role": "Finance",
+   "steps": 1
+  },
+  {
+   "role": "Director",
+   "steps": 2
+  },
+  {
+   "role": "Legal",
+   "steps": 1
+  }
+ ],
+ "nodes": [
+  {
+   "id": "n9",
+   "name": "Inbound request",
+   "kind": "event",
+   "role": "Client",
+   "aliases": [
+    "Request in",
+    "New request"
+   ],
+   "median_min": 1,
+   "cases": 41,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.0,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "email / form"
+  },
+  {
+   "id": "n8",
+   "name": "Qualify lead",
+   "kind": "step",
+   "role": "Sales",
+   "aliases": [
+    "Qualify",
+    "Fit check"
+   ],
+   "median_min": 13,
+   "cases": 41,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.002,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "13 m"
+  },
+  {
+   "id": "n10",
+   "name": "Disco call",
+   "kind": "step",
+   "role": "Sales",
+   "aliases": [
+    "Discovery call",
+    "Intro call with client"
+   ],
+   "median_min": 48,
+   "cases": 30,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.008,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "48 m"
+  },
+  {
+   "id": "n7",
+   "name": "Brief",
+   "kind": "step",
+   "role": "Sales",
+   "aliases": [
+    "Write brief",
+    "Brief draft",
+    "Proposal brief"
+   ],
+   "median_min": 210,
+   "cases": 30,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.035,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "3.5 h"
+  },
+  {
+   "id": "n11",
+   "name": "Scope and staffing plan",
+   "kind": "step",
+   "role": "PM",
+   "aliases": [
+    "Scope & staffing",
+    "Scope + staffing",
+    "Scoping"
+   ],
+   "median_min": 75,
+   "cases": 30,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.012,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "75 m"
+  },
+  {
+   "id": "n13",
+   "name": "Availability check",
+   "kind": "step",
+   "role": "PM",
+   "aliases": [
+    "Check availability",
+    "Avail. check"
+   ],
+   "median_min": 15,
+   "cases": 30,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.002,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "15 m"
+  },
+  {
+   "id": "n4",
+   "name": "Quote calc",
+   "kind": "step",
+   "role": "PM",
+   "aliases": [
+    "Estimate",
+    "Pricing build",
+    "Cost estimate",
+    "Estimate v2"
+   ],
+   "median_min": 189,
+   "cases": 30,
+   "wait_before_h": 0.4,
+   "share_of_cycle": 0.031,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "3.2 h"
+  },
+  {
+   "id": "n6",
+   "name": "Margin review",
+   "kind": "decision",
+   "role": "Finance",
+   "aliases": [
+    "Margin check",
+    "GM check"
+   ],
+   "median_min": 31,
+   "cases": 29,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.005,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "ok? 76% yes"
+  },
+  {
+   "id": "n15",
+   "name": "Quote approval",
+   "kind": "decision",
+   "role": "Director",
+   "aliases": [
+    "Approval",
+    "Sign off",
+    "Approve quote"
+   ],
+   "median_min": 16,
+   "cases": 21,
+   "wait_before_h": 20.3,
+   "share_of_cycle": 0.003,
+   "critical_path": true,
+   "bottleneck": true,
+   "sub": "ok? 89% yes",
+   "rule": "Director signs in one batch a day around 17:58"
+  },
+  {
+   "id": "n14",
+   "name": "Case studies",
+   "kind": "step",
+   "role": "Sales",
+   "aliases": [
+    "Pick case studies",
+    "Case study selection",
+    "Choose case studies"
+   ],
+   "median_min": 40,
+   "cases": 29,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.007,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "40 m"
+  },
+  {
+   "id": "n3",
+   "name": "Concept and deck",
+   "kind": "step",
+   "role": "Design",
+   "aliases": [
+    "Concept & deck",
+    "Proposal deck",
+    "Deck concept"
+   ],
+   "median_min": 307,
+   "cases": 29,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.051,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "5.1 h"
+  },
+  {
+   "id": "n1",
+   "name": "Pricing into deck",
+   "kind": "skill",
+   "role": "PM",
+   "aliases": [
+    "Copy figures into deck",
+    "Fill pricing",
+    "Fill pricing in deck"
+   ],
+   "median_min": 14,
+   "cases": 28,
+   "wait_before_h": 0.6,
+   "share_of_cycle": 0.002,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "14 m · 12×/wk"
+  },
+  {
+   "id": "n5",
+   "name": "Deck review",
+   "kind": "decision",
+   "role": "Director",
+   "aliases": [
+    "Internal review",
+    "Internal deck review",
+    "Review deck"
+   ],
+   "median_min": 56,
+   "cases": 28,
+   "wait_before_h": 0.6,
+   "share_of_cycle": 0.009,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "ok? 56% yes"
+  },
+  {
+   "id": "n12",
+   "name": "Send proposal",
+   "kind": "step",
+   "role": "Sales",
+   "aliases": [
+    "Send to client",
+    "Send"
+   ],
+   "median_min": 4,
+   "cases": 28,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.001,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "4 m"
+  },
+  {
+   "id": "n2",
+   "name": "Negotiation",
+   "kind": "decision",
+   "role": "Client",
+   "aliases": [
+    "Negotiate",
+    "Client negotiation"
+   ],
+   "median_min": 0,
+   "cases": 28,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.0,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "revise? 18%"
+  },
+  {
+   "id": "n16",
+   "name": "MSA",
+   "kind": "step",
+   "role": "Legal",
+   "aliases": [
+    "Terms / MSA",
+    "Terms and MSA",
+    "MSA redlines"
+   ],
+   "median_min": 105,
+   "cases": 11,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.017,
+   "critical_path": false,
+   "bottleneck": false,
+   "sub": "39% of proposals"
+  },
+  {
+   "id": "n17",
+   "name": "Contract signed",
+   "kind": "event",
+   "role": "Client",
+   "aliases": [
+    "Signed",
+    "Deal signed"
+   ],
+   "median_min": 5,
+   "cases": 14,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.001,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "contract"
+  },
+  {
+   "id": "n18",
+   "name": "Kickoff",
+   "kind": "step",
+   "role": "Sales",
+   "aliases": [
+    "Kickoff hand-off",
+    "Handoff to delivery"
+   ],
+   "median_min": 69,
+   "cases": 14,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.012,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "50% of proposals"
+  }
+ ],
+ "edges": [
+  {
+   "from": "n1",
+   "to": "n5",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.5
+  },
+  {
+   "from": "n10",
+   "to": "n7",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n11",
+   "to": "n13",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n12",
+   "to": "n2",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n13",
+   "to": "n4",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.5
+  },
+  {
+   "from": "n17",
+   "to": "n18",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n7",
+   "to": "n11",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n8",
+   "to": "n10",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n9",
+   "to": "n8",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n4",
+   "to": "n6",
+   "kind": "then",
+   "share": 0.893,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n16",
+   "to": "n12",
+   "kind": "then",
+   "share": 0.846,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n3",
+   "to": "n1",
+   "kind": "then",
+   "share": 0.815,
+   "wait_h": 0.1
+  },
+  {
+   "from": "n2",
+   "to": "n17",
+   "kind": "then",
+   "share": 0.7,
+   "wait_h": 15.0
+  },
+  {
+   "from": "n14",
+   "to": "n3",
+   "kind": "parallel",
+   "share": 0.6,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n15",
+   "to": "n14",
+   "kind": "then",
+   "share": 0.571,
+   "wait_h": 14.7
+  },
+  {
+   "from": "n6",
+   "to": "n15",
+   "kind": "then",
+   "share": 0.549,
+   "wait_h": 5.6
+  },
+  {
+   "from": "n5",
+   "to": "n3",
+   "kind": "back",
+   "share": 0.41,
+   "wait_h": 0.0,
+   "label": "changes: layout · 41%"
+  },
+  {
+   "from": "n5",
+   "to": "n12",
+   "kind": "then",
+   "share": 0.377,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n15",
+   "to": "n3",
+   "kind": "then",
+   "share": 0.321,
+   "wait_h": 14.8
+  },
+  {
+   "from": "n2",
+   "to": "n4",
+   "kind": "back",
+   "share": 0.3,
+   "wait_h": 15.0,
+   "label": "revise quote · 30%"
+  },
+  {
+   "from": "n6",
+   "to": "n4",
+   "kind": "back",
+   "share": 0.235,
+   "wait_h": 1.1,
+   "label": "below 25% margin · 24%"
+  },
+  {
+   "from": "n14",
+   "to": "n1",
+   "kind": "then",
+   "share": 0.2,
+   "wait_h": 27.3
+  },
+  {
+   "from": "n5",
+   "to": "n16",
+   "kind": "then",
+   "share": 0.18,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n14",
+   "to": "n3",
+   "kind": "then",
+   "share": 0.167,
+   "wait_h": 15.6
+  },
+  {
+   "from": "n16",
+   "to": "n16",
+   "kind": "then",
+   "share": 0.154,
+   "wait_h": 15.0
+  },
+  {
+   "from": "n3",
+   "to": "n14",
+   "kind": "parallel",
+   "share": 0.123,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n15",
+   "to": "n4",
+   "kind": "back",
+   "share": 0.107,
+   "wait_h": 14.8,
+   "label": "missing figures · 11%"
+  },
+  {
+   "from": "n4",
+   "to": "n4",
+   "kind": "then",
+   "share": 0.107,
+   "wait_h": 15.0
+  },
+  {
+   "from": "n6",
+   "to": "n14",
+   "kind": "then",
+   "share": 0.098,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n6",
+   "to": "n3",
+   "kind": "then",
+   "share": 0.098,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n3",
+   "to": "n3",
+   "kind": "then",
+   "share": 0.062,
+   "wait_h": 15.0
+  },
+  {
+   "from": "n14",
+   "to": "n14",
+   "kind": "then",
+   "share": 0.033,
+   "wait_h": 15.0
+  },
+  {
+   "from": "n5",
+   "to": "n5",
+   "kind": "then",
+   "share": 0.033,
+   "wait_h": 15.0
+  },
+  {
+   "from": "n6",
+   "to": "n6",
+   "kind": "then",
+   "share": 0.02,
+   "wait_h": 15.0
+  }
+ ],
+ "counts": {
+  "roles": 7,
+  "steps": 18,
+  "cases": 41,
+  "files": 10,
+  "rules": 5,
+  "skills": 1,
+  "customers": 28,
+  "zip_areas": 98,
+  "branches": 3
+ },
+ "headline": "How a proposal really moves: 18 steps, 7 roles, 4 decisions, 4 ways back — learned from 309 approved records, drawn by nobody."
+}

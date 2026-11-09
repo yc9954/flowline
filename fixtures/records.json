@@ -1,0 +1,693 @@
+[
+  {
+    "id": "1106-0412",
+    "board_id": "northwind",
+    "person_id": "pm-1",
+    "role": "PM",
+    "date": "2026-11-06",
+    "covers": {
+      "start": "2026-11-06T09:02:00-06:00",
+      "end": "2026-11-06T15:18:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-06T09:02:00-06:00",
+        "end": "2026-11-06T09:40:00-06:00",
+        "name": "Read the brief",
+        "kind": "hands_on",
+        "tools": [
+          "mail",
+          "docs"
+        ],
+        "case_id": "proposal #167",
+        "handoff_from": "Sales"
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-06T09:40:00-06:00",
+        "end": "2026-11-06T11:08:00-06:00",
+        "name": "Built the estimate",
+        "kind": "hands_on",
+        "tools": [
+          "sheets"
+        ],
+        "case_id": "proposal #167",
+        "handoff_from": "Sales"
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-06T11:08:00-06:00",
+        "end": "2026-11-06T11:30:00-06:00",
+        "name": "Scope and staffing call",
+        "kind": "hands_on",
+        "tools": [
+          "meet"
+        ],
+        "case_id": "proposal #167"
+      },
+      {
+        "idx": 4,
+        "start": "2026-11-06T11:30:00-06:00",
+        "end": "2026-11-06T13:40:00-06:00",
+        "name": "Waited for approval",
+        "kind": "waiting",
+        "tools": [],
+        "case_id": "proposal #167",
+        "handoff_to": "Director",
+        "waiting_on": "Director"
+      },
+      {
+        "idx": 5,
+        "start": "2026-11-06T13:40:00-06:00",
+        "end": "2026-11-06T14:02:00-06:00",
+        "name": "Copied figures from sheet into deck",
+        "kind": "hands_on",
+        "tools": [
+          "sheets",
+          "slides"
+        ],
+        "case_id": "proposal #167",
+        "repeats": 3
+      },
+      {
+        "idx": 6,
+        "start": "2026-11-06T14:02:00-06:00",
+        "end": "2026-11-06T14:50:00-06:00",
+        "name": "Reviewed deck with Design",
+        "kind": "hands_on",
+        "tools": [
+          "slides",
+          "meet"
+        ],
+        "case_id": "proposal #167"
+      },
+      {
+        "idx": 7,
+        "start": "2026-11-06T14:50:00-06:00",
+        "end": "2026-11-06T15:18:00-06:00",
+        "name": "Kickoff notes for #161",
+        "kind": "hands_on",
+        "tools": [
+          "docs"
+        ],
+        "case_id": "proposal #161",
+        "handoff_to": "Trainer"
+      }
+    ],
+    "kept_private": 3,
+    "hands_on_min": 246,
+    "waiting_min": 130,
+    "approved_at": "2026-11-06T18:04:31-06:00",
+    "hash": "a3f9c104110604127d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAcG0tMV9fX19fX19fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDYtMDQxMi1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1106-0409",
+    "board_id": "northwind",
+    "person_id": "sales-1",
+    "role": "Sales",
+    "date": "2026-11-06",
+    "covers": {
+      "start": "2026-11-06T08:45:00-06:00",
+      "end": "2026-11-06T17:10:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-06T08:45:00-06:00",
+        "end": "2026-11-06T09:30:00-06:00",
+        "name": "Discovery call",
+        "kind": "hands_on",
+        "tools": [
+          "meet"
+        ],
+        "case_id": "proposal #168"
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-06T09:30:00-06:00",
+        "end": "2026-11-06T12:30:00-06:00",
+        "name": "Wrote the brief",
+        "kind": "hands_on",
+        "tools": [
+          "docs"
+        ],
+        "case_id": "proposal #168",
+        "handoff_to": "PM"
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-06T12:30:00-06:00",
+        "end": "2026-11-06T15:00:00-06:00",
+        "name": "Waited for the estimate",
+        "kind": "waiting",
+        "tools": [],
+        "case_id": "proposal #168",
+        "waiting_on": "PM"
+      },
+      {
+        "idx": 4,
+        "start": "2026-11-06T15:00:00-06:00",
+        "end": "2026-11-06T16:40:00-06:00",
+        "name": "Reviewed proposal deck",
+        "kind": "hands_on",
+        "tools": [
+          "slides"
+        ],
+        "case_id": "proposal #165"
+      },
+      {
+        "idx": 5,
+        "start": "2026-11-06T16:40:00-06:00",
+        "end": "2026-11-06T16:44:00-06:00",
+        "name": "Renamed and exported proposal PDF",
+        "kind": "hands_on",
+        "tools": [
+          "slides",
+          "finder"
+        ],
+        "case_id": "proposal #165",
+        "repeats": 2
+      },
+      {
+        "idx": 6,
+        "start": "2026-11-06T16:44:00-06:00",
+        "end": "2026-11-06T17:10:00-06:00",
+        "name": "Sent proposal",
+        "kind": "hands_on",
+        "tools": [
+          "mail"
+        ],
+        "case_id": "proposal #165",
+        "handoff_to": "Client"
+      }
+    ],
+    "kept_private": 2,
+    "hands_on_min": 355,
+    "waiting_min": 150,
+    "approved_at": "2026-11-06T18:11:02-06:00",
+    "hash": "a3f9c104110604097d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAc2FsZXMtMV9fX19fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDYtMDQwOS1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1106-0415",
+    "board_id": "northwind",
+    "person_id": "director-1",
+    "role": "Director",
+    "date": "2026-11-06",
+    "covers": {
+      "start": "2026-11-06T10:10:00-06:00",
+      "end": "2026-11-06T18:00:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-06T10:10:00-06:00",
+        "end": "2026-11-06T10:28:00-06:00",
+        "name": "Approved quote",
+        "kind": "hands_on",
+        "tools": [
+          "mail",
+          "sheets"
+        ],
+        "case_id": "proposal #167",
+        "handoff_from": "Finance",
+        "handoff_to": "PM"
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-06T10:28:00-06:00",
+        "end": "2026-11-06T13:30:00-06:00",
+        "name": "Club 3 budget review",
+        "kind": "hands_on",
+        "tools": [
+          "sheets"
+        ]
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-06T13:30:00-06:00",
+        "end": "2026-11-06T13:45:00-06:00",
+        "name": "Approved quote",
+        "kind": "hands_on",
+        "tools": [
+          "mail"
+        ],
+        "case_id": "proposal #164",
+        "handoff_to": "PM"
+      },
+      {
+        "idx": 4,
+        "start": "2026-11-06T13:45:00-06:00",
+        "end": "2026-11-06T18:00:00-06:00",
+        "name": "Lease negotiation, branch 4",
+        "kind": "hands_on",
+        "tools": [
+          "mail",
+          "docs"
+        ],
+        "case_id": "branch 4",
+        "handoff_to": "Legal"
+      }
+    ],
+    "kept_private": 5,
+    "hands_on_min": 470,
+    "waiting_min": 0,
+    "approved_at": "2026-11-06T18:20:44-06:00",
+    "hash": "a3f9c104110604157d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAZGlyZWN0b3ItMV9fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDYtMDQxNS1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1106-0411",
+    "board_id": "northwind",
+    "person_id": "design-1",
+    "role": "Design",
+    "date": "2026-11-06",
+    "covers": {
+      "start": "2026-11-06T09:30:00-06:00",
+      "end": "2026-11-06T17:30:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-06T09:30:00-06:00",
+        "end": "2026-11-06T09:50:00-06:00",
+        "name": "Checked availability",
+        "kind": "hands_on",
+        "tools": [
+          "calendar"
+        ],
+        "case_id": "proposal #168",
+        "handoff_from": "Sales"
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-06T09:50:00-06:00",
+        "end": "2026-11-06T12:30:00-06:00",
+        "name": "Concept and deck",
+        "kind": "hands_on",
+        "tools": [
+          "slides",
+          "figma"
+        ],
+        "case_id": "proposal #167"
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-06T12:30:00-06:00",
+        "end": "2026-11-06T13:40:00-06:00",
+        "name": "Waited for approved quote",
+        "kind": "waiting",
+        "tools": [],
+        "case_id": "proposal #167",
+        "waiting_on": "Director"
+      },
+      {
+        "idx": 4,
+        "start": "2026-11-06T13:40:00-06:00",
+        "end": "2026-11-06T17:30:00-06:00",
+        "name": "Concept and deck",
+        "kind": "hands_on",
+        "tools": [
+          "slides",
+          "figma"
+        ],
+        "case_id": "proposal #167",
+        "handoff_to": "PM"
+      }
+    ],
+    "kept_private": 1,
+    "hands_on_min": 410,
+    "waiting_min": 70,
+    "approved_at": "2026-11-06T17:48:09-06:00",
+    "hash": "a3f9c104110604117d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAZGVzaWduLTFfX19fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDYtMDQxMS1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1106-0410",
+    "board_id": "northwind",
+    "person_id": "finance-1",
+    "role": "Finance",
+    "date": "2026-11-06",
+    "covers": {
+      "start": "2026-11-06T09:00:00-06:00",
+      "end": "2026-11-06T16:30:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-06T09:00:00-06:00",
+        "end": "2026-11-06T09:15:00-06:00",
+        "name": "Margin check",
+        "kind": "hands_on",
+        "tools": [
+          "sheets"
+        ],
+        "case_id": "proposal #167",
+        "handoff_from": "PM",
+        "handoff_to": "Director"
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-06T09:15:00-06:00",
+        "end": "2026-11-06T12:00:00-06:00",
+        "name": "October close",
+        "kind": "hands_on",
+        "tools": [
+          "sheets",
+          "quickbooks"
+        ]
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-06T12:00:00-06:00",
+        "end": "2026-11-06T12:20:00-06:00",
+        "name": "Margin check",
+        "kind": "hands_on",
+        "tools": [
+          "sheets"
+        ],
+        "case_id": "proposal #164",
+        "handoff_to": "Director"
+      },
+      {
+        "idx": 4,
+        "start": "2026-11-06T12:20:00-06:00",
+        "end": "2026-11-06T16:30:00-06:00",
+        "name": "Equipment quotes, branch 4",
+        "kind": "hands_on",
+        "tools": [
+          "mail",
+          "sheets"
+        ],
+        "case_id": "branch 4"
+      }
+    ],
+    "kept_private": 4,
+    "hands_on_min": 450,
+    "waiting_min": 0,
+    "approved_at": "2026-11-06T17:02:15-06:00",
+    "hash": "a3f9c104110604107d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAZmluYW5jZS0xX19fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDYtMDQxMC1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1106-0414",
+    "board_id": "northwind",
+    "person_id": "trainer-3",
+    "role": "Trainer",
+    "date": "2026-11-06",
+    "covers": {
+      "start": "2026-11-06T06:00:00-06:00",
+      "end": "2026-11-06T14:00:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-06T06:00:00-06:00",
+        "end": "2026-11-06T10:30:00-06:00",
+        "name": "Morning sessions, club 2",
+        "kind": "hands_on",
+        "tools": [
+          "mindbody"
+        ]
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-06T10:30:00-06:00",
+        "end": "2026-11-06T11:00:00-06:00",
+        "name": "Waited for the floor",
+        "kind": "waiting",
+        "tools": [],
+        "waiting_on": "Ops"
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-06T11:00:00-06:00",
+        "end": "2026-11-06T14:00:00-06:00",
+        "name": "Afternoon sessions, club 2",
+        "kind": "hands_on",
+        "tools": [
+          "mindbody"
+        ]
+      }
+    ],
+    "kept_private": 2,
+    "hands_on_min": 450,
+    "waiting_min": 30,
+    "approved_at": "2026-11-06T18:01:50-06:00",
+    "hash": "a3f9c104110604147d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAdHJhaW5lci0zX19fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDYtMDQxNC1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1105-0398",
+    "board_id": "northwind",
+    "person_id": "pm-1",
+    "role": "PM",
+    "date": "2026-11-05",
+    "covers": {
+      "start": "2026-11-05T09:10:00-06:00",
+      "end": "2026-11-05T16:40:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-05T09:10:00-06:00",
+        "end": "2026-11-05T11:00:00-06:00",
+        "name": "Built the estimate",
+        "kind": "hands_on",
+        "tools": [
+          "sheets"
+        ],
+        "case_id": "proposal #166",
+        "handoff_from": "Sales"
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-05T11:00:00-06:00",
+        "end": "2026-11-05T16:00:00-06:00",
+        "name": "Waited for approval",
+        "kind": "waiting",
+        "tools": [],
+        "case_id": "proposal #166",
+        "handoff_to": "Director",
+        "waiting_on": "Director"
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-05T16:00:00-06:00",
+        "end": "2026-11-05T16:20:00-06:00",
+        "name": "Copied figures from sheet into deck",
+        "kind": "hands_on",
+        "tools": [
+          "sheets",
+          "slides"
+        ],
+        "case_id": "proposal #166",
+        "repeats": 3
+      },
+      {
+        "idx": 4,
+        "start": "2026-11-05T16:20:00-06:00",
+        "end": "2026-11-05T16:40:00-06:00",
+        "name": "Scope and staffing",
+        "kind": "hands_on",
+        "tools": [
+          "docs"
+        ],
+        "case_id": "proposal #168"
+      }
+    ],
+    "kept_private": 2,
+    "hands_on_min": 150,
+    "waiting_min": 300,
+    "approved_at": "2026-11-05T18:06:12-06:00",
+    "hash": "a3f9c104110503987d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAcG0tMV9fX19fX19fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDUtMDM5OC1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1105-0401",
+    "board_id": "northwind",
+    "person_id": "branchmgr-2",
+    "role": "BranchMgr",
+    "date": "2026-11-05",
+    "covers": {
+      "start": "2026-11-05T08:00:00-06:00",
+      "end": "2026-11-05T18:00:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-05T08:00:00-06:00",
+        "end": "2026-11-05T09:00:00-06:00",
+        "name": "Opened club 2",
+        "kind": "hands_on",
+        "tools": [
+          "mindbody"
+        ]
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-05T09:00:00-06:00",
+        "end": "2026-11-05T10:30:00-06:00",
+        "name": "Permit form, branch 4",
+        "kind": "hands_on",
+        "tools": [
+          "browser",
+          "docs"
+        ],
+        "case_id": "branch 4",
+        "handoff_to": "Legal"
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-05T10:30:00-06:00",
+        "end": "2026-11-05T14:00:00-06:00",
+        "name": "Waited for the city portal",
+        "kind": "waiting",
+        "tools": [],
+        "case_id": "branch 4",
+        "waiting_on": "Client"
+      },
+      {
+        "idx": 4,
+        "start": "2026-11-05T14:00:00-06:00",
+        "end": "2026-11-05T18:00:00-06:00",
+        "name": "Trainer interviews",
+        "kind": "hands_on",
+        "tools": [
+          "meet",
+          "docs"
+        ],
+        "case_id": "branch 4"
+      }
+    ],
+    "kept_private": 3,
+    "hands_on_min": 390,
+    "waiting_min": 210,
+    "approved_at": "2026-11-05T18:30:01-06:00",
+    "hash": "a3f9c104110504017d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAYnJhbmNobWdyLTJfX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDUtMDQwMS1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1104-0387",
+    "board_id": "northwind",
+    "person_id": "sales-2",
+    "role": "Sales",
+    "date": "2026-11-04",
+    "covers": {
+      "start": "2026-11-04T09:00:00-06:00",
+      "end": "2026-11-04T17:00:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-04T09:00:00-06:00",
+        "end": "2026-11-04T09:40:00-06:00",
+        "name": "Qualified inbound request",
+        "kind": "hands_on",
+        "tools": [
+          "mail",
+          "hubspot"
+        ],
+        "case_id": "proposal #166",
+        "handoff_from": "Client"
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-04T09:40:00-06:00",
+        "end": "2026-11-04T12:40:00-06:00",
+        "name": "Wrote the brief",
+        "kind": "hands_on",
+        "tools": [
+          "docs"
+        ],
+        "case_id": "proposal #166",
+        "handoff_to": "PM"
+      },
+      {
+        "idx": 3,
+        "start": "2026-11-04T12:40:00-06:00",
+        "end": "2026-11-04T15:30:00-06:00",
+        "name": "Waited for the estimate",
+        "kind": "waiting",
+        "tools": [],
+        "case_id": "proposal #166",
+        "waiting_on": "PM"
+      },
+      {
+        "idx": 4,
+        "start": "2026-11-04T15:30:00-06:00",
+        "end": "2026-11-04T17:00:00-06:00",
+        "name": "Picked case studies",
+        "kind": "hands_on",
+        "tools": [
+          "drive",
+          "slides"
+        ],
+        "case_id": "proposal #165"
+      }
+    ],
+    "kept_private": 1,
+    "hands_on_min": 310,
+    "waiting_min": 170,
+    "approved_at": "2026-11-04T17:55:40-06:00",
+    "hash": "a3f9c104110403877d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAc2FsZXMtMl9fX19fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDQtMDM4Ny1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  },
+  {
+    "id": "1104-0390",
+    "board_id": "northwind",
+    "person_id": "legal-1",
+    "role": "Legal",
+    "date": "2026-11-04",
+    "covers": {
+      "start": "2026-11-04T10:00:00-06:00",
+      "end": "2026-11-04T16:00:00-06:00"
+    },
+    "steps": [
+      {
+        "idx": 1,
+        "start": "2026-11-04T10:00:00-06:00",
+        "end": "2026-11-04T11:30:00-06:00",
+        "name": "Terms / MSA, new client",
+        "kind": "hands_on",
+        "tools": [
+          "docs"
+        ],
+        "case_id": "proposal #163",
+        "handoff_from": "PM",
+        "handoff_to": "Sales"
+      },
+      {
+        "idx": 2,
+        "start": "2026-11-04T11:30:00-06:00",
+        "end": "2026-11-04T16:00:00-06:00",
+        "name": "Lease redlines, branch 4",
+        "kind": "hands_on",
+        "tools": [
+          "docs",
+          "mail"
+        ],
+        "case_id": "branch 4",
+        "handoff_to": "Director"
+      }
+    ],
+    "kept_private": 2,
+    "hands_on_min": 360,
+    "waiting_min": 0,
+    "approved_at": "2026-11-04T16:45:22-06:00",
+    "hash": "a3f9c104110403907d2e9b0c5f1a8e4d6b3c0f9a2e7d1c4b8f6a3e0d9c2b7e5f",
+    "pubkey": "MCowBQYDK2VwAyEAbGVnYWwtMV9fX19fX19fX19fX19fX19fX19fX19fX18=",
+    "sig": "c2lnLTExMDQtMDM5MC1wcm90b3R5cGUuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg=="
+  }
+]

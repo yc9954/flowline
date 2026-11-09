@@ -1,0 +1,104 @@
+{
+ "seed": 3588010128,
+ "sheet_before": [
+  [
+   "Memberships, 120 seats",
+   2600
+  ],
+  [
+   "Lunchtime classes, 8 / mo",
+   1150
+  ],
+  [
+   "Onboarding week",
+   540
+  ]
+ ],
+ "total_before": 4290,
+ "quotes": [
+  {
+   "file": "Downtown Athletic Club - memberships quote.pdf",
+   "vendor": "Downtown Athletic Club",
+   "item": "Memberships, 120 seats",
+   "amount": 3120,
+   "sheet_amount": 2600,
+   "differs": true,
+   "quote_no": "Q-2026-2436",
+   "date": "2026-11-05"
+  },
+  {
+   "file": "MoveWell Studio - lunchtime classes quote.pdf",
+   "vendor": "MoveWell Studio",
+   "item": "Lunchtime classes, 8 / mo",
+   "amount": 1150,
+   "sheet_amount": 1150,
+   "differs": false,
+   "quote_no": "Q-2026-3706",
+   "date": "2026-11-04"
+  },
+  {
+   "file": "Kickoff Coaching - onboarding week quote.pdf",
+   "vendor": "Kickoff Coaching",
+   "item": "Onboarding week",
+   "amount": 540,
+   "sheet_amount": 540,
+   "differs": false,
+   "quote_no": "Q-2026-7954",
+   "date": "2026-11-07"
+  }
+ ],
+ "changed": {
+  "index": 0,
+  "vendor": "Downtown Athletic Club",
+  "item": "Memberships, 120 seats",
+  "from": 2600,
+  "to": 3120,
+  "delta": 520
+ },
+ "sheet_after": [
+  [
+   "Memberships, 120 seats",
+   3120
+  ],
+  [
+   "Lunchtime classes, 8 / mo",
+   1150
+  ],
+  [
+   "Onboarding week",
+   540
+  ]
+ ],
+ "total_after": 4810,
+ "skill_id": "reconcile_quotes",
+ "run_id": "run-20261109-111346-fbe7",
+ "steps": [
+  "READ THE QUOTES",
+  "UPDATE THE SHEET",
+  "HAND IT OVER"
+ ],
+ "sheet": "/config/Documents/pricing-sheet.ods",
+ "deck": "/config/Documents/proposal-172.odp",
+ "slide": 6,
+ "quotes_dir": "/config/Documents/Quotes",
+ "out_dir": "/config/Documents/For signature",
+ "pdf": null,
+ "mail": {
+  "to": "pm",
+  "cc": null,
+  "subject": "Quotes reconciled \u2014 proposal 172",
+  "attachment": "pricing-sheet.ods"
+ },
+ "expected_amounts": [
+  3120,
+  1150,
+  540,
+  4810
+ ],
+ "dressed": {
+  "sheet": "left half",
+  "deck": "right half, slide 6",
+  "thunar": "Quotes, bottom-left",
+  "inbox": "untouched"
+ }
+}

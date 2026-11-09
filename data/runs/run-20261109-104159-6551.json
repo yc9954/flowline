@@ -1,0 +1,686 @@
+{
+ "id": "run-20261109-104159-6551",
+ "skill_id": "reconcile_quotes",
+ "target": "desk1",
+ "status": "done",
+ "started_at": "2026-11-09T10:41:59.132+09:00",
+ "elapsed_s": 133.901,
+ "steps": [
+  {
+   "n": 1,
+   "label": "READ THE QUOTES",
+   "detail": "Downtown Athletic Club $2,600 · MoveWell Studio $1,150 · Kickoff Coaching $650",
+   "status": "done",
+   "progress": null,
+   "at_s": 0.001
+  },
+  {
+   "n": 2,
+   "label": "UPDATE THE SHEET",
+   "detail": "Onboarding week (row 4) $540 → $650; new Total $4,400; sheet saved",
+   "status": "done",
+   "progress": null,
+   "at_s": 56.488
+  },
+  {
+   "n": 3,
+   "label": "LEAVE IT FOR YOU",
+   "detail": "NOTE.txt saved in For signature",
+   "status": "done",
+   "progress": null,
+   "at_s": 91.671
+  }
+ ],
+ "checks": [
+  {
+   "name": "skill_available",
+   "ok": true,
+   "detail": "reconcile_quotes v1"
+  },
+  {
+   "name": "sheet_row_corrected",
+   "ok": true,
+   "detail": "Onboarding week: sheet says 650, Kickoff Coaching quoted $650 (was $540)"
+  },
+  {
+   "name": "sheet_other_rows_unchanged",
+   "ok": true,
+   "detail": "sheet [2600, 1150, 650] vs [2600, 1150, 650]"
+  },
+  {
+   "name": "sheet_total_recomputed",
+   "ok": true,
+   "detail": "total 4400 vs 4400"
+  },
+  {
+   "name": "sheet_saved_on_disk",
+   "ok": true,
+   "detail": "sha256 changed"
+  },
+  {
+   "name": "note_written",
+   "ok": true,
+   "detail": "/config/Documents/For signature/NOTE.txt: 'Row 4 (Onboarding week): $540 -> $650\\nSource: Kickoff Coaching quote\\nTotal: $4,400'"
+  },
+  {
+   "name": "note_names_vendor_and_total",
+   "ok": true,
+   "detail": "3 line(s); total $4,400 named; vendor 'Kickoff Coaching' named"
+  },
+  {
+   "name": "nothing_else_changed",
+   "ok": true,
+   "detail": "only ['For signature/NOTE.txt', 'pricing-sheet.ods']"
+  },
+  {
+   "name": "agent_finished",
+   "ok": true,
+   "detail": "exit code 0"
+  }
+ ],
+ "title": "Checking the pricing sheet for proposal #172 against the vendor quotes",
+ "suggestion_id": "t",
+ "person_id": null,
+ "last_action": "screenshot",
+ "action_count": 42,
+ "inputs": {},
+ "model": "claude-sonnet-5-5",
+ "actions": [
+  {
+   "at": "2026-11-09T10:42:08.076+09:00",
+   "at_s": 8.944,
+   "kind": "prepare_soffice",
+   "detail": "{\"restarted\": true, \"seconds\": 7.28}",
+   "seconds": 0.0,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:13.326+09:00",
+   "at_s": 14.195,
+   "kind": "prepare_done",
+   "detail": "seed 2281331338; changed {'index': 2, 'vendor': 'Kickoff Coaching', 'item': 'Onboarding week', 'from': 540, 'to': 650, 'delta': 110}; truth.json",
+   "seconds": 14.193,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:14.176+09:00",
+   "at_s": 15.044,
+   "kind": "agent_start",
+   "detail": "node agent-ts/run.mjs (tools: computer, report_step)",
+   "seconds": 0.0,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:17.314+09:00",
+   "at_s": 18.182,
+   "kind": "step",
+   "detail": "1 now Opening the Quotes folder to read the three vendor PDFs",
+   "seconds": 0.0,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:18.099+09:00",
+   "at_s": 18.967,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\"} [shot-025.png]",
+   "seconds": 0.782,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:18.103+09:00",
+   "at_s": 18.971,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['report_step', 'computer'] in=6379 out=166 ",
+   "seconds": 0.0,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:22.017+09:00",
+   "at_s": 22.885,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"alt+F2\"}",
+   "seconds": 1.02,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:23.028+09:00",
+   "at_s": 23.897,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":1}",
+   "seconds": 1.008,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:23.837+09:00",
+   "at_s": 24.705,
+   "kind": "computer.type",
+   "detail": "{\"action\":\"type\",\"text\":\"thunar /config/Documents/Quotes\\n\"}",
+   "seconds": 0.805,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:25.844+09:00",
+   "at_s": 26.712,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":2}",
+   "seconds": 2.004,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:26.837+09:00",
+   "at_s": 27.705,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\"} [shot-026.png]",
+   "seconds": 0.99,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:26.839+09:00",
+   "at_s": 27.707,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['computer', 'computer', 'computer', 'computer', 'computer'] in=7824 out=130 ",
+   "seconds": 0.0,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:30.551+09:00",
+   "at_s": 31.42,
+   "kind": "computer.double_click",
+   "detail": "{\"action\":\"double_click\",\"coordinate\":[586,285]}",
+   "seconds": 0.67,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:32.560+09:00",
+   "at_s": 33.429,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":2}",
+   "seconds": 2.007,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:33.382+09:00",
+   "at_s": 34.251,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\"} [shot-027.png]",
+   "seconds": 0.819,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:33.385+09:00",
+   "at_s": 34.253,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['computer', 'computer', 'computer'] in=9245 out=98 ",
+   "seconds": 0.0,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:38.849+09:00",
+   "at_s": 39.717,
+   "kind": "computer.zoom",
+   "detail": "{\"action\":\"zoom\",\"region\":[566,240,840,440]} [zoom-028.png]",
+   "seconds": 1.109,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:39.595+09:00",
+   "at_s": 40.464,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"ctrl+w\"}",
+   "seconds": 0.743,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:40.605+09:00",
+   "at_s": 41.474,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":1}",
+   "seconds": 1.007,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:40.960+09:00",
+   "at_s": 41.829,
+   "kind": "computer.double_click",
+   "detail": "{\"action\":\"double_click\",\"coordinate\":[676,285]}",
+   "seconds": 0.352,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:42.969+09:00",
+   "at_s": 43.838,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":2}",
+   "seconds": 2.005,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:43.579+09:00",
+   "at_s": 44.447,
+   "kind": "computer.zoom",
+   "detail": "{\"action\":\"zoom\",\"region\":[440,160,840,580]} [zoom-029.png]",
+   "seconds": 0.606,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:43.871+09:00",
+   "at_s": 44.739,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"ctrl+w\"}",
+   "seconds": 0.289,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:44.880+09:00",
+   "at_s": 45.748,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":1}",
+   "seconds": 1.007,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:45.316+09:00",
+   "at_s": 46.185,
+   "kind": "computer.double_click",
+   "detail": "{\"action\":\"double_click\",\"coordinate\":[766,285]}",
+   "seconds": 0.434,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:47.326+09:00",
+   "at_s": 48.194,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":2}",
+   "seconds": 2.007,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:47.955+09:00",
+   "at_s": 48.823,
+   "kind": "computer.zoom",
+   "detail": "{\"action\":\"zoom\",\"region\":[440,160,840,580]} [zoom-030.png]",
+   "seconds": 0.626,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:48.336+09:00",
+   "at_s": 49.204,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"ctrl+w\"}",
+   "seconds": 0.379,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:49.344+09:00",
+   "at_s": 50.212,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":1}",
+   "seconds": 1.005,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:50.011+09:00",
+   "at_s": 50.879,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\"} [shot-031.png]",
+   "seconds": 0.664,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:50.015+09:00",
+   "at_s": 50.883,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer'] in=10603 out=323 ",
+   "seconds": 0.0,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:55.614+09:00",
+   "at_s": 56.483,
+   "kind": "step",
+   "detail": "1 done Downtown Athletic Club $2,600 · MoveWell Studio $1,150 · Kickoff Coaching $650",
+   "seconds": 0.0,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T10:42:55.621+09:00",
+   "at_s": 56.489,
+   "kind": "step",
+   "detail": "2 now Opening pricing-sheet.ods to compare with the quotes",
+   "seconds": 0.0,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:42:55.900+09:00",
+   "at_s": 56.768,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"ctrl+l\"}",
+   "seconds": 0.276,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:42:56.480+09:00",
+   "at_s": 57.348,
+   "kind": "computer.type",
+   "detail": "{\"action\":\"type\",\"text\":\"/config/Documents\\n\"}",
+   "seconds": 0.577,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:42:58.493+09:00",
+   "at_s": 59.362,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":2}",
+   "seconds": 2.008,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:42:58.907+09:00",
+   "at_s": 59.776,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\"} [shot-032.png]",
+   "seconds": 0.411,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:42:58.910+09:00",
+   "at_s": 59.778,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['report_step', 'report_step', 'computer', 'computer', 'computer', 'computer'] in=13535 out=351 ",
+   "seconds": 0.0,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:02.471+09:00",
+   "at_s": 63.339,
+   "kind": "computer.double_click",
+   "detail": "{\"action\":\"double_click\",\"coordinate\":[676,365]}",
+   "seconds": 0.371,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:05.481+09:00",
+   "at_s": 66.349,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":3}",
+   "seconds": 3.007,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:06.253+09:00",
+   "at_s": 67.122,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\"} [shot-033.png]",
+   "seconds": 0.769,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:06.255+09:00",
+   "at_s": 67.123,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['computer', 'computer', 'computer'] in=15226 out=98 ",
+   "seconds": 0.0,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:21.272+09:00",
+   "at_s": 82.14,
+   "kind": "computer.left_click",
+   "detail": "{\"action\":\"left_click\",\"coordinate\":[236,169]}",
+   "seconds": 0.416,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:21.992+09:00",
+   "at_s": 82.861,
+   "kind": "computer.type",
+   "detail": "{\"action\":\"type\",\"text\":\"650\\n\"}",
+   "seconds": 0.716,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:22.346+09:00",
+   "at_s": 83.215,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"ctrl+s\"}",
+   "seconds": 0.35,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:23.356+09:00",
+   "at_s": 84.225,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":1}",
+   "seconds": 1.007,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:23.906+09:00",
+   "at_s": 84.774,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\",\"region\":[0,0,1280,720]} [shot-034.png]",
+   "seconds": 0.547,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:23.909+09:00",
+   "at_s": 84.778,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['computer', 'computer', 'computer', 'computer', 'computer'] in=16584 out=167 Row 4 differs (540 vs 650).",
+   "seconds": 0.0,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:30.800+09:00",
+   "at_s": 91.668,
+   "kind": "step",
+   "detail": "2 done Onboarding week (row 4) $540 → $650; new Total $4,400; sheet saved",
+   "seconds": 0.0,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T10:43:30.803+09:00",
+   "at_s": 91.672,
+   "kind": "step",
+   "detail": "3 now Writing the note in Mousepad",
+   "seconds": 0.0,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:31.247+09:00",
+   "at_s": 92.115,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"alt+F2\"}",
+   "seconds": 0.44,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:32.253+09:00",
+   "at_s": 93.121,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":1}",
+   "seconds": 1.003,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:32.871+09:00",
+   "at_s": 93.74,
+   "kind": "computer.type",
+   "detail": "{\"action\":\"type\",\"text\":\"mousepad\\n\"}",
+   "seconds": 0.615,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:35.881+09:00",
+   "at_s": 96.75,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":3}",
+   "seconds": 3.007,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:36.328+09:00",
+   "at_s": 97.197,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\",\"region\":[0,0,1280,720]} [shot-035.png]",
+   "seconds": 0.443,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:36.332+09:00",
+   "at_s": 97.2,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['report_step', 'report_step', 'computer', 'computer', 'computer', 'computer', 'computer'] in=18033 out=390 ",
+   "seconds": 0.0,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:42.123+09:00",
+   "at_s": 102.991,
+   "kind": "computer.left_click",
+   "detail": "{\"action\":\"left_click\",\"coordinate\":[640,380]}",
+   "seconds": 0.586,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:44.655+09:00",
+   "at_s": 105.524,
+   "kind": "computer.type",
+   "detail": "{\"action\":\"type\",\"text\":\"Row 4 (Onboarding week): $540 -> $650\\nSource: Kickoff Coaching quote\\nTotal: $4,400\"}",
+   "seconds": 2.529,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:44.962+09:00",
+   "at_s": 105.83,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"ctrl+s\"}",
+   "seconds": 0.303,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:46.970+09:00",
+   "at_s": 107.838,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":2}",
+   "seconds": 2.003,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:47.273+09:00",
+   "at_s": 108.142,
+   "kind": "computer.key",
+   "detail": "{\"action\":\"key\",\"text\":\"ctrl+a\"}",
+   "seconds": 0.3,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:48.303+09:00",
+   "at_s": 109.171,
+   "kind": "computer.type",
+   "detail": "{\"action\":\"type\",\"text\":\"/config/Documents/For signature/NOTE.txt\\n\"}",
+   "seconds": 1.026,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:50.311+09:00",
+   "at_s": 111.179,
+   "kind": "computer.wait",
+   "detail": "{\"action\":\"wait\",\"duration\":2}",
+   "seconds": 2.005,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:50.814+09:00",
+   "at_s": 111.682,
+   "kind": "computer.screenshot",
+   "detail": "{\"action\":\"screenshot\",\"region\":[0,0,1280,720]} [shot-036.png]",
+   "seconds": 0.5,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:43:50.817+09:00",
+   "at_s": 111.686,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer', 'computer'] in=19775 out=264 ",
+   "seconds": 0.0,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:44:02.386+09:00",
+   "at_s": 123.255,
+   "kind": "step",
+   "detail": "3 done NOTE.txt saved in For signature",
+   "seconds": 0.0,
+   "step": 3
+  },
+  {
+   "at": "2026-11-09T10:44:02.389+09:00",
+   "at_s": 123.258,
+   "kind": "model",
+   "detail": "finish=tool-calls tools=['report_step'] in=21355 out=102 ",
+   "seconds": 0.0,
+   "step": null
+  },
+  {
+   "at": "2026-11-09T10:44:10.709+09:00",
+   "at_s": 131.577,
+   "kind": "model",
+   "detail": "finish=stop tools=[] in=21464 out=177 I corrected the pricing sheet and left a three-line note for you in \"For signature\" (NOTE.txt). The only row that differed was Onboarding week, which was $540 i",
+   "seconds": 0.0,
+   "step": null
+  },
+  {
+   "at": "2026-11-09T10:44:10.714+09:00",
+   "at_s": 131.582,
+   "kind": "agent_done",
+   "detail": "finished steps=11 I corrected the pricing sheet and left a three-line note for you in \"For signature\" (NOTE.txt). The only row that differed was Onboarding week, which was $540 in the sheet but $650 on the Kickoff Coaching quote. I changed it to $650, so the Total is now $4,400, and saved the sheet. The other two row",
+   "seconds": 116.354,
+   "step": null
+  },
+  {
+   "at": "2026-11-09T10:44:10.841+09:00",
+   "at_s": 131.71,
+   "kind": "agent_exit",
+   "detail": "exit=0 stderr=",
+   "seconds": 116.666,
+   "step": null
+  }
+ ],
+ "final_screenshot": "/Users/yuchanlee/flowline/data/runs/run-20261109-104159-6551/final.png",
+ "agent": {
+  "exit_code": 0,
+  "seconds": 116.67,
+  "stdout": "{\"status\":\"finished\",\"steps\":11,\"text\":\"I corrected the pricing sheet and left a three-line note for you in \\\"For signature\\\" (NOTE.txt). The only row that differed was Onboarding week, which was $540 in the sheet but $650 on the Kickoff Coaching quote. I changed it to $650, so the Total is now $4,400, and saved the sheet. The other two rows already matched their quotes, so I didn't touch them.\\n\\nThe note says which row changed, that the figure came from the Kickoff Coaching quote, and the new total. The sheet and the note are both still open for you to check.\"}\n",
+  "stderr": ""
+ },
+ "error": null,
+ "finished_at": "2026-11-09T10:44:13.032+09:00",
+ "timing": {
+  "screenshot": {
+   "n": 13,
+   "mean_ms": 602.8,
+   "max_ms": 1074.4
+  },
+  "key": {
+   "n": 9,
+   "mean_ms": 453.0,
+   "max_ms": 1015.8
+  },
+  "type": {
+   "n": 6,
+   "mean_ms": 1042.0,
+   "max_ms": 2525.1
+  },
+  "double_click": {
+   "n": 4,
+   "mean_ms": 454.3,
+   "max_ms": 667.8
+  },
+  "click": {
+   "n": 2,
+   "mean_ms": 496.8,
+   "max_ms": 580.4
+  }
+ }
+}

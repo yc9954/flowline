@@ -1,0 +1,27 @@
+{
+  "source": "prototype",
+  "board_id": "northwind",
+  "headline": "This process changed itself three times in six weeks. People said yes each time.",
+  "loop": [
+    { "n": 1, "name": "Record", "at": "18:00–18:22", "status": "done", "note": "5 of 6 approved, 1 tomorrow" },
+    { "n": 2, "name": "Map", "at": "18:24", "status": "done", "note": "v14: +1 artifact, 1 merge" },
+    { "n": 3, "name": "Find", "at": "18:25", "status": "done", "note": "Review wait rising: 6.2 h" },
+    { "n": 4, "name": "Test", "at": "18:31", "status": "done", "note": "9 plans, same team, same luck" },
+    { "n": 5, "name": "Approve", "at": "now", "status": "now", "note": "Waiting for the manager" },
+    { "n": 6, "name": "Ask & do", "status": "pending", "note": "Sales, after a yes" },
+    { "n": 7, "name": "Measure", "status": "pending", "note": "Two weeks after" }
+  ],
+  "next_run_at": "2026-11-12T18:00:00-06:00",
+  "versions": [
+    { "v": 15, "when": "tonight", "title": "Review checklist for Sales", "found": "review wait 6.2 h · tested 9 plans · not yet approved", "status": "needs_yes", "delta_h": 0, "predicted_delta_h": -4.1 },
+    { "v": 14, "when": "week 5", "title": "Agent renames and exports the PDF (Sales)", "found": "9× / wk · tested · approved by Sales lead · 2 of 2 said yes", "status": "live", "delta_h": -0.6 },
+    { "v": 13, "when": "week 3", "title": "Agent fills the deck, PM reviews", "found": "11× / wk, 22 m · tested · approved by Director · 21 of 22 kept", "status": "live", "delta_h": -4.4 },
+    { "v": 12, "when": "week 3", "title": "Quotes under $5k skip the Director", "found": "19 h wait for one signature · tested · approved by Director", "status": "live", "delta_h": -16.2 },
+    { "v": 1, "when": "week 1", "title": "First map, from 46 approved records", "found": "6 people · 0 screens · 0 messages", "status": "baseline", "delta_h": 50.0 }
+  ],
+  "learned": [
+    { "finding": "The PM undid 1 of 22 deck fills — a discount line was missing.", "action": "Skill v2 now copies discount rows. 0 undone since." },
+    { "finding": "Sales 2 said \"Don’t ask\" for PDF export.", "action": "Stopped asking Sales 2. Still offered to Sales 1, who says yes." },
+    { "finding": "The Director reopened 2 auto-approved quotes in week 4.", "action": "Kept the $5k rule; quotes for clients with past disputes now go to the Director." }
+  ]
+}

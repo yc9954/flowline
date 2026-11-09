@@ -1,0 +1,125 @@
+{
+ "speed": 10.0,
+ "origin": 1794163571.244176,
+ "steps": [
+  {
+   "name": "Prepare pricing sheet",
+   "kind": "step",
+   "planted": null,
+   "start_real": 1794163597.441782,
+   "start": "2026-11-09T03:50:33+09:00",
+   "end_real": 1794163672.7429051,
+   "end": "2026-11-09T04:03:06+09:00",
+   "minutes_scaled": 12.6
+  },
+  {
+   "name": "Write mail to client",
+   "kind": "step",
+   "planted": null,
+   "start_real": 1794163672.743111,
+   "start": "2026-11-09T04:03:06+09:00",
+   "end_real": 1794163740.674328,
+   "end": "2026-11-09T04:14:25+09:00",
+   "minutes_scaled": 11.3
+  },
+  {
+   "name": "Personal chat · Mom",
+   "kind": "away",
+   "planted": "chat",
+   "start_real": 1794163740.674499,
+   "start": "2026-11-09T04:14:25+09:00",
+   "end_real": 1794163755.372482,
+   "end": "2026-11-09T04:16:52+09:00",
+   "minutes_scaled": 2.4
+  },
+  {
+   "name": "Away from desk",
+   "kind": "waiting",
+   "planted": null,
+   "start_real": 1794163755.37261,
+   "start": "2026-11-09T04:16:52+09:00",
+   "end_real": 1794163797.657696,
+   "end": "2026-11-09T04:23:55+09:00",
+   "minutes_scaled": 7.0
+  },
+  {
+   "name": "First National Bank — Login",
+   "kind": "removed",
+   "planted": "bank",
+   "start_real": 1794163797.657822,
+   "start": "2026-11-09T04:23:55+09:00",
+   "end_real": 1794163817.1144161,
+   "end": "2026-11-09T04:27:09+09:00",
+   "minutes_scaled": 3.2
+  },
+  {
+   "name": "Fill deck from sheet",
+   "kind": "step",
+   "planted": null,
+   "start_real": 1794163817.114512,
+   "start": "2026-11-09T04:27:09+09:00",
+   "end_real": 1794163924.87301,
+   "end": "2026-11-09T04:45:07+09:00",
+   "minutes_scaled": 18.0
+  },
+  {
+   "name": "Kim Minji contract.odt",
+   "kind": "renamed",
+   "planted": "contract",
+   "start_real": 1794163924.8730721,
+   "start": "2026-11-09T04:45:07+09:00",
+   "end_real": 1794163945.6549299,
+   "end": "2026-11-09T04:48:35+09:00",
+   "minutes_scaled": 3.5
+  },
+  {
+   "name": "Review deck",
+   "kind": "step",
+   "planted": null,
+   "start_real": 1794163945.654987,
+   "start": "2026-11-09T04:48:35+09:00",
+   "end_real": 1794163972.8978848,
+   "end": "2026-11-09T04:53:07+09:00",
+   "minutes_scaled": 4.5
+  }
+ ],
+ "planted": [
+  {
+   "id": "chat",
+   "kind": "personal_chat",
+   "needle": [
+    "Mom",
+    "Personal chat"
+   ]
+  },
+  {
+   "id": "bank",
+   "kind": "banking",
+   "needle": [
+    "First National Bank",
+    "Bank"
+   ]
+  },
+  {
+   "id": "contract",
+   "kind": "name_in_filename",
+   "needle": [
+    "Kim Minji",
+    "Minji"
+   ]
+  }
+ ],
+ "log": [
+  "[actor 03:46:11] setup: documents, bank page",
+  "[actor 03:46:19] bank page served: '200'",
+  "[actor 03:46:37] ▶ Prepare pricing sheet",
+  "[actor 03:47:52] ▶ Write mail to client",
+  "[actor 03:49:00] ▶ Personal chat · Mom",
+  "[actor 03:49:15] ▶ Away from desk",
+  "[actor 03:49:57] ▶ First National Bank — Login",
+  "[actor 03:50:17] ▶ Fill deck from sheet",
+  "[actor 03:50:30] paste gave ''; typing $2,600 instead",
+  "[actor 03:52:04] ▶ Kim Minji contract.odt",
+  "[actor 03:52:25] ▶ Review deck"
+ ]
+}

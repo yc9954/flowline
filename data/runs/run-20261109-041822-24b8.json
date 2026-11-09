@@ -1,0 +1,65 @@
+{
+ "id": "run-20261109-041822-24b8",
+ "skill_id": "fill_deck_from_sheet",
+ "target": "desk1",
+ "status": "failed",
+ "started_at": "2026-11-09T04:18:22.245+09:00",
+ "elapsed_s": 2.414,
+ "steps": [
+  {
+   "n": 1,
+   "label": "READ THE SHEET",
+   "detail": "Starting",
+   "status": "now",
+   "progress": null,
+   "at_s": 0.0
+  },
+  {
+   "n": 2,
+   "label": "FILL THE DECK",
+   "detail": "",
+   "status": "pending",
+   "progress": null,
+   "at_s": null
+  },
+  {
+   "n": 3,
+   "label": "CHECK THE TOTAL",
+   "detail": "",
+   "status": "pending",
+   "progress": null,
+   "at_s": null
+  },
+  {
+   "n": 4,
+   "label": "LEAVE IT FOR YOU",
+   "detail": "",
+   "status": "pending",
+   "progress": null,
+   "at_s": null
+  }
+ ],
+ "checks": [
+  {
+   "name": "sheet_total_equals_sum",
+   "ok": true,
+   "detail": "sum 4290 vs total 4290"
+  }
+ ],
+ "title": "Filling proposal #172 pricing from your sheet",
+ "suggestion_id": "sug-1",
+ "inputs": {},
+ "model": "claude-sonnet-5-5",
+ "actions": [],
+ "final_screenshot": "/Users/yuchanlee/flowline/data/runs/run-20261109-041822-24b8/final.png",
+ "agent": {},
+ "error": "RuntimeError: uno open failed (1): unknown cmd open",
+ "finished_at": "2026-11-09T04:18:24.658+09:00",
+ "timing": {
+  "screenshot": {
+   "n": 1,
+   "mean_ms": 974.6,
+   "max_ms": 974.6
+  }
+ }
+}

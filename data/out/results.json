@@ -1,0 +1,211 @@
+{
+ "source": "simulated",
+ "board_id": "northwind",
+ "recomputed_at": "2026-12-18T18:24:00-06:00",
+ "headline": "Proposals now take 88 hours, not 109.",
+ "sub": "The test predicted 91.4 h (86.2–114.6 across 20 reruns). The team measured 87.7 h over 6 proposals sent in the 3 weeks after the change. Waiting went from 78% of every cycle to 73%.",
+ "records": 309,
+ "people": 8,
+ "weeks": 11,
+ "change": "signs only quotes over $5k · checks the deck, doesn't type it",
+ "predicted": {
+  "mid": 91.4,
+  "lo": 86.2,
+  "hi": 114.6
+ },
+ "measured": 87.7,
+ "before": 108.8,
+ "series": [
+  {
+   "week": 1,
+   "value": 96.0,
+   "after": false
+  },
+  {
+   "week": 1,
+   "value": 121.3,
+   "after": false
+  },
+  {
+   "week": 1,
+   "value": 98.1,
+   "after": false
+  },
+  {
+   "week": 3,
+   "value": 78.0,
+   "after": false
+  },
+  {
+   "week": 3,
+   "value": 99.3,
+   "after": false
+  },
+  {
+   "week": 3,
+   "value": 144.3,
+   "after": false
+  },
+  {
+   "week": 4,
+   "value": 101.1,
+   "after": false
+  },
+  {
+   "week": 4,
+   "value": 95.4,
+   "after": false
+  },
+  {
+   "week": 4,
+   "value": 116.5,
+   "after": false
+  },
+  {
+   "week": 5,
+   "value": 94.3,
+   "after": false
+  },
+  {
+   "week": 6,
+   "value": 95.1,
+   "after": false
+  },
+  {
+   "week": 6,
+   "value": 96.1,
+   "after": false
+  },
+  {
+   "week": 7,
+   "value": 260.4,
+   "after": false
+  },
+  {
+   "week": 7,
+   "value": 97.4,
+   "after": false
+  },
+  {
+   "week": 7,
+   "value": 145.8,
+   "after": false
+  },
+  {
+   "week": 7,
+   "value": 92.8,
+   "after": false
+  },
+  {
+   "week": 7,
+   "value": 211.5,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 119.3,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 171.6,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 197.6,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 167.2,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 122.5,
+   "after": false
+  },
+  {
+   "week": 9,
+   "value": 98.3,
+   "after": true
+  },
+  {
+   "week": 9,
+   "value": 161.1,
+   "after": true
+  },
+  {
+   "week": 9,
+   "value": 76.8,
+   "after": true
+  },
+  {
+   "week": 9,
+   "value": 215.8,
+   "after": true
+  },
+  {
+   "week": 10,
+   "value": 77.0,
+   "after": true
+  },
+  {
+   "week": 10,
+   "value": 67.7,
+   "after": true
+  }
+ ],
+ "kpis": [
+  {
+   "label": "Hours per proposal",
+   "before": "108.8",
+   "after": "87.7 h",
+   "sub": "Test predicted 91.4"
+  },
+  {
+   "label": "Share of time waiting",
+   "before": "78%",
+   "after": "73%",
+   "sub": "The approval wait, mostly gone"
+  },
+  {
+   "label": "Director sign-offs",
+   "before": "0.7",
+   "after": "0.1 / day",
+   "sub": "Only quotes over $5k"
+  },
+  {
+   "label": "Deck skill runs kept",
+   "before": "",
+   "after": "46 of 47",
+   "sub": "1 undone by the PM"
+  }
+ ],
+ "who": [
+  {
+   "role": "PM",
+   "what": "Copy figures into deck — agent does it, PM checks",
+   "before": "1.0 h / wk",
+   "after": "23 m / wk"
+  },
+  {
+   "role": "Director",
+   "what": "Signs only quotes over $5k",
+   "before": "0.7 / day",
+   "after": "0.1 / day"
+  },
+  {
+   "role": "Sales",
+   "what": "Waits less around the signature",
+   "before": "20.6 h",
+   "after": "0.0 h"
+  }
+ ],
+ "next_constraint": {
+  "headline": "Proposals now wait longest before Approval",
+  "sub": "— 19.6 hours for Director, across 2 proposals. One constraint solved shows the next.",
+  "ready": false
+ }
+}

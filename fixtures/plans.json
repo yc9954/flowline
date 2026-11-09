@@ -1,0 +1,361 @@
+{
+  "source": "prototype",
+  "board_id": "northwind",
+  "reruns": 20,
+  "weeks": 2,
+  "headline": "Auto-approve quotes under $5k and let the agent fill the deck: 50 hours → 29.",
+  "today_h": 50,
+  "plans": [
+    {
+      "id": "p1",
+      "rank": 1,
+      "name": "Auto-approve under $5k",
+      "sub": "+ agent fills the deck",
+      "hours": 29,
+      "work_h": 18.2,
+      "waiting_h": 10.8,
+      "vs_today": -0.42,
+      "best": true,
+      "today": false,
+      "held_best_n": 20,
+      "range_h": [
+        28.1,
+        30.2
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "signs only quotes over $5k"
+        },
+        {
+          "role": "PM",
+          "change": "checks the deck, doesn't type it"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": [
+        {
+          "type": "auto_approve_under",
+          "usd": 5000
+        },
+        {
+          "type": "skill",
+          "skill_id": "fill_deck_from_sheet",
+          "actor": "PM",
+          "reviewer": "PM"
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "rank": 2,
+      "name": "Auto-approve under $5k",
+      "sub": "+ shared deck template",
+      "hours": 31.6,
+      "work_h": 20.8,
+      "waiting_h": 10.8,
+      "vs_today": -0.37,
+      "best": false,
+      "today": false,
+      "held_best_n": 0,
+      "range_h": [
+        30.5,
+        32.9
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "signs only quotes over $5k"
+        },
+        {
+          "role": "PM",
+          "change": "fills the shared template"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": [
+        {
+          "type": "auto_approve_under",
+          "usd": 5000
+        },
+        {
+          "type": "template",
+          "name": "shared deck template"
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "rank": 3,
+      "name": "Auto-approve under $5k",
+      "sub": "+ deck by hand",
+      "hours": 33.8,
+      "work_h": 23,
+      "waiting_h": 10.8,
+      "vs_today": -0.32,
+      "best": false,
+      "today": false,
+      "held_best_n": 0,
+      "range_h": [
+        32.7,
+        35.1
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "signs only quotes over $5k"
+        },
+        {
+          "role": "PM",
+          "change": "nothing to change"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": [
+        {
+          "type": "auto_approve_under",
+          "usd": 5000
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "rank": 4,
+      "name": "Sign-off twice a day",
+      "sub": "+ agent fills the deck",
+      "hours": 36.7,
+      "work_h": 18.2,
+      "waiting_h": 18.5,
+      "vs_today": -0.27,
+      "best": false,
+      "today": false,
+      "held_best_n": 0,
+      "range_h": [
+        35.6,
+        38
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "signs in two batches a day"
+        },
+        {
+          "role": "PM",
+          "change": "checks the deck, doesn't type it"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": [
+        {
+          "type": "approver_batches_per_day",
+          "n": 2
+        },
+        {
+          "type": "skill",
+          "skill_id": "fill_deck_from_sheet",
+          "actor": "PM",
+          "reviewer": "PM"
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "rank": 5,
+      "name": "Sign-off twice a day",
+      "sub": "+ shared deck template",
+      "hours": 39.3,
+      "work_h": 20.8,
+      "waiting_h": 18.5,
+      "vs_today": -0.21,
+      "best": false,
+      "today": false,
+      "held_best_n": 0,
+      "range_h": [
+        38.2,
+        40.6
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "signs in two batches a day"
+        },
+        {
+          "role": "PM",
+          "change": "fills the shared template"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": [
+        {
+          "type": "approver_batches_per_day",
+          "n": 2
+        },
+        {
+          "type": "template",
+          "name": "shared deck template"
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "rank": 6,
+      "name": "Sign-off twice a day",
+      "sub": "+ deck by hand",
+      "hours": 41.5,
+      "work_h": 23,
+      "waiting_h": 18.5,
+      "vs_today": -0.17,
+      "best": false,
+      "today": false,
+      "held_best_n": 0,
+      "range_h": [
+        40.4,
+        42.8
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "signs in two batches a day"
+        },
+        {
+          "role": "PM",
+          "change": "nothing to change"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": [
+        {
+          "type": "approver_batches_per_day",
+          "n": 2
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "rank": 7,
+      "name": "Director signs all",
+      "sub": "+ agent fills the deck",
+      "hours": 45.2,
+      "work_h": 18.2,
+      "waiting_h": 27,
+      "vs_today": -0.1,
+      "best": false,
+      "today": false,
+      "held_best_n": 0,
+      "range_h": [
+        44.1,
+        46.5
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "nothing to change"
+        },
+        {
+          "role": "PM",
+          "change": "checks the deck, doesn't type it"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": [
+        {
+          "type": "skill",
+          "skill_id": "fill_deck_from_sheet",
+          "actor": "PM",
+          "reviewer": "PM"
+        }
+      ]
+    },
+    {
+      "id": "p8",
+      "rank": 8,
+      "name": "Director signs all",
+      "sub": "+ shared deck template",
+      "hours": 47.8,
+      "work_h": 20.8,
+      "waiting_h": 27,
+      "vs_today": -0.04,
+      "best": false,
+      "today": false,
+      "held_best_n": 0,
+      "range_h": [
+        46.7,
+        49.1
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "nothing to change"
+        },
+        {
+          "role": "PM",
+          "change": "fills the shared template"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": [
+        {
+          "type": "template",
+          "name": "shared deck template"
+        }
+      ]
+    },
+    {
+      "id": "p9",
+      "rank": 9,
+      "name": "Director signs all",
+      "sub": "+ deck by hand",
+      "hours": 50,
+      "work_h": 23,
+      "waiting_h": 27,
+      "vs_today": 0,
+      "best": false,
+      "today": true,
+      "held_best_n": 0,
+      "range_h": [
+        48.9,
+        51.3
+      ],
+      "who": [
+        {
+          "role": "Director",
+          "change": "nothing to change"
+        },
+        {
+          "role": "PM",
+          "change": "nothing to change"
+        },
+        {
+          "role": "Sales",
+          "change": "nothing to change"
+        }
+      ],
+      "rules": []
+    }
+  ],
+  "note": "Approving sends each change only to the person it affects — the Director by email, the PM in their notch."
+}

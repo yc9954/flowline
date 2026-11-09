@@ -1,0 +1,17 @@
+{
+  "source": "prototype",
+  "board_id": "northwind",
+  "ceo_line": "South Austin, #1 of 85 ZIPs. Opens 18 days sooner. One decision is yours.",
+  "finance_inbox": [
+    { "title": "1 approval · equipment, club 4", "sub": "$36,400 · same terms as club 3", "actions": ["Approve", "Ask why"] },
+    { "title": "Payroll · October export", "sub": "Ready to file", "actions": [] },
+    { "title": "Landlord · club 2 renewal", "sub": "Draft attached", "actions": [] }
+  ],
+  "branch_mgr_blocker": { "title": "Permit application is filled in. Check and submit?", "actions": ["Open it", "Not now"] },
+  "expansion_lead": [
+    { "zip": "78704", "rank": 1 },
+    { "zip": "78738", "rank": 2 },
+    { "zip": "78660", "rank": 3 }
+  ],
+  "trainer_record": { "steps": 6, "left_out": 2 }
+}

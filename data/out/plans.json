@@ -1,0 +1,375 @@
+{
+ "source": "simulated",
+ "board_id": "northwind",
+ "reruns": 20,
+ "weeks": 8,
+ "headline": "Auto-approve under $5k + agent fills the deck (PM reviews): 109 hours → 91.",
+ "today_h": 108.8,
+ "plans": [
+  {
+   "id": "auto_5k__agent",
+   "rank": 1,
+   "name": "Auto-approve under $5k",
+   "sub": "+ agent fills the deck (PM reviews)",
+   "hours": 91.4,
+   "work_h": 24.3,
+   "waiting_h": 68.8,
+   "vs_today": -0.16,
+   "best": true,
+   "today": false,
+   "held_best_n": 12,
+   "range_h": [
+    86.2,
+    114.6
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "signs only quotes over $5k"
+    },
+    {
+     "role": "PM",
+     "change": "checks the deck, doesn't type it"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "auto_approve_under",
+     "usd": 5000
+    },
+    {
+     "type": "skill",
+     "skill_id": "fill_deck_from_sheet",
+     "actor": "PM",
+     "reviewer": "PM"
+    }
+   ]
+  },
+  {
+   "id": "twice_a_day__agent",
+   "rank": 2,
+   "name": "Sign-off twice a day",
+   "sub": "+ agent fills the deck (PM reviews)",
+   "hours": 92.9,
+   "work_h": 24.4,
+   "waiting_h": 68.4,
+   "vs_today": -0.146,
+   "best": false,
+   "today": false,
+   "held_best_n": 6,
+   "range_h": [
+    88.1,
+    117.7
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "signs at midday and at 18:00"
+    },
+    {
+     "role": "PM",
+     "change": "checks the deck, doesn't type it"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "approver_batches_per_day",
+     "n": 2
+    },
+    {
+     "type": "skill",
+     "skill_id": "fill_deck_from_sheet",
+     "actor": "PM",
+     "reviewer": "PM"
+    }
+   ]
+  },
+  {
+   "id": "twice_a_day__by_hand",
+   "rank": 3,
+   "name": "Sign-off twice a day",
+   "sub": "+ deck by hand",
+   "hours": 93.8,
+   "work_h": 24.8,
+   "waiting_h": 70.3,
+   "vs_today": -0.138,
+   "best": false,
+   "today": false,
+   "held_best_n": 1,
+   "range_h": [
+    87.8,
+    131.0
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "signs at midday and at 18:00"
+    },
+    {
+     "role": "PM",
+     "change": "nothing to change"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "approver_batches_per_day",
+     "n": 2
+    }
+   ]
+  },
+  {
+   "id": "twice_a_day__template",
+   "rank": 4,
+   "name": "Sign-off twice a day",
+   "sub": "+ shared deck template",
+   "hours": 93.8,
+   "work_h": 24.8,
+   "waiting_h": 70.3,
+   "vs_today": -0.138,
+   "best": false,
+   "today": false,
+   "held_best_n": 1,
+   "range_h": [
+    87.8,
+    131.0
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "signs at midday and at 18:00"
+    },
+    {
+     "role": "Design",
+     "change": "starts decks from the template"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "approver_batches_per_day",
+     "n": 2
+    },
+    {
+     "type": "template",
+     "name": "shared deck template"
+    }
+   ]
+  },
+  {
+   "id": "auto_5k__by_hand",
+   "rank": 5,
+   "name": "Auto-approve under $5k",
+   "sub": "+ deck by hand",
+   "hours": 101.3,
+   "work_h": 24.7,
+   "waiting_h": 76.9,
+   "vs_today": -0.069,
+   "best": false,
+   "today": false,
+   "held_best_n": 0,
+   "range_h": [
+    88.0,
+    132.9
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "signs only quotes over $5k"
+    },
+    {
+     "role": "PM",
+     "change": "nothing to change"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "auto_approve_under",
+     "usd": 5000
+    }
+   ]
+  },
+  {
+   "id": "auto_5k__template",
+   "rank": 6,
+   "name": "Auto-approve under $5k",
+   "sub": "+ shared deck template",
+   "hours": 101.3,
+   "work_h": 24.7,
+   "waiting_h": 76.9,
+   "vs_today": -0.069,
+   "best": false,
+   "today": false,
+   "held_best_n": 0,
+   "range_h": [
+    88.0,
+    132.9
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "signs only quotes over $5k"
+    },
+    {
+     "role": "Design",
+     "change": "starts decks from the template"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "auto_approve_under",
+     "usd": 5000
+    },
+    {
+     "type": "template",
+     "name": "shared deck template"
+    }
+   ]
+  },
+  {
+   "id": "signs_all__agent",
+   "rank": 7,
+   "name": "Director signs all",
+   "sub": "+ agent fills the deck (PM reviews)",
+   "hours": 103.3,
+   "work_h": 24.4,
+   "waiting_h": 77.6,
+   "vs_today": -0.05,
+   "best": false,
+   "today": false,
+   "held_best_n": 2,
+   "range_h": [
+    89.7,
+    132.6
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "keeps signing every quote"
+    },
+    {
+     "role": "PM",
+     "change": "checks the deck, doesn't type it"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "approver_batches_per_day",
+     "n": 1
+    },
+    {
+     "type": "skill",
+     "skill_id": "fill_deck_from_sheet",
+     "actor": "PM",
+     "reviewer": "PM"
+    }
+   ]
+  },
+  {
+   "id": "signs_all__by_hand",
+   "rank": 8,
+   "name": "Director signs all",
+   "sub": "+ deck by hand",
+   "hours": 108.8,
+   "work_h": 24.8,
+   "waiting_h": 83.5,
+   "vs_today": 0.0,
+   "best": false,
+   "today": true,
+   "held_best_n": 0,
+   "range_h": [
+    91.5,
+    135.5
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "keeps signing every quote"
+    },
+    {
+     "role": "PM",
+     "change": "nothing to change"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "approver_batches_per_day",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "id": "signs_all__template",
+   "rank": 9,
+   "name": "Director signs all",
+   "sub": "+ shared deck template",
+   "hours": 108.8,
+   "work_h": 24.8,
+   "waiting_h": 83.5,
+   "vs_today": 0.0,
+   "best": false,
+   "today": false,
+   "held_best_n": 0,
+   "range_h": [
+    91.5,
+    135.5
+   ],
+   "who": [
+    {
+     "role": "Director",
+     "change": "keeps signing every quote"
+    },
+    {
+     "role": "Design",
+     "change": "starts decks from the template"
+    },
+    {
+     "role": "Sales",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "approver_batches_per_day",
+     "n": 1
+    },
+    {
+     "type": "template",
+     "name": "shared deck template"
+    }
+   ]
+  }
+ ],
+ "note": "Every plan replays the same requests and meetings over 8 weeks, 20 times with new luck. The best plan held in 12 of 20 reruns; the next best is 1.5 h slower. Ranges are the 10th–90th percentile across reruns; relative effects from 20 reruns applied to the measured baseline of 108.8 h. Nothing changes until you approve.",
+ "recomputed_at": "2026-12-18T18:31:00-06:00"
+}

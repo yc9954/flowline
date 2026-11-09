@@ -1,0 +1,104 @@
+{
+ "seed": 3637090891,
+ "sheet_before": [
+  [
+   "Memberships, 120 seats",
+   2600
+  ],
+  [
+   "Lunchtime classes, 8 / mo",
+   1150
+  ],
+  [
+   "Onboarding week",
+   540
+  ]
+ ],
+ "total_before": 4290,
+ "quotes": [
+  {
+   "file": "Downtown Athletic Club - memberships quote.pdf",
+   "vendor": "Downtown Athletic Club",
+   "item": "Memberships, 120 seats",
+   "amount": 2600,
+   "sheet_amount": 2600,
+   "differs": false,
+   "quote_no": "Q-2026-2641",
+   "date": "2026-11-08"
+  },
+  {
+   "file": "MoveWell Studio - lunchtime classes quote.pdf",
+   "vendor": "MoveWell Studio",
+   "item": "Lunchtime classes, 8 / mo",
+   "amount": 1320,
+   "sheet_amount": 1150,
+   "differs": true,
+   "quote_no": "Q-2026-1099",
+   "date": "2026-11-08"
+  },
+  {
+   "file": "Kickoff Coaching - onboarding week quote.pdf",
+   "vendor": "Kickoff Coaching",
+   "item": "Onboarding week",
+   "amount": 540,
+   "sheet_amount": 540,
+   "differs": false,
+   "quote_no": "Q-2026-6243",
+   "date": "2026-11-04"
+  }
+ ],
+ "changed": {
+  "index": 1,
+  "vendor": "MoveWell Studio",
+  "item": "Lunchtime classes, 8 / mo",
+  "from": 1150,
+  "to": 1320,
+  "delta": 170
+ },
+ "sheet_after": [
+  [
+   "Memberships, 120 seats",
+   2600
+  ],
+  [
+   "Lunchtime classes, 8 / mo",
+   1320
+  ],
+  [
+   "Onboarding week",
+   540
+  ]
+ ],
+ "total_after": 4460,
+ "skill_id": "reconcile_quotes",
+ "run_id": "run-20261109-112510-1792",
+ "steps": [
+  "READ THE QUOTES",
+  "UPDATE THE SHEET",
+  "HAND IT OVER"
+ ],
+ "sheet": "/config/Documents/pricing-sheet.ods",
+ "deck": "/config/Documents/proposal-172.odp",
+ "slide": 6,
+ "quotes_dir": "/config/Documents/Quotes",
+ "out_dir": "/config/Documents/For signature",
+ "pdf": null,
+ "mail": {
+  "to": "pm",
+  "cc": null,
+  "subject": "Quotes reconciled \u2014 proposal 172",
+  "attachment": "pricing-sheet.ods"
+ },
+ "expected_amounts": [
+  2600,
+  1320,
+  540,
+  4460
+ ],
+ "dressed": {
+  "sheet": "left half",
+  "deck": "right half, slide 6",
+  "thunar": "Quotes, bottom-left",
+  "inbox": "untouched"
+ }
+}

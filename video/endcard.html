@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Flowline end card</title>
+<style>
+  @font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSansSemiBold-600.ttf'); font-weight: 600; }
+  @font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSans-400.ttf'); font-weight: 400; }
+  @font-face { font-family: 'Geist Mono'; src: url('fonts/GeistMono-400.ttf'); }
+  html, body { margin: 0; width: 1920px; height: 1080px; background: #fff; color: #000; font-family: 'Instrument Sans', system-ui, sans-serif; }
+  .wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+  .mark { width: 96px; height: 96px; border-radius: 22px; background: #171717; display: grid; place-items: center; }
+  .mark svg { width: 52px; height: 52px; }
+  h1 { margin: 0; font-size: 72px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+  p { margin: 0; font-size: 30px; color: #4d5353; letter-spacing: -0.01em; }
+  .url { margin-top: 18px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 20px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; display: flex; align-items: center; gap: 12px; }
+  .url i { width: 8px; height: 8px; border-radius: 1px; background: #0F766E; }
+  .foot { position: absolute; left: 72px; right: 72px; bottom: 56px; display: flex; justify-content: space-between; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="square"><path d="M4 16h5V8h6v8h5"/></svg></div>
+  <h1>Flowline</h1>
+  <p>The agent that runs your company's work — with your people.</p>
+  <div class="url"><i></i><span id="url">github.com/ORG/flowline</span></div>
+</div>
+<div class="foot"><span>c0mpiled-17 · Seoul · 2026-11-09</span><span>Simulated team · US Census backtest is real data</span></div>
+<script>
+  const u = new URLSearchParams(location.search).get('url'); if (u) document.getElementById('url').textContent = u;
+</script>
+</body></html>

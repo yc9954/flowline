@@ -1,0 +1,37 @@
+{
+  "source": "prototype",
+  "board_id": "northwind",
+  "calibrated_at": "2026-11-11T18:30:00-06:00",
+  "records": 412,
+  "components": [
+    { "n": "01", "name": "Company knowledge", "what": "Roles, steps, cases, files, rules and skills — learned from approved records, never typed in.", "size": "11 types · 1,204 objects · 3,870 links" },
+    { "n": "02", "name": "Team simulator", "what": "Replays the same team, requests and luck under a different plan. Step times and waits fit to your records.", "size": "18 steps · 46 records fitted" },
+    { "n": "03", "name": "Demand model", "what": "Ranks where your kind of business grows next, from public data around each site. One industry code switches it.", "size": "26,011 ZIPs · any NAICS code" }
+  ],
+  "sim_checks": [
+    { "measure": "Hours per proposal", "predicted": 29.0, "lo": 28.1, "hi": 30.2, "actual": 29.4, "unit": "h", "in_range": true },
+    { "measure": "Share of time waiting", "predicted": 38, "lo": 35, "hi": 41, "actual": 37, "unit": "%", "in_range": true },
+    { "measure": "Director sign-offs / day", "predicted": 2.0, "lo": 1.7, "hi": 2.4, "actual": 2.1, "unit": "/day", "in_range": true },
+    { "measure": "Deck fills kept by PM", "predicted": 93, "lo": 85, "hi": 98, "actual": 95, "unit": "%", "in_range": true }
+  ],
+  "demand": [
+    { "industry": "Fitness centers", "naics": "713940", "lift": 7.4, "population_lift": 5.7, "ci": [7.1, 7.7], "verdict": "better" },
+    { "industry": "Coffee and snack bars", "naics": "722515", "lift": 6.0, "population_lift": 5.1, "ci": [5.6, 6.4], "verdict": "better" },
+    { "industry": "Physician offices", "naics": "621111", "lift": 5.4, "population_lift": 5.5, "ci": [5.0, 5.8], "verdict": "tie" }
+  ],
+  "d1": {
+    "dataset": "BPI Challenge 2020 Domestic Declarations",
+    "fit_year": 2017,
+    "test_year": 2018,
+    "median_error": 0.11,
+    "p80_error": 0.27,
+    "cases": 10500,
+    "events": 56437,
+    "amount_attr": true
+  },
+  "limits": [
+    { "title": "Revenue per location", "tag": "Not claimed", "why": "Last year’s local figure predicts it as well as the model does. Flowline ranks where demand grows, not exact sales." },
+    { "title": "Where doctors should open", "tag": "No edge", "why": "Population alone does as well. Shown, not hidden." },
+    { "title": "Contract redlines", "tag": "Needs more records", "why": "Only 3 approved records so far. Needs 10 before it is simulated." }
+  ]
+}

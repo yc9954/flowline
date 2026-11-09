@@ -1,0 +1,101 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Flowline cards</title>
+<!-- Typographic cards for the film: ?card=problem|market|test|results. Numbers come in as query params
+     (written by supers_from_data.py into out/cards.json and passed by record_board.mjs); defaults below. -->
+<style>
+  @font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSansSemiBold-600.ttf'); font-weight: 600; }
+  @font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSans-400.ttf'); font-weight: 400; }
+  @font-face { font-family: 'Geist Mono'; src: url('fonts/GeistMono-400.ttf'); }
+  html, body { margin: 0; width: 1920px; height: 1080px; background: #fff; color: #000; font-family: 'Instrument Sans', system-ui, sans-serif; overflow: hidden; }
+  .card { display: none; position: absolute; inset: 0; }
+  .card.on { display: block; }
+  .tag { position: absolute; left: 72px; top: 64px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; color: #4d5353; display: flex; gap: 14px; align-items: center; }
+  .tag i { width: 8px; height: 8px; border-radius: 1px; background: #6D5DF6; }
+  .foot { position: absolute; left: 72px; right: 72px; bottom: 56px; display: flex; justify-content: space-between; gap: 40px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; }
+  .foot span:last-child { text-align: right; }
+  .stack { position: absolute; left: 72px; top: 170px; width: 1620px; }
+  .line { font-size: 72px; font-weight: 600; letter-spacing: -0.035em; line-height: 1.06; margin: 0 0 26px; opacity: 0; transform: translateY(14px); animation: in .55s cubic-bezier(.2,.8,.2,1) forwards; }
+  .line small { font-weight: 400; color: #4d5353; }
+  .line.muted { color: #4d5353; font-weight: 400; font-size: 56px; }
+  .line.accent { color: #6D5DF6; }
+  .grid { position: absolute; left: 72px; right: 72px; display: grid; gap: 40px; }
+  .stat { opacity: 0; transform: translateY(14px); animation: in .55s cubic-bezier(.2,.8,.2,1) forwards; }
+  .stat .n { font-size: 112px; font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+  .stat .n small { font-size: 44px; font-weight: 400; color: #4d5353; letter-spacing: -0.02em; margin-left: 8px; }
+  .stat .n.accent { color: #6D5DF6; }
+  .stat .l { margin-top: 16px; font-size: 23px; color: #4d5353; line-height: 1.35; max-width: 470px; padding-right: 24px; }
+  .stat .l b { color: #000; font-weight: 600; }
+  .stat .src { margin-top: 12px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #8a9090; }
+  .rule { position: absolute; left: 72px; right: 72px; height: 1px; background: #E3E7E9; }
+  .pill { display: inline-block; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #6D5DF6; border: 1px solid #6D5DF6; border-radius: 3px; padding: 6px 10px; margin-right: 10px; }
+  @keyframes in { to { opacity: 1; transform: none; } }
+</style></head>
+<body>
+
+<!-- 1 · THE PROBLEM (10 s) -->
+<section class="card" id="problem">
+  <div class="tag"><i></i><span>The problem</span></div>
+  <div class="stack">
+    <p class="line" style="animation-delay:.4s">Small businesses with a few locations run on processes <small>nobody wrote down.</small></p>
+    <p class="line accent" style="animation-delay:3.4s">Work waits more than it is worked.</p>
+    <p class="line muted" style="animation-delay:6.2s; margin-bottom:0">When someone leaves, the process leaves with them.</p>
+  </div>
+  <div class="grid" style="bottom:120px; grid-template-columns: 1fr 1fr 1fr;">
+    <div class="stat" style="animation-delay:7.6s"><div class="n">58<small>%</small></div><div class="l">of US small businesses use AI</div><div class="src">US Chamber of Commerce 2025</div></div>
+    <div class="stat" style="animation-delay:7.9s"><div class="n">14<small>%</small></div><div class="l">have it inside core operations</div><div class="src">Goldman Sachs small-business survey 2025</div></div>
+    <div class="stat" style="animation-delay:8.2s"><div class="n accent">0</div><div class="l">system logs in a five-person business — the gap every process tool falls into</div><div class="src">why the know-how stays in heads</div></div>
+  </div>
+  <div class="foot"><span>c0mpiled-17 · Seoul · 2026-11-09</span><span>Flowline</span></div>
+</section>
+
+<!-- 2 · THE MARKET (7.5 s) -->
+<section class="card" id="market">
+  <div class="tag"><i></i><span>The market</span></div>
+  <div class="grid" style="top:190px; grid-template-columns: 1fr 1fr 1fr;">
+    <div class="stat" style="animation-delay:.4s"><div class="n">6.4<small>M</small></div><div class="l"><b>employer firms in the US alone</b>; 5.7 M of them have under 20 people</div><div class="src">SBA Office of Advocacy 2026</div></div>
+    <div class="stat" style="animation-delay:1.2s"><div class="n">$3.1<small>B → $23 B</small></div><div class="l"><b>process mining, 2024 → 2030</b> — all of it built for enterprises with system logs</div><div class="src">Global Industry Analysts 2024</div></div>
+    <div class="stat" style="animation-delay:2.0s"><div class="n accent">$121<small>B</small></div><div class="l"><b>health &amp; fitness clubs worldwide</b>, ~200,000 facilities; Korea 14,773 gyms, record 577 closures in 2025</div><div class="src">HFA 2025 · IBISWorld · 행정안전부 2025</div></div>
+  </div>
+  <div class="rule" style="top:580px"></div>
+  <div class="stack" style="top:630px; width:1700px; max-width:1700px">
+    <p class="line" style="animation-delay:3.6s; font-size:58px; margin-bottom:10px">The tools that map how work flows need system logs.</p>
+    <p class="line muted" style="animation-delay:4.4s; font-size:44px">These companies have none — and nobody there will write it down.</p>
+    <p class="line muted" style="animation-delay:5.8s; font-size:30px">First customer: fitness &amp; wellness chains with 2–20 studios · then clinics, academies, franchises</p>
+  </div>
+  <div class="foot"><span>Sources on the README</span><span>Flowline</span></div>
+</section>
+
+<!-- 4 · THE TEST CASE (5 s) -->
+<section class="card" id="test">
+  <div class="tag"><i></i><span>The test case · simulated</span></div>
+  <div class="stack" style="top:330px">
+    <p class="line" style="animation-delay:.3s; font-size:132px; letter-spacing:-0.045em">Northwind Fitness</p>
+    <p class="line muted" style="animation-delay:1.6s; font-size:46px"><span id="t-studios">3</span> gyms · <span id="t-people">8</span> people · opening a 4th · one proposal process, 18 steps</p>
+    <p class="line muted" style="animation-delay:3.0s; font-size:34px">A simulated chain on the Flowline-1 world engine, run on six real desktops. Only the Census backtest uses real data.</p>
+  </div>
+  <div class="foot"><span>Simulated team</span><span>Flowline</span></div>
+</section>
+
+<!-- 12 · RESULTS (9 s) -->
+<section class="card" id="results">
+  <div class="tag"><i></i><span>Results</span></div>
+  <div class="grid" style="top:160px; grid-template-columns: 1fr 1fr 1fr;">
+    <div class="stat" style="animation-delay:.3s"><div class="n" style="font-size:96px"><span id="r-before">109</span><small>h →</small> <span id="r-after">88</span><small>h</small></div><div class="l"><b>per proposal</b> · the test predicted <span id="r-pred">91</span> h</div><div class="src">simulated chain · measured after the change</div></div>
+    <div class="stat" style="animation-delay:1.4s"><div class="n" style="font-size:96px"><span id="r-ok">10</span><small>/ <span id="r-n">10</span></small></div><div class="l"><b>agent runs correct</b> · median <span id="r-med">36</span> s · Stop in 2 s</div><div class="src">measured · Vercel AI SDK · Claude computer use</div></div>
+    <div class="stat" style="animation-delay:2.5s"><div class="n" style="font-size:96px"><span id="r-leaks">0</span></div><div class="l"><b>private items leaked</b> of <span id="r-planted">3</span> planted</div><div class="src">measured</div></div>
+  </div>
+  <div class="rule" style="top:520px"></div>
+  <div class="grid" style="top:560px; grid-template-columns: 1fr 1fr 1fr;">
+    <div class="stat" style="animation-delay:4.4s"><div class="n accent" style="font-size:96px"><span id="r-lift">7.4</span><small>×</small></div><div class="l"><b>as likely to get new gyms</b> where it said to open · population alone <span id="r-pop">5.7</span>×</div><div class="src">real data · US Census · clock frozen at 2020</div></div>
+    <div class="stat" style="animation-delay:5.4s"><div class="n" style="font-size:96px"><span id="r-days">18</span><small>days</small></div><div class="l"><b>sooner</b> on the next opening · 2 of 4 blockers cleared</div><div class="src">simulated · learned from branches 2 and 3</div></div>
+    <div class="stat" style="animation-delay:6.4s"><div class="n" style="font-size:96px">4<small>/ 4</small></div><div class="l"><b>model checks in range</b> · misses named: plan stability 12/20, BPIC error 17.5 %</div><div class="src">flowline1 check</div></div>
+  </div>
+  <div class="foot"><span>Every number labelled simulated or measured on the board</span><span>Flowline</span></div>
+</section>
+
+<script>
+  const q = new URLSearchParams(location.search);
+  document.getElementById(q.get('card') || 'problem').classList.add('on');
+  for (const [k, v] of q) { const el = document.getElementById(k); if (el) el.textContent = v; }
+</script>
+</body></html>

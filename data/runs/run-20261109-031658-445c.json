@@ -1,0 +1,197 @@
+{
+ "id": "run-20261109-031658-445c",
+ "skill_id": "fill_deck_from_sheet",
+ "target": "desk1",
+ "status": "failed",
+ "started_at": "2026-11-09T03:16:58.833+09:00",
+ "elapsed_s": 12.987,
+ "steps": [
+  {
+   "n": 1,
+   "label": "READ THE SHEET",
+   "detail": "3 line items and the total from pricing-sheet.ods: $4,290",
+   "status": "done",
+   "progress": null,
+   "at_s": 0.001
+  },
+  {
+   "n": 2,
+   "label": "FILL THE DECK",
+   "detail": "Typed 4 amounts into slide 6, Investment",
+   "status": "done",
+   "progress": [
+    4,
+    4
+   ],
+   "at_s": 1.783
+  },
+  {
+   "n": 3,
+   "label": "CHECK THE TOTAL",
+   "detail": "Deck total must equal $4,290",
+   "status": "now",
+   "progress": null,
+   "at_s": 12.192
+  },
+  {
+   "n": 4,
+   "label": "LEAVE IT FOR YOU",
+   "detail": "",
+   "status": "pending",
+   "progress": null,
+   "at_s": null
+  }
+ ],
+ "checks": [
+  {
+   "name": "sheet_has_item_amount_total",
+   "ok": true,
+   "detail": "3 items, Total row present"
+  },
+  {
+   "name": "sheet_total_equals_sum",
+   "ok": true,
+   "detail": "sum 4290 vs total 4290"
+  },
+  {
+   "name": "cell_1",
+   "ok": false,
+   "detail": "Memberships, 120 seats: deck says '$2,600$2,600$2,$1,1502,600600', sheet says $2,600"
+  },
+  {
+   "name": "cell_2",
+   "ok": false,
+   "detail": "Lunchtime classes, 8 / mo: deck says '$1,150$1,150$1,150', sheet says $1,150"
+  },
+  {
+   "name": "cell_3",
+   "ok": false,
+   "detail": "Onboarding week: deck says '$540$540$540$540', sheet says $540"
+  },
+  {
+   "name": "cell_4",
+   "ok": false,
+   "detail": "Total: deck says '$4,29$4$4,290,2900$4,290', sheet says $4,290"
+  },
+  {
+   "name": "deck_items_sum_equals_sheet_total",
+   "ok": false,
+   "detail": "26002600867054641882 vs 4290"
+  },
+  {
+   "name": "deck_total_equals_sheet_total",
+   "ok": false,
+   "detail": "4294429029004290 vs 4290"
+  }
+ ],
+ "suggestion_id": "sug-1",
+ "inputs": {},
+ "model": null,
+ "actions": [
+  {
+   "at": "2026-11-09T03:17:00.614+09:00",
+   "at_s": 1.781,
+   "kind": "read_sheet",
+   "detail": "3 items, total 4290",
+   "seconds": 1.778,
+   "step": 1
+  },
+  {
+   "at": "2026-11-09T03:17:04.063+09:00",
+   "at_s": 5.23,
+   "kind": "open_deck",
+   "detail": "proposal-172.odp slide 6",
+   "seconds": 2.939,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:17:05.176+09:00",
+   "at_s": 6.343,
+   "kind": "screenshot",
+   "detail": "before filling",
+   "seconds": 0.718,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:17:05.230+09:00",
+   "at_s": 6.397,
+   "kind": "positions",
+   "detail": "from geometry + slide rect (183, 195, 1374, 772): [(1238, 514), (1238, 602), (1238, 690), (1238, 778)]",
+   "seconds": 0.0,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:17:06.395+09:00",
+   "at_s": 7.562,
+   "kind": "fill_cell",
+   "detail": "row 1 at (1238, 514): $2,600",
+   "seconds": 1.164,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:17:07.558+09:00",
+   "at_s": 8.725,
+   "kind": "fill_cell",
+   "detail": "row 2 at (1238, 602): $1,150",
+   "seconds": 1.161,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:17:08.771+09:00",
+   "at_s": 9.938,
+   "kind": "fill_cell",
+   "detail": "row 3 at (1238, 690): $540",
+   "seconds": 1.212,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:17:09.930+09:00",
+   "at_s": 11.097,
+   "kind": "fill_cell",
+   "detail": "row 4 at (1238, 778): $4,290",
+   "seconds": 1.158,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:17:11.020+09:00",
+   "at_s": 12.187,
+   "kind": "screenshot",
+   "detail": "after filling",
+   "seconds": 0.432,
+   "step": 2
+  },
+  {
+   "at": "2026-11-09T03:17:11.388+09:00",
+   "at_s": 12.555,
+   "kind": "read_back",
+   "detail": "uno: ['$2,600$2,600$2,$1,1502,600600', '$1,150$1,150$1,150', '$540$540$540$540', '$4,29$4$4,290,2900$4,290']",
+   "seconds": 0.363,
+   "step": 3
+  }
+ ],
+ "final_screenshot": "/Users/yuchanlee/flowline/data/runs/run-20261109-031658-445c/final.png",
+ "error": "SkillError: deck cells ['$2,600$2,600$2,$1,1502,600600', '$1,150$1,150$1,150', '$540$540$540$540', '$4,29$4$4,290,2900$4,290'] do not match the sheet",
+ "finished_at": "2026-11-09T03:17:11.820+09:00",
+ "timing": {
+  "screenshot": {
+   "n": 3,
+   "mean_ms": 523.8,
+   "max_ms": 718.2
+  },
+  "click": {
+   "n": 4,
+   "mean_ms": 389.1,
+   "max_ms": 400.3
+  },
+  "type": {
+   "n": 4,
+   "mean_ms": 377.1,
+   "max_ms": 404.5
+  },
+  "key": {
+   "n": 2,
+   "mean_ms": 328.5,
+   "max_ms": 329.0
+  }
+ }
+}

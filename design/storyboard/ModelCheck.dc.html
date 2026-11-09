@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flowline-1 — model check</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;family=Host+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#fff}
+a{color:#000}a:hover{color:#4d5353}
+</style>
+</helmet>
+<div style="min-height: 900px; background: #fff; color: #000; font-family: 'Instrument Sans', system-ui, sans-serif; letter-spacing: -0.003em; display: flex; flex-wrap: wrap">
+
+  <aside style="flex: 1 1 200px; max-width: 100%; background: #eaecee; border-right: 1px solid #dcdfe1; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 8px 8px 10px">
+      <span style="width: 30px; height: 30px; border-radius: 7px; background: #000; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M3 17h6V7h6v6h6"></path></svg></span>
+      <div><div style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.15">Flowline</div><div style="font-size: 11px; color: #4d5353">Northwind Fitness</div></div>
+    </div>
+    <div style="padding: 12px 8px 4px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Decide</div>
+    <a href="Expand.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Where to open next</a>
+    <a href="Unblock.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Opening branch 4</a>
+    <div style="padding: 12px 8px 4px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Improve</div>
+    <a href="Plans.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Plans to test</a>
+    <a href="Measure.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Results</a>
+    <a href="Loop.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Process history</a>
+    <div style="padding: 12px 8px 4px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Know</div>
+    <a href="Ontology.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Company knowledge</a>
+    <a href="Board.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Where work waits</a>
+    <a href="Record.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; color: #30373f">Approved records</a>
+    <div style="padding: 12px 8px 4px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Trust</div>
+    <a href="ModelCheck.dc.html" style="padding: 6px 8px; border-radius: 4px; font-size: 13px; text-decoration: none; font-weight: 600; background: #fff; box-shadow: 0 1px 2px rgba(20,20,25,0.05)">Model check</a>
+    <div style="margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #dcdfe1; padding: 12px 8px 6px">
+      <div><div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Records</div><div style="font-family: 'Host Grotesk', sans-serif; font-size: 18px; font-weight: 500; margin-top: 4px">412</div></div>
+      <div><div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">Screens shared</div><div style="font-family: 'Host Grotesk', sans-serif; font-size: 18px; font-weight: 500; margin-top: 4px">0</div></div>
+    </div>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 20px 32px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+    <header style="display: flex; flex-direction: column; gap: 8px"><div style="display: flex; align-items: center; gap: 12px; min-height: 28px; flex-wrap: wrap"><nav aria-label="Breadcrumb" style="display: flex; align-items: center; gap: 7px; white-space: nowrap; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353"><span>Northwind Fitness</span><span aria-hidden="true">/</span><span>Trust</span><span aria-hidden="true">/</span><span aria-current="page" style="color: #000">Model check</span></nav><div style="margin-left: auto; display: flex; align-items: center; gap: 8px"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="width: 6px; height: 6px; border-radius: 1px; background: #0F766E"></span>recomputed Wed 18:30</span><span style="width: 1px; height: 16px; background: #d8dddf; margin: 0 2px"></span><button type="button" style="height: 28px; padding: 0 10px; border: 1px solid rgba(0,0,0,0.12); border-radius: 2px; background: #fff; color: #000; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; cursor: pointer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M12 4v11"></path><path d="M7.5 8.5L12 4l4.5 4.5"></path><path d="M5 13v7h14v-7"></path></svg>Share</button><button type="button" style="height: 28px; padding: 0 10px; border: 1px solid rgba(0,0,0,0.12); border-radius: 2px; background: #fff; color: #000; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; cursor: pointer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M12 4v11"></path><path d="M7.5 10.5L12 15l4.5-4.5"></path><path d="M5 20h14"></path></svg>Export</button></div></div><div style="display: flex; align-items: center; gap: 8px; min-height: 30px; flex-wrap: wrap"><span style="font-size: 16px; font-weight: 500; margin-right: 12px">Flowline-1 · model check</span><span style="margin-left: auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #4d5353">Northwind · calibrated Wed 18:30 · 412 approved records</span></div></header>
+
+    <div>
+      <div style="display: flex; align-items: center; gap: 12px"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353; white-space: nowrap">A model of how this company works · calibrated on its own records</span><span style="flex: 1; height: 1px; background: #d8dddf"></span></div>
+      <h1 style="margin: 12px 0 0; font-size: 32px; font-weight: 600; letter-spacing: -0.018em; line-height: 1.22">Flowline-1 predicts this company well enough to act on — and says where it can't.</h1>
+    </div>
+
+    <section aria-label="What Flowline-1 is" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+      <sc-for list="{{parts}}" as="p" hint-placeholder-count="3">
+        <div style="border-top: 1px solid #171717; padding-top: 12px; display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; align-items: center; gap: 8px"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #4d5353">{{p.n}}</span><span style="font-size: 16px; font-weight: 600">{{p.name}}</span></div>
+          <div style="font-size: 13px; line-height: 20px; color: #4d5353">{{p.what}}</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #000">{{p.size}}</div>
+        </div>
+      </sc-for>
+    </section>
+
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px">
+      <section aria-label="Team simulator: predicted vs measured" style="border: 1px solid #d8dddf; border-radius: 6px; display: flex; flex-direction: column; min-width: 0">
+        <div style="display: flex; align-items: baseline; gap: 10px; padding: 14px 18px 12px; border-bottom: 1px solid #edf0f2"><span style="font-size: 15px; font-weight: 600">Team simulator</span><span style="font-size: 13px; color: #4d5353">predicted before the change vs measured after</span><span style="margin-left: auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353; white-space: nowrap">4 of 4 in range</span></div>
+        <div style="padding: 12px 18px 14px; display: flex; flex-direction: column; flex: 1">
+          <div style="border: 1px solid #d8dddf; border-radius: 6px; overflow: hidden">
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) 108px 112px 52px 78px; align-items: center; height: 30px; background: #edf0f2; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #4d5353">
+              <span style="padding-left: 12px">Measure</span><span style="text-align: right">Predicted</span><span style="padding-left: 14px">Range · actual</span><span style="text-align: right">Actual</span><span style="padding-right: 12px; text-align: right">Verdict</span>
+            </div>
+            <sc-for list="{{sim}}" as="s" hint-placeholder-count="4">
+              <div style="display: grid; grid-template-columns: minmax(0, 1fr) 108px 112px 52px 78px; align-items: center; min-height: 38px; border-top: 1px solid #edf0f2; font-size: 13px">
+                <span style="padding: 8px 8px 8px 12px">{{s.k}}</span>
+                <span style="text-align: right; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; white-space: nowrap">{{s.mid}} <span style="font-size: 11px; color: #4d5353">{{s.rng}}</span></span>
+                <span style="position: relative; height: 18px; margin: 0 4px 0 14px">
+                  <span style="position: absolute; left: 0; right: 0; top: 8.5px; height: 1px; background: #d8dddf"></span>
+                  <span style="position: absolute; left: {{s.lo}}; width: {{s.w}}; top: 4px; height: 10px; background: rgba(59,115,255,0.16); box-sizing: border-box; border-left: 1px solid #3B73FF; border-right: 1px solid #3B73FF"></span>
+                  <span style="position: absolute; left: {{s.pm}}; top: 3px; width: 1px; height: 12px; background: #3B73FF"></span>
+                  <span style="position: absolute; left: {{s.ac}}; top: 4.5px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; background: #0F766E; box-shadow: 0 0 0 1.5px #fff"></span>
+                </span>
+                <span style="text-align: right; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; font-weight: 600">{{s.a}}</span>
+                <span style="padding-right: 12px; text-align: right"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; background: rgba(15,118,110,0.1); color: #0F766E; white-space: nowrap">In range</span></span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top: auto; padding-top: 10px; display: flex; align-items: center; gap: 14px; font-size: 12px; color: #4d5353; flex-wrap: wrap">
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 16px; height: 8px; background: rgba(59,115,255,0.16); box-sizing: border-box; border-left: 1px solid #3B73FF; border-right: 1px solid #3B73FF"></span>predicted range</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0F766E"></span>measured after</span>
+            <span>Ranges are the spread over 20 reruns with new luck.</span>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Demand model: backtest on public data" style="border: 1px solid #d8dddf; border-radius: 6px; display: flex; flex-direction: column; min-width: 0">
+        <div style="display: flex; align-items: baseline; gap: 10px; padding: 14px 18px 12px; border-bottom: 1px solid #edf0f2"><span style="font-size: 15px; font-weight: 600">Demand model</span><span style="font-size: 13px; color: #4d5353">clock frozen at 2020, regions hidden, scored on 2023</span><span style="margin-left: auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353; white-space: nowrap">lift, 0–8×</span></div>
+        <div style="padding: 12px 18px 14px; display: flex; flex-direction: column; flex: 1">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{demand}}" as="d" hint-placeholder-count="3">
+              <div>
+                <div style="display: flex; align-items: baseline; font-size: 13px; margin-bottom: 4px"><span style="font-weight: 500">{{d.k}}</span><span style="margin-left: 8px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353">{{d.code}}</span><span style="margin-left: auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: {{d.vc}}">{{d.verdict}}</span></div>
+                <div style="display: grid; grid-template-columns: 78px minmax(0, 1fr) 40px; column-gap: 8px; row-gap: 3px; align-items: center; font-size: 11px; color: #4d5353">
+                  <span>Flowline-1</span><span style="height: 12px; position: relative"><span style="position: absolute; left: 0%; top: 0; bottom: 0; width: 1px; background: #c4c9cc"></span><span style="position: absolute; left: 25%; top: 0; bottom: 0; width: 1px; background: #edf0f2"></span><span style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #edf0f2"></span><span style="position: absolute; left: 75%; top: 0; bottom: 0; width: 1px; background: #edf0f2"></span><span style="position: absolute; left: 100%; top: 0; bottom: 0; width: 1px; background: #edf0f2"></span><span style="position: absolute; left: 0; top: 2px; height: 8px; width: {{d.mw}}; background: #171717"></span></span><span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #000; font-weight: 600; text-align: right">{{d.m}}</span>
+                  <span>Population</span><span style="height: 12px; position: relative"><span style="position: absolute; left: 0%; top: 0; bottom: 0; width: 1px; background: #c4c9cc"></span><span style="position: absolute; left: 25%; top: 0; bottom: 0; width: 1px; background: #edf0f2"></span><span style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #edf0f2"></span><span style="position: absolute; left: 75%; top: 0; bottom: 0; width: 1px; background: #edf0f2"></span><span style="position: absolute; left: 100%; top: 0; bottom: 0; width: 1px; background: #edf0f2"></span><span style="position: absolute; left: 0; top: 2px; height: 8px; width: {{d.pw}}; background: #B8BEC2"></span></span><span style="font-family: 'Geist Mono', ui-monospace, monospace; text-align: right">{{d.p}}</span>
+                </div>
+              </div>
+            </sc-for>
+            <div style="display: grid; grid-template-columns: 78px minmax(0, 1fr) 40px; column-gap: 8px">
+              <span></span><div style="position: relative; height: 14px; border-top: 1px solid #edf0f2; padding-top: 3px"><span style="position: absolute; top: 3px; left: 0%; transform: translateX(0); font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353">0×</span><span style="position: absolute; top: 3px; left: 25%; transform: translateX(-50%); font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353">2×</span><span style="position: absolute; top: 3px; left: 50%; transform: translateX(-50%); font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353">4×</span><span style="position: absolute; top: 3px; left: 75%; transform: translateX(-50%); font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353">6×</span><span style="position: absolute; top: 3px; left: 100%; transform: translateX(-100%); font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353">8×</span></div><span></span>
+            </div>
+          </div>
+          <div style="margin-top: auto; padding-top: 8px; font-size: 12px; line-height: 18px; color: #4d5353">Lift = how much more often its top 10% of ZIP codes gained 3+ businesses than the average ZIP. 26,011 ZIPs, US Census.</div>
+        </div>
+      </section>
+    </div>
+
+    <section aria-label="What it can't call yet" style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: center; gap: 12px"><span style="font-size: 16px; font-weight: 600; white-space: nowrap">What it can't call yet</span><span style="flex: 1; height: 1px; background: #d8dddf"></span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #4d5353">3 limits · shown, not hidden</span></div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+        <sc-for list="{{limits}}" as="l" hint-placeholder-count="3">
+          <div style="border: 1px solid #d8dddf; border-radius: 6px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; background: #fff">
+            <div style="display: flex; align-items: center; gap: 8px"><span style="width: 7px; height: 7px; border-radius: 1px; background: #FCBB00"></span><span style="font-size: 14px; font-weight: 500">{{l.k}}</span><span style="margin-left: auto; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; background: #f6ebd3; color: #6b4a00; white-space: nowrap">{{l.tag}}</span></div>
+            <div style="font-size: 12px; line-height: 18px; color: #4d5353">{{l.v}}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <div style="margin-top: auto; border-top: 1px solid #d8dddf; padding: 12px 0 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+      <p style="margin: 0; flex: 1; min-width: 300px; font-size: 15px; line-height: 24px; color: #4d5353"><strong style="color: #000">Calibrated every night.</strong> If a prediction leaves its range, the agent stops suggesting that change and tells you why.</p>
+      <a href="Plans.dc.html" style="height: 40px; padding: 0 18px; border-radius: 2px; background: #171717; color: #fff; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; text-decoration: none">Back to plans →</a>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const parts = [
+      { n: '01', name: 'Company knowledge', what: 'Roles, steps, cases, files, rules and skills — learned from approved records, never typed in.', size: '11 types · 1,204 objects · 3,870 links' },
+      { n: '02', name: 'Team simulator', what: 'Replays the same team, requests and luck under a different plan. Step times and waits fit to your records.', size: '18 steps · 46 records fitted' },
+      { n: '03', name: 'Demand model', what: 'Ranks where your kind of business grows next, from public data around each site. One industry code switches it.', size: '26,011 ZIPs · any NAICS code' }
+    ];
+    // predicted value, low, high, actual, display strings
+    const raw = [
+      { k: 'Hours per proposal', p: '29.0 (28.1–30.2)', a: '29.4', v: [29.0, 28.1, 30.2, 29.4] },
+      { k: 'Share of time waiting', p: '38% (35–41)', a: '37%', v: [38, 35, 41, 37] },
+      { k: 'Director sign-offs / day', p: '2.0 (1.7–2.4)', a: '2.1', v: [2.0, 1.7, 2.4, 2.1] },
+      { k: 'Deck fills kept by PM', p: '93% (85–98)', a: '95%', v: [93, 85, 98, 95] }
+    ];
+    const pc = (x) => x.toFixed(1) + '%';
+    const sim = raw.map((s) => {
+      const [m, lo, hi, a] = s.v;
+      const pad = (hi - lo) * 0.6;
+      const d0 = lo - pad, d1 = hi + pad;
+      const at = (x) => (x - d0) / (d1 - d0) * 100;
+      const cut = s.p.indexOf(' (');
+      return { k: s.k, p: s.p, a: s.a, mid: s.p.slice(0, cut), rng: s.p.slice(cut + 1), lo: pc(at(lo)), w: pc(at(hi) - at(lo)), pm: pc(at(m)), ac: pc(at(a)) };
+    });
+    const max = 8;
+    const w = (x) => (x / max * 100).toFixed(1) + '%';
+    const demand = [
+      { k: 'Fitness centers', code: '713940', m: '7.4×', p: '5.7×', mw: w(7.4), pw: w(5.7), verdict: 'Better than population', vc: '#0F766E' },
+      { k: 'Coffee and snack bars', code: '722515', m: '6.0×', p: '5.1×', mw: w(6.0), pw: w(5.1), verdict: 'Better than population', vc: '#0F766E' },
+      { k: 'Physician offices', code: '621111', m: '5.4×', p: '5.5×', mw: w(5.4), pw: w(5.5), verdict: 'No better — said so', vc: '#6b4a00' }
+    ];
+    const limits = [
+      { k: 'Revenue per location', v: 'Last year’s local figure predicts it as well as the model does. Flowline ranks where demand grows, not exact sales.', tag: 'Not claimed' },
+      { k: 'Where doctors should open', v: 'Population alone does as well. Shown, not hidden.', tag: 'No edge' },
+      { k: 'Contract redlines', v: 'Only 3 approved records so far. Needs 10 before it is simulated.', tag: 'Needs more records' }
+    ];
+    return { parts, sim, demand, limits };
+  }
+}
+</script>
+</body>
+</html>

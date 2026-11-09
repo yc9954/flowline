@@ -1,0 +1,126 @@
+{
+ "measured_at": "2026-11-09T11:24:36+09:00",
+ "target": "desk5",
+ "skill": "signature_packet",
+ "runs": 1,
+ "success": 1,
+ "success_rate": 1.0,
+ "median_s": 603.26,
+ "p90_s": 603.26,
+ "min_s": 603.26,
+ "max_s": 603.26,
+ "median_s_successful": 603.26,
+ "stop_honoured": null,
+ "stop_latency_s": null,
+ "model": "claude-sonnet-5-5",
+ "mode": "agent-ts (Vercel AI SDK, computer toolset; tools computer + report_step only) via the desktop bridge; deterministic verification: saved .ods, live deck via UNO, exported PDF text, NOTE.txt, Documents tree diff",
+ "per_action_ms": {
+  "screenshot": {
+   "n": 34,
+   "max_ms": 1851.7,
+   "mean_ms": 821.0
+  },
+  "double_click": {
+   "n": 5,
+   "max_ms": 1379.6,
+   "mean_ms": 664.8
+  },
+  "click": {
+   "n": 21,
+   "max_ms": 680.1,
+   "mean_ms": 354.2
+  },
+  "type": {
+   "n": 13,
+   "max_ms": 2783.8,
+   "mean_ms": 881.4
+  },
+  "key": {
+   "n": 13,
+   "max_ms": 859.1,
+   "mean_ms": 395.1
+  },
+  "triple_click": {
+   "n": 1,
+   "max_ms": 535.1,
+   "mean_ms": 535.1
+  },
+  "move": {
+   "n": 1,
+   "max_ms": 421.1,
+   "mean_ms": 421.1
+  }
+ },
+ "median_model_turns": 33,
+ "median_screenshots": 31,
+ "median_zooms": 2,
+ "median_computer_actions": 120,
+ "failures": [],
+ "results": [
+  {
+   "id": "run-20261109-111346-92e5",
+   "status": "done",
+   "seconds": 603.26,
+   "success": true,
+   "error": null,
+   "failed_checks": [],
+   "steps_at_s": {
+    "FILL THE DECK": 0.001,
+    "EXPORT FOR SIGNATURE": 102.267,
+    "HAND IT OVER": 206.036
+   },
+   "step_details": {
+    "FILL THE DECK": "Four amounts typed; total $4,290 (deck unsaved)",
+    "EXPORT FOR SIGNATURE": "PDF written to For signature/proposal-172.pdf",
+    "HAND IT OVER": "Mail sent to director, cc finance, PDF attached"
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 564.44
+   },
+   "model_turns": 33,
+   "screenshots": 31,
+   "zooms": 2,
+   "computer_actions": 120,
+   "timing": {
+    "screenshot": {
+     "n": 34,
+     "mean_ms": 821.0,
+     "max_ms": 1851.7
+    },
+    "double_click": {
+     "n": 5,
+     "mean_ms": 664.8,
+     "max_ms": 1379.6
+    },
+    "click": {
+     "n": 21,
+     "mean_ms": 354.2,
+     "max_ms": 680.1
+    },
+    "type": {
+     "n": 13,
+     "mean_ms": 881.4,
+     "max_ms": 2783.8
+    },
+    "key": {
+     "n": 13,
+     "mean_ms": 395.1,
+     "max_ms": 859.1
+    },
+    "triple_click": {
+     "n": 1,
+     "mean_ms": 535.1,
+     "max_ms": 535.1
+    },
+    "move": {
+     "n": 1,
+     "mean_ms": 421.1,
+     "max_ms": 421.1
+    }
+   }
+  }
+ ],
+ "stop_run": null,
+ "source": "measured (assembled from 1 saved run(s), no Stop run)"
+}

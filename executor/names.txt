@@ -1,0 +1,6 @@
+# People names masked in window titles and file names (one per line).
+Kim Minji
+Minji Kim
+Minji
+Mom
+Dad

@@ -1,0 +1,188 @@
+{
+ "measured_at": "2026-11-09T10:41:59+09:00",
+ "target": "desk1",
+ "skill": "proposal_packet",
+ "runs": 2,
+ "success": 2,
+ "success_rate": 1.0,
+ "median_s": 516.87,
+ "p90_s": 676.77,
+ "min_s": 356.96,
+ "max_s": 676.77,
+ "median_s_successful": 516.87,
+ "stop_honoured": null,
+ "stop_latency_s": null,
+ "model": "claude-sonnet-5-5",
+ "mode": "agent-ts (Vercel AI SDK, computer toolset; tools computer + report_step only) via the desktop bridge; deterministic verification: saved .ods, live deck via UNO, exported PDF text, NOTE.txt, Documents tree diff",
+ "per_action_ms": {
+  "screenshot": {
+   "n": 60,
+   "max_ms": 2704.6,
+   "mean_ms": 662.7
+  },
+  "key": {
+   "n": 33,
+   "max_ms": 1484.1,
+   "mean_ms": 398.0
+  },
+  "type": {
+   "n": 29,
+   "max_ms": 3532.4,
+   "mean_ms": 826.7
+  },
+  "double_click": {
+   "n": 12,
+   "max_ms": 556.6,
+   "mean_ms": 441.9
+  },
+  "click": {
+   "n": 31,
+   "max_ms": 783.6,
+   "mean_ms": 390.9
+  },
+  "triple_click": {
+   "n": 2,
+   "max_ms": 927.6,
+   "mean_ms": 714.4
+  }
+ },
+ "median_model_turns": 27.5,
+ "median_screenshots": 25.5,
+ "median_zooms": 3.5,
+ "median_computer_actions": 114.5,
+ "failures": [],
+ "results": [
+  {
+   "id": "run-20261109-102119-b95a",
+   "status": "done",
+   "seconds": 676.77,
+   "success": true,
+   "error": null,
+   "failed_checks": [],
+   "steps_at_s": {
+    "READ THE QUOTES": 0.001,
+    "UPDATE THE SHEET": 78.646,
+    "FILL THE DECK": 165.032,
+    "EXPORT FOR SIGNATURE": 254.219,
+    "LEAVE IT FOR YOU": 561.371
+   },
+   "step_details": {
+    "READ THE QUOTES": "Downtown Athletic Club $2,600 · MoveWell Studio $920 · Kickoff Coaching $540",
+    "UPDATE THE SHEET": "Lunchtime classes, 8 / mo → $920; total $4,060",
+    "FILL THE DECK": "Four cells filled, total $4,060",
+    "EXPORT FOR SIGNATURE": "proposal-172.pdf in For signature",
+    "LEAVE IT FOR YOU": "Deck unsaved in Impress, PDF and note in For signature — nothing sent"
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 659.75
+   },
+   "model_turns": 32,
+   "screenshots": 30,
+   "zooms": 4,
+   "computer_actions": 134,
+   "timing": {
+    "screenshot": {
+     "n": 35,
+     "mean_ms": 588.2,
+     "max_ms": 1577.9
+    },
+    "key": {
+     "n": 18,
+     "mean_ms": 402.1,
+     "max_ms": 1484.1
+    },
+    "type": {
+     "n": 17,
+     "mean_ms": 695.8,
+     "max_ms": 2433.2
+    },
+    "double_click": {
+     "n": 7,
+     "mean_ms": 463.7,
+     "max_ms": 556.6
+    },
+    "click": {
+     "n": 20,
+     "mean_ms": 393.6,
+     "max_ms": 783.6
+    },
+    "triple_click": {
+     "n": 1,
+     "mean_ms": 501.2,
+     "max_ms": 501.2
+    }
+   },
+   "interference": [
+    "run-20261109-102655-db13 fill_deck_from_sheet 10:26:55"
+   ]
+  },
+  {
+   "id": "run-20261109-103600-02ce",
+   "status": "done",
+   "seconds": 356.96,
+   "success": true,
+   "error": null,
+   "failed_checks": [],
+   "steps_at_s": {
+    "READ THE QUOTES": 0.001,
+    "UPDATE THE SHEET": 78.354,
+    "FILL THE DECK": 121.446,
+    "EXPORT FOR SIGNATURE": 214.424,
+    "LEAVE IT FOR YOU": 283.159
+   },
+   "step_details": {
+    "READ THE QUOTES": "Downtown Athletic Club $2,600 · MoveWell Studio $1,150 · Kickoff Coaching $580",
+    "UPDATE THE SHEET": "Onboarding week $540 → $580 (Kickoff Coaching); new Total $4,330",
+    "FILL THE DECK": "Slide 6 reads $2,600 · $1,150 · $580 · Total $4,330 (deck not saved)",
+    "EXPORT FOR SIGNATURE": "Exported to For signature/proposal-172.pdf (deck still unsaved)",
+    "LEAVE IT FOR YOU": "NOTE.txt saved in For signature"
+   },
+   "agent": {
+    "exit_code": 0,
+    "seconds": 328.02
+   },
+   "model_turns": 23,
+   "screenshots": 21,
+   "zooms": 3,
+   "computer_actions": 95,
+   "timing": {
+    "key": {
+     "n": 15,
+     "mean_ms": 393.1,
+     "max_ms": 801.7
+    },
+    "type": {
+     "n": 12,
+     "mean_ms": 1012.1,
+     "max_ms": 3532.4
+    },
+    "screenshot": {
+     "n": 25,
+     "mean_ms": 767.1,
+     "max_ms": 2704.6
+    },
+    "double_click": {
+     "n": 5,
+     "mean_ms": 411.5,
+     "max_ms": 468.6
+    },
+    "click": {
+     "n": 11,
+     "mean_ms": 386.0,
+     "max_ms": 536.6
+    },
+    "triple_click": {
+     "n": 1,
+     "mean_ms": 927.6,
+     "max_ms": 927.6
+    }
+   },
+   "interference": []
+  }
+ ],
+ "stop_run": null,
+ "source": "measured (assembled from 2 saved run(s), no Stop run)",
+ "interference_runs": 1,
+ "interference_note": "runs whose window overlapped a foreign run on the same desk (the mini's executor :8790, app flow); these are kept in the numbers, see results[].interference"
+}

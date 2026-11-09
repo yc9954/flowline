@@ -1,0 +1,27 @@
+{
+  "source": "prototype",
+  "board_id": "northwind",
+  "branch": 4,
+  "zip": "78704",
+  "name": "South Austin",
+  "playbook_from": "branches 2 and 3",
+  "steps": 41,
+  "headline": "Opening moves up 18 days. Two of four blockers are already gone.",
+  "opens": "2027-01-12",
+  "was": "2027-01-30",
+  "today": "2026-12-11",
+  "workstreams": [
+    { "name": "Lease signed", "owner": "Director", "agent": true, "start": "2026-11-11", "end": "2026-11-26", "status": "done", "saved_d": 9 },
+    { "name": "Facility registration", "owner": "BranchMgr", "agent": true, "start": "2026-11-19", "end": "2026-12-13", "status": "waiting", "due": "2026-12-13" },
+    { "name": "Interior build-out", "owner": "PM", "agent": false, "start": "2026-11-26", "end": "2026-12-28", "status": "on_track" },
+    { "name": "Equipment delivered", "owner": "Finance", "agent": true, "start": "2026-11-29", "end": "2026-12-27", "status": "on_track", "saved_d": 9 },
+    { "name": "Hire 4 trainers", "owner": "BranchMgr", "agent": true, "start": "2026-11-23", "end": "2026-12-24", "status": "on_track", "progress": [18, 31] },
+    { "name": "Pre-sale memberships", "owner": "Sales", "agent": false, "start": "2026-12-21", "end": "2027-01-12", "status": "todo" }
+  ],
+  "blockers": [
+    { "id": "B1", "title": "Lease review", "status": "cleared", "saved_d": 9, "was": "11 days with outside counsel at branch 3.", "agent": "Drafted the review from the last two leases’ redlines.", "decided_by": "Director", "surface": "inbox" },
+    { "id": "B2", "title": "Equipment order over $25k", "status": "cleared", "saved_d": 9, "was": "Sat 6 days waiting for a finance sign-off.", "agent": "Matched vendor and terms to branch 3; one-line approval.", "decided_by": "Finance", "surface": "inbox" },
+    { "id": "B3", "title": "Occupancy and health-club permit", "status": "waiting_on_you", "due": "2026-12-13", "was": "Filled by hand, sent back once at branch 2.", "agent": "Pre-filled the form from branch 3’s accepted filing.", "decided_by": "BranchMgr", "surface": "notch" },
+    { "id": "B4", "title": "Hire 4 trainers", "status": "in_progress", "was": "Took 31 days at branch 3.", "agent": "Reposted branch 3’s ad; shortlisted 9 past applicants.", "decided_by": "BranchMgr", "surface": "weekly_digest" }
+  ]
+}

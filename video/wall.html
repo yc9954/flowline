@@ -1,0 +1,205 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Flowline — six desks, filmed</title>
+<!-- FILMING RIG, not a product page. Shows the six desks side by side for the demo. Frames come straight from the
+     executor's frame endpoint (through the API proxy); the run state is pushed in by record_board.mjs via window.__setFleet
+     (no CORS, nothing of this lives in the board). The board itself never shows a person's screen. -->
+<style>
+  @font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSansSemiBold-600.ttf'); font-weight: 600; }
+  @font-face { font-family: 'Instrument Sans'; src: url('fonts/InstrumentSans-400.ttf'); font-weight: 400; }
+  @font-face { font-family: 'Geist Mono'; src: url('fonts/GeistMono-400.ttf'); }
+  html, body { margin: 0; width: 1920px; height: 1080px; background: #0b0b0d; color: #fff; font-family: 'Instrument Sans', system-ui, sans-serif; overflow: hidden; }
+  .top { position: absolute; left: 40px; right: 40px; top: 26px; height: 40px; display: flex; align-items: center; justify-content: space-between;
+         font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: 1.2px; text-transform: uppercase; color: #9aa3a8; }
+  .top b { color: #fff; font-weight: 400; }
+  .top i { display: inline-block; width: 8px; height: 8px; background: #6D5DF6; border-radius: 1px; margin-right: 12px; vertical-align: middle; }
+  .grid { position: absolute; left: 40px; right: 40px; top: 86px; bottom: 40px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 22px; }
+  .tile { position: relative; border-radius: 10px; overflow: hidden; background: #15161a; }
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .3s; }
+  .tile img.on { opacity: 1; }
+  .tile canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity .35s; }
+  .tile.running canvas { opacity: 1; }
+  .tile.left_for_you { box-shadow: inset 0 0 0 2px #0F766E; }
+  .tag { position: absolute; left: 14px; bottom: 12px; display: flex; gap: 10px; align-items: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+         background: rgba(0,0,0,.72); padding: 7px 10px; border-radius: 4px; color: #fff; }
+  .tag .state { color: #9aa3a8; }
+  .tag.running .state { color: #B9ADF3; }
+  .tag.left_for_you .state { color: #5EEAD4; }
+  .step { position: absolute; right: 14px; top: 12px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; background: rgba(0,0,0,.72); padding: 7px 10px; border-radius: 4px; color: #fff; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cursor { position: absolute; left: 0; top: 0; transform: translate(-9999px, -9999px); transition: transform .35s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+  .cursor svg { width: 20px; height: 20px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
+  .cursor .pill { position: absolute; left: 18px; top: 16px; white-space: nowrap; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .8px; padding: 4px 8px; border-radius: 999px; color: #fff; }
+  .cursor .ring { position: absolute; left: -10px; top: -10px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid currentColor; opacity: 0; }
+  .cursor.click .ring { animation: ring .55s ease-out; }
+  @keyframes ring { from { transform: scale(.4); opacity: .9; } to { transform: scale(2.2); opacity: 0; } }
+</style></head>
+<body>
+<div class="top"><span><i></i><b>Northwind Fitness</b> · six desks, filmed side by side for this demo</span><span id="counters">—</span><span>the board never shows a screen</span></div>
+<div class="grid" id="grid"></div>
+<script id="frag" type="x-shader">// Flowline "agent is using this screen" edge glow — reference fragment shader (GLSL ES 1.0).
+// A wavy, noise-driven gradient glow hugging the edges of a rectangle (a screen, or a live desk frame),
+// with a bright point orbiting the perimeter and a slow breathing pulse. Ported from the GradientOrb shader
+// (blue / purple / orange, YIQ hue rotation, hash simplex noise). Both renderers must match this look:
+//   board/  → WebGL canvas over each fleet card and the large desk view (uniform thickness ≈ 26 px)
+//   agent-mac/ → Metal port (SwiftUI .colorEffect / CAMetalLayer) on a click-through full-screen window (thickness ≈ 90 px)
+// Uniforms: iTime (s), iResolution (px), hue (deg, 0 = as drawn), thickness (px, base glow depth).
+// Output is premultiplied RGBA; everything beyond ~1.4 × thickness from the edge is fully transparent.
+
+precision highp float;
+
+uniform float iTime;
+uniform vec2  iResolution;
+uniform float hue;
+uniform float thickness;
+
+varying vec2 vUv;
+
+vec3 rgb2yiq(vec3 c) {
+  return vec3(dot(c, vec3(0.299, 0.587, 0.114)), dot(c, vec3(0.596, -0.274, -0.322)), dot(c, vec3(0.211, -0.523, 0.312)));
+}
+vec3 yiq2rgb(vec3 c) {
+  return vec3(c.x + 0.956 * c.y + 0.621 * c.z, c.x - 0.272 * c.y - 0.647 * c.z, c.x - 1.106 * c.y + 1.703 * c.z);
+}
+vec3 adjustHue(vec3 color, float hueDeg) {
+  float h = radians(hueDeg);
+  vec3 yiq = rgb2yiq(color);
+  float ca = cos(h), sa = sin(h);
+  yiq.yz = vec2(yiq.y * ca - yiq.z * sa, yiq.y * sa + yiq.z * ca);
+  return yiq2rgb(yiq);
+}
+
+vec3 hash33(vec3 p3) {
+  p3 = fract(p3 * vec3(0.1031, 0.11369, 0.13787));
+  p3 += dot(p3, p3.yxz + 19.19);
+  return -1.0 + 2.0 * fract(vec3(p3.x + p3.y, p3.x + p3.z, p3.y + p3.z) * p3.zyx);
+}
+float snoise3(vec3 p) {
+  const float K1 = 0.333333333;
+  const float K2 = 0.166666667;
+  vec3 i = floor(p + (p.x + p.y + p.z) * K1);
+  vec3 d0 = p - (i - (i.x + i.y + i.z) * K2);
+  vec3 e = step(vec3(0.0), d0 - d0.yzx);
+  vec3 i1 = e * (1.0 - e.zxy);
+  vec3 i2 = 1.0 - e.zxy * (1.0 - e);
+  vec3 d1 = d0 - (i1 - K2);
+  vec3 d2 = d0 - (i2 - K1);
+  vec3 d3 = d0 - 0.5;
+  vec4 h = max(0.6 - vec4(dot(d0, d0), dot(d1, d1), dot(d2, d2), dot(d3, d3)), 0.0);
+  vec4 n = h * h * h * h * vec4(dot(d0, hash33(i)), dot(d1, hash33(i + i1)), dot(d2, hash33(i + i2)), dot(d3, hash33(i + 1.0)));
+  return dot(vec4(31.316), n);
+}
+
+float light1(float intensity, float attenuation, float dist) { return intensity / (1.0 + dist * attenuation); }
+float light2(float intensity, float attenuation, float dist) { return intensity / (1.0 + dist * dist * attenuation); }
+
+const vec3 baseColor0 = vec3(0.239, 0.353, 1.0);   // blue
+const vec3 baseColor1 = vec3(0.616, 0.0, 1.0);     // purple
+const vec3 baseColor2 = vec3(1.0, 0.373, 0.122);   // orange
+
+void main() {
+  vec2 p = vUv * iResolution;                 // pixel position
+  vec2 h = iResolution * 0.5;
+  vec2 q = abs(p - h) - h;
+  float sd = -max(q.x, q.y);                  // distance inward from the nearest edge, px (≥ 0 inside)
+
+  // slow waves along the edge + finer ripple; breathing pulse
+  vec2 k = p / iResolution.y;
+  float n0 = snoise3(vec3(k * 1.6, iTime * 0.35)) * 0.5 + 0.5;
+  float n1 = snoise3(vec3(k * 4.0 + 7.0, iTime * 0.6)) * 0.5 + 0.5;
+  float pulse = sin(iTime * 1.5) * 0.06;
+  float th = thickness * (0.65 + 0.6 * n0 + 0.2 * n1 + pulse);   // wavy glow depth, px
+
+  float d = sd / th;                                              // 0 at the edge → 1 at the inner boundary
+  float glow = light1(1.0, 6.0, d) * smoothstep(1.4, 0.0, d);
+
+  // a bright point orbiting the perimeter (one lap ≈ 7.9 s)
+  float ang = atan(p.y - h.y, p.x - h.x);
+  float cl = cos(ang - iTime * 0.8) * 0.5 + 0.5;
+  float hi = light2(1.2, 3.0, (1.0 - cl) * 3.0) * smoothstep(1.0, 0.0, d);
+
+  vec3 col = mix(adjustHue(baseColor1, hue), adjustHue(baseColor2, hue), cl);
+  col = mix(col, adjustHue(baseColor0, hue), n0);
+  col = col * glow + vec3(0.6) * hi * glow;
+  col = clamp(col, 0.0, 1.0);
+  float alpha = max(max(col.r, col.g), col.b);
+  gl_FragColor = vec4(col, alpha);            // premultiplied
+}
+</script>
+<script>
+const q = new URLSearchParams(location.search);
+const API = q.get('api') || 'http://localhost:18787';
+const COLORS = ['#6D5DF6', '#3B82F6', '#F97316', '#14B8A6', '#EC4899', '#84CC16'];
+const DESKS = ['desk1', 'desk2', 'desk3', 'desk4', 'desk5', 'desk6'];
+const tiles = {};
+const grid = document.getElementById('grid');
+DESKS.forEach((d, i) => {
+  const t = document.createElement('div'); t.className = 'tile'; t.dataset.target = d;
+  t.innerHTML = `<img alt=""><canvas></canvas><div class="cursor" style="color:${COLORS[i]}"><div class="ring"></div><svg viewBox="0 0 24 24"><path d="M4 3l16 7-7 2-2 7z" fill="${COLORS[i]}" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="pill" style="background:${COLORS[i]}">Flowline</span></div><div class="tag"><span class="who">${d}</span><span class="state">waiting</span></div><div class="step"></div>`;
+  grid.appendChild(t);
+  tiles[d] = { el: t, img: t.querySelector('img'), canvas: t.querySelector('canvas'), cursor: t.querySelector('.cursor'), pill: t.querySelector('.pill'), who: t.querySelector('.who'), state: t.querySelector('.state'), step: t.querySelector('.step'), running: false, lastKey: '' };
+});
+
+// frames: 2 fps per desk, swap only on load
+function pump(d) {
+  const t = tiles[d]; const im = new Image();
+  im.onload = () => { t.img.src = im.src; t.img.classList.add('on'); setTimeout(() => pump(d), 450); };
+  im.onerror = () => setTimeout(() => pump(d), 1000);
+  im.src = `${API}/api/desk/${d}/frame.jpg?w=960&t=${Date.now()}`;
+}
+DESKS.forEach(pump);
+
+// glow: the reference shader, one GL context per tile, drawn only while running
+const fs = document.getElementById('frag').textContent;
+const vs = 'attribute vec2 position;varying vec2 vUv;void main(){vUv=position*0.5+0.5;gl_Position=vec4(position,0.,1.);}';
+function glow(canvas) {
+  const gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false });
+  const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); return o; };
+  const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(p); gl.useProgram(p);
+  const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(p, 'position'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  const u = { t: gl.getUniformLocation(p, 'iTime'), r: gl.getUniformLocation(p, 'iResolution'), h: gl.getUniformLocation(p, 'hue'), th: gl.getUniformLocation(p, 'thickness') };
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+  return (time) => {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(u.t, time); gl.uniform2f(u.r, w, h); gl.uniform1f(u.h, 0); gl.uniform1f(u.th, 30);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  };
+}
+const draws = Object.fromEntries(DESKS.map((d) => [d, glow(tiles[d].canvas)]));
+const t0 = performance.now();
+(function loop() { const time = (performance.now() - t0) / 1000; for (const d of DESKS) if (tiles[d].running) draws[d](time); requestAnimationFrame(loop); })();
+
+// state pushed by the recorder (or polled when ?poll=1 and CORS allows)
+window.__setFleet = (data) => {
+  const c = data.counters || {};
+  document.getElementById('counters').textContent = `${c.running ?? 0} running · ${c.done ?? 0} left for people · ${c.actions ?? 0} actions · saved without review ${c.saved_without_review ?? 0}`;
+  for (const row of data.people || []) {
+    const t = tiles[row.person.target]; if (!t) continue;
+    const run = row.run; const state = row.state || 'waiting';
+    t.running = state === 'running';
+    t.el.className = `tile ${state}`;
+    t.who.textContent = `${row.person.role} · ${row.person.name}`;
+    t.state.textContent = state.replace(/_/g, ' ') + (run && run.elapsed_s ? ` · ${Math.floor(run.elapsed_s / 60)}:${String(Math.floor(run.elapsed_s % 60)).padStart(2, '0')}` : '');
+    t.el.querySelector('.tag').className = `tag ${state}`;
+    const now = (run?.steps || []).find((s) => s.status === 'now');
+    t.step.textContent = now ? `${now.n}/${run.steps.length} ${now.label}${now.detail ? ' · ' + now.detail : ''}` : (run?.last_action || '');
+    // cursor from the newest action with coordinates (agent space ≤1280×720 → tile box)
+    const acts = (run?.recent_actions || []).filter((a) => a.x != null);
+    const a = acts.length ? acts[acts.length - 1] : run?.pointer;
+    if (t.running && a) {
+      const W = t.el.clientWidth, H = t.el.clientHeight;
+      const x = (a.x / 1280) * W, y = (a.y / 720) * H;
+      t.cursor.style.transform = `translate(${x}px, ${y}px)`;
+      const key = `${a.at}|${a.text}`;
+      if (key !== t.lastKey) { t.lastKey = key; t.cursor.classList.remove('click'); void t.cursor.offsetWidth; if (/click/.test(a.kind || a.text || '')) t.cursor.classList.add('click'); }
+      const typed = /^type /.test(a.text || '') ? a.text.replace(/^type\s*/, '') : '';
+      t.pill.textContent = typed ? `Flowline · ${row.person.role} · ${typed}` : `Flowline · ${row.person.role}`;
+    } else {
+      t.cursor.style.transform = 'translate(-9999px,-9999px)';
+    }
+  }
+};
+if (q.get('poll')) setInterval(async () => { try { window.__setFleet(await (await fetch(`${API}/api/boards/northwind/fleet`)).json()); } catch {} }, 1000);
+</script>
+</body></html>
