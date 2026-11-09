@@ -1,0 +1,74 @@
+{
+ "source": "not_available",
+ "recomputed_at": "2026-11-09T23:56:11+09:00",
+ "board_id": "clinic",
+ "city": "",
+ "industries": [
+  {
+   "naics": "713940",
+   "name": "Fitness centers"
+  },
+  {
+   "naics": "621111",
+   "name": "Physician offices"
+  },
+  {
+   "naics": "722515",
+   "name": "Coffee and snack bars"
+  }
+ ],
+ "default": "621210",
+ "records": 135,
+ "branches": 0,
+ "reason": "NAICS 621210 is not in the pre-computed US Census backtest (713940 fitness, 621111 physicians, 722515 coffee); add it to demand.TARGETS and run `python -m flowline1 demand --recompute`.",
+ "by_industry": {
+  "621210": {
+   "board_id": "clinic",
+   "city": "",
+   "industries": [
+    {
+     "naics": "713940",
+     "name": "Fitness centers"
+    },
+    {
+     "naics": "621111",
+     "name": "Physician offices"
+    },
+    {
+     "naics": "722515",
+     "name": "Coffee and snack bars"
+    }
+   ],
+   "industry": "621210",
+   "headline": "No demand model for NAICS 621210 yet.",
+   "sub": "NAICS 621210 is not in the pre-computed US Census backtest (713940 fitness, 621111 physicians, 722515 coffee); add it to demand.TARGETS and run `python -m flowline1 demand --recompute`.",
+   "zips_considered": 0,
+   "branches": 0,
+   "records": 135,
+   "rank_of": 0,
+   "opening": {
+    "date": "",
+    "was": "",
+    "blockers_cleared": 0
+   },
+   "zips": [],
+   "backtest": {
+    "frozen_at": 2020,
+    "scored_on": 2023,
+    "n_zips": 0,
+    "lift": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "by_industry": [],
+    "pooled": {
+     "lift": 0.0,
+     "population_lift": 0.0
+    }
+   },
+   "source": "not_available",
+   "reason": "NAICS 621210 is not in the pre-computed US Census backtest (713940 fitness, 621111 physicians, 722515 coffee); add it to demand.TARGETS and run `python -m flowline1 demand --recompute`."
+  }
+ }
+}

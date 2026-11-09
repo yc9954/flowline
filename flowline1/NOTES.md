@@ -106,3 +106,60 @@ directory) or `FLOWLINE_ROOT`; downloads go under `<root>/data/raw`.
 - The world runs on wall-clock arithmetic in local time; DST (1 Nov 2026) is handled by comparing wall-clock times, not UTC.
 - `check` reports the Director sign-offs/day calibration error at ~19 % (the fitted send-back rate for large quotes comes from a
   handful of cases); the three primary KPIs are within 6 %.
+
+## `fit` — the ten files from any company's records (branch `generalize`)
+
+```bash
+uv run python -m flowline1 fit --records <export.json|.ndjson> --out ../data/boards/<id>/out [--industry <naics>] \
+    [--process <case prefix>] [--seeds 20] [--plans auto|plans.json] [--since YYYY-MM-DD] [--approvals approvals.json] \
+    [--start-step NAME] [--end-step NAME] [--board-id ID] [--city "Austin, TX"] [--zips 786,787] [--bootstrap 20]
+```
+No world: `miner.mine(records, MineOptions(...))` learns the process (most-stepped case prefix), the measured cycle
+(first main-path step done by the team → the common terminal step; `--start-step/--end-step` override), the map rows
+(one per role run on the main path), the outside parties (`waiting_on` roles that never record: Client, Insurer...) and the
+working hours (5th/95th percentile of hands-on times). `generic.fit` then calibrates a simulator from the mining alone:
+lognormal hands-on minutes per step (first pass and redo apart), every simulated case replays an observed trace (its
+parallel branches, send-back loops and amount), hand-off waits are sampled from the observed business-minute gaps per
+transition, an approver whose start times cluster at one hour is a batching approver, outside parties are wall-clock
+lognormals, arrivals are Poisson at the measured rate. CRN: `engine.CaseRandom` per case. **No capacity model** (waits are
+replayed as measured; one person's freed hours do not shorten another's queue) — stated in `model.json.limits`.
+
+Plans are generated from the mining: approval options (as recorded · twice a day when the approver batches once ·
+auto-approve under a round threshold ~65 % of recorded amounts fall under) × work options (by hand · shared template for
+the artefact the layout send-backs point at, else the most used document tool · agent does the most repeated hands-on step,
+the person reviews). Effects are **relative means over every replayed case** (with 20–30 traces the median flips between
+the before/after-the-weekend modes) applied to the measured baseline; ranges are p10–p90 of per-rerun means; a plan within
+1 % of the best is a tie broken by how often it won. Declared assumptions: agent 1 min + 3 min review after the usual
+hand-off wait, 5 % undone, send-backs unchanged (the gain is the person's hours, shown in `results.who`); a template only
+removes send-back loops whose recorded reason mentions layout/format/template/form; auto-approval skips the approval step
+and the send-backs it caused.
+
+Baseline = completed cases that *started* before `--since` (or the first approval's date), their later steps included;
+"after" = cases started after it. `results.predicted` is the approved plan when it can be matched (id, rules, or name with
+"$5k" == "$5,000"), else the best plan. `model.json.sim_checks` are the checks that need no hidden truth: baseline replay
+vs measured (hours, waiting share, completed/day, sign-offs/day) and, once measured, hours after the change; plus
+`calibration.plan_stability` and `calibration.miner_stability` (20 random 80 % subsets of the completed cases: same
+bottleneck? median spread). Planted-bottleneck rank, planted-synonym precision/recall and D1 are listed under
+`not_applicable`. Expansion: `--industry` in {713940, 621111, 722515} → the Census backtest (Austin ZIPs by default; `--zips`,
+`--city`), else `source: "not_available"` with the reason. Opening: learned only from cases whose prefix looks like an
+opening/launch, else `state: "no_data_yet"`. Sparse data (< 20 records, < 2 roles or < 3 completed cases): finding/ontology
+from what there is, plans/results/history `state: "not_enough_data"` with `needed`/`have`; never crashes (0 records → stubs).
+
+Validator deviations (validate.py): Role is any non-empty string (a clinic has hygienists — the API's `Role` Literal in
+api/api/models.py would need the same relaxation to serve such a board), `source` may be `"not_available"`, Record.source is
+optional, pages may carry `state` ∈ {not_enough_data, no_data_yet, awaiting_measurement} (plans may then be empty).
+`build` is unchanged: its ten files are byte-identical before and after this branch (`/tmp/fl-build-{before,after}`).
+
+**Northwind fit vs build** (`data/boards/northwind-fit/out`, 309 records from the API, `--approvals` with the chain's change
+date 2026-11-30): same 22 baseline cases; learned cycle Qualify → Send = 115.0 h (build's Brief → Send = 108.8 h; with
+`--start-step "Write brief" --end-step Send` the fit gives exactly 108.8 h and measured-after exactly 87.7 h), 78 % waiting
+both, bottleneck Quote approval both (22.7 h vs 24.7 h on the map), identical send-back table, same repeated step
+(fill pricing 8.5×/wk, 16 min). Baseline replay 119.4 h vs 115.0 measured (3.8 %). Plans are more conservative than the
+engine's: auto-approve −6 % (build −7 %), twice a day −5 % (build −14 %: the engine's Design queue), agent −1 % (build −5 %:
+the engine assumes the agent removes figure send-backs), best = auto-approve + deck template −9 % (build auto + agent −16 %).
+Measured after the change 96.4 h over 6 proposals (Qualify → Send) vs the approved plan's prediction 106.9 h (96.2–117.3) —
+in range; on Brief → Send 87.7 h vs 100.9 (91.2–111.1) — 3.5 h outside: the fit under-predicts the agent's effect.
+
+**Clinic** (`examples/make_clinic_records.py`, stdlib only, no world.py: 135 records, 5 people, 29 pre-auths, 8 weeks):
+bottleneck = Insurer wait (49 h per pre-auth, external), baseline 90.7 h, 98 % waiting; best plan auto-approve claims under
+$500 + agent does the eligibility check (−8.6 %, held 15/20); expansion `not_available` for NAICS 621210; 4/4 replay checks.

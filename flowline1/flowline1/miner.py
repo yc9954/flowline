@@ -5,12 +5,17 @@ a small table of confirmed synonyms, then token similarity; two names merge only
 Mining: group hands-on steps by case, merge a step that continued across days into one execution, build the
 directly-follows graph; wait = next start - previous end (Mon-Fri 24 h calendar); a back edge is an earlier
 step reappearing in the same case; a step that ends outside working hours owns the overnight wait after it.
+
+`mine(records)` keeps the Northwind defaults (board, process prefix, cycle = Write brief -> Send, condensed map
+groups, 09-18 calendar). `mine(records, MineOptions(...))` is the generic form used by `fit`: the start/end steps,
+the map rows and the external parties are learned from the records when not given.
 """
 from __future__ import annotations
 
 import re
 import statistics
 from collections import Counter, defaultdict
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 
 import numpy as np
@@ -51,11 +56,33 @@ MAP_GROUPS = [
 REASONS = {"changes": "Review changes", "revise quote": "Revise quote", "below 25% margin": "Margin under 25%",
            "missing figures": "Missing figures", "sent back": "Sent back"}
 ARTIFACT = {"quote": "quote", "docs": "brief (doc)", "sheets": "pricing sheet", "slides": "deck", "pdf": "PDF", "mail": "email",
-            "calendar": "calendar", "meet": "call", "crm": "CRM", "drive": "case-study folder", "agent": "agent run"}
-AGENT_TOOLS = {"sheets", "slides", "mail", "pdf", "docs", "drive"}
+            "calendar": "calendar", "meet": "call", "crm": "CRM", "drive": "case-study folder", "agent": "agent run",
+            "forms": "form", "phone": "call", "portal": "portal", "pms": "practice system", "ehr": "chart", "fax": "fax",
+            "scanner": "scan", "browser": "web form"}
+AGENT_TOOLS = {"sheets", "slides", "mail", "pdf", "docs", "drive", "forms", "portal", "browser", "pms", "ehr", "fax"}
+NON_ARTIFACT_TOOLS = {"mail", "calendar", "meet", "crm", "agent", "phone"}
 
 _amount_re = re.compile(r"\$\s?([\d,]+(?:\.\d+)?)")
 _id_re = re.compile(r"#\d+|\bv\d+\b|\b\d[\d,.]*\b")
+
+
+@dataclass
+class MineOptions:
+    """What the miner needs to know about a company. Defaults = the Northwind demo; None = learn it from the records."""
+
+    board: str = BOARD
+    process_prefix: str = "proposal"  # case ids start with this ("proposal #167")
+    process_name: str = "client proposals"
+    start_step: str | None = "Write brief"  # canonical name of the step that opens the measured cycle; None = first step
+    end_step: str | None = "Send"  # canonical name of the step that closes it; None = the common terminal step
+    map_groups: list | None = field(default_factory=lambda: list(MAP_GROUPS))  # None = one row per role run on the main path
+    external_roles: set | None = field(default_factory=lambda: {"Client"})  # None = waiting_on parties that never record
+    calendar: E.Calendar = field(default_factory=lambda: E.DEFAULT_CALENDAR)
+    version: int = 15
+    branches: int = 3
+    source: str = "simulated"
+    unit: str = "proposal"  # the noun for one case in headlines
+    small_threshold_usd: float = SMALL_QUOTE_USD
 
 
 def stem(tok: str) -> str:
@@ -121,6 +148,7 @@ class Resolver:
         self.cluster_of: dict[str, int] = {}
         self.display: dict[int, str] = {}
         self.members: dict[int, list[str]] = {}
+        self._head_of: dict[str, str] = {}
 
     def fit(self, names: Counter) -> "Resolver":
         heads = {}
@@ -210,26 +238,40 @@ def _parse(ts: str) -> datetime:
     return datetime.fromisoformat(ts).replace(tzinfo=None)
 
 
-def load(records: list[dict]) -> tuple[list[Exec], Resolver, datetime, dict]:
+def internal_roles(records: list[dict]) -> set[str]:
+    return {r["role"] for r in records}
+
+
+def external_parties(records: list[dict]) -> set[str]:
+    """Roles people wait on that never record anything themselves (clients, insurers, suppliers...)."""
+    internal = internal_roles(records)
+    return {s.get("waiting_on") for r in records for s in r["steps"]
+            if s.get("kind") == "waiting" and s.get("waiting_on") and s.get("waiting_on") not in internal}
+
+
+def load(records: list[dict], external_roles: set | None = None) -> tuple[list[Exec], Resolver, datetime, dict]:
     """Flatten records to merged step executions in minutes from the Monday of the first record's week."""
+    ext = {"Client"} if external_roles is None else set(external_roles)
     first = min(_parse(r["covers"]["start"]) for r in records)
     origin = (first - timedelta(days=first.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
-    counts = Counter(s["name"] for r in records for s in r["steps"] if s["kind"] == "hands_on" or s.get("waiting_on") == "Client")
+    counts = Counter(s["name"] for r in records for s in r["steps"] if s["kind"] == "hands_on" or s.get("waiting_on") in ext)
     res = Resolver().fit(counts)
     chunks = []
     for r in records:
         for s in r["steps"]:
-            external = s["kind"] == "waiting" and s.get("waiting_on") == "Client"
+            external = s["kind"] == "waiting" and s.get("waiting_on") in ext
             if s["kind"] != "hands_on" and not external:
                 continue
             a = E.dt_to_minutes(_parse(s["start"]), origin)
             b = E.dt_to_minutes(_parse(s["end"]), origin)
+            if b < a:
+                a, b = b, a
             _, qual = split_qualifier(s["name"])
-            chunks.append(Exec(case=s.get("case_id", ""), cluster=res.cluster(s["name"]), person=r["person_id"],
-                               role="Client" if external else r["role"], start=a, end=b, hands_min=0 if external else b - a,
-                               qualifier=qual, amount=amount_of(s["name"]), tools=tuple(s.get("tools", [])),
+            chunks.append(Exec(case=s.get("case_id") or "", cluster=res.cluster(s["name"]), person=r["person_id"],
+                               role=s.get("waiting_on") if external else r["role"], start=a, end=b, hands_min=0 if external else b - a,
+                               qualifier=qual, amount=amount_of(s["name"]), tools=tuple(s.get("tools") or []),
                                repeats=s.get("repeats"), external=external, handoff_from=s.get("handoff_from"),
-                               by_agent="agent" in s.get("tools", []), raw=s["name"], segs=[(a, b)]))
+                               by_agent="agent" in (s.get("tools") or []), raw=s["name"], segs=[(a, b)]))
     chunks.sort(key=lambda c: (c.case, c.start))
     merged: list[Exec] = []
     for c in chunks:
@@ -246,7 +288,7 @@ def load(records: list[dict]) -> tuple[list[Exec], Resolver, datetime, dict]:
             # a sequential (non-overlapping) step in between means this is a new execution, not a continuation
             ok = all(x.start < m.end - 1 or x.external for x in merged[idx + 1:])
         if ok:
-            m.end = c.end
+            m.end = max(m.end, c.end)
             m.hands_min += c.hands_min
             m.qualifier = m.qualifier or c.qualifier
             m.segs.append((c.start, c.end))
@@ -255,14 +297,20 @@ def load(records: list[dict]) -> tuple[list[Exec], Resolver, datetime, dict]:
     merged.sort(key=lambda c: (c.case, c.start))
     meta = {"records": len(records), "people": len({r["person_id"] for r in records}),
             "weeks": len({_parse(r["date"] + "T00:00:00").isocalendar()[:2] for r in records}),
-            "roles": {r["person_id"]: r["role"] for r in records}}
+            "roles": {r["person_id"]: r["role"] for r in records}, "external": sorted(x for x in ext if x)}
     return merged, res, origin, meta
 
 
 # ----------------------------------------------------------------------------- mining
-def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
-    execs, res, origin, meta = load(records)
-    proc = [e for e in execs if e.case.startswith(process_prefix)]
+def mine(records: list[dict], opts: MineOptions | None = None, process_prefix: str | None = None) -> dict:
+    o = opts or MineOptions()
+    if process_prefix is not None:
+        o = MineOptions(**{**o.__dict__, "process_prefix": process_prefix})
+    cal = o.calendar
+    ext_roles = o.external_roles if o.external_roles is not None else external_parties(records)
+    execs, res, origin, meta = load(records, ext_roles)
+    internal = set(meta["roles"].values())
+    proc = [e for e in execs if e.case.startswith(o.process_prefix)]
     by_case: dict[str, list[Exec]] = defaultdict(list)
     for e in proc:
         by_case[e.case].append(e)
@@ -286,8 +334,6 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
     case_rows = []
     approval_starts = []
 
-    send_cluster = _find_cluster(res, "send")
-    brief_cluster = _find_cluster(res, "write brief")
     # canonical order: median relative position of each node's first occurrence in a case
     first_pos: dict[int, list[float]] = defaultdict(list)
     for seq in by_case.values():
@@ -298,6 +344,30 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
                 seen_first.add(e.cluster)
                 first_pos[e.cluster].append(E.weekday_minutes(t0, e.start) / 60)
     order = {c: float(np.median(v)) for c, v in first_pos.items()}
+
+    # the measured cycle: start step -> end step (given, or learned: the first / the common terminal step done by the
+    # team). Coverage is counted over cases that have ended (no activity in the last 7 days of the records), so a
+    # case still running at the end of the window does not hide the terminal step.
+    last_t = max((e.end for e in proc), default=0.0)
+    ended = {case for case, seq in by_case.items() if last_t - max(e.end for e in seq) > 7 * E.DAY} or set(by_case)
+    coverage = {c: len({e.case for e in ex if e.case in ended}) / max(len(ended), 1) for c, ex in node_execs.items()}
+
+    def _event_like(ex: list[Exec]) -> bool:  # a client's email or form, recorded by whoever received it
+        durs = [e.hands_min for e in ex if not e.external]
+        from_ext = sum(1 for e in ex if e.handoff_from and e.handoff_from in ext_roles)
+        return bool(durs) and float(np.median(durs)) <= 6 and from_ext > 0.5 * len(ex)
+
+    internal_nodes = [c for c, ex in node_execs.items() if not all(e.external for e in ex) and not _event_like(ex)]
+    common = [c for c in internal_nodes if coverage[c] >= 0.5] or internal_nodes
+    if o.start_step is not None:
+        start_cluster = _find_cluster(res, o.start_step)
+    else:
+        start_cluster = min(common, key=lambda c: order.get(c, 0.0)) if common else None
+    if o.end_step is not None:
+        end_cluster = _find_cluster(res, o.end_step)
+    else:
+        end_cluster = max(common, key=lambda c: order.get(c, 0.0)) if common else None
+    send_cluster, brief_cluster = end_cluster, start_cluster
 
     for case, seq in by_case.items():
         seen: set[int] = set()
@@ -317,22 +387,22 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
                 kind = "back"
             else:
                 kind = "then"
-            p_free = p.end if (E.is_work_time(p.end) or p.external) else E.to_work(p.end)
+            p_free = p.end if (cal.is_work_time(p.end) or p.external) else cal.to_work(p.end)
             tail = E.weekday_minutes(p.end, p_free)  # owned by p
             gap = 0.0 if parallel else E.weekday_minutes(max(p.end, p_free), e.start)  # owned by e
             if p.external:  # the client's time is the client's
                 tail, gap = gap + tail, 0.0
             if not parallel:
-                wait_before[e.cluster].append(gap + (0.0 if E.is_work_time(e.end) or e.external else
-                                                     E.weekday_minutes(e.end, E.to_work(e.end))))
+                wait_before[e.cluster].append(gap + (0.0 if cal.is_work_time(e.end) or e.external else
+                                                     E.weekday_minutes(e.end, cal.to_work(e.end))))
                 wait_after[p.cluster].append(gap + tail)
             edges[(p.cluster, e.cluster, kind)].append(0.0 if parallel else gap + tail)
             out_count[p.cluster] += 1
             if kind == "back":
                 back_reasons[(p.cluster, e.cluster)][p.qualifier or "sent back"] += 1
                 again = next((x for x in seq[i:] if x.cluster == p.cluster), None)
-                if again:  # added time per loop, on the 09–18 working calendar
-                    back_cost[(p.cluster, e.cluster)].append(E.business_minutes(p.end, again.end) / 60)
+                if again:  # added time per loop, on the working calendar
+                    back_cost[(p.cluster, e.cluster)].append(cal.business_minutes(p.end, again.end) / 60)
             seen.add(e.cluster)
         for i, e in enumerate(seq):
             if e.amount is not None:
@@ -354,37 +424,42 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
                     nxt_i = next((x for x in seq[i + 1:] if not x.external), None)
                     appr_wait += E.weekday_minutes(seq[i - 1].end, e.start) + (E.weekday_minutes(e.end, nxt_i.start) if nxt_i else 0.0)
             case_rows.append({"case": case, "brief_start": b.start, "cycle_h": cyc / 60, "work_h": work / 60,
-                              "waiting_h": (cyc - work) / 60, "approval_wait_h": appr_wait / 60})
+                              "waiting_h": (cyc - work) / 60, "approval_wait_h": appr_wait / 60, "end": s_.end})
 
     completed = sum(1 for seq in by_case.values() if any(x.cluster == send_cluster for x in seq))
     weeks = max(meta["weeks"], 1)
     cycle_med = float(np.median(cycles)) if cycles else 0.0
     work_med = float(np.median(works)) if works else 0.0
     wait_med = float(np.median(np.array(cycles) - np.array(works))) if cycles else 0.0
-    wait_share = float((np.sum(cycles) - np.sum(works)) / np.sum(cycles)) if cycles else 0.0
+    wait_share = float((np.sum(cycles) - np.sum(works)) / np.sum(cycles)) if cycles and np.sum(cycles) > 0 else 0.0
 
     # --- nodes
     nodes = []
     role_steps: Counter = Counter()
     internal_waits = {}
+    external_waits = {}
     for cid, ex in node_execs.items():
         roles = Counter(e.role for e in ex)
         role = roles.most_common(1)[0][0]
         durs = [e.hands_min for e in ex if not e.external]
         med = float(np.median(durs)) if durs else 0.0
-        handoff_client = sum(1 for e in ex if e.handoff_from == "Client") / len(ex)
+        ext_from = [e.handoff_from for e in ex if e.handoff_from and e.handoff_from in ext_roles]
+        handoff_client = len(ext_from) / len(ex)
         external = all(e.external for e in ex)
-        if external or (handoff_client > 0.5 and med <= 6):
-            role = "Client"
+        if external:
+            role = Counter(e.role for e in ex).most_common(1)[0][0]
+        elif handoff_client > 0.5 and med <= 6:
+            role = Counter(ext_from).most_common(1)[0][0]
+        is_ext_role = role in ext_roles
         cases_n = len({e.case for e in ex})
         wb = float(np.median(wait_before[cid])) / 60 if wait_before[cid] else 0.0
         fails = sum(v for k, v in outcomes[cid].items() if k != "ok")
         has_back = any(f == cid and k == "back" and len(v) >= 2 for (f, t, k), v in edges.items())
         is_decision = has_back or fails > 0
-        reps = [e.repeats for e in ex if e.repeats]
+        reps = [e.repeats for e in execs if e.cluster == cid and e.repeats]  # the same step in other processes counts too
         per_week = len([e for e in execs if e.cluster == cid]) / weeks
         is_skill = bool(reps) and med <= 30 and per_week >= 5
-        if role == "Client" and not external and med <= 6:
+        if is_ext_role and not external and med <= 6:
             kind = "event"
         elif is_skill:
             kind = "skill"
@@ -394,26 +469,35 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
             kind = "step"
         if kind == "decision" and fails:
             ok_share = 1 - fails / len(ex)
-            sub = f"ok? {ok_share:.0%} yes" if role != "Client" else f"revise? {1 - ok_share:.0%}"
+            top_fail = next((k for k, _ in outcomes[cid].most_common() if k != "ok"), "revise")
+            sub = f"ok? {ok_share:.0%} yes" if not is_ext_role else f"{top_fail.split()[0].strip(',;:').lower()}? {1 - ok_share:.0%}"
         elif kind == "skill":
             sub = f"{med:.0f} m · {per_week:.0f}×/wk"
         elif kind == "event":
             sub = "email / form" if positions[cid] and np.median(positions[cid]) < 1.0 else "contract"
-        elif completed and cases_n < 0.6 * completed and role != "Client":
-            sub = f"{cases_n / completed:.0%} of proposals"
+        elif external:
+            ext_med = float(np.median([e.end - e.start for e in ex])) / 60
+            sub = f"with the {role.lower()} {ext_med:.0f} h" if ext_med >= 2 else f"with the {role.lower()} {ext_med * 60:.0f} m"
+        elif completed and cases_n < 0.6 * completed and not is_ext_role:
+            sub = f"{cases_n / completed:.0%} of {o.unit}s"
         elif wb >= 3:
             sub = f"waits {wb:.1f} h"
         else:
             sub = f"{med / 60:.1f} h" if med >= 90 else f"{med:.0f} m"
         rule = None
         starts = [(e.start % E.DAY) / 60 for e in ex if not e.external]
-        if role != "Client" and len(starts) >= 5 and float(np.std(starts)) < 1.0 and wb >= 3:
+        if not is_ext_role and len(starts) >= 5 and float(np.std(starts)) < 1.0 and wb >= 3:
             rule = f"{role} signs in one batch a day around {int(np.median(starts)):02d}:{int((np.median(starts) % 1) * 60):02d}"
-        if role != "Client":
+        if not is_ext_role:
             internal_waits[cid] = wb
             role_steps[role] += 1
         else:
-            role_steps["Client"] += 1
+            role_steps[role] += 1
+            if external:
+                # an outside party's time counts as waiting when it sits inside the measured cycle
+                inside = [e for e in ex if any(r["case"] == e.case and r["brief_start"] <= e.start and e.end <= r["end"] + 1 for r in case_rows)]
+                if case_rows and len(inside) >= 0.5 * len(ex) and len(inside) >= 2:
+                    external_waits[cid] = float(np.median([e.end - e.start for e in inside])) / 60
         nodes.append({
             "id": f"n{cid}", "name": res.display[cid], "kind": kind, "role": role,
             "aliases": [k for k in res.members[cid][1:]],
@@ -421,9 +505,11 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
             "share_of_cycle": round(med / 60 / cycle_med, 3) if cycle_med else 0.0,
             "critical_path": False, "bottleneck": False, "sub": sub,
             **({"rule": rule} if rule else {}),
-            "_pos": float(np.median(positions[cid])) if positions[cid] else 1.0, "_n": len(ex),
+            "_pos": float(np.median(positions[cid])) if positions[cid] else 1.0, "_n": len(ex), "_external": external,
         })
-    bottleneck = max(internal_waits, key=internal_waits.get) if internal_waits else None
+    candidates = dict(internal_waits)
+    candidates.update(external_waits)
+    bottleneck = max(candidates, key=candidates.get) if candidates else None
     # critical path: nodes in >= 50% of completed cases, by median position
     for nd in nodes:
         cid = int(nd["id"][1:])
@@ -447,30 +533,31 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
     backs = sum(1 for e in edge_rows if e["kind"] == "back")
     skills = sum(1 for n in nodes if n["kind"] == "skill")
     artifacts = {ARTIFACT.get(t, t) for e in proc for t in e.tools if t in ARTIFACT}
-    roles = [{"role": r, "steps": c, **({"external": True} if r == "Client" else {})} for r, c in role_steps.most_common()]
+    roles = [{"role": r, "steps": c, **({"external": True} if r in ext_roles else {})} for r, c in role_steps.most_common()]
     roles.sort(key=lambda r: E.ROLES.index(r["role"]) if r["role"] in E.ROLES else 99)
     name_of = {int(n["id"][1:]): n["name"] for n in nodes}
     bn_name = name_of.get(bottleneck, "")
     last = max((r["approved_at"] for r in records), key=_parse)
     customers = len({e.case for e in proc if e.external})
     ontology = {
-        "source": "simulated",
-        "board_id": BOARD, "version": 15, "recomputed_at": last, "records_used": len(records),
+        "source": o.source,
+        "board_id": o.board, "version": o.version, "recomputed_at": last, "records_used": len(records),
         "roles": roles,
         "nodes": [{k: v for k, v in n.items() if not k.startswith("_")} for n in nodes],
         "edges": edge_rows,
         "counts": {"roles": len(roles), "steps": len(nodes), "cases": len(by_case), "files": len(artifacts),
                    "rules": decisions + sum(1 for n in nodes if n.get("rule")), "skills": skills,
-                   "customers": customers, "zip_areas": 0, "branches": 3},
-        "headline": f"How a proposal really moves: {len(nodes)} steps, {len(roles)} roles, {decisions} decisions, "
+                   "customers": customers, "zip_areas": 0, "branches": o.branches},
+        "headline": f"How a {o.unit} really moves: {len(nodes)} steps, {len(roles)} roles, {decisions} decisions, "
                     f"{backs} ways back — learned from {len(records)} approved records, drawn by nobody.",
     }
 
     # --- finding
-    small = [a for a, _ in approvals if a < SMALL_QUOTE_USD]
-    small_unchanged = sum(1 for a, sb in approvals if a < SMALL_QUOTE_USD and not sb)
+    thr = o.small_threshold_usd
+    small = [a for a, _ in approvals if a < thr]
+    small_unchanged = sum(1 for a, sb in approvals if a < thr and not sb)
     skill_nodes = [n for n in nodes if n["kind"] == "skill"]
-    fill_cid = _find_cluster(res, "Fill pricing")
+    fill_cid = _find_cluster(res, "Fill pricing") if opts is None else None
     repeated = []
     rep_h = 0.0
     for n in skill_nodes:
@@ -493,8 +580,12 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
     node_by_cid = {int(n["id"][1:]): n for n in nodes}
     rows_def = []
     group_of_node: dict[int, str] = {}
-    for gname, grole, members, tool in MAP_GROUPS:
-        cids = [c for c in (_find_cluster(res, m) for m in members) if c is not None and c in node_by_cid]
+    groups = o.map_groups if o.map_groups is not None else _auto_map_groups(nodes, node_execs, ext_roles, start_cluster, end_cluster, order)
+    for gname, grole, members, tool in groups:
+        if o.map_groups is not None:
+            cids = [c for c in (_find_cluster(res, m) for m in members) if c is not None and c in node_by_cid]
+        else:
+            cids = [c for c in members if c in node_by_cid]
         if not cids:
             continue
         for c in cids:
@@ -507,7 +598,7 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
     for case, seq in by_case.items():
         b = next((x for x in seq if x.cluster == brief_cluster), None)
         s_ = next((x for x in seq if x.cluster == send_cluster), None)
-        if not (b and s_ and s_.end > b.start):
+        if not (b and s_ and s_.end > b.start) or not rows_def:
             continue
         lo, hi = b.start, s_.end
         n_scaled += 1
@@ -516,16 +607,15 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
         ex = [x for x in seq if not x.external and x.start < hi and x.end > lo and x.cluster in group_of_node]
         for i in range(len(rows_def)):
             spans = [(x.start, x.end) for x in ex if row_index[group_of_node[x.cluster]] == i]
-            span_sum[i] = E.weekday_minutes(lo, hi) - E.weekday_minutes(lo, hi) + sum(
-                E.weekday_minutes(a, b2) for a, b2 in _merge_spans([(max(a, lo), min(b2, hi)) for a, b2 in spans]))
+            span_sum[i] = sum(E.weekday_minutes(a, b2) for a, b2 in _merge_spans([(max(a, lo), min(b2, hi)) for a, b2 in spans]))
         # idle gaps = complement of all stage spans inside [lo, hi]
         merged = _merge_spans([(max(x.start, lo), min(x.end, hi)) for x in ex])
         cur = lo
         for a, b2 in merged:
             if a > cur + 1e-6:
-                last = max((x for x in ex if x.end <= cur + 1e-6), key=lambda x: x.end, default=None)
-                r = row_index[group_of_node[last.cluster]] if last else 0
-                tail_end = min(E.to_work(cur), a) if not E.is_work_time(cur) else cur
+                last_x = max((x for x in ex if x.end <= cur + 1e-6), key=lambda x: x.end, default=None)
+                r = row_index[group_of_node[last_x.cluster]] if last_x else 0
+                tail_end = min(cal.to_work(cur), a) if not cal.is_work_time(cur) else cur
                 wait_sum[max(r - 1, 0)] += E.weekday_minutes(cur, tail_end)  # waiting *for* the step that ended after hours
                 wait_sum[r] += E.weekday_minutes(tail_end, a)
             cur = max(cur, b2)
@@ -534,12 +624,12 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
             wait_rows[i].append(wait_sum[i])
     map_steps = []
     if n_scaled:
-        # the typical proposal: per-row medians, scaled so the parts sum to the median cycle
+        # the typical case: per-row medians, scaled so the parts sum to the median cycle
         h_med = [float(np.median(v)) for v in hands_rows]
         w_med = [float(np.median(v)) for v in wait_rows]
         k = cycle_med * 60 / max(sum(h_med) + sum(w_med), 1e-9)
         for i, (gname, grole, tool, cids) in enumerate(rows_def):
-            ms = {"role": grole, "name": gname, "hands_on_h": round(h_med[i] * k / 60, 1), "artifact": ARTIFACT[tool],
+            ms = {"role": grole, "name": gname, "hands_on_h": round(h_med[i] * k / 60, 1), "artifact": ARTIFACT.get(tool, tool),
                   "wait_after_h": round(w_med[i] * k / 60, 1)}
             if any(node_by_cid[c]["bottleneck"] for c in cids):
                 ms["selected"] = True
@@ -561,27 +651,20 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
         raw_reason = back_reasons[(f, t)].most_common(1)[0][0]
         reason = next((v for k, v in REASONS.items() if raw_reason.lower().startswith(k)), raw_reason[:1].upper() + raw_reason[1:])
         cost_h = float(np.median(back_cost[(f, t)])) if back_cost[(f, t)] else 0.0
-        cost = f"+{cost_h / E.WORK_DAY_MIN * 60:.1f} days".replace(".0 days", " day" if round(cost_h / 9, 1) == 1.0 else " days") if cost_h >= 9 else f"+{cost_h:.1f} h"
+        day_h = cal.day_min / 60
+        cost = f"+{cost_h / day_h:.1f} days".replace(".0 days", " day" if round(cost_h / day_h, 1) == 1.0 else " days") if cost_h >= day_h else f"+{cost_h:.1f} h"
         by_role = node_by_cid[f]["role"]
         sent_back.append({"reason": reason, "by": by_role, "back_to": group_of_node.get(t, name_of[t]), "cost": cost, "share": e["share"]})
     sent_back.sort(key=lambda s: -s["share"])
     bn_node = next((n for n in nodes if n["bottleneck"]), None)
     longest_row = next((m for m in map_steps if m.get("longest_wait")), None)
     bn_wait = longest_row["wait_after_h"] if longest_row else (bn_node["wait_before_h"] if bn_node else 0.0)
-    if bn_node and bn_node["role"] == "Director":
-        headline = f"Quotes wait {bn_wait:.0f} hours for one signature."
-    elif bn_node:
-        headline = f"Work waits {bn_wait:.0f} hours before {bn_node['name'].lower()}."
-    else:
-        headline = f"A proposal takes {cycle_med:.0f} hours."
-    assert len(headline) <= 60, headline
-    sub = ""
-    if bn_node:
-        sub = (f"The {bn_node['name'].lower()} itself takes {bn_node['median_min']} minutes. Across {completed} proposals, "
-               f"nobody is working on a proposal for {wait_share:.0%} of its cycle — and the longest single wait is this signature.")
+    if bn_node and bn_node.get("_external"):
+        bn_wait = candidates.get(int(bn_node["id"][1:]), bn_wait)
+    headline, sub = _headline(o, bn_node, bn_wait, cycle_med, completed, wait_share)
     finding = {
-        "source": "simulated",
-        "board_id": BOARD, "process": "client proposals", "records": len(records), "people": meta["people"], "weeks": weeks,
+        "source": o.source,
+        "board_id": o.board, "process": o.process_name, "records": len(records), "people": meta["people"], "weeks": weeks,
         "headline": headline, "sub": sub.strip(),
         "kpis": {"cycle_time_h": round(cycle_med, 1), "waiting_share": round(wait_share, 3),
                  "small_quotes_share": round(len(small) / len(approvals), 3) if approvals else 0.0,
@@ -593,8 +676,64 @@ def mine(records: list[dict], process_prefix: str = "proposal") -> dict:
         "repeated": repeated,
     }
     stats = {"cycles": cycles, "works": works, "completed": completed, "approvals": approvals, "case_rows": case_rows,
-             "approval_starts": approval_starts, "bottleneck": bn_name, "origin": origin, "cluster_display": res.display}
+             "approval_starts": approval_starts, "bottleneck": bn_name, "origin": origin, "cluster_display": res.display,
+             "start_cluster": start_cluster, "end_cluster": end_cluster, "order": order, "by_case": by_case,
+             "wait_before": {c: list(v) for c, v in wait_before.items()}, "bottleneck_cid": bottleneck,
+             "bottleneck_external": bool(bn_node and bn_node.get("_external")), "bottleneck_wait_h": bn_wait,
+             "external_roles": sorted(x for x in ext_roles if x), "calendar": cal, "group_of_node": group_of_node,
+             "map_rows": [(g, r, t, c) for g, r, t, c in rows_def]}
     return {"ontology": ontology, "finding": finding, "resolver": res, "execs": execs, "stats": stats, "meta": meta}
+
+
+def _headline(o: MineOptions, bn_node: dict | None, bn_wait: float, cycle_med: float, completed: int, wait_share: float) -> tuple[str, str]:
+    unit = o.unit
+    if bn_node is None:
+        return f"A {unit} takes {cycle_med:.0f} hours.", ""
+    name = bn_node["name"]
+    role = bn_node["role"]
+    if bn_node.get("_external"):
+        headline = f"{unit[:1].upper() + unit[1:]}s wait {bn_wait:.0f} hours on the {role.lower()}."
+        sub = (f"Across {completed} {unit}s, nobody here is working on one for {wait_share:.0%} of its cycle — and the longest "
+               f"single wait is the {role.lower()}'s answer ({name.lower()}).")
+    elif opts_is_northwind(o) and role == "Director":
+        headline = f"Quotes wait {bn_wait:.0f} hours for one signature."
+        sub = (f"The {name.lower()} itself takes {bn_node['median_min']} minutes. Across {completed} proposals, "
+               f"nobody is working on a proposal for {wait_share:.0%} of its cycle — and the longest single wait is this signature.")
+    else:
+        headline = f"Work waits {bn_wait:.0f} hours before {name.lower()}."
+        if len(headline) > 60:
+            headline = f"Work waits {bn_wait:.0f} h for {role}."
+        sub = (f"The {name.lower()} itself takes {bn_node['median_min']} minutes ({role}). Across {completed} {unit}s, "
+               f"nobody is working on a {unit} for {wait_share:.0%} of its cycle — and the longest single wait is before this step.")
+    if len(headline) > 60:
+        headline = headline[:57].rstrip() + "..."
+    return headline, sub
+
+
+def opts_is_northwind(o: MineOptions) -> bool:
+    return o.map_groups is not None and o.board == BOARD
+
+
+def _auto_map_groups(nodes: list[dict], node_execs: dict, ext_roles: set, start_cluster, end_cluster, order: dict) -> list:
+    """One map row per run of consecutive main-path steps done by the same role, between the start and end steps."""
+    lo = order.get(start_cluster, -1e9) if start_cluster is not None else -1e9
+    hi = order.get(end_cluster, 1e9) if end_cluster is not None else 1e9
+    main = [n for n in sorted(nodes, key=lambda n: n["_pos"])
+            if n["critical_path"] and not n.get("_external") and n["role"] not in ext_roles and lo <= n["_pos"] <= hi]
+    groups = []
+    for n in main:
+        cid = int(n["id"][1:])
+        tools = Counter(t for e in node_execs[cid] for t in e.tools if t not in NON_ARTIFACT_TOOLS)
+        tool = tools.most_common(1)[0][0] if tools else (Counter(t for e in node_execs[cid] for t in e.tools).most_common(1)[0][0] if any(e.tools for e in node_execs[cid]) else "docs")
+        if groups and groups[-1][1] == n["role"] and cid not in (start_cluster, end_cluster) and groups[-1][2][-1] not in (start_cluster, end_cluster):
+            groups[-1][2].append(cid)
+            if n["median_min"] > groups[-1][4]:
+                groups[-1][0] = n["name"]
+                groups[-1][3] = tool
+                groups[-1][4] = n["median_min"]
+        else:
+            groups.append([n["name"], n["role"], [cid], tool, n["median_min"]])
+    return [(g[0], g[1], g[2], g[3]) for g in groups]
 
 
 def _merge_spans(spans: list[tuple[float, float]]) -> list[tuple[float, float]]:

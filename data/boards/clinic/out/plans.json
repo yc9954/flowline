@@ -1,0 +1,219 @@
+{
+ "source": "simulated",
+ "board_id": "clinic",
+ "reruns": 20,
+ "weeks": 9,
+ "headline": "Auto-approve under $500 + agent does 'Eligibility check' (Front desk reviews): 91 hours → 83.",
+ "today_h": 90.7,
+ "plans": [
+  {
+   "id": "auto_500__agent",
+   "rank": 1,
+   "name": "Auto-approve under $500",
+   "sub": "+ agent does 'Eligibility check' (Front desk reviews)",
+   "hours": 82.9,
+   "work_h": 1.5,
+   "waiting_h": 81.4,
+   "vs_today": -0.086,
+   "best": true,
+   "today": false,
+   "held_best_n": 15,
+   "range_h": [
+    68.2,
+    96.0
+   ],
+   "who": [
+    {
+     "role": "Office manager",
+     "change": "signs only cases over $500"
+    },
+    {
+     "role": "Front desk",
+     "change": "checks the agent's work, not typing"
+    }
+   ],
+   "rules": [
+    {
+     "type": "auto_approve_under",
+     "usd": 500
+    },
+    {
+     "type": "skill",
+     "skill_id": "agent_eligibility_check",
+     "actor": "Front desk",
+     "reviewer": "Front desk"
+    }
+   ]
+  },
+  {
+   "id": "auto_500__by_hand",
+   "rank": 2,
+   "name": "Auto-approve under $500",
+   "sub": "+ everything by hand",
+   "hours": 83.2,
+   "work_h": 1.6,
+   "waiting_h": 81.6,
+   "vs_today": -0.083,
+   "best": false,
+   "today": false,
+   "held_best_n": 0,
+   "range_h": [
+    70.6,
+    96.1
+   ],
+   "who": [
+    {
+     "role": "Office manager",
+     "change": "signs only cases over $500"
+    },
+    {
+     "role": "Front desk",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "auto_approve_under",
+     "usd": 500
+    }
+   ]
+  },
+  {
+   "id": "twice_a_day__agent",
+   "rank": 3,
+   "name": "Sign-off twice a day",
+   "sub": "+ agent does 'Eligibility check' (Front desk reviews)",
+   "hours": 84.0,
+   "work_h": 1.5,
+   "waiting_h": 82.5,
+   "vs_today": -0.074,
+   "best": false,
+   "today": false,
+   "held_best_n": 5,
+   "range_h": [
+    68.5,
+    99.0
+   ],
+   "who": [
+    {
+     "role": "Office manager",
+     "change": "signs at midday and at close"
+    },
+    {
+     "role": "Front desk",
+     "change": "checks the agent's work, not typing"
+    }
+   ],
+   "rules": [
+    {
+     "type": "approver_batches_per_day",
+     "n": 2
+    },
+    {
+     "type": "skill",
+     "skill_id": "agent_eligibility_check",
+     "actor": "Front desk",
+     "reviewer": "Front desk"
+    }
+   ]
+  },
+  {
+   "id": "twice_a_day__by_hand",
+   "rank": 4,
+   "name": "Sign-off twice a day",
+   "sub": "+ everything by hand",
+   "hours": 84.3,
+   "work_h": 1.6,
+   "waiting_h": 82.7,
+   "vs_today": -0.071,
+   "best": false,
+   "today": false,
+   "held_best_n": 0,
+   "range_h": [
+    68.9,
+    99.1
+   ],
+   "who": [
+    {
+     "role": "Office manager",
+     "change": "signs at midday and at close"
+    },
+    {
+     "role": "Front desk",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": [
+    {
+     "type": "approver_batches_per_day",
+     "n": 2
+    }
+   ]
+  },
+  {
+   "id": "as_is__agent",
+   "rank": 5,
+   "name": "Office manager signs all",
+   "sub": "+ agent does 'Eligibility check' (Front desk reviews)",
+   "hours": 90.4,
+   "work_h": 1.5,
+   "waiting_h": 88.9,
+   "vs_today": -0.003,
+   "best": false,
+   "today": false,
+   "held_best_n": 0,
+   "range_h": [
+    75.7,
+    105.3
+   ],
+   "who": [
+    {
+     "role": "Office manager",
+     "change": "keeps signing every case"
+    },
+    {
+     "role": "Front desk",
+     "change": "checks the agent's work, not typing"
+    }
+   ],
+   "rules": [
+    {
+     "type": "skill",
+     "skill_id": "agent_eligibility_check",
+     "actor": "Front desk",
+     "reviewer": "Front desk"
+    }
+   ]
+  },
+  {
+   "id": "as_is__by_hand",
+   "rank": 6,
+   "name": "Office manager signs all",
+   "sub": "+ everything by hand",
+   "hours": 90.7,
+   "work_h": 1.6,
+   "waiting_h": 89.1,
+   "vs_today": 0.0,
+   "best": false,
+   "today": true,
+   "held_best_n": 0,
+   "range_h": [
+    76.3,
+    105.3
+   ],
+   "who": [
+    {
+     "role": "Office manager",
+     "change": "keeps signing every case"
+    },
+    {
+     "role": "Front desk",
+     "change": "nothing to change"
+    }
+   ],
+   "rules": []
+  }
+ ],
+ "note": "Every plan replays the same pre-auths over 9 weeks, 20 times with new luck; the simulator is fitted to this team's records (step times, hand-off waits, send-backs, arrivals). The best plan held in 15 of 20 reruns; the next best is 0.3 h slower. Effects are mean changes over every replayed pre-auth, applied to the measured baseline; ranges are the 10th–90th percentile of per-rerun means. Nothing changes until you approve.",
+ "recomputed_at": "2026-11-09T23:56:11+09:00"
+}

@@ -130,6 +130,79 @@ def add_business_minutes(t: float, w: float) -> float:
     return t
 
 
+class Calendar:
+    """Working-hours calendar with explicit start/end minutes (the module functions above are the 09–18 default).
+    `fit` builds one from the records; `build` keeps the Northwind constants."""
+
+    def __init__(self, start_min: float = WORK_START, end_min: float = WORK_END):
+        self.start = float(start_min)
+        self.end = float(end_min)
+        self.day_min = self.end - self.start
+
+    def is_work_time(self, t: float) -> bool:
+        m = t - day_of(t) * DAY
+        return weekday(t) < 5 and self.start <= m < self.end
+
+    def to_work(self, t: float) -> float:
+        d = day_of(t)
+        m = t - d * DAY
+        if d % 7 < 5:
+            if self.start <= m < self.end:
+                return t
+            if m < self.start:
+                return d * DAY + self.start
+        d += 1
+        while d % 7 >= 5:
+            d += 1
+        return d * DAY + self.start
+
+    def business_minutes(self, a: float, b: float) -> float:
+        if b <= a:
+            return 0.0
+        total = 0.0
+        t = a
+        while t < b:
+            d = day_of(t)
+            if d % 7 < 5:
+                s = max(t, d * DAY + self.start)
+                e = min(b, d * DAY + self.end)
+                if e > s:
+                    total += e - s
+            t = (d + 1) * DAY
+        return total
+
+    def add_business_minutes(self, t: float, w: float) -> float:
+        t = self.to_work(t)
+        while w > 1e-9:
+            eod = day_of(t) * DAY + self.end
+            chunk = min(w, eod - t)
+            t += chunk
+            w -= chunk
+            if w > 1e-9:
+                t = self.to_work(t)
+        return t
+
+    def work_segments(self, t: float, minutes: float) -> list[tuple[float, float]]:
+        """Segments of `minutes` of work starting at the first working time >= t, pausing outside hours."""
+        segs = []
+        t = self.to_work(t)
+        remaining = minutes
+        while remaining > 1e-9:
+            eod = day_of(t) * DAY + self.end
+            chunk = min(remaining, eod - t)
+            segs.append((t, t + chunk))
+            t += chunk
+            remaining -= chunk
+            if remaining > 1e-9:
+                t = self.to_work(t)
+        if not segs:
+            segs.append((t, t))
+        return segs
+
+
+DEFAULT_CALENDAR = Calendar()
+
+
 def minutes_to_dt(t: float, origin: datetime) -> datetime:
     return origin + timedelta(minutes=float(t))
 

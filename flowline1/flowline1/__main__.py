@@ -1,4 +1,5 @@
-"""CLI: python -m flowline1 build --out DIR [--seed 15] · check [--out DIR] · demand --recompute [--out DIR]"""
+"""CLI: python -m flowline1 build --out DIR [--seed 15] · check [--out DIR] · demand --recompute [--out DIR]
+         · fit --records PATH --out DIR [--industry NAICS] [--process NAME] [--seeds 20] [--plans auto] [--since DATE] [--approvals JSON]"""
 from __future__ import annotations
 
 import argparse
@@ -48,6 +49,26 @@ def cmd_demand(args) -> int:
     return 0
 
 
+def cmd_fit(args) -> int:
+    from . import fit as F
+
+    records = F.load_records(args.records)
+    approvals = None
+    if args.approvals:
+        with open(args.approvals, encoding="utf-8") as f:
+            approvals = json.load(f)
+        if isinstance(approvals, dict):
+            approvals = approvals.get("approvals") or approvals.get("items") or []
+    t0 = time.time()
+    summary = F.fit(records, out=args.out, board_id=args.board_id, industry=args.industry, process=args.process, seeds=args.seeds,
+                    plans=args.plans, since=args.since, approvals=approvals, start_step=args.start_step, end_step=args.end_step,
+                    city=args.city, zips=args.zips, raw_dir=RAW, reference_dir=os.path.abspath(REFERENCE), bootstrap=args.bootstrap)
+    print(f"fit done in {time.time() - t0:.1f}s -> {args.out}")
+    for k, v in summary.items():
+        print(f"  {k}: {v}")
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="flowline1")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -66,6 +87,22 @@ def main(argv=None) -> int:
     d.add_argument("--recompute", action="store_true")
     d.add_argument("--max-iter", type=int, default=400)
     d.set_defaults(fn=cmd_demand)
+    f = sub.add_parser("fit", help="the ten board files from a company's approved records alone (no world)")
+    f.add_argument("--records", required=True, help="records as a JSON array, {records: [...]} or NDJSON (the API's GET /records export)")
+    f.add_argument("--out", required=True)
+    f.add_argument("--board-id", default=None, help="default: the records' board_id")
+    f.add_argument("--industry", default=None, help="NAICS code for expansion.json (713940, 621111, 722515 are backtested)")
+    f.add_argument("--process", default=None, help="case-id prefix of the process to fit (default: the most frequent prefix)")
+    f.add_argument("--seeds", type=int, default=20, help="common-random-number reruns per plan")
+    f.add_argument("--plans", default="auto", help="'auto' (templates from the mined bottleneck) or a JSON file of plans with rules")
+    f.add_argument("--since", default=None, help="date the approved plan went live: cases started before = baseline, after = measured")
+    f.add_argument("--approvals", default=None, help="JSON list of plan approvals (GET /api/boards/{id}/plans/approvals); the first one sets --since")
+    f.add_argument("--start-step", default=None, help="step that opens the measured cycle (default: learned)")
+    f.add_argument("--end-step", default=None, help="step that closes the measured cycle (default: learned)")
+    f.add_argument("--city", default="Austin, TX", help="label for expansion.json")
+    f.add_argument("--zips", default="786,787", help="ZIP prefixes to rank in expansion.json")
+    f.add_argument("--bootstrap", type=int, default=20, help="miner-stability resamples (0 to skip)")
+    f.set_defaults(fn=cmd_fit)
     args = ap.parse_args(argv)
     return args.fn(args)
 

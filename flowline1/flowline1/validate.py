@@ -1,12 +1,19 @@
-"""Shape checks for the ten output files against SCHEMA.md sections 2–11 (required keys and types)."""
+"""Shape checks for the ten output files against SCHEMA.md sections 2–11 (required keys and types).
+
+Deviations for boards fitted from a company's own records (`fit`): a Role is any non-empty string (the §2 enum lists
+Northwind's roles; a dental clinic has hygienists), `source` may also be "not_available" (expansion for an industry
+the demand model has not been backtested on), Record.source is optional (devices do not send it), and a page may carry
+`state: "not_enough_data" | "no_data_yet" | "awaiting_measurement"` with the counts needed; plans.json may then be empty."""
 from __future__ import annotations
 
 import json
 import os
 
 NUM = (int, float)
-ROLES = {"Client", "Sales", "PM", "Design", "Finance", "Director", "Legal", "Trainer", "BranchMgr", "Ops", "CEO"}
-SOURCES = {"measured", "simulated", "prototype"}
+KNOWN_ROLES = {"Client", "Sales", "PM", "Design", "Finance", "Director", "Legal", "Trainer", "BranchMgr", "Ops", "CEO"}
+ROLES = "role"  # any non-empty string (see the module docstring)
+SOURCES = {"measured", "simulated", "prototype", "not_available"}
+STUB_STATES = {"not_enough_data", "no_data_yet", "awaiting_measurement"}
 
 
 class ShapeError(AssertionError):
@@ -55,6 +62,9 @@ def _check(v, typ, path: str) -> None:
     elif typ is str:
         if not isinstance(v, str):
             raise ShapeError(f"{path}: expected string, got {type(v).__name__}")
+    elif typ == "role":
+        if not isinstance(v, str) or not v.strip():
+            raise ShapeError(f"{path}: expected a role name, got {v!r}")
     elif typ == "pair":
         if not (isinstance(v, list) and len(v) == 2 and all(isinstance(x, NUM) for x in v)):
             raise ShapeError(f"{path}: expected [number, number]")
@@ -66,7 +76,7 @@ RECORD_STEP = {"idx": int, "start": str, "end": str, "name": str, "kind": {"hand
                "tools": [str], "handoff_from?": ROLES, "handoff_to?": ROLES, "waiting_on?": ROLES, "repeats?": int}
 RECORD = {"id": str, "board_id": str, "person_id": str, "role": ROLES, "date": str, "covers": {"start": str, "end": str},
           "steps": [RECORD_STEP], "kept_private": int, "hands_on_min": int, "waiting_min": int, "approved_at": str,
-          "hash": str, "pubkey": str, "sig": str, "source": SOURCES}
+          "hash": str, "pubkey": str, "sig": str, "source?": SOURCES}
 NODE = {"id": str, "name": str, "kind": {"event", "step", "decision", "skill"}, "role": ROLES, "aliases": [str],
         "median_min?": int, "cases": int, "wait_before_h?": NUM, "share_of_cycle?": NUM, "critical_path": bool,
         "bottleneck?": bool, "sub?": str, "rule?": str}
@@ -139,6 +149,8 @@ def validate_dir(out: str) -> list[str]:
         path = os.path.join(out, name)
         with open(path, encoding="utf-8") as f:
             obj = json.load(f)
+        if isinstance(obj, dict) and obj.get("state") is not None and obj["state"] not in STUB_STATES:
+            raise ShapeError(f"{name}.state: {obj['state']!r} not in {sorted(STUB_STATES)}")
         _req(obj, spec, name)
         if name == "expansion.json":
             if obj["default"] not in obj["by_industry"]:
@@ -147,7 +159,7 @@ def validate_dir(out: str) -> list[str]:
                 _req(e, EXPANSION_ONE, f"expansion.json.by_industry[{naics}]")
                 if e["source"] not in SOURCES:
                     raise ShapeError(f"expansion.json.by_industry[{naics}].source: {e['source']!r}")
-        if name == "plans.json":
+        if name == "plans.json" and obj.get("state") not in STUB_STATES:
             if sum(1 for p in obj["plans"] if p["best"]) != 1 or sum(1 for p in obj["plans"] if p["today"]) != 1:
                 raise ShapeError("plans.json: exactly one best and one today plan expected")
         checked.append(name)

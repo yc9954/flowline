@@ -1,0 +1,18 @@
+{
+ "source": "measured",
+ "recomputed_at": "2026-11-09T23:56:11+09:00",
+ "board_id": "clinic",
+ "branch": 0,
+ "zip": "",
+ "name": "",
+ "playbook_from": "",
+ "steps": 0,
+ "headline": "No opening in progress.",
+ "opens": "",
+ "was": "",
+ "today": "2026-11-09",
+ "workstreams": [],
+ "blockers": [],
+ "state": "no_data_yet",
+ "sub": "Record a branch opening (case ids like 'opening #1') and its playbook is learned from those records."
+}

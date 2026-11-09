@@ -1,0 +1,160 @@
+{
+ "source": "simulated",
+ "weeks": 9,
+ "reruns": 20,
+ "checks": [
+  {
+   "measure": "Hours per pre-auth (baseline replay)",
+   "simulated": 92.9,
+   "lo": 71.4,
+   "hi": 105.9,
+   "measured": 90.7,
+   "unit": "h",
+   "error": 0.024,
+   "in_range": true
+  },
+  {
+   "measure": "Share of time waiting (baseline replay)",
+   "simulated": 98.0,
+   "lo": 98.0,
+   "hi": 98.0,
+   "measured": 98.0,
+   "unit": "%",
+   "error": 0.005,
+   "in_range": true
+  },
+  {
+   "measure": "Pre-auths completed / day",
+   "simulated": 0.64,
+   "lo": 0.55,
+   "hi": 0.8,
+   "measured": 0.64,
+   "unit": "/day",
+   "error": 0.0,
+   "in_range": true
+  },
+  {
+   "measure": "Office manager sign-offs / day",
+   "simulated": 0.61,
+   "lo": 0.49,
+   "hi": 0.76,
+   "measured": 0.67,
+   "unit": "/day",
+   "error": 0.083,
+   "in_range": true
+  }
+ ],
+ "scale_to_measured_baseline": 0.7914,
+ "plan_stability": {
+  "best_plan": "Auto-approve under $500 + agent does 'Eligibility check' (Front desk reviews)",
+  "held_best_n": 15,
+  "reruns": 20,
+  "margin_to_next_h": 0.3
+ },
+ "miner_stability": {
+  "resamples": 20,
+  "same_bottleneck": 0.95,
+  "cycle_h_p10_p90": [
+   88.6,
+   91.1
+  ],
+  "bottleneck": "Insurer wait"
+ },
+ "fit": {
+  "steps": {
+   "Patient intake": {
+    "n": 29,
+    "median_min": 10.1,
+    "sigma": 0.38,
+    "external": false
+   },
+   "Eligibility check": {
+    "n": 29,
+    "median_min": 11.6,
+    "sigma": 0.3,
+    "external": false
+   },
+   "Submit pre-authorization": {
+    "n": 29,
+    "median_min": 11.8,
+    "sigma": 0.27,
+    "external": false
+   },
+   "Insurer wait": {
+    "n": 31,
+    "median_min": 2942.5,
+    "sigma": 1.08,
+    "external": true
+   },
+   "Perio chart": {
+    "n": 29,
+    "median_min": 20.2,
+    "sigma": 0.32,
+    "external": false
+   },
+   "Note by dentist": {
+    "n": 29,
+    "median_min": 22.5,
+    "sigma": 0.32,
+    "external": false
+   },
+   "Claim form": {
+    "n": 29,
+    "median_min": 23.5,
+    "sigma": 0.33,
+    "external": false
+   },
+   "Approve claim": {
+    "n": 29,
+    "median_min": 8.1,
+    "sigma": 0.28,
+    "external": false
+   },
+   "Schedule treatment": {
+    "n": 29,
+    "median_min": 8.1,
+    "sigma": 0.33,
+    "external": false
+   }
+  },
+  "notes": [],
+  "redo_factor": 0.86,
+  "variants": 29,
+  "completed_variants": 29,
+  "approval": {
+   "step": "Approve claim",
+   "role": "Office manager",
+   "batch": {
+    "n": 1,
+    "hours": [
+     16.5
+    ],
+    "jitter_min": 9.096580146977253
+   }
+  },
+  "threshold_usd": 500.0,
+  "share_under_threshold": 0.533,
+  "arrivals_per_weekday": [
+   0.6,
+   0.77,
+   0.71,
+   0.43,
+   0.71
+  ],
+  "repeated_step": "Eligibility check",
+  "artefact": {
+   "tool": "forms",
+   "steps": []
+  },
+  "assumptions": {
+   "agent_min": 1.0,
+   "agent_review_min": 3.0,
+   "agent_undo_p": 0.05,
+   "agent": "does the step in agent_min, the person reviews in agent_review_min after the usual hand-off wait; send-backs unchanged — the gain is the person's hours, not the cycle",
+   "template": "removes send-back loops whose recorded reason mentions layout, format, template or form; no other effect",
+   "auto_approve": "cases under the threshold skip the approval step and the send-backs it caused",
+   "batching": "the approver signs everything queued at the session times; intra-session order ignored",
+   "capacity": "no queueing between cases: hand-off waits are replayed as measured"
+  }
+ }
+}

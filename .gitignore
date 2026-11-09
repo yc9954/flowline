@@ -21,3 +21,5 @@ video/out/
 agent-mac/build/
 agent-mac/shots/
 .flowline-tmp/
+data/boards/*/out/records.jsonl
+data/boards/northwind-fit/

@@ -1,0 +1,147 @@
+{
+ "source": "simulated",
+ "board_id": "clinic",
+ "calibrated_at": "2026-11-09T23:56:11+09:00",
+ "records": 135,
+ "components": [
+  {
+   "n": "01",
+   "name": "Company knowledge",
+   "what": "Roles, steps, cases, files, rules and skills — learned from approved records, never typed in.",
+   "size": "9 types · 83 objects · 18 links"
+  },
+  {
+   "n": "02",
+   "name": "Team simulator",
+   "what": "Replays this team's recorded pre-auths under a different plan. Step times, hand-off waits, send-backs and arrivals fitted to the records; no hidden world.",
+   "size": "9 steps · 135 records fitted · 20 reruns"
+  },
+  {
+   "n": "03",
+   "name": "Demand model",
+   "what": "Not available for this industry: the US Census backtest covers NAICS 713940, 621111 and 722515.",
+   "size": "n/a"
+  }
+ ],
+ "sim_checks": [
+  {
+   "measure": "Hours per pre-auth (baseline replay)",
+   "predicted": 92.9,
+   "lo": 71.4,
+   "hi": 105.9,
+   "actual": 90.7,
+   "unit": "h",
+   "in_range": true
+  },
+  {
+   "measure": "Share of time waiting (baseline replay)",
+   "predicted": 98.0,
+   "lo": 98.0,
+   "hi": 98.0,
+   "actual": 98.0,
+   "unit": "%",
+   "in_range": true
+  },
+  {
+   "measure": "Pre-auths completed / day",
+   "predicted": 0.64,
+   "lo": 0.55,
+   "hi": 0.8,
+   "actual": 0.64,
+   "unit": "/day",
+   "in_range": true
+  },
+  {
+   "measure": "Office manager sign-offs / day",
+   "predicted": 0.61,
+   "lo": 0.49,
+   "hi": 0.76,
+   "actual": 0.67,
+   "unit": "/day",
+   "in_range": true
+  }
+ ],
+ "demand": [],
+ "d1": {
+  "dataset": "BPI Challenge 2020 Domestic Declarations",
+  "fit_year": 2017,
+  "test_year": 2018,
+  "note": "n/a for a fitted board: the real-data check of the simulator method is produced by `build` (see data/out/model.json)."
+ },
+ "limits": [
+  {
+   "title": "Other people's queues",
+   "tag": "Not modelled",
+   "why": "Hand-off waits are replayed as measured; freeing one person's hours does not shorten another's queue in this simulator."
+  },
+  {
+   "title": "What an agent changes",
+   "tag": "Declared",
+   "why": "Agent does a step in 1 min, the person reviews in 3, 5% undone; send-backs unchanged. A template only removes layout send-backs people recorded."
+  },
+  {
+   "title": "Hidden-truth checks",
+   "tag": "n/a",
+   "why": "Planted bottleneck rank and planted-synonym precision/recall need a synthetic world; here the checks are replay-vs-measured, plan stability and miner stability."
+  },
+  {
+   "title": "Where to open next",
+   "tag": "No data",
+   "why": "No backtested demand model for this industry yet."
+  }
+ ],
+ "calibration": {
+  "baseline_replay": [
+   {
+    "measure": "Hours per pre-auth (baseline replay)",
+    "error": 0.024,
+    "in_range": true
+   },
+   {
+    "measure": "Share of time waiting (baseline replay)",
+    "error": 0.005,
+    "in_range": true
+   },
+   {
+    "measure": "Pre-auths completed / day",
+    "error": 0.0,
+    "in_range": true
+   },
+   {
+    "measure": "Office manager sign-offs / day",
+    "error": 0.083,
+    "in_range": true
+   }
+  ],
+  "scale_to_measured_baseline": 0.7914,
+  "plan_stability": {
+   "best_plan": "Auto-approve under $500 + agent does 'Eligibility check' (Front desk reviews)",
+   "held_best_n": 15,
+   "reruns": 20,
+   "margin_to_next_h": 0.3
+  },
+  "miner_stability": {
+   "resamples": 20,
+   "same_bottleneck": 0.95,
+   "cycle_h_p10_p90": [
+    88.6,
+    91.1
+   ],
+   "bottleneck": "Insurer wait"
+  },
+  "not_applicable": [
+   {
+    "check": "Bottleneck found (hidden constraint rank)",
+    "why": "needs the world's answer key"
+   },
+   {
+    "check": "Name merging precision / recall",
+    "why": "needs planted synonyms"
+   },
+   {
+    "check": "D1 BPIC 2020 fit",
+    "why": "method check, run by `build`"
+   }
+  ]
+ }
+}

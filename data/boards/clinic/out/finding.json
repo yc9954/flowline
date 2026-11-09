@@ -1,0 +1,99 @@
+{
+ "source": "measured",
+ "board_id": "clinic",
+ "process": "pre-auths",
+ "records": 135,
+ "people": 5,
+ "weeks": 9,
+ "headline": "Pre-auths wait 49 hours on the insurer.",
+ "sub": "Across 29 pre-auths, nobody here is working on one for 98% of its cycle — and the longest single wait is the insurer's answer (insurer wait).",
+ "kpis": {
+  "cycle_time_h": 90.7,
+  "waiting_share": 0.977,
+  "small_quotes_share": 0.533,
+  "small_quotes_unchanged": 1.0,
+  "repeated_by_hand_h_per_wk": 3.3
+ },
+ "map": [
+  {
+   "role": "Front desk",
+   "name": "Patient intake",
+   "hands_on_h": 0.2,
+   "artifact": "practice system",
+   "wait_after_h": 0.1
+  },
+  {
+   "role": "Front desk",
+   "name": "Eligibility check",
+   "hands_on_h": 0.4,
+   "artifact": "portal",
+   "wait_after_h": 65.9,
+   "longest_wait": true
+  },
+  {
+   "role": "Hygienist",
+   "name": "Perio chart",
+   "hands_on_h": 0.3,
+   "artifact": "chart",
+   "wait_after_h": 2.4
+  },
+  {
+   "role": "Dentist",
+   "name": "Note by dentist",
+   "hands_on_h": 0.4,
+   "artifact": "chart",
+   "wait_after_h": 2.3
+  },
+  {
+   "role": "Billing",
+   "name": "Claim form",
+   "hands_on_h": 0.4,
+   "artifact": "practice system",
+   "wait_after_h": 2.2
+  },
+  {
+   "role": "Office manager",
+   "name": "Approve claim",
+   "hands_on_h": 0.1,
+   "artifact": "practice system",
+   "wait_after_h": 15.9
+  },
+  {
+   "role": "Front desk",
+   "name": "Schedule treatment",
+   "hands_on_h": 0.1,
+   "artifact": "practice system",
+   "wait_after_h": 0.0
+  }
+ ],
+ "to_scale": {
+  "hands_on_h": 1.9,
+  "waiting_h": 88.8
+ },
+ "sent_back": [
+  {
+   "reason": "Denied, resubmit",
+   "by": "Insurer",
+   "back_to": "Eligibility check",
+   "cost": "+2.4 days",
+   "share": 0.065
+  },
+  {
+   "reason": "Missing code",
+   "by": "Office manager",
+   "back_to": "Claim form",
+   "cost": "+1 day",
+   "share": 0.033
+  }
+ ],
+ "repeated": [
+  {
+   "task": "Eligibility check",
+   "who": "Front desk",
+   "count_per_wk": 16.6,
+   "minutes": 12,
+   "agent_can_do": true
+  }
+ ],
+ "recomputed_at": "2026-11-09T23:56:11+09:00"
+}

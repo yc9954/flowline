@@ -1,0 +1,212 @@
+{
+ "source": "simulated",
+ "board_id": "clinic",
+ "recomputed_at": "2026-11-09T23:56:11+09:00",
+ "headline": "A pre-auth takes 91 hours; the best plan predicts 83.",
+ "sub": "Measured over 29 completed pre-auths. The test predicts 82.9 h (68.2–96.0 across 20 reruns) once a plan is approved; nothing has been measured after a change yet.",
+ "records": 135,
+ "people": 5,
+ "weeks": 9,
+ "change": "signs only cases over $500 · checks the agent's work, not typing",
+ "predicted": {
+  "mid": 82.9,
+  "lo": 68.2,
+  "hi": 96.0
+ },
+ "measured": 0.0,
+ "measured_cases": 0,
+ "before": 90.7,
+ "series": [
+  {
+   "week": 1,
+   "value": 114.3,
+   "after": false
+  },
+  {
+   "week": 1,
+   "value": 112.6,
+   "after": false
+  },
+  {
+   "week": 1,
+   "value": 69.2,
+   "after": false
+  },
+  {
+   "week": 2,
+   "value": 73.8,
+   "after": false
+  },
+  {
+   "week": 2,
+   "value": 95.2,
+   "after": false
+  },
+  {
+   "week": 2,
+   "value": 115.3,
+   "after": false
+  },
+  {
+   "week": 3,
+   "value": 91.1,
+   "after": false
+  },
+  {
+   "week": 3,
+   "value": 31.3,
+   "after": false
+  },
+  {
+   "week": 3,
+   "value": 48.5,
+   "after": false
+  },
+  {
+   "week": 3,
+   "value": 65.8,
+   "after": false
+  },
+  {
+   "week": 4,
+   "value": 76.9,
+   "after": false
+  },
+  {
+   "week": 4,
+   "value": 92.8,
+   "after": false
+  },
+  {
+   "week": 4,
+   "value": 114.3,
+   "after": false
+  },
+  {
+   "week": 4,
+   "value": 31.5,
+   "after": false
+  },
+  {
+   "week": 5,
+   "value": 80.8,
+   "after": false
+  },
+  {
+   "week": 5,
+   "value": 73.0,
+   "after": false
+  },
+  {
+   "week": 5,
+   "value": 91.4,
+   "after": false
+  },
+  {
+   "week": 5,
+   "value": 88.6,
+   "after": false
+  },
+  {
+   "week": 5,
+   "value": 71.8,
+   "after": false
+  },
+  {
+   "week": 6,
+   "value": 102.9,
+   "after": false
+  },
+  {
+   "week": 6,
+   "value": 90.7,
+   "after": false
+  },
+  {
+   "week": 7,
+   "value": 239.1,
+   "after": false
+  },
+  {
+   "week": 7,
+   "value": 89.6,
+   "after": false
+  },
+  {
+   "week": 7,
+   "value": 68.8,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 115.7,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 47.7,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 120.6,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 93.7,
+   "after": false
+  },
+  {
+   "week": 8,
+   "value": 91.5,
+   "after": false
+  }
+ ],
+ "kpis": [
+  {
+   "label": "Hours per pre-auth",
+   "before": "90.7",
+   "after": "—",
+   "sub": "Test predicted 82.9"
+  },
+  {
+   "label": "Share of time waiting",
+   "before": "98%",
+   "after": "—",
+   "sub": "Measured from records"
+  },
+  {
+   "label": "Office manager sign-offs",
+   "before": "0.7",
+   "after": "—",
+   "sub": "Approve claim"
+  }
+ ],
+ "who": [
+  {
+   "role": "Office manager",
+   "what": "Signs only cases over $500",
+   "before": "",
+   "after": ""
+  },
+  {
+   "role": "Front desk",
+   "what": "Checks the agent's work, not typing",
+   "before": "",
+   "after": ""
+  },
+  {
+   "role": "Front desk",
+   "what": "Eligibility check — agent does it, Front desk checks",
+   "before": "3.2 h / wk",
+   "after": "50 m / wk"
+  }
+ ],
+ "next_constraint": {
+  "headline": "Not measured yet",
+  "sub": "Approve a plan; after two weeks of records the change is measured against the test.",
+  "ready": false
+ },
+ "state": "awaiting_measurement"
+}

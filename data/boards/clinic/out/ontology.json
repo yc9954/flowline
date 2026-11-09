@@ -1,0 +1,268 @@
+{
+ "source": "measured",
+ "board_id": "clinic",
+ "version": 1,
+ "recomputed_at": "2026-11-09T23:56:11+09:00",
+ "records_used": 135,
+ "roles": [
+  {
+   "role": "Front desk",
+   "steps": 4
+  },
+  {
+   "role": "Insurer",
+   "steps": 1,
+   "external": true
+  },
+  {
+   "role": "Hygienist",
+   "steps": 1
+  },
+  {
+   "role": "Dentist",
+   "steps": 1
+  },
+  {
+   "role": "Billing",
+   "steps": 1
+  },
+  {
+   "role": "Office manager",
+   "steps": 1
+  }
+ ],
+ "nodes": [
+  {
+   "id": "n8",
+   "name": "Patient intake",
+   "kind": "step",
+   "role": "Front desk",
+   "aliases": [
+    "Intake"
+   ],
+   "median_min": 10,
+   "cases": 29,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.002,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "10 m"
+  },
+  {
+   "id": "n1",
+   "name": "Eligibility check",
+   "kind": "skill",
+   "role": "Front desk",
+   "aliases": [],
+   "median_min": 12,
+   "cases": 29,
+   "wait_before_h": 0.1,
+   "share_of_cycle": 0.002,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "12 m · 17×/wk"
+  },
+  {
+   "id": "n4",
+   "name": "Submit pre-authorization",
+   "kind": "step",
+   "role": "Front desk",
+   "aliases": [
+    "Submit pre-auth"
+   ],
+   "median_min": 12,
+   "cases": 29,
+   "wait_before_h": 0.2,
+   "share_of_cycle": 0.002,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "12 m"
+  },
+  {
+   "id": "n2",
+   "name": "Insurer wait",
+   "kind": "decision",
+   "role": "Insurer",
+   "aliases": [
+    "Waiting for the insurer",
+    "Waiting on insurer"
+   ],
+   "median_min": 0,
+   "cases": 29,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.0,
+   "critical_path": true,
+   "bottleneck": true,
+   "sub": "denied? 6%"
+  },
+  {
+   "id": "n6",
+   "name": "Perio chart",
+   "kind": "step",
+   "role": "Hygienist",
+   "aliases": [
+    "Perio charting"
+   ],
+   "median_min": 20,
+   "cases": 29,
+   "wait_before_h": 0.0,
+   "share_of_cycle": 0.004,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "20 m"
+  },
+  {
+   "id": "n9",
+   "name": "Note by dentist",
+   "kind": "step",
+   "role": "Dentist",
+   "aliases": [
+    "Dentist note"
+   ],
+   "median_min": 22,
+   "cases": 29,
+   "wait_before_h": 2.4,
+   "share_of_cycle": 0.004,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "22 m"
+  },
+  {
+   "id": "n5",
+   "name": "Claim form",
+   "kind": "step",
+   "role": "Billing",
+   "aliases": [],
+   "median_min": 25,
+   "cases": 29,
+   "wait_before_h": 2.4,
+   "share_of_cycle": 0.005,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "25 m"
+  },
+  {
+   "id": "n7",
+   "name": "Approve claim",
+   "kind": "decision",
+   "role": "Office manager",
+   "aliases": [
+    "Approve the claim"
+   ],
+   "median_min": 8,
+   "cases": 29,
+   "wait_before_h": 2.2,
+   "share_of_cycle": 0.001,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "ok? 97% yes"
+  },
+  {
+   "id": "n3",
+   "name": "Schedule treatment",
+   "kind": "step",
+   "role": "Front desk",
+   "aliases": [],
+   "median_min": 8,
+   "cases": 29,
+   "wait_before_h": 15.5,
+   "share_of_cycle": 0.001,
+   "critical_path": true,
+   "bottleneck": false,
+   "sub": "waits 15.5 h"
+  }
+ ],
+ "edges": [
+  {
+   "from": "n1",
+   "to": "n4",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.2
+  },
+  {
+   "from": "n3",
+   "to": "n3",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 15.0
+  },
+  {
+   "from": "n4",
+   "to": "n2",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.0
+  },
+  {
+   "from": "n5",
+   "to": "n7",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 2.2
+  },
+  {
+   "from": "n6",
+   "to": "n9",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 2.4
+  },
+  {
+   "from": "n8",
+   "to": "n1",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 0.1
+  },
+  {
+   "from": "n9",
+   "to": "n5",
+   "kind": "then",
+   "share": 1.0,
+   "wait_h": 2.3
+  },
+  {
+   "from": "n7",
+   "to": "n3",
+   "kind": "then",
+   "share": 0.967,
+   "wait_h": 15.5
+  },
+  {
+   "from": "n2",
+   "to": "n6",
+   "kind": "then",
+   "share": 0.935,
+   "wait_h": 16.3
+  },
+  {
+   "from": "n2",
+   "to": "n4",
+   "kind": "back",
+   "share": 0.065,
+   "wait_h": 7.6,
+   "label": "denied, resubmit · 6%"
+  },
+  {
+   "from": "n7",
+   "to": "n5",
+   "kind": "back",
+   "share": 0.033,
+   "wait_h": 15.9,
+   "label": "missing code · 3%"
+  }
+ ],
+ "counts": {
+  "roles": 6,
+  "steps": 9,
+  "cases": 29,
+  "files": 7,
+  "rules": 2,
+  "skills": 1,
+  "customers": 29,
+  "zip_areas": 0,
+  "branches": 0
+ },
+ "headline": "How a pre-auth really moves: 9 steps, 6 roles, 2 decisions, 2 ways back — learned from 135 approved records, drawn by nobody."
+}

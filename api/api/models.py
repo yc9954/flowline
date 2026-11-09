@@ -10,11 +10,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-Role = Literal[
-    "Client", "Sales", "PM", "Design", "Finance", "Director", "Legal",
-    "Trainer", "BranchMgr", "Ops", "CEO",
-]
-Source = Literal["measured", "simulated", "prototype"]
+Role = str  # any non-empty role name — companies name their own roles (was a Literal of the Northwind set)
+Source = Literal["measured", "simulated", "prototype", "not_available"]
 
 
 class Shape(BaseModel):

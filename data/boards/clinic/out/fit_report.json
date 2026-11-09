@@ -1,0 +1,126 @@
+{
+ "options": {
+  "board": "clinic",
+  "process_prefix": "pre-auth",
+  "process_name": "pre-auths",
+  "start_step": null,
+  "end_step": null,
+  "external_roles": [
+   "Insurer"
+  ],
+  "calendar_hours": [
+   8.0,
+   17.0
+  ],
+  "unit": "pre-auth"
+ },
+ "model": {
+  "steps": {
+   "Patient intake": {
+    "n": 29,
+    "median_min": 10.1,
+    "sigma": 0.38,
+    "external": false
+   },
+   "Eligibility check": {
+    "n": 29,
+    "median_min": 11.6,
+    "sigma": 0.3,
+    "external": false
+   },
+   "Submit pre-authorization": {
+    "n": 29,
+    "median_min": 11.8,
+    "sigma": 0.27,
+    "external": false
+   },
+   "Insurer wait": {
+    "n": 31,
+    "median_min": 2942.5,
+    "sigma": 1.08,
+    "external": true
+   },
+   "Perio chart": {
+    "n": 29,
+    "median_min": 20.2,
+    "sigma": 0.32,
+    "external": false
+   },
+   "Note by dentist": {
+    "n": 29,
+    "median_min": 22.5,
+    "sigma": 0.32,
+    "external": false
+   },
+   "Claim form": {
+    "n": 29,
+    "median_min": 23.5,
+    "sigma": 0.33,
+    "external": false
+   },
+   "Approve claim": {
+    "n": 29,
+    "median_min": 8.1,
+    "sigma": 0.28,
+    "external": false
+   },
+   "Schedule treatment": {
+    "n": 29,
+    "median_min": 8.1,
+    "sigma": 0.33,
+    "external": false
+   }
+  },
+  "notes": [],
+  "redo_factor": 0.86,
+  "variants": 29,
+  "completed_variants": 29,
+  "approval": {
+   "step": "Approve claim",
+   "role": "Office manager",
+   "batch": {
+    "n": 1,
+    "hours": [
+     16.5
+    ],
+    "jitter_min": 9.096580146977253
+   }
+  },
+  "threshold_usd": 500.0,
+  "share_under_threshold": 0.533,
+  "arrivals_per_weekday": [
+   0.6,
+   0.77,
+   0.71,
+   0.43,
+   0.71
+  ],
+  "repeated_step": "Eligibility check",
+  "artefact": {
+   "tool": "forms",
+   "steps": []
+  },
+  "assumptions": {
+   "agent_min": 1.0,
+   "agent_review_min": 3.0,
+   "agent_undo_p": 0.05,
+   "agent": "does the step in agent_min, the person reviews in agent_review_min after the usual hand-off wait; send-backs unchanged — the gain is the person's hours, not the cycle",
+   "template": "removes send-back loops whose recorded reason mentions layout, format, template or form; no other effect",
+   "auto_approve": "cases under the threshold skip the approval step and the send-backs it caused",
+   "batching": "the approver signs everything queued at the session times; intra-session order ignored",
+   "capacity": "no queueing between cases: hand-off waits are replayed as measured"
+  }
+ },
+ "since": null,
+ "approvals": [],
+ "seeds": 20,
+ "weeks": 9,
+ "plans": [
+  "as_is__by_hand",
+  "as_is__agent",
+  "twice_a_day__by_hand",
+  "twice_a_day__agent",
+  "auto_500__by_hand",
+  "auto_500__agent"
+ ]
+}

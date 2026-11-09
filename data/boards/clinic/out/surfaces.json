@@ -1,0 +1,35 @@
+{
+ "source": "measured",
+ "recomputed_at": "2026-11-09T23:56:11+09:00",
+ "ceo_line": "Pre-auths wait 49 hours on the insurer. A pre-auth takes 91 h; 98% of it is waiting.",
+ "finance_inbox": [
+  {
+   "title": "Approve claim · 3.2 a week · Office manager",
+   "sub": "ok? 97% yes",
+   "actions": [
+    "Approve",
+    "Ask why"
+   ]
+  }
+ ],
+ "branch_mgr_blocker": {
+  "title": "Insurer wait: 49 h on the insurer per pre-auth. Test a plan?",
+  "actions": [
+   "Open it",
+   "Not now"
+  ]
+ },
+ "expansion_lead": [],
+ "trainer_record": {
+  "steps": 1,
+  "left_out": 1
+ },
+ "roles": [
+  "Front desk",
+  "Insurer",
+  "Hygienist",
+  "Dentist",
+  "Billing",
+  "Office manager"
+ ]
+}

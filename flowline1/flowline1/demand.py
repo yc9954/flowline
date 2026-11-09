@@ -216,7 +216,8 @@ def _why_tags(feature_row: pd.Series, med: pd.Series, iqr: pd.Series, k: int = 3
 
 
 def expansion(results_dir: str, proc: str, gaz_path: str, board_id: str, records: int, branches: int,
-              opening: dict, computed_note: str, zip_prefixes=("786", "787")) -> dict:
+              opening: dict, computed_note: str, zip_prefixes=("786", "787"), default_naics: str = "713940",
+              city: str = "Austin, TX") -> dict:
     """One expansion.json with shared fields and by_industry[naics] = Expansion (SCHEMA §9)."""
     zr = json.load(open(os.path.join(results_dir, "zip_results.json")))
     acs, gaz, Z = load_inputs(proc, gaz_path)
@@ -247,9 +248,9 @@ def expansion(results_dir: str, proc: str, gaz_path: str, board_id: str, records
         rows = []
         for rank, (z, r) in enumerate(sub.iterrows(), 1):
             why = _why_tags(f.loc[z], med, iqr) if z in f.index else []
-            city = str(r.get("city", "")).title() if pd.notna(r.get("city", np.nan)) else ""
+            place = str(r.get("city", "")).title() if pd.notna(r.get("city", np.nan)) else ""
             county = str(r.get("cty_name", "")).title() if pd.notna(r.get("cty_name", np.nan)) else ""
-            rows.append({"zip": z, "name": PLACE_NAMES.get(z, city or county or z),
+            rows.append({"zip": z, "name": PLACE_NAMES.get(z, place or county or z),
                          "why": why or ["near the metro average on every driver"],
                          "predicted": round(float(r["pred"]), 2), "happened": float(r["net"]), "rank": rank, "pick": rank == 1,
                          "lat": round(float(r["INTPTLAT"]), 5) if pd.notna(r.get("INTPTLAT", np.nan)) else 0.0,
@@ -257,13 +258,13 @@ def expansion(results_dir: str, proc: str, gaz_path: str, board_id: str, records
         top = rows[0]
         r = zr[TARGETS[naics]]
         thing = THING[naics]
-        headline = f"Branch {branches + 1} goes to {top['zip']}, {top['name']} — where demand for {thing} is growing fastest."
+        headline = f"{'Branch ' + str(branches + 1) if branches else 'The next site'} goes to {top['zip']}, {top['name']} — where demand for {thing} is growing fastest."
         why_txt = ", ".join(top["why"][:2]) if top["why"] else "its local mix"
         sub_txt = (f"{why_txt[0].upper() + why_txt[1:]} pull new {thing} in. Predicted from 2020 conditions; "
                    f"{int(sum(1 for x in rows if x['happened'] > 0))} of {len(rows)} ZIPs added {thing} by 2023. "
                    f"Source: US Census ZBP/CBP 2014–2023, ACS 2015–19.")
         by_industry[naics] = {
-            "board_id": board_id, "city": "Austin, TX", "industries": INDUSTRIES, "industry": naics,
+            "board_id": board_id, "city": city, "industries": INDUSTRIES, "industry": naics,
             "headline": headline, "sub": sub_txt, "zips_considered": len(rows), "branches": branches, "records": records,
             "rank_of": len(rows), "opening": opening, "zips": rows,
             "backtest": {"frozen_at": 2020, "scored_on": 2023, "n_zips": int(r["model"]["cold_n"]),
@@ -273,7 +274,7 @@ def expansion(results_dir: str, proc: str, gaz_path: str, board_id: str, records
         }
     return {
         "source": "measured",
-        "board_id": board_id, "city": "Austin, TX", "industries": INDUSTRIES, "default": "713940",
+        "board_id": board_id, "city": city, "industries": INDUSTRIES, "default": default_naics,
         "records": records, "branches": branches,
         "note": computed_note,
         "by_industry": by_industry,

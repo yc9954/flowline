@@ -1,0 +1,8344 @@
+[
+ {
+  "id": "0907-0001",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-07",
+  "covers": {
+   "start": "2026-09-07T13:28:41-05:00",
+   "end": "2026-09-07T14:36:41-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-07T13:28:41-05:00",
+    "end": "2026-09-07T13:34:12-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #503",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-07T14:20:07-05:00",
+    "end": "2026-09-07T14:28:56-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #501",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-07T14:30:59-05:00",
+    "end": "2026-09-07T14:36:41-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #502",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 20,
+  "waiting_min": 0,
+  "approved_at": "2026-09-07T17:08:00-05:00",
+  "hash": "c4ff885d1f94b22bdea580795e9ea0b42f10a823b9ef38947842d6fb241dbd39",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0908-0002",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-08",
+  "covers": {
+   "start": "2026-09-08T09:22:53-05:00",
+   "end": "2026-09-08T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-08T09:22:53-05:00",
+    "end": "2026-09-08T09:32:47-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #506",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-08T12:41:17-05:00",
+    "end": "2026-09-08T12:45:54-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #507",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-08T14:31:44-05:00",
+    "end": "2026-09-08T14:43:59-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-08T14:45:50-05:00",
+    "end": "2026-09-08T14:56:47-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-08T14:58:23-05:00",
+    "end": "2026-09-08T15:02:33-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #505",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-08T15:04:23-05:00",
+    "end": "2026-09-08T15:15:56-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-08T15:15:56-05:00",
+    "end": "2026-09-08T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-09-08T15:27:58-05:00",
+    "end": "2026-09-08T15:32:30-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 9,
+    "start": "2026-09-08T15:39:49-05:00",
+    "end": "2026-09-08T15:48:19-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #504",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 10,
+    "start": "2026-09-08T15:45:39-05:00",
+    "end": "2026-09-08T15:53:31-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 11,
+    "start": "2026-09-08T15:59:33-05:00",
+    "end": "2026-09-08T16:09:38-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 12,
+    "start": "2026-09-08T16:09:38-05:00",
+    "end": "2026-09-08T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 84,
+  "waiting_min": 154,
+  "approved_at": "2026-09-08T17:08:00-05:00",
+  "hash": "929b621adb9bd96656d47bef127ac20034c13c2fea83e44e93f5e00151ce9c40",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0909-0003",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-09",
+  "covers": {
+   "start": "2026-09-09T08:00:00-05:00",
+   "end": "2026-09-09T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-09T08:00:00-05:00",
+    "end": "2026-09-09T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-09T08:00:00-05:00",
+    "end": "2026-09-09T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-09T10:57:27-05:00",
+    "end": "2026-09-09T11:05:09-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #509",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-09T11:15:42-05:00",
+    "end": "2026-09-09T11:23:53-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #510",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-09T14:15:59-05:00",
+    "end": "2026-09-09T14:20:12-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #508",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 20,
+  "waiting_min": 1080,
+  "approved_at": "2026-09-09T17:17:00-05:00",
+  "hash": "ac396038748848262561e443a1bcecd12df14debcb17a1f6691c1270729106f4",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0910-0004",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-10",
+  "covers": {
+   "start": "2026-09-10T08:00:00-05:00",
+   "end": "2026-09-10T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-10T08:00:00-05:00",
+    "end": "2026-09-10T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-10T08:00:00-05:00",
+    "end": "2026-09-10T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-10T10:33:49-05:00",
+    "end": "2026-09-10T10:41:09-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #511",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-10T10:40:24-05:00",
+    "end": "2026-09-10T10:46:53-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #512",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-10T13:24:32-05:00",
+    "end": "2026-09-10T13:35:02-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #513",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 24,
+  "waiting_min": 1080,
+  "approved_at": "2026-09-10T17:09:00-05:00",
+  "hash": "036d981a95e814d38fcec6e80e8ef3d2927706b3d7f1cf7a905a7b2d6208de28",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0911-0005",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-11",
+  "covers": {
+   "start": "2026-09-11T08:00:00-05:00",
+   "end": "2026-09-11T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-11T08:00:00-05:00",
+    "end": "2026-09-11T09:43:46-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-11T08:00:00-05:00",
+    "end": "2026-09-11T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-11T11:07:39-05:00",
+    "end": "2026-09-11T11:19:46-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-11T11:30:30-05:00",
+    "end": "2026-09-11T11:47:21-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-11T12:17:23-05:00",
+    "end": "2026-09-11T12:25:10-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-11T12:25:10-05:00",
+    "end": "2026-09-11T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-11T12:48:22-05:00",
+    "end": "2026-09-11T12:54:30-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #516",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 8,
+    "start": "2026-09-11T13:16:44-05:00",
+    "end": "2026-09-11T13:22:46-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #515",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 9,
+    "start": "2026-09-11T13:26:33-05:00",
+    "end": "2026-09-11T13:35:30-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #514",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 58,
+  "waiting_min": 919,
+  "approved_at": "2026-09-11T17:14:00-05:00",
+  "hash": "55d252c3761f71796b19d9557ef5beee1552033e3d8fc7f4c0f4887c7b6da71b",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0911-0006",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-09-11",
+  "covers": {
+   "start": "2026-09-11T13:52:37-05:00",
+   "end": "2026-09-11T14:02:55-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-11T13:52:37-05:00",
+    "end": "2026-09-11T14:02:55-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 10,
+  "waiting_min": 0,
+  "approved_at": "2026-09-11T17:13:00-05:00",
+  "hash": "d96891eaa36312b80b6f29dd291d96f8cbc9f154e813b98b0ade769d086344a2",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0914-0007",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-14",
+  "covers": {
+   "start": "2026-09-14T12:14:20-05:00",
+   "end": "2026-09-14T15:01:11-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-14T12:14:20-05:00",
+    "end": "2026-09-14T12:46:40-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-14T14:50:49-05:00",
+    "end": "2026-09-14T15:01:11-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 43,
+  "waiting_min": 0,
+  "approved_at": "2026-09-14T17:08:00-05:00",
+  "hash": "39590d6d087259d0953bb8af54e1241f94cb4f8deef9ffe39d848f2d8d76e29a",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0914-0008",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-09-14",
+  "covers": {
+   "start": "2026-09-14T08:33:43-05:00",
+   "end": "2026-09-14T14:24:35-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-14T08:33:43-05:00",
+    "end": "2026-09-14T08:55:46-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-14T13:42:22-05:00",
+    "end": "2026-09-14T14:05:00-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-14T14:04:48-05:00",
+    "end": "2026-09-14T14:24:35-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 64,
+  "waiting_min": 0,
+  "approved_at": "2026-09-14T17:08:00-05:00",
+  "hash": "ff955dc33232cca2e3ffcce5ac56623b655355e2e14252ae1d5a21bee77d95d0",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0914-0009",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-14",
+  "covers": {
+   "start": "2026-09-14T11:15:37-05:00",
+   "end": "2026-09-14T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-14T11:15:37-05:00",
+    "end": "2026-09-14T11:23:51-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #517",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-14T12:46:47-05:00",
+    "end": "2026-09-14T12:53:49-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #519",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-14T15:37:37-05:00",
+    "end": "2026-09-14T15:45:49-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #518",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-14T16:57:16-05:00",
+    "end": "2026-09-14T17:00:00-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 26,
+  "waiting_min": 0,
+  "approved_at": "2026-09-14T17:11:00-05:00",
+  "hash": "0a7467b48ff6a4901dc9f64770a69c1f9c94562e1217bf046e5fcf01c98047ae",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0914-0010",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-09-14",
+  "covers": {
+   "start": "2026-09-14T11:03:43-05:00",
+   "end": "2026-09-14T11:52:43-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-14T11:03:43-05:00",
+    "end": "2026-09-14T11:27:20-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-14T11:41:50-05:00",
+    "end": "2026-09-14T11:52:43-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 34,
+  "waiting_min": 0,
+  "approved_at": "2026-09-14T17:19:00-05:00",
+  "hash": "ec9e39ffc1bbfaa6bfb5dea60c561788b4726d19153e8517f873b5664e9e8c2d",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0914-0011",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-14",
+  "covers": {
+   "start": "2026-09-14T16:27:52-05:00",
+   "end": "2026-09-14T16:40:49-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-14T16:27:52-05:00",
+    "end": "2026-09-14T16:38:33-05:00",
+    "name": "Approve the claim $410",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-14T16:34:09-05:00",
+    "end": "2026-09-14T16:40:49-05:00",
+    "name": "Approve the claim $700",
+    "kind": "hands_on",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 17,
+  "waiting_min": 0,
+  "approved_at": "2026-09-14T17:05:00-05:00",
+  "hash": "81f9b2c4d6d25bc819d93f95e4013981dccbfeb15e42c2d9a2371ac9052c66db",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0915-0012",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-15",
+  "covers": {
+   "start": "2026-09-15T08:39:13-05:00",
+   "end": "2026-09-15T08:59:03-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-15T08:39:13-05:00",
+    "end": "2026-09-15T08:59:03-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 20,
+  "waiting_min": 0,
+  "approved_at": "2026-09-15T17:18:00-05:00",
+  "hash": "fce98e8eff42481c08c37d78b97ba77e073d6901687aa28b92526a69b1a94b3d",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0915-0013",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-15",
+  "covers": {
+   "start": "2026-09-15T08:00:00-05:00",
+   "end": "2026-09-15T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-15T08:00:00-05:00",
+    "end": "2026-09-15T08:05:41-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #102",
+    "tools": [
+     "pms",
+     "phone"
+    ]
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-15T08:42:53-05:00",
+    "end": "2026-09-15T08:49:22-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #101",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-15T11:18:48-05:00",
+    "end": "2026-09-15T11:25:15-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #520",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-15T15:11:46-05:00",
+    "end": "2026-09-15T15:23:12-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-15T15:12:59-05:00",
+    "end": "2026-09-15T15:20:32-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #521",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-15T15:24:12-05:00",
+    "end": "2026-09-15T15:34:50-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-15T15:51:24-05:00",
+    "end": "2026-09-15T16:02:27-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-09-15T16:02:27-05:00",
+    "end": "2026-09-15T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 59,
+  "waiting_min": 58,
+  "approved_at": "2026-09-15T17:12:00-05:00",
+  "hash": "5122c422735a5ace4c690407d4a2ca3988eda922d9cede46350e0f22342c95be",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0915-0014",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-15",
+  "covers": {
+   "start": "2026-09-15T16:25:51-05:00",
+   "end": "2026-09-15T16:32:04-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-15T16:25:51-05:00",
+    "end": "2026-09-15T16:32:04-05:00",
+    "name": "Approve claim $640",
+    "kind": "hands_on",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 6,
+  "waiting_min": 0,
+  "approved_at": "2026-09-15T17:14:00-05:00",
+  "hash": "6382b8142fc930b97f039da2bb19b11f05f6eb69a993504bb7a5541ea45ef09a",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0916-0015",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-16",
+  "covers": {
+   "start": "2026-09-16T08:00:00-05:00",
+   "end": "2026-09-16T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-16T08:00:00-05:00",
+    "end": "2026-09-16T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-16T08:15:41-05:00",
+    "end": "2026-09-16T08:22:33-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #103",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-16T09:09:10-05:00",
+    "end": "2026-09-16T09:19:33-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-16T09:24:17-05:00",
+    "end": "2026-09-16T09:33:40-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-16T09:39:30-05:00",
+    "end": "2026-09-16T09:51:13-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-16T09:51:13-05:00",
+    "end": "2026-09-16T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-16T11:37:07-05:00",
+    "end": "2026-09-16T11:41:41-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #522",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 8,
+    "start": "2026-09-16T11:47:51-05:00",
+    "end": "2026-09-16T11:54:27-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #523",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 9,
+    "start": "2026-09-16T12:09:38-05:00",
+    "end": "2026-09-16T12:16:49-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #524",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 57,
+  "waiting_min": 969,
+  "approved_at": "2026-09-16T17:05:00-05:00",
+  "hash": "3523c00f795974d42188be23f4e87771784187c0b864055c41c3f8619db40c38",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0917-0016",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-17",
+  "covers": {
+   "start": "2026-09-17T08:00:00-05:00",
+   "end": "2026-09-17T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-17T08:00:00-05:00",
+    "end": "2026-09-17T16:58:20-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-17T08:00:00-05:00",
+    "end": "2026-09-17T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-17T09:06:26-05:00",
+    "end": "2026-09-17T09:13:21-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #528",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-17T11:02:52-05:00",
+    "end": "2026-09-17T11:08:09-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #526",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-17T13:55:08-05:00",
+    "end": "2026-09-17T14:05:46-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-17T14:18:46-05:00",
+    "end": "2026-09-17T14:33:58-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-17T14:44:19-05:00",
+    "end": "2026-09-17T14:55:57-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-09-17T14:49:09-05:00",
+    "end": "2026-09-17T14:53:40-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #527",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 9,
+    "start": "2026-09-17T14:55:57-05:00",
+    "end": "2026-09-17T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 10,
+    "start": "2026-09-17T15:06:38-05:00",
+    "end": "2026-09-17T15:14:28-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #525",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 62,
+  "waiting_min": 1202,
+  "approved_at": "2026-09-17T17:13:00-05:00",
+  "hash": "a62d48b8a10526d45987aa12ae5691ecc787bee47ce78800d48b6b705818393d",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0918-0017",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-18",
+  "covers": {
+   "start": "2026-09-18T14:32:48-05:00",
+   "end": "2026-09-18T14:55:42-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-18T14:32:48-05:00",
+    "end": "2026-09-18T14:55:42-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 23,
+  "waiting_min": 0,
+  "approved_at": "2026-09-18T17:17:00-05:00",
+  "hash": "ce63d68a91c89a9a786cd51b79b5267b2f10b205bb910c43b086d106e2fe44a8",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0918-0018",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-09-18",
+  "covers": {
+   "start": "2026-09-18T12:39:06-05:00",
+   "end": "2026-09-18T12:57:32-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-18T12:39:06-05:00",
+    "end": "2026-09-18T12:57:32-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 18,
+  "waiting_min": 0,
+  "approved_at": "2026-09-18T17:12:00-05:00",
+  "hash": "031c1a4475411dfd778799fe2b085396ffe26e6158701b62f3164584437d8d1a",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0918-0019",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-18",
+  "covers": {
+   "start": "2026-09-18T08:00:00-05:00",
+   "end": "2026-09-18T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-18T08:00:00-05:00",
+    "end": "2026-09-18T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-18T09:09:27-05:00",
+    "end": "2026-09-18T09:22:30-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #531",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-18T11:12:42-05:00",
+    "end": "2026-09-18T11:19:39-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #530",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-18T14:36:35-05:00",
+    "end": "2026-09-18T14:42:55-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #529",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-18T16:50:58-05:00",
+    "end": "2026-09-18T16:59:11-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 35,
+  "waiting_min": 540,
+  "approved_at": "2026-09-18T17:23:00-05:00",
+  "hash": "bcba6815f657e9b66b0dd38456889c40de855df20e576c7385e3d8204dd5ffad",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0918-0020",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-09-18",
+  "covers": {
+   "start": "2026-09-18T11:05:18-05:00",
+   "end": "2026-09-18T11:41:31-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-18T11:05:18-05:00",
+    "end": "2026-09-18T11:31:13-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-18T11:23:56-05:00",
+    "end": "2026-09-18T11:41:31-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 44,
+  "waiting_min": 0,
+  "approved_at": "2026-09-18T17:18:00-05:00",
+  "hash": "8917789e29b5dcd09400427e10d7d67fc005fd3ee92d571e7e75c2f7de17f80f",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0918-0021",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-18",
+  "covers": {
+   "start": "2026-09-18T16:19:53-05:00",
+   "end": "2026-09-18T16:30:40-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-18T16:19:53-05:00",
+    "end": "2026-09-18T16:30:40-05:00",
+    "name": "Approve claim $170",
+    "kind": "hands_on",
+    "case_id": "pre-auth #104",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 11,
+  "waiting_min": 0,
+  "approved_at": "2026-09-18T17:23:00-05:00",
+  "hash": "46d1356e2d7a372c24210d332ed6e62f7ceef295157730bca42a597f03404472",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0921-0022",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-21",
+  "covers": {
+   "start": "2026-09-21T10:34:51-05:00",
+   "end": "2026-09-21T10:56:18-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-21T10:34:51-05:00",
+    "end": "2026-09-21T10:56:18-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 21,
+  "waiting_min": 0,
+  "approved_at": "2026-09-21T17:10:00-05:00",
+  "hash": "52d60ec92fe0afb5d96d32f5d2158165f17a924d401d5a493c37d70ef2d9b197",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0921-0023",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-09-21",
+  "covers": {
+   "start": "2026-09-21T09:12:55-05:00",
+   "end": "2026-09-21T09:40:51-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-21T09:12:55-05:00",
+    "end": "2026-09-21T09:40:51-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 28,
+  "waiting_min": 0,
+  "approved_at": "2026-09-21T17:08:00-05:00",
+  "hash": "0cb38141aff0dbaf9b3ba6f5deb5073cd1b8a8799a95a0159e5d32429642bb52",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0921-0024",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-21",
+  "covers": {
+   "start": "2026-09-21T08:00:00-05:00",
+   "end": "2026-09-21T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-21T08:00:00-05:00",
+    "end": "2026-09-21T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-21T09:38:47-05:00",
+    "end": "2026-09-21T09:41:59-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #532",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-21T12:10:51-05:00",
+    "end": "2026-09-21T12:24:10-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #533",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-21T13:05:12-05:00",
+    "end": "2026-09-21T13:13:04-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-21T13:29:47-05:00",
+    "end": "2026-09-21T13:41:25-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-21T13:51:16-05:00",
+    "end": "2026-09-21T14:01:38-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-21T14:01:38-05:00",
+    "end": "2026-09-21T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 46,
+  "waiting_min": 718,
+  "approved_at": "2026-09-21T17:18:00-05:00",
+  "hash": "68a6ecef28862d1db11e39d2650d159489cdbca3b2d3d48b85d04f04a803c8a5",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0921-0025",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-21",
+  "covers": {
+   "start": "2026-09-21T16:35:35-05:00",
+   "end": "2026-09-21T16:40:48-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-21T16:35:35-05:00",
+    "end": "2026-09-21T16:40:48-05:00",
+    "name": "Approve claim $210",
+    "kind": "hands_on",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 5,
+  "waiting_min": 0,
+  "approved_at": "2026-09-21T17:13:00-05:00",
+  "hash": "cd9f42a911056ca5cac48d91d4521178e110c162c33437e068196440a8f95608",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0922-0026",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-22",
+  "covers": {
+   "start": "2026-09-22T08:00:00-05:00",
+   "end": "2026-09-22T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-22T08:00:00-05:00",
+    "end": "2026-09-22T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-22T08:10:14-05:00",
+    "end": "2026-09-22T08:18:20-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #105",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-22T08:33:24-05:00",
+    "end": "2026-09-22T08:39:15-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #534",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-22T14:25:39-05:00",
+    "end": "2026-09-22T14:35:33-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #535",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-22T14:55:58-05:00",
+    "end": "2026-09-22T15:07:56-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #536",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 36,
+  "waiting_min": 540,
+  "approved_at": "2026-09-22T17:08:00-05:00",
+  "hash": "feee88d03ab936336e70c864e70a5a43a1feadc7986b2c7fa59f7fc329546a1e",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0922-0027",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-09-22",
+  "covers": {
+   "start": "2026-09-22T16:31:55-05:00",
+   "end": "2026-09-22T16:50:50-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-22T16:31:55-05:00",
+    "end": "2026-09-22T16:50:50-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 19,
+  "waiting_min": 0,
+  "approved_at": "2026-09-22T17:12:00-05:00",
+  "hash": "0ecd381b19fa9437d0a455113376aa30c74d4c8eb649ee6f91132fb2e9b462fe",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0923-0028",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-23",
+  "covers": {
+   "start": "2026-09-23T13:48:13-05:00",
+   "end": "2026-09-23T14:28:12-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-23T13:48:13-05:00",
+    "end": "2026-09-23T14:28:12-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 40,
+  "waiting_min": 0,
+  "approved_at": "2026-09-23T17:10:00-05:00",
+  "hash": "1981b54d3db927362e863e9cbdcf48e702ad65075027f6bba9e5a5200870dee1",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0923-0029",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-09-23",
+  "covers": {
+   "start": "2026-09-23T10:35:24-05:00",
+   "end": "2026-09-23T11:03:33-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-23T10:35:24-05:00",
+    "end": "2026-09-23T11:03:33-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 28,
+  "waiting_min": 0,
+  "approved_at": "2026-09-23T17:18:00-05:00",
+  "hash": "6ff70f51a444081d7244bf82d2b4a530286a1b190d47037d948f3d781e0593c5",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0923-0030",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-23",
+  "covers": {
+   "start": "2026-09-23T08:00:00-05:00",
+   "end": "2026-09-23T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-23T08:00:00-05:00",
+    "end": "2026-09-23T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-23T08:18:47-05:00",
+    "end": "2026-09-23T08:28:46-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #538",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-23T09:22:13-05:00",
+    "end": "2026-09-23T09:32:50-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #539",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-23T09:26:03-05:00",
+    "end": "2026-09-23T09:31:55-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #540",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-23T09:46:14-05:00",
+    "end": "2026-09-23T09:53:02-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #537",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 33,
+  "waiting_min": 540,
+  "approved_at": "2026-09-23T17:19:00-05:00",
+  "hash": "928bc3012fd4e1ce7a7e819da35539a32aa1399db2de8886899a3bf2149ac142",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0923-0031",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-23",
+  "covers": {
+   "start": "2026-09-23T16:36:08-05:00",
+   "end": "2026-09-23T16:42:08-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-23T16:36:08-05:00",
+    "end": "2026-09-23T16:42:08-05:00",
+    "name": "Approve claim $250",
+    "kind": "hands_on",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 6,
+  "waiting_min": 0,
+  "approved_at": "2026-09-23T17:24:00-05:00",
+  "hash": "0d881cfb6216885011daa6f306f02ca364345438174d771adee3518b1c1b4238",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0924-0032",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-24",
+  "covers": {
+   "start": "2026-09-24T13:54:42-05:00",
+   "end": "2026-09-24T14:15:39-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-24T13:54:42-05:00",
+    "end": "2026-09-24T14:15:39-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 21,
+  "waiting_min": 0,
+  "approved_at": "2026-09-24T17:21:00-05:00",
+  "hash": "6fb7be6b9285003cac601c824dd39a8139167f9c7e74d914bb0cd3c174ec8990",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0924-0033",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-09-24",
+  "covers": {
+   "start": "2026-09-24T11:34:16-05:00",
+   "end": "2026-09-24T12:10:51-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-24T11:34:16-05:00",
+    "end": "2026-09-24T12:10:51-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 37,
+  "waiting_min": 0,
+  "approved_at": "2026-09-24T17:10:00-05:00",
+  "hash": "2dd0bb8ff46902b6f891d0bd9c9ccd06cf203ab0dad02946cfaff0623a17565e",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0924-0034",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-24",
+  "covers": {
+   "start": "2026-09-24T09:04:45-05:00",
+   "end": "2026-09-24T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-24T09:04:45-05:00",
+    "end": "2026-09-24T09:15:09-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #106",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-24T09:42:08-05:00",
+    "end": "2026-09-24T09:47:39-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-24T09:52:36-05:00",
+    "end": "2026-09-24T10:00:00-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-24T10:06:35-05:00",
+    "end": "2026-09-24T10:18:02-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-24T10:18:02-05:00",
+    "end": "2026-09-24T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-24T11:51:02-05:00",
+    "end": "2026-09-24T11:59:24-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #542",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-24T14:31:48-05:00",
+    "end": "2026-09-24T14:44:08-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #541",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 55,
+  "waiting_min": 402,
+  "approved_at": "2026-09-24T17:15:00-05:00",
+  "hash": "38d62f71b15227342b8be143cc35cc163f2a37c925b6105399afcf6f5d05a010",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0924-0035",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-09-24",
+  "covers": {
+   "start": "2026-09-24T09:29:21-05:00",
+   "end": "2026-09-24T09:50:33-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-24T09:29:21-05:00",
+    "end": "2026-09-24T09:50:33-05:00",
+    "name": "Perio charting",
+    "kind": "hands_on",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 21,
+  "waiting_min": 0,
+  "approved_at": "2026-09-24T17:17:00-05:00",
+  "hash": "a3d22f416b22824f16f6adf9273a90e58e561c64bdf40b54be55bc41e154f623",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0924-0036",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-24",
+  "covers": {
+   "start": "2026-09-24T16:28:24-05:00",
+   "end": "2026-09-24T16:40:40-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-24T16:28:24-05:00",
+    "end": "2026-09-24T16:40:40-05:00",
+    "name": "Approve claim $810",
+    "kind": "hands_on",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 12,
+  "waiting_min": 0,
+  "approved_at": "2026-09-24T17:08:00-05:00",
+  "hash": "5e624f21bd8f24564dc664795ebc958581636276431b45df2c43b591b6d74d0e",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0925-0037",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-25",
+  "covers": {
+   "start": "2026-09-25T11:30:22-05:00",
+   "end": "2026-09-25T11:57:30-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-25T11:30:22-05:00",
+    "end": "2026-09-25T11:57:30-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 27,
+  "waiting_min": 0,
+  "approved_at": "2026-09-25T17:13:00-05:00",
+  "hash": "2a8849d4a77e123a87e93753cc1dbbf949c9a4f0775386f686ddf62c7388ff39",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0925-0038",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-09-25",
+  "covers": {
+   "start": "2026-09-25T09:55:23-05:00",
+   "end": "2026-09-25T10:15:36-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-25T09:55:23-05:00",
+    "end": "2026-09-25T10:15:36-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 20,
+  "waiting_min": 0,
+  "approved_at": "2026-09-25T17:11:00-05:00",
+  "hash": "8fceba76aa36e0c0f56a7c7175d07494e384f0362bcb8938dc2a4a9c1aad91f1",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0925-0039",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-25",
+  "covers": {
+   "start": "2026-09-25T08:04:58-05:00",
+   "end": "2026-09-25T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-25T08:04:58-05:00",
+    "end": "2026-09-25T08:09:08-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #107",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-25T08:34:49-05:00",
+    "end": "2026-09-25T08:44:54-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-25T08:51:43-05:00",
+    "end": "2026-09-25T09:08:07-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-25T09:10:00-05:00",
+    "end": "2026-09-25T09:20:46-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-25T09:20:46-05:00",
+    "end": "2026-09-25T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-25T10:08:32-05:00",
+    "end": "2026-09-25T10:12:28-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #543",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-25T11:09:26-05:00",
+    "end": "2026-09-25T11:15:35-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #544",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 8,
+    "start": "2026-09-25T15:03:56-05:00",
+    "end": "2026-09-25T15:14:38-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 9,
+    "start": "2026-09-25T15:20:04-05:00",
+    "end": "2026-09-25T15:35:29-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 10,
+    "start": "2026-09-25T15:43:49-05:00",
+    "end": "2026-09-25T15:56:07-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 11,
+    "start": "2026-09-25T15:56:07-05:00",
+    "end": "2026-09-25T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 12,
+    "start": "2026-09-25T16:53:59-05:00",
+    "end": "2026-09-25T17:00:00-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 96,
+  "waiting_min": 523,
+  "approved_at": "2026-09-25T17:11:00-05:00",
+  "hash": "fb18b4d70b22560ff8d4262ca06cb3568108910e82dd60f0615ac4606232b123",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0925-0040",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-09-25",
+  "covers": {
+   "start": "2026-09-25T08:22:46-05:00",
+   "end": "2026-09-25T08:50:20-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-25T08:22:46-05:00",
+    "end": "2026-09-25T08:50:20-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 28,
+  "waiting_min": 0,
+  "approved_at": "2026-09-25T17:16:00-05:00",
+  "hash": "69e4405819f3e4aacdc7cafb6f7b6b85cf637008d9cb060f86d4bd1f33c93569",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0925-0041",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-25",
+  "covers": {
+   "start": "2026-09-25T16:31:52-05:00",
+   "end": "2026-09-25T16:38:34-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-25T16:31:52-05:00",
+    "end": "2026-09-25T16:38:34-05:00",
+    "name": "Approve claim $810",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 7,
+  "waiting_min": 0,
+  "approved_at": "2026-09-25T17:23:00-05:00",
+  "hash": "925424050c39522983d22181ca08d12172ae18a0154bf22c6ab865b452f4ef1a",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0928-0042",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-28",
+  "covers": {
+   "start": "2026-09-28T14:36:23-05:00",
+   "end": "2026-09-28T15:10:40-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-28T14:36:23-05:00",
+    "end": "2026-09-28T15:10:40-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 34,
+  "waiting_min": 0,
+  "approved_at": "2026-09-28T17:22:00-05:00",
+  "hash": "d7da731fa00f9dfcc5e98378ca2cad118fdce9eb37e9479e2257c7cca3d2a3d8",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0928-0043",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-09-28",
+  "covers": {
+   "start": "2026-09-28T11:04:26-05:00",
+   "end": "2026-09-28T11:28:23-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-28T11:04:26-05:00",
+    "end": "2026-09-28T11:28:23-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 24,
+  "waiting_min": 0,
+  "approved_at": "2026-09-28T17:20:00-05:00",
+  "hash": "7cc18e4bf7c61899ec7acda28ba7bc6db96fe1657a5cade1788143ef03ef3f01",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0928-0044",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-28",
+  "covers": {
+   "start": "2026-09-28T08:00:00-05:00",
+   "end": "2026-09-28T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-28T08:00:00-05:00",
+    "end": "2026-09-28T08:01:10-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #108",
+    "tools": [
+     "pms",
+     "phone"
+    ]
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-28T08:00:00-05:00",
+    "end": "2026-09-28T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-28T08:24:37-05:00",
+    "end": "2026-09-28T08:32:20-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #547",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-28T09:30:08-05:00",
+    "end": "2026-09-28T09:40:30-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #546",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-28T12:54:27-05:00",
+    "end": "2026-09-28T12:59:30-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #545",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 24,
+  "waiting_min": 540,
+  "approved_at": "2026-09-28T17:05:00-05:00",
+  "hash": "9042795d0d43376227adabf5bbf9c9291be94ae3d040099bd88e0119b90f057f",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0928-0045",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-09-28",
+  "covers": {
+   "start": "2026-09-28T10:04:57-05:00",
+   "end": "2026-09-28T10:46:20-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-28T10:04:57-05:00",
+    "end": "2026-09-28T10:46:20-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 41,
+  "waiting_min": 0,
+  "approved_at": "2026-09-28T17:16:00-05:00",
+  "hash": "26536268f6ee98ef4b091585796cdcc7bae5db3275aa9ddd466546c7788edcfe",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0928-0046",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-28",
+  "covers": {
+   "start": "2026-09-28T16:26:29-05:00",
+   "end": "2026-09-28T16:35:57-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-28T16:26:29-05:00",
+    "end": "2026-09-28T16:35:57-05:00",
+    "name": "Approve claim $570",
+    "kind": "hands_on",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 9,
+  "waiting_min": 0,
+  "approved_at": "2026-09-28T17:15:00-05:00",
+  "hash": "465a7e89a48e36f66c1323b47bd2f578e9316e60de49c348ed10cb72d0a4d075",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0929-0047",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-09-29",
+  "covers": {
+   "start": "2026-09-29T14:19:30-05:00",
+   "end": "2026-09-29T14:39:28-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-29T14:19:30-05:00",
+    "end": "2026-09-29T14:39:28-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 20,
+  "waiting_min": 0,
+  "approved_at": "2026-09-29T17:19:00-05:00",
+  "hash": "fef4cd6eb0036adc34eb8f0da10587cd5d14ac9ba5fcab390a90da6a61a5c120",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0929-0048",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-09-29",
+  "covers": {
+   "start": "2026-09-29T12:25:19-05:00",
+   "end": "2026-09-29T12:40:12-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-29T12:25:19-05:00",
+    "end": "2026-09-29T12:40:12-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 15,
+  "waiting_min": 0,
+  "approved_at": "2026-09-29T17:10:00-05:00",
+  "hash": "b36340ebb62ba1f52fcf3ee73278f633612c032b80d19c87492f5918b34acca6",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0929-0049",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-29",
+  "covers": {
+   "start": "2026-09-29T08:58:14-05:00",
+   "end": "2026-09-29T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-29T08:58:14-05:00",
+    "end": "2026-09-29T09:06:41-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #110",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-29T09:53:02-05:00",
+    "end": "2026-09-29T09:59:19-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #549",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-29T11:05:41-05:00",
+    "end": "2026-09-29T11:16:12-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #550",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-29T12:05:53-05:00",
+    "end": "2026-09-29T12:21:12-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-29T12:41:33-05:00",
+    "end": "2026-09-29T12:54:46-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-29T13:11:12-05:00",
+    "end": "2026-09-29T13:25:24-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-29T13:25:24-05:00",
+    "end": "2026-09-29T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-09-29T14:13:50-05:00",
+    "end": "2026-09-29T14:19:32-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #548",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 74,
+  "waiting_min": 215,
+  "approved_at": "2026-09-29T17:21:00-05:00",
+  "hash": "bbc2addebbee0ac77531b32c48e442e0a3ab5b7070009f9c2e1bcc9120aa584a",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0929-0050",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-09-29",
+  "covers": {
+   "start": "2026-09-29T09:54:30-05:00",
+   "end": "2026-09-29T10:07:08-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-29T09:54:30-05:00",
+    "end": "2026-09-29T10:07:08-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 13,
+  "waiting_min": 0,
+  "approved_at": "2026-09-29T17:24:00-05:00",
+  "hash": "134991f7c653c8091bd60c7fa795c16e70a18b1a330e65d19fdb8dce3268de45",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0929-0051",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-09-29",
+  "covers": {
+   "start": "2026-09-29T16:10:34-05:00",
+   "end": "2026-09-29T16:18:23-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-29T16:10:34-05:00",
+    "end": "2026-09-29T16:18:23-05:00",
+    "name": "Approve claim $110",
+    "kind": "hands_on",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 8,
+  "waiting_min": 0,
+  "approved_at": "2026-09-29T17:06:00-05:00",
+  "hash": "4b5e5d296e9e7ab80ebd8510bbe78d716d5b86251057fdac9253e145f21ef05b",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "0930-0052",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-09-30",
+  "covers": {
+   "start": "2026-09-30T08:00:00-05:00",
+   "end": "2026-09-30T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-09-30T08:00:00-05:00",
+    "end": "2026-09-30T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-09-30T08:41:48-05:00",
+    "end": "2026-09-30T08:50:47-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #109",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 3,
+    "start": "2026-09-30T09:44:08-05:00",
+    "end": "2026-09-30T09:54:29-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #554",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   },
+   {
+    "idx": 4,
+    "start": "2026-09-30T09:55:54-05:00",
+    "end": "2026-09-30T10:02:39-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #551",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 5,
+    "start": "2026-09-30T11:01:01-05:00",
+    "end": "2026-09-30T11:07:40-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #552",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 6,
+    "start": "2026-09-30T11:02:08-05:00",
+    "end": "2026-09-30T11:09:36-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #553",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 7,
+    "start": "2026-09-30T11:34:35-05:00",
+    "end": "2026-09-30T11:44:21-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 8,
+    "start": "2026-09-30T11:46:52-05:00",
+    "end": "2026-09-30T11:56:07-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 9,
+    "start": "2026-09-30T12:46:51-05:00",
+    "end": "2026-09-30T12:53:27-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 10,
+    "start": "2026-09-30T12:53:27-05:00",
+    "end": "2026-09-30T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 11,
+    "start": "2026-09-30T14:50:59-05:00",
+    "end": "2026-09-30T15:09:54-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 12,
+    "start": "2026-09-30T15:19:27-05:00",
+    "end": "2026-09-30T15:30:31-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 13,
+    "start": "2026-09-30T15:54:09-05:00",
+    "end": "2026-09-30T16:05:54-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 14,
+    "start": "2026-09-30T16:05:54-05:00",
+    "end": "2026-09-30T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 108,
+  "waiting_min": 841,
+  "approved_at": "2026-09-30T17:13:00-05:00",
+  "hash": "0c2a6d70b913397d27af417333841ca61d25cb4c75b97d68ff059ec1d37d59dd",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1001-0053",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-01",
+  "covers": {
+   "start": "2026-10-01T08:00:00-05:00",
+   "end": "2026-10-01T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-01T08:00:00-05:00",
+    "end": "2026-10-01T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-01T08:00:00-05:00",
+    "end": "2026-10-01T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-01T08:00:00-05:00",
+    "end": "2026-10-01T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-01T09:13:47-05:00",
+    "end": "2026-10-01T09:19:59-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #557",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-01T09:20:53-05:00",
+    "end": "2026-10-01T09:32:52-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #555",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-01T11:49:56-05:00",
+    "end": "2026-10-01T11:57:16-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #556",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-01T16:13:14-05:00",
+    "end": "2026-10-01T16:18:56-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #558",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 31,
+  "waiting_min": 1620,
+  "approved_at": "2026-10-01T17:17:00-05:00",
+  "hash": "a544eed1d98949d8834f846eb286772b331917bf7878ceb066bec9c91c541a4a",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1002-0054",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-02",
+  "covers": {
+   "start": "2026-10-02T14:06:03-05:00",
+   "end": "2026-10-02T14:24:21-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-02T14:06:03-05:00",
+    "end": "2026-10-02T14:24:21-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 18,
+  "waiting_min": 0,
+  "approved_at": "2026-10-02T17:05:00-05:00",
+  "hash": "27f07b2ea5639cb08e3758ad13fce43af7a9d8f1810db139715660f5b7f9efd7",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1002-0055",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-02",
+  "covers": {
+   "start": "2026-10-02T10:22:07-05:00",
+   "end": "2026-10-02T10:37:28-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-02T10:22:07-05:00",
+    "end": "2026-10-02T10:37:28-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 15,
+  "waiting_min": 0,
+  "approved_at": "2026-10-02T17:18:00-05:00",
+  "hash": "5d7b5e83a3b40ce5c73bce2fa2cd37529f3eb361f9b4fa8466a2badd7dcaa61e",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1002-0056",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-02",
+  "covers": {
+   "start": "2026-10-02T08:00:00-05:00",
+   "end": "2026-10-02T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-02T08:00:00-05:00",
+    "end": "2026-10-02T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-02T08:00:00-05:00",
+    "end": "2026-10-02T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-02T08:00:12-05:00",
+    "end": "2026-10-02T08:07:39-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #561",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-02T09:28:58-05:00",
+    "end": "2026-10-02T09:38:56-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-02T09:44:17-05:00",
+    "end": "2026-10-02T09:52:55-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-02T11:09:39-05:00",
+    "end": "2026-10-02T11:34:00-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-02T11:34:00-05:00",
+    "end": "2026-10-02T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-02T12:11:21-05:00",
+    "end": "2026-10-02T12:17:07-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #560",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-02T13:03:18-05:00",
+    "end": "2026-10-02T13:08:11-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #559",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-02T16:57:15-05:00",
+    "end": "2026-10-02T17:00:00-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 64,
+  "waiting_min": 1406,
+  "approved_at": "2026-10-02T17:16:00-05:00",
+  "hash": "bf2d02eced99a3ad9a3eab05f2146a1bc0f41659708acf5bcdd9bdb47c8de511",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1002-0057",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-02",
+  "covers": {
+   "start": "2026-10-02T08:52:05-05:00",
+   "end": "2026-10-02T09:18:08-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-02T08:52:05-05:00",
+    "end": "2026-10-02T09:18:08-05:00",
+    "name": "Perio charting",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 26,
+  "waiting_min": 0,
+  "approved_at": "2026-10-02T17:13:00-05:00",
+  "hash": "11f9d97356dd92a911161dba68f39e97eeefcf52edb6caafba705ef3e6b0980b",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1002-0058",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-02",
+  "covers": {
+   "start": "2026-10-02T16:30:18-05:00",
+   "end": "2026-10-02T16:38:47-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-02T16:30:18-05:00",
+    "end": "2026-10-02T16:38:47-05:00",
+    "name": "Approve the claim $240",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 8,
+  "waiting_min": 0,
+  "approved_at": "2026-10-02T17:12:00-05:00",
+  "hash": "5fe6522ca593e016ac8ae16b0f5f0c44fd60831503c262f5bd4a168d2686b0cc",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1005-0059",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-05",
+  "covers": {
+   "start": "2026-10-05T14:53:05-05:00",
+   "end": "2026-10-05T15:26:21-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-05T14:53:05-05:00",
+    "end": "2026-10-05T15:08:08-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-05T14:57:16-05:00",
+    "end": "2026-10-05T15:26:21-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 44,
+  "waiting_min": 0,
+  "approved_at": "2026-10-05T17:17:00-05:00",
+  "hash": "5950dc499b502af3f0dd8e0eca078f078caabb54f0802813ec549dfe6dcd2803",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1005-0060",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-05",
+  "covers": {
+   "start": "2026-10-05T12:28:15-05:00",
+   "end": "2026-10-05T13:12:10-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-05T12:28:15-05:00",
+    "end": "2026-10-05T13:00:55-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-05T12:29:30-05:00",
+    "end": "2026-10-05T13:12:10-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 75,
+  "waiting_min": 0,
+  "approved_at": "2026-10-05T17:12:00-05:00",
+  "hash": "0e70f9df506630e984650b9f858f5e9b1011a68c3cddbe501a9b5c1739b89625",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1005-0061",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-05",
+  "covers": {
+   "start": "2026-10-05T08:00:00-05:00",
+   "end": "2026-10-05T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-05T08:00:00-05:00",
+    "end": "2026-10-05T08:06:33-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #111",
+    "tools": [
+     "pms",
+     "phone"
+    ]
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-05T08:06:17-05:00",
+    "end": "2026-10-05T08:09:51-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #563",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-05T08:09:02-05:00",
+    "end": "2026-10-05T08:16:46-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-05T08:21:13-05:00",
+    "end": "2026-10-05T08:33:31-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-05T08:29:46-05:00",
+    "end": "2026-10-05T08:36:57-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #562",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-05T08:44:22-05:00",
+    "end": "2026-10-05T08:57:57-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-05T08:57:57-05:00",
+    "end": "2026-10-05T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-05T09:41:45-05:00",
+    "end": "2026-10-05T09:47:20-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #564",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-05T15:52:40-05:00",
+    "end": "2026-10-05T16:04:52-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-05T16:09:01-05:00",
+    "end": "2026-10-05T16:17:33-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 11,
+    "start": "2026-10-05T16:41:13-05:00",
+    "end": "2026-10-05T16:47:34-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 12,
+    "start": "2026-10-05T16:47:34-05:00",
+    "end": "2026-10-05T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 13,
+    "start": "2026-10-05T16:53:06-05:00",
+    "end": "2026-10-05T16:59:31-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 90,
+  "waiting_min": 494,
+  "approved_at": "2026-10-05T17:19:00-05:00",
+  "hash": "93fee10715836779413e5b27176e67f3fc4fb1605e29ec693772d6633438949b",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1005-0062",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-05",
+  "covers": {
+   "start": "2026-10-05T08:50:09-05:00",
+   "end": "2026-10-05T10:52:50-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-05T08:50:09-05:00",
+    "end": "2026-10-05T09:15:20-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-05T10:27:25-05:00",
+    "end": "2026-10-05T10:46:59-05:00",
+    "name": "Perio charting",
+    "kind": "hands_on",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-05T10:33:43-05:00",
+    "end": "2026-10-05T10:52:50-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 64,
+  "waiting_min": 0,
+  "approved_at": "2026-10-05T17:10:00-05:00",
+  "hash": "b1ea99b65a3014ca709006e171b3be0c6e78eb5496a9b94a4fd4eb4c6d75e7c0",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1005-0063",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-05",
+  "covers": {
+   "start": "2026-10-05T16:15:24-05:00",
+   "end": "2026-10-05T16:40:11-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-05T16:15:24-05:00",
+    "end": "2026-10-05T16:27:32-05:00",
+    "name": "Approve the claim $230",
+    "kind": "hands_on",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-05T16:32:03-05:00",
+    "end": "2026-10-05T16:40:11-05:00",
+    "name": "Approve the claim $350",
+    "kind": "hands_on",
+    "case_id": "pre-auth #114",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 20,
+  "waiting_min": 0,
+  "approved_at": "2026-10-05T17:07:00-05:00",
+  "hash": "d2c976cf89ac172cce777edd8d75f8ae079d051be892a2201204f1324b8d6860",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1006-0064",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-06",
+  "covers": {
+   "start": "2026-10-06T10:50:59-05:00",
+   "end": "2026-10-06T11:27:02-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-06T10:50:59-05:00",
+    "end": "2026-10-06T11:27:02-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 36,
+  "waiting_min": 0,
+  "approved_at": "2026-10-06T17:11:00-05:00",
+  "hash": "c175459e1ead3cf230ac8d1ae31c2eb41e74e17e6be9a231afda9e0e73267721",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1006-0065",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-06",
+  "covers": {
+   "start": "2026-10-06T08:00:49-05:00",
+   "end": "2026-10-06T08:18:46-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-06T08:00:49-05:00",
+    "end": "2026-10-06T08:18:46-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 18,
+  "waiting_min": 0,
+  "approved_at": "2026-10-06T17:22:00-05:00",
+  "hash": "7bb4a3a5e505ffa0740b8d96d9dcc962ca34d59685ae34a6e2cff1e87f4a3ed1",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1006-0066",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-06",
+  "covers": {
+   "start": "2026-10-06T08:00:00-05:00",
+   "end": "2026-10-06T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-06T08:00:00-05:00",
+    "end": "2026-10-06T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-06T08:00:00-05:00",
+    "end": "2026-10-06T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-06T08:12:27-05:00",
+    "end": "2026-10-06T08:25:12-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #113",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-06T08:24:43-05:00",
+    "end": "2026-10-06T08:33:32-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #566",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-06T12:58:09-05:00",
+    "end": "2026-10-06T13:04:36-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-06T13:06:36-05:00",
+    "end": "2026-10-06T13:21:14-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-06T13:36:59-05:00",
+    "end": "2026-10-06T13:50:50-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-06T13:50:50-05:00",
+    "end": "2026-10-06T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-06T14:20:02-05:00",
+    "end": "2026-10-06T14:26:49-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #568",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-06T14:39:19-05:00",
+    "end": "2026-10-06T14:46:15-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #567",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 11,
+    "start": "2026-10-06T14:54:49-05:00",
+    "end": "2026-10-06T15:02:41-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #565",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 78,
+  "waiting_min": 1269,
+  "approved_at": "2026-10-06T17:12:00-05:00",
+  "hash": "109bbb287e6ab54b5b6859c320038ce2ffa57bff821f8468ff310fecd43eb3ca",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1006-0067",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-06",
+  "covers": {
+   "start": "2026-10-06T16:27:40-05:00",
+   "end": "2026-10-06T16:41:21-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-06T16:27:40-05:00",
+    "end": "2026-10-06T16:41:21-05:00",
+    "name": "Approve the claim $440",
+    "kind": "hands_on",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 14,
+  "waiting_min": 0,
+  "approved_at": "2026-10-06T17:16:00-05:00",
+  "hash": "a8337c0a8b8935c62a29fd6461a9e86016e9f3bd6f05dc204e1392fc7b0318aa",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1007-0068",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-07",
+  "covers": {
+   "start": "2026-10-07T14:13:37-05:00",
+   "end": "2026-10-07T14:31:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-07T14:13:37-05:00",
+    "end": "2026-10-07T14:31:00-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 17,
+  "waiting_min": 0,
+  "approved_at": "2026-10-07T17:18:00-05:00",
+  "hash": "0a2e7f9bbe30e8eadab8f3c2839afa435938376bcc05da849e2c56094adf76c4",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1007-0069",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-07",
+  "covers": {
+   "start": "2026-10-07T08:00:00-05:00",
+   "end": "2026-10-07T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-07T08:00:00-05:00",
+    "end": "2026-10-07T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-07T08:00:00-05:00",
+    "end": "2026-10-07T10:00:24-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-07T08:00:00-05:00",
+    "end": "2026-10-07T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-07T08:58:24-05:00",
+    "end": "2026-10-07T09:06:48-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #112",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-07T09:02:51-05:00",
+    "end": "2026-10-07T09:09:49-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #570",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-07T09:29:26-05:00",
+    "end": "2026-10-07T09:38:17-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #569",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-07T13:24:17-05:00",
+    "end": "2026-10-07T13:30:44-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #572",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-07T15:37:18-05:00",
+    "end": "2026-10-07T15:52:46-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-07T15:51:50-05:00",
+    "end": "2026-10-07T16:00:33-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #571",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-07T16:07:45-05:00",
+    "end": "2026-10-07T16:28:55-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 11,
+    "start": "2026-10-07T16:33:21-05:00",
+    "end": "2026-10-07T16:49:56-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 12,
+    "start": "2026-10-07T16:49:56-05:00",
+    "end": "2026-10-07T17:00:00-05:00",
+    "name": "Insurer wait — denied, resubmit",
+    "kind": "waiting",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 93,
+  "waiting_min": 1210,
+  "approved_at": "2026-10-07T17:14:00-05:00",
+  "hash": "4b385d12caa179115349cccf306e9f80a2a4cf6ccbd5d330e1995abfc3d9dd71",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1007-0070",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-07",
+  "covers": {
+   "start": "2026-10-07T11:30:03-05:00",
+   "end": "2026-10-07T11:52:33-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-07T11:30:03-05:00",
+    "end": "2026-10-07T11:52:33-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 23,
+  "waiting_min": 0,
+  "approved_at": "2026-10-07T17:09:00-05:00",
+  "hash": "ec396c4eab9a406852e319c4261e19e0eb29c7579b85c0af1de7c63ef094830c",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1008-0071",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-08",
+  "covers": {
+   "start": "2026-10-08T10:33:00-05:00",
+   "end": "2026-10-08T12:59:10-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-08T10:33:00-05:00",
+    "end": "2026-10-08T10:56:29-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-08T12:38:56-05:00",
+    "end": "2026-10-08T12:59:10-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 44,
+  "waiting_min": 0,
+  "approved_at": "2026-10-08T17:16:00-05:00",
+  "hash": "4ba588a9e09bad45abc9b4e383156c8e5b367593bfc03a323a9e8917626195f6",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1008-0072",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-08",
+  "covers": {
+   "start": "2026-10-08T09:45:51-05:00",
+   "end": "2026-10-08T10:23:14-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-08T09:45:51-05:00",
+    "end": "2026-10-08T10:23:14-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 37,
+  "waiting_min": 0,
+  "approved_at": "2026-10-08T17:13:00-05:00",
+  "hash": "e90b6d6f1a9381012823620aaa2eabf690ae50ba7140393620e4eeb8b27226a6",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1008-0073",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-08",
+  "covers": {
+   "start": "2026-10-08T08:00:00-05:00",
+   "end": "2026-10-08T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-08T08:00:00-05:00",
+    "end": "2026-10-08T16:04:47-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-08T08:00:00-05:00",
+    "end": "2026-10-08T17:00:00-05:00",
+    "name": "Insurer wait — denied, resubmit",
+    "kind": "waiting",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-08T10:30:45-05:00",
+    "end": "2026-10-08T10:43:10-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #573",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-08T12:18:47-05:00",
+    "end": "2026-10-08T12:24:06-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #574",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-08T15:41:23-05:00",
+    "end": "2026-10-08T15:49:12-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #575",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-08T16:48:00-05:00",
+    "end": "2026-10-08T16:55:10-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-08T16:48:09-05:00",
+    "end": "2026-10-08T16:54:14-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 39,
+  "waiting_min": 1025,
+  "approved_at": "2026-10-08T17:17:00-05:00",
+  "hash": "b81148402dd961f3f2f2b23e0b18c6e4cdba9f0f20d1b15c4231f3e520760f51",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1008-0074",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-08",
+  "covers": {
+   "start": "2026-10-08T08:25:10-05:00",
+   "end": "2026-10-08T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-08T08:25:10-05:00",
+    "end": "2026-10-08T08:45:19-05:00",
+    "name": "Perio charting",
+    "kind": "hands_on",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-08T16:56:27-05:00",
+    "end": "2026-10-08T17:00:00-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 24,
+  "waiting_min": 0,
+  "approved_at": "2026-10-08T17:13:00-05:00",
+  "hash": "f0169f9d34c5727b83c0d7d0c6571e7ce7cf91e5c7b59440363e5354ec937b71",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1008-0075",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-08",
+  "covers": {
+   "start": "2026-10-08T16:05:44-05:00",
+   "end": "2026-10-08T16:23:27-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-08T16:05:44-05:00",
+    "end": "2026-10-08T16:14:21-05:00",
+    "name": "Approve claim $240",
+    "kind": "hands_on",
+    "case_id": "pre-auth #115",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-08T16:14:57-05:00",
+    "end": "2026-10-08T16:23:27-05:00",
+    "name": "Approve claim $780",
+    "kind": "hands_on",
+    "case_id": "pre-auth #116",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 17,
+  "waiting_min": 0,
+  "approved_at": "2026-10-08T17:10:00-05:00",
+  "hash": "0a6b5795ab7e779d8e83cd4eba6acc8c9ca37bdc169e72bad482d7ea0ca1f300",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1009-0076",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-09",
+  "covers": {
+   "start": "2026-10-09T14:32:08-05:00",
+   "end": "2026-10-09T15:08:17-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-09T14:32:08-05:00",
+    "end": "2026-10-09T15:08:17-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 36,
+  "waiting_min": 0,
+  "approved_at": "2026-10-09T17:05:00-05:00",
+  "hash": "4b4d593b16c50bcf376b05d8c4e3db420b02f186adcf66ef75b857aa1cdd660b",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1009-0077",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-09",
+  "covers": {
+   "start": "2026-10-09T10:50:10-05:00",
+   "end": "2026-10-09T11:21:04-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-09T10:50:10-05:00",
+    "end": "2026-10-09T11:21:04-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 31,
+  "waiting_min": 0,
+  "approved_at": "2026-10-09T17:13:00-05:00",
+  "hash": "b369e14340683e38227f80d27d367560f5a60c5bb940243197205d3cb53139c7",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1009-0078",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-09",
+  "covers": {
+   "start": "2026-10-09T08:00:00-05:00",
+   "end": "2026-10-09T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-09T08:00:00-05:00",
+    "end": "2026-10-09T09:16:04-05:00",
+    "name": "Insurer wait — denied, resubmit",
+    "kind": "waiting",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-09T08:48:49-05:00",
+    "end": "2026-10-09T09:00:23-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-09T09:03:13-05:00",
+    "end": "2026-10-09T09:17:14-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-09T09:23:11-05:00",
+    "end": "2026-10-09T09:31:52-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-09T09:31:52-05:00",
+    "end": "2026-10-09T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-09T09:35:59-05:00",
+    "end": "2026-10-09T09:49:35-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-09T09:37:53-05:00",
+    "end": "2026-10-09T09:43:47-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #576",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-09T09:49:35-05:00",
+    "end": "2026-10-09T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-09T13:06:37-05:00",
+    "end": "2026-10-09T13:11:11-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #577",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-09T16:20:38-05:00",
+    "end": "2026-10-09T16:31:07-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #578",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 69,
+  "waiting_min": 955,
+  "approved_at": "2026-10-09T17:12:00-05:00",
+  "hash": "effaabd21f523032c2697af36af60133c77bfee023d60f346984c2ee88e3af89",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1009-0079",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-09",
+  "covers": {
+   "start": "2026-10-09T08:00:00-05:00",
+   "end": "2026-10-09T08:25:38-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-09T08:00:00-05:00",
+    "end": "2026-10-09T08:25:38-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 26,
+  "waiting_min": 0,
+  "approved_at": "2026-10-09T17:14:00-05:00",
+  "hash": "ac1fb61ca6d78e58c98e92e74820a8657c51e7a2f3d42c61d92d40c29729c8c1",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1009-0080",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-09",
+  "covers": {
+   "start": "2026-10-09T16:35:29-05:00",
+   "end": "2026-10-09T16:46:15-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-09T16:35:29-05:00",
+    "end": "2026-10-09T16:46:15-05:00",
+    "name": "Approve claim $210",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 11,
+  "waiting_min": 0,
+  "approved_at": "2026-10-09T17:20:00-05:00",
+  "hash": "39b3ed532111a1f1e68129ef4f338b9b4b89b0240693546f1d1d06fe786b70ef",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1012-0081",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-12",
+  "covers": {
+   "start": "2026-10-12T14:41:03-05:00",
+   "end": "2026-10-12T15:02:04-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-12T14:41:03-05:00",
+    "end": "2026-10-12T15:02:04-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 21,
+  "waiting_min": 0,
+  "approved_at": "2026-10-12T17:18:00-05:00",
+  "hash": "df369acc7119e28f32b242c60fc037af49ef43ea8fb6ce008c8961e6b6e6df60",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1012-0082",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-12",
+  "covers": {
+   "start": "2026-10-12T12:51:43-05:00",
+   "end": "2026-10-12T13:15:53-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-12T12:51:43-05:00",
+    "end": "2026-10-12T13:15:53-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 24,
+  "waiting_min": 0,
+  "approved_at": "2026-10-12T17:07:00-05:00",
+  "hash": "acb71d589ea7d91387feece7d69b7f899af1e09030607cc092c06e4d316e7084",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1012-0083",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-12",
+  "covers": {
+   "start": "2026-10-12T08:00:00-05:00",
+   "end": "2026-10-12T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-12T08:00:00-05:00",
+    "end": "2026-10-12T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-12T08:15:22-05:00",
+    "end": "2026-10-12T08:24:31-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #117",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-12T10:04:52-05:00",
+    "end": "2026-10-12T10:08:43-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-12T10:12:21-05:00",
+    "end": "2026-10-12T10:33:45-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-12T10:46:24-05:00",
+    "end": "2026-10-12T11:00:47-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-12T11:00:47-05:00",
+    "end": "2026-10-12T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-12T12:00:47-05:00",
+    "end": "2026-10-12T12:07:33-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #579",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-12T12:48:15-05:00",
+    "end": "2026-10-12T12:53:29-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #582",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-12T15:31:13-05:00",
+    "end": "2026-10-12T15:38:45-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #581",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-12T16:07:24-05:00",
+    "end": "2026-10-12T16:14:21-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #580",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 75,
+  "waiting_min": 899,
+  "approved_at": "2026-10-12T17:16:00-05:00",
+  "hash": "c2111a19614ecab628b4e988d0373691d9c05870a6122423f645dbf41f3c3fd1",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1012-0084",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-12",
+  "covers": {
+   "start": "2026-10-12T10:06:40-05:00",
+   "end": "2026-10-12T10:26:51-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-12T10:06:40-05:00",
+    "end": "2026-10-12T10:26:51-05:00",
+    "name": "Perio charting",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 20,
+  "waiting_min": 0,
+  "approved_at": "2026-10-12T17:14:00-05:00",
+  "hash": "68d50bf747ef952627b5446dc0d9fa3c1e8c0dd36a089c4927ea186111a4acfc",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1012-0085",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-12",
+  "covers": {
+   "start": "2026-10-12T16:09:02-05:00",
+   "end": "2026-10-12T16:15:32-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-12T16:09:02-05:00",
+    "end": "2026-10-12T16:15:32-05:00",
+    "name": "Approve the claim $490",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 6,
+  "waiting_min": 0,
+  "approved_at": "2026-10-12T17:06:00-05:00",
+  "hash": "a0e238a508668712238bb927f1513598616ea25c5fbf2aa9df66a5dfd1c230f5",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1013-0086",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-13",
+  "covers": {
+   "start": "2026-10-13T12:52:11-05:00",
+   "end": "2026-10-13T13:24:30-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-13T12:52:11-05:00",
+    "end": "2026-10-13T13:24:30-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 32,
+  "waiting_min": 0,
+  "approved_at": "2026-10-13T17:23:00-05:00",
+  "hash": "17a4b84cb56cf0870e3763f9b174907f43c9890a3eb992b68243319446449e7e",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1013-0087",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-13",
+  "covers": {
+   "start": "2026-10-13T11:39:54-05:00",
+   "end": "2026-10-13T12:05:09-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-13T11:39:54-05:00",
+    "end": "2026-10-13T12:05:09-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 25,
+  "waiting_min": 0,
+  "approved_at": "2026-10-13T17:09:00-05:00",
+  "hash": "6ae9065d58d2dbd9ceba1163784992a85e7aacd5fb1024f4a57549e0759d56be",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1013-0088",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-13",
+  "covers": {
+   "start": "2026-10-13T08:00:00-05:00",
+   "end": "2026-10-13T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-13T08:00:00-05:00",
+    "end": "2026-10-13T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-13T08:08:51-05:00",
+    "end": "2026-10-13T08:15:09-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #118",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-13T08:13:43-05:00",
+    "end": "2026-10-13T08:25:44-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #583",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-13T09:12:20-05:00",
+    "end": "2026-10-13T09:23:05-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #584",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-13T14:01:00-05:00",
+    "end": "2026-10-13T14:07:20-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-13T14:12:24-05:00",
+    "end": "2026-10-13T14:24:15-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-13T14:28:18-05:00",
+    "end": "2026-10-13T14:41:25-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-13T14:41:25-05:00",
+    "end": "2026-10-13T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 60,
+  "waiting_min": 679,
+  "approved_at": "2026-10-13T17:16:00-05:00",
+  "hash": "f0925d1c1bf52f165c94a8545d75a37bc14439a5a3879b8ae00a4f352ed2b1a2",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1013-0089",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-13",
+  "covers": {
+   "start": "2026-10-13T08:28:18-05:00",
+   "end": "2026-10-13T08:56:58-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-13T08:28:18-05:00",
+    "end": "2026-10-13T08:56:58-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 29,
+  "waiting_min": 0,
+  "approved_at": "2026-10-13T17:23:00-05:00",
+  "hash": "bd513a12d2ca0732aa44200a295cdc091280d83440ab25160f2edfac6afd252a",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1013-0090",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-13",
+  "covers": {
+   "start": "2026-10-13T16:37:51-05:00",
+   "end": "2026-10-13T16:44:04-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-13T16:37:51-05:00",
+    "end": "2026-10-13T16:44:04-05:00",
+    "name": "Approve the claim $800",
+    "kind": "hands_on",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 6,
+  "waiting_min": 0,
+  "approved_at": "2026-10-13T17:05:00-05:00",
+  "hash": "42900586f2055247bae8019e262bdaba746e9097b3e2a4b1d5285c87ab7ee9f3",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1014-0091",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-14",
+  "covers": {
+   "start": "2026-10-14T08:00:00-05:00",
+   "end": "2026-10-14T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-14T08:00:00-05:00",
+    "end": "2026-10-14T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-14T08:00:00-05:00",
+    "end": "2026-10-14T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-14T08:23:48-05:00",
+    "end": "2026-10-14T08:30:20-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #586",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-14T08:28:37-05:00",
+    "end": "2026-10-14T08:39:37-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #119",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-14T09:10:35-05:00",
+    "end": "2026-10-14T09:17:12-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #585",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 24,
+  "waiting_min": 1080,
+  "approved_at": "2026-10-14T17:07:00-05:00",
+  "hash": "29e1bfc35ba6b74dd2ff913f01907e714bae1d3bc404641da5a67a442cb2e733",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1015-0092",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-15",
+  "covers": {
+   "start": "2026-10-15T08:00:00-05:00",
+   "end": "2026-10-15T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-15T08:00:00-05:00",
+    "end": "2026-10-15T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-15T08:00:00-05:00",
+    "end": "2026-10-15T13:39:32-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-15T09:41:38-05:00",
+    "end": "2026-10-15T09:51:38-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #587",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-15T14:02:44-05:00",
+    "end": "2026-10-15T14:08:39-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #589",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-15T15:28:39-05:00",
+    "end": "2026-10-15T15:34:57-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #588",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 22,
+  "waiting_min": 880,
+  "approved_at": "2026-10-15T17:14:00-05:00",
+  "hash": "8913a0e27aac5df0152675af29a2f84ec00fd80cbeee0e262068683495909747",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1015-0093",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-15",
+  "covers": {
+   "start": "2026-10-15T13:57:02-05:00",
+   "end": "2026-10-15T14:22:40-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-15T13:57:02-05:00",
+    "end": "2026-10-15T14:22:40-05:00",
+    "name": "Perio charting",
+    "kind": "hands_on",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 26,
+  "waiting_min": 0,
+  "approved_at": "2026-10-15T17:24:00-05:00",
+  "hash": "56f14c1993c7ee98eadfdd02d5ff105285fa8c6d1800e2eac0e2dc1ae4c6a0fa",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1016-0094",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-16",
+  "covers": {
+   "start": "2026-10-16T09:47:57-05:00",
+   "end": "2026-10-16T15:32:48-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-16T09:47:57-05:00",
+    "end": "2026-10-16T10:00:07-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-16T15:01:44-05:00",
+    "end": "2026-10-16T15:32:48-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 43,
+  "waiting_min": 0,
+  "approved_at": "2026-10-16T17:23:00-05:00",
+  "hash": "980041a768d87017337fff51fc79809f87baa1f926c02691f813d74d2580c93d",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1016-0095",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-16",
+  "covers": {
+   "start": "2026-10-16T08:08:52-05:00",
+   "end": "2026-10-16T12:15:26-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-16T08:08:52-05:00",
+    "end": "2026-10-16T08:29:45-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-16T11:52:12-05:00",
+    "end": "2026-10-16T12:15:26-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 44,
+  "waiting_min": 0,
+  "approved_at": "2026-10-16T17:12:00-05:00",
+  "hash": "17bd4707f424c62e96b0753115270ba24c6c62a82a2c62ddd3a59694eebc73e2",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1016-0096",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-16",
+  "covers": {
+   "start": "2026-10-16T08:17:33-05:00",
+   "end": "2026-10-16T16:58:52-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-16T08:17:33-05:00",
+    "end": "2026-10-16T08:25:41-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #590",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-16T14:54:07-05:00",
+    "end": "2026-10-16T14:58:57-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #591",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-16T16:53:19-05:00",
+    "end": "2026-10-16T16:58:52-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 19,
+  "waiting_min": 0,
+  "approved_at": "2026-10-16T17:19:00-05:00",
+  "hash": "4b816061495600cf12a9eb72ca25391711a94839734d2985b12f275d7efc8dc4",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1016-0097",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-16",
+  "covers": {
+   "start": "2026-10-16T08:56:58-05:00",
+   "end": "2026-10-16T09:24:44-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-16T08:56:58-05:00",
+    "end": "2026-10-16T09:24:44-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 28,
+  "waiting_min": 0,
+  "approved_at": "2026-10-16T17:09:00-05:00",
+  "hash": "447bc99f5c9cc2129a2d6ace603c047327e04f69e21560add673c997c791e4eb",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1016-0098",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-16",
+  "covers": {
+   "start": "2026-10-16T16:29:50-05:00",
+   "end": "2026-10-16T16:38:32-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-16T16:29:50-05:00",
+    "end": "2026-10-16T16:37:48-05:00",
+    "name": "Approve claim $690",
+    "kind": "hands_on",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-16T16:34:00-05:00",
+    "end": "2026-10-16T16:38:32-05:00",
+    "name": "Approve the claim $360",
+    "kind": "hands_on",
+    "case_id": "pre-auth #120",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 13,
+  "waiting_min": 0,
+  "approved_at": "2026-10-16T17:17:00-05:00",
+  "hash": "2789bb65ff8bbd208119deb522a6ddc247bb302cc4d190604f8dfd2993b16969",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1019-0099",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-19",
+  "covers": {
+   "start": "2026-10-19T08:39:25-05:00",
+   "end": "2026-10-19T14:49:55-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-19T08:39:25-05:00",
+    "end": "2026-10-19T08:43:45-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #121",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-19T10:13:11-05:00",
+    "end": "2026-10-19T10:18:55-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #594",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-19T12:03:19-05:00",
+    "end": "2026-10-19T12:07:56-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #592",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-19T14:43:54-05:00",
+    "end": "2026-10-19T14:49:55-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #593",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 21,
+  "waiting_min": 0,
+  "approved_at": "2026-10-19T17:10:00-05:00",
+  "hash": "bb64d0e2668e46ab10326721fadd905c712c73d89af0e51eff0411a2c1aebb55",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1020-0100",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-20",
+  "covers": {
+   "start": "2026-10-20T08:24:41-05:00",
+   "end": "2026-10-20T13:10:39-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-20T08:24:41-05:00",
+    "end": "2026-10-20T08:31:58-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #595",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-20T10:26:42-05:00",
+    "end": "2026-10-20T10:33:36-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #597",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-20T13:07:01-05:00",
+    "end": "2026-10-20T13:10:39-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #596",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 18,
+  "waiting_min": 0,
+  "approved_at": "2026-10-20T17:24:00-05:00",
+  "hash": "be8eff933cab2e7cd86d48d3a43fcf08ac99462d2132cd0cc5ed7099fca232b9",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1021-0101",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-21",
+  "covers": {
+   "start": "2026-10-21T09:56:19-05:00",
+   "end": "2026-10-21T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-21T09:56:19-05:00",
+    "end": "2026-10-21T10:02:48-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-21T10:07:02-05:00",
+    "end": "2026-10-21T10:16:08-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-21T10:34:32-05:00",
+    "end": "2026-10-21T10:49:57-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-21T10:49:57-05:00",
+    "end": "2026-10-21T17:00:00-05:00",
+    "name": "Waiting on insurer — denied, resubmit",
+    "kind": "waiting",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-21T10:56:51-05:00",
+    "end": "2026-10-21T11:00:58-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #598",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-21T12:34:19-05:00",
+    "end": "2026-10-21T12:42:14-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #599",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-21T14:36:11-05:00",
+    "end": "2026-10-21T14:45:53-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-21T14:59:03-05:00",
+    "end": "2026-10-21T15:06:39-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-21T15:16:43-05:00",
+    "end": "2026-10-21T15:28:31-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-21T15:28:31-05:00",
+    "end": "2026-10-21T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 72,
+  "waiting_min": 462,
+  "approved_at": "2026-10-21T17:22:00-05:00",
+  "hash": "46adc7cac5704ce7132b7ffa7fe40afc5c2d0def9a3eff66ef28aee96998ea73",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1022-0102",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-22",
+  "covers": {
+   "start": "2026-10-22T08:00:00-05:00",
+   "end": "2026-10-22T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-22T08:00:00-05:00",
+    "end": "2026-10-22T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-22T08:00:00-05:00",
+    "end": "2026-10-22T17:00:00-05:00",
+    "name": "Waiting on insurer — denied, resubmit",
+    "kind": "waiting",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-22T09:26:53-05:00",
+    "end": "2026-10-22T09:39:26-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #600",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-22T09:43:02-05:00",
+    "end": "2026-10-22T09:50:29-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #601",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-22T12:10:19-05:00",
+    "end": "2026-10-22T12:13:23-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #602",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 23,
+  "waiting_min": 1080,
+  "approved_at": "2026-10-22T17:14:00-05:00",
+  "hash": "9ee53dab8854f1bf8593324ad58d75451f138a8b11eac0c2dc7bb3ae7aa29489",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1023-0103",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-23",
+  "covers": {
+   "start": "2026-10-23T08:00:00-05:00",
+   "end": "2026-10-23T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-23T08:00:00-05:00",
+    "end": "2026-10-23T16:46:51-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-23T08:00:00-05:00",
+    "end": "2026-10-23T17:00:00-05:00",
+    "name": "Waiting on insurer — denied, resubmit",
+    "kind": "waiting",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-23T11:20:10-05:00",
+    "end": "2026-10-23T11:26:39-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-23T11:27:35-05:00",
+    "end": "2026-10-23T11:39:10-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-23T11:53:16-05:00",
+    "end": "2026-10-23T12:06:09-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-23T12:06:09-05:00",
+    "end": "2026-10-23T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-23T12:54:47-05:00",
+    "end": "2026-10-23T12:59:24-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #604",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-23T14:55:46-05:00",
+    "end": "2026-10-23T15:04:20-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #605",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-23T16:13:14-05:00",
+    "end": "2026-10-23T16:16:58-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #603",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 48,
+  "waiting_min": 1361,
+  "approved_at": "2026-10-23T17:20:00-05:00",
+  "hash": "8f4ab814da91be0ffea7aa020d426fa3e07445269bb41691edf5c5d0cd5d2e87",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1026-0104",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-26",
+  "covers": {
+   "start": "2026-10-26T12:32:11-05:00",
+   "end": "2026-10-26T13:03:09-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-26T12:32:11-05:00",
+    "end": "2026-10-26T13:03:09-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 31,
+  "waiting_min": 0,
+  "approved_at": "2026-10-26T17:11:00-05:00",
+  "hash": "6d5af9b8d84258db8d28abeb8abc3d7dfd702882048d6f213d592af67b198225",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1026-0105",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-26",
+  "covers": {
+   "start": "2026-10-26T10:46:33-05:00",
+   "end": "2026-10-26T16:28:25-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-26T10:46:33-05:00",
+    "end": "2026-10-26T11:08:52-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-26T16:09:07-05:00",
+    "end": "2026-10-26T16:28:25-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 42,
+  "waiting_min": 0,
+  "approved_at": "2026-10-26T17:07:00-05:00",
+  "hash": "5e9bf196c37c123b90ba95808648fee5a53ef8ee03a93660a1afee89b328a662",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1026-0106",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-26",
+  "covers": {
+   "start": "2026-10-26T08:00:00-05:00",
+   "end": "2026-10-26T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-26T08:00:00-05:00",
+    "end": "2026-10-26T17:00:00-05:00",
+    "name": "Waiting on insurer — denied, resubmit",
+    "kind": "waiting",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-26T12:10:02-05:00",
+    "end": "2026-10-26T12:16:29-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #606",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-26T12:29:20-05:00",
+    "end": "2026-10-26T12:43:32-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-26T12:45:22-05:00",
+    "end": "2026-10-26T13:06:27-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-26T12:46:14-05:00",
+    "end": "2026-10-26T12:54:53-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #607",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-26T13:17:40-05:00",
+    "end": "2026-10-26T13:28:05-05:00",
+    "name": "Submit pre-auth",
+    "kind": "hands_on",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-26T13:28:05-05:00",
+    "end": "2026-10-26T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 61,
+  "waiting_min": 752,
+  "approved_at": "2026-10-26T17:19:00-05:00",
+  "hash": "0c2942f29d338f39c87bf83e69fd6c71b7c2493aaf8854a862e8f1c7a87f9021",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1026-0107",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-26",
+  "covers": {
+   "start": "2026-10-26T09:09:47-05:00",
+   "end": "2026-10-26T11:44:13-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-26T09:09:47-05:00",
+    "end": "2026-10-26T09:25:15-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-26T11:29:46-05:00",
+    "end": "2026-10-26T11:44:13-05:00",
+    "name": "Perio charting",
+    "kind": "hands_on",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 30,
+  "waiting_min": 0,
+  "approved_at": "2026-10-26T17:08:00-05:00",
+  "hash": "7e8df1b15f2b6fddb4a54e020c7f0ec081720155c36f098013c05b6d0c46df5b",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1026-0108",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-26",
+  "covers": {
+   "start": "2026-10-26T16:27:44-05:00",
+   "end": "2026-10-26T16:35:45-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-26T16:27:44-05:00",
+    "end": "2026-10-26T16:35:45-05:00",
+    "name": "Approve claim $610",
+    "kind": "hands_on",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 8,
+  "waiting_min": 0,
+  "approved_at": "2026-10-26T17:08:00-05:00",
+  "hash": "f27173e68b90bfd6cf34b725536f3e25e10a05015dde8c4f3c03f13c119a0784",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1027-0109",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-27",
+  "covers": {
+   "start": "2026-10-27T14:14:27-05:00",
+   "end": "2026-10-27T14:34:22-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-27T14:14:27-05:00",
+    "end": "2026-10-27T14:34:22-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 20,
+  "waiting_min": 0,
+  "approved_at": "2026-10-27T17:18:00-05:00",
+  "hash": "037af44a93c86203c8e62c47a588ecffe91fe0ad491c72f679c30e68b2994edd",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1027-0110",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-27",
+  "covers": {
+   "start": "2026-10-27T08:00:00-05:00",
+   "end": "2026-10-27T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-27T08:00:00-05:00",
+    "end": "2026-10-27T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-27T08:04:02-05:00",
+    "end": "2026-10-27T08:10:03-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-27T08:04:40-05:00",
+    "end": "2026-10-27T08:12:14-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #122",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-27T08:10:03-05:00",
+    "end": "2026-10-27T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-27T08:20:55-05:00",
+    "end": "2026-10-27T08:30:48-05:00",
+    "name": "Intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-27T08:32:16-05:00",
+    "end": "2026-10-27T08:44:09-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-27T08:37:55-05:00",
+    "end": "2026-10-27T08:53:52-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-27T08:58:55-05:00",
+    "end": "2026-10-27T09:09:40-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-27T09:18:07-05:00",
+    "end": "2026-10-27T09:34:09-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-27T09:27:15-05:00",
+    "end": "2026-10-27T09:37:55-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #611",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 4
+   },
+   {
+    "idx": 11,
+    "start": "2026-10-27T09:34:09-05:00",
+    "end": "2026-10-27T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 12,
+    "start": "2026-10-27T09:36:38-05:00",
+    "end": "2026-10-27T09:49:48-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 13,
+    "start": "2026-10-27T09:49:48-05:00",
+    "end": "2026-10-27T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 14,
+    "start": "2026-10-27T11:35:17-05:00",
+    "end": "2026-10-27T11:41:09-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #609",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 15,
+    "start": "2026-10-27T11:38:18-05:00",
+    "end": "2026-10-27T11:43:52-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #610",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 16,
+    "start": "2026-10-27T15:34:50-05:00",
+    "end": "2026-10-27T15:43:04-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #608",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 122,
+  "waiting_min": 1946,
+  "approved_at": "2026-10-27T17:09:00-05:00",
+  "hash": "ef9aac442f0b74c67b277650a9db4af72e7fb613cea8f0355e1dd39ad9b09bc1",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1027-0111",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-27",
+  "covers": {
+   "start": "2026-10-27T16:25:00-05:00",
+   "end": "2026-10-27T16:31:13-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-27T16:25:00-05:00",
+    "end": "2026-10-27T16:31:13-05:00",
+    "name": "Approve the claim $850",
+    "kind": "hands_on",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 6,
+  "waiting_min": 0,
+  "approved_at": "2026-10-27T17:20:00-05:00",
+  "hash": "368d262723f3b3e76ddc6b80463f98c693354553af199585f0053b2c97eb2bac",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1028-0112",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-28",
+  "covers": {
+   "start": "2026-10-28T11:04:01-05:00",
+   "end": "2026-10-28T11:29:51-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-28T11:04:01-05:00",
+    "end": "2026-10-28T11:29:51-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 26,
+  "waiting_min": 0,
+  "approved_at": "2026-10-28T17:06:00-05:00",
+  "hash": "9d03251c43f562c23a55d5fdc167057c37d7dc9db9ffe928770355dc09a3c169",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1028-0113",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-28",
+  "covers": {
+   "start": "2026-10-28T10:18:40-05:00",
+   "end": "2026-10-28T10:44:51-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-28T10:18:40-05:00",
+    "end": "2026-10-28T10:44:51-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 26,
+  "waiting_min": 0,
+  "approved_at": "2026-10-28T17:19:00-05:00",
+  "hash": "15a294b8be6dd2e762e4a3b0031c55fb0e877a528c7ff6ac8268da25a1107cc3",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1028-0114",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-28",
+  "covers": {
+   "start": "2026-10-28T08:00:00-05:00",
+   "end": "2026-10-28T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-28T08:00:00-05:00",
+    "end": "2026-10-28T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-28T08:00:00-05:00",
+    "end": "2026-10-28T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-28T08:00:00-05:00",
+    "end": "2026-10-28T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-28T08:02:07-05:00",
+    "end": "2026-10-28T08:10:18-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #124",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-28T09:19:12-05:00",
+    "end": "2026-10-28T09:24:49-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #614",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-28T10:59:01-05:00",
+    "end": "2026-10-28T11:08:51-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-28T11:11:47-05:00",
+    "end": "2026-10-28T11:25:52-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-28T11:41:44-05:00",
+    "end": "2026-10-28T11:50:51-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-28T11:50:51-05:00",
+    "end": "2026-10-28T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-28T12:31:05-05:00",
+    "end": "2026-10-28T12:37:46-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #612",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 11,
+    "start": "2026-10-28T14:24:01-05:00",
+    "end": "2026-10-28T14:29:56-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #613",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 12,
+    "start": "2026-10-28T16:57:31-05:00",
+    "end": "2026-10-28T17:00:00-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 62,
+  "waiting_min": 1929,
+  "approved_at": "2026-10-28T17:20:00-05:00",
+  "hash": "c20821556c5f8288383d4e809c0e8b968067820940a5903637a3e6704f64cebf",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1028-0115",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-28",
+  "covers": {
+   "start": "2026-10-28T08:15:54-05:00",
+   "end": "2026-10-28T08:38:22-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-28T08:15:54-05:00",
+    "end": "2026-10-28T08:38:22-05:00",
+    "name": "Perio charting",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 22,
+  "waiting_min": 0,
+  "approved_at": "2026-10-28T17:20:00-05:00",
+  "hash": "b691d24615140eb60a841956e9254b2dea63407b88bf70e36a3916bf4bb2f1ea",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1028-0116",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-28",
+  "covers": {
+   "start": "2026-10-28T16:35:18-05:00",
+   "end": "2026-10-28T16:40:20-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-28T16:35:18-05:00",
+    "end": "2026-10-28T16:40:20-05:00",
+    "name": "Approve claim $720",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 5,
+  "waiting_min": 0,
+  "approved_at": "2026-10-28T17:22:00-05:00",
+  "hash": "cc45b5cc47a3751a4c21503898205bc335402c9ca468a0edc329c0332db477cc",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1029-0117",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-29",
+  "covers": {
+   "start": "2026-10-29T08:00:00-05:00",
+   "end": "2026-10-29T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-29T08:00:00-05:00",
+    "end": "2026-10-29T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-29T08:00:00-05:00",
+    "end": "2026-10-29T08:05:04-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-29T08:00:00-05:00",
+    "end": "2026-10-29T08:04:06-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #126",
+    "tools": [
+     "pms",
+     "phone"
+    ]
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-29T08:00:00-05:00",
+    "end": "2026-10-29T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-29T08:00:00-05:00",
+    "end": "2026-10-29T17:00:00-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-29T09:04:17-05:00",
+    "end": "2026-10-29T09:12:47-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #616",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-29T09:26:28-05:00",
+    "end": "2026-10-29T09:30:48-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #615",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-29T15:31:24-05:00",
+    "end": "2026-10-29T15:38:31-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #617",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 24,
+  "waiting_min": 1625,
+  "approved_at": "2026-10-29T17:05:00-05:00",
+  "hash": "1adcd9eb9dce792cab807ec62877f0dd857af8432f829d7e8570e741cd307820",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1029-0118",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-29",
+  "covers": {
+   "start": "2026-10-29T11:30:12-05:00",
+   "end": "2026-10-29T11:43:20-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-29T11:30:12-05:00",
+    "end": "2026-10-29T11:43:20-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 13,
+  "waiting_min": 0,
+  "approved_at": "2026-10-29T17:15:00-05:00",
+  "hash": "b2100bdd1e19060eebe83ea8d5deea9cbbc93615ad824e343f1acef9c7c681c9",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1030-0119",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-10-30",
+  "covers": {
+   "start": "2026-10-30T14:58:51-05:00",
+   "end": "2026-10-30T16:16:52-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-30T14:58:51-05:00",
+    "end": "2026-10-30T15:26:13-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-30T15:55:47-05:00",
+    "end": "2026-10-30T16:16:52-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 48,
+  "waiting_min": 0,
+  "approved_at": "2026-10-30T17:23:00-05:00",
+  "hash": "037bd0bf48d0b9485c3330dabc39ef2af72ced9c203eeaeb83d2103b14db8642",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1030-0120",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-10-30",
+  "covers": {
+   "start": "2026-10-30T10:24:59-05:00",
+   "end": "2026-10-30T12:51:21-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-30T10:24:59-05:00",
+    "end": "2026-10-30T10:37:47-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-30T12:28:52-05:00",
+    "end": "2026-10-30T12:51:21-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 35,
+  "waiting_min": 0,
+  "approved_at": "2026-10-30T17:14:00-05:00",
+  "hash": "d99a07e7bd39cdcf388ab772029d311ee9b1825f4e95103214faf56c8bd19884",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1030-0121",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-10-30",
+  "covers": {
+   "start": "2026-10-30T08:00:00-05:00",
+   "end": "2026-10-30T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-30T08:00:00-05:00",
+    "end": "2026-10-30T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 2,
+    "start": "2026-10-30T08:00:00-05:00",
+    "end": "2026-10-30T17:00:00-05:00",
+    "name": "Insurer wait",
+    "kind": "waiting",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 3,
+    "start": "2026-10-30T08:00:00-05:00",
+    "end": "2026-10-30T09:32:46-05:00",
+    "name": "Waiting for the insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 4,
+    "start": "2026-10-30T12:49:27-05:00",
+    "end": "2026-10-30T13:00:18-05:00",
+    "name": "Patient intake",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Patient"
+   },
+   {
+    "idx": 5,
+    "start": "2026-10-30T13:01:51-05:00",
+    "end": "2026-10-30T13:11:38-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "portal",
+     "browser"
+    ]
+   },
+   {
+    "idx": 6,
+    "start": "2026-10-30T13:15:29-05:00",
+    "end": "2026-10-30T13:31:51-05:00",
+    "name": "Submit pre-authorization",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "portal",
+     "fax"
+    ],
+    "handoff_to": "Insurer"
+   },
+   {
+    "idx": 7,
+    "start": "2026-10-30T13:31:51-05:00",
+    "end": "2026-10-30T17:00:00-05:00",
+    "name": "Waiting on insurer",
+    "kind": "waiting",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "portal"
+    ],
+    "waiting_on": "Insurer"
+   },
+   {
+    "idx": 8,
+    "start": "2026-10-30T14:08:48-05:00",
+    "end": "2026-10-30T14:14:25-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #619",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 2
+   },
+   {
+    "idx": 9,
+    "start": "2026-10-30T14:08:54-05:00",
+    "end": "2026-10-30T14:17:24-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #618",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 1
+   },
+   {
+    "idx": 10,
+    "start": "2026-10-30T16:07:27-05:00",
+    "end": "2026-10-30T16:13:22-05:00",
+    "name": "Eligibility check",
+    "kind": "hands_on",
+    "case_id": "visit #620",
+    "tools": [
+     "portal",
+     "browser"
+    ],
+    "repeats": 3
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 57,
+  "waiting_min": 1381,
+  "approved_at": "2026-10-30T17:16:00-05:00",
+  "hash": "a28d2114943b0a5db070778aa407013aa64daf94ded007cd9db60f475503b173",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1030-0122",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-10-30",
+  "covers": {
+   "start": "2026-10-30T10:05:52-05:00",
+   "end": "2026-10-30T10:24:30-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-30T10:05:52-05:00",
+    "end": "2026-10-30T10:24:30-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 19,
+  "waiting_min": 0,
+  "approved_at": "2026-10-30T17:18:00-05:00",
+  "hash": "641377e76605cd3a83a6dc17526512716ab814fb2bd96e27506f31db5e3f5b60",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1030-0123",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-10-30",
+  "covers": {
+   "start": "2026-10-30T16:30:40-05:00",
+   "end": "2026-10-30T16:40:28-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-10-30T16:30:40-05:00",
+    "end": "2026-10-30T16:40:28-05:00",
+    "name": "Approve claim $100",
+    "kind": "hands_on",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 10,
+  "waiting_min": 0,
+  "approved_at": "2026-10-30T17:07:00-05:00",
+  "hash": "7d7a278c762e68887344b897b9160f104e6db2cd2c3c0da63ef0c3263852beb2",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1102-0124",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-11-02",
+  "covers": {
+   "start": "2026-11-02T13:58:14-05:00",
+   "end": "2026-11-02T17:00:00-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-02T13:58:14-05:00",
+    "end": "2026-11-02T14:30:41-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-11-02T16:34:37-05:00",
+    "end": "2026-11-02T17:00:00-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 58,
+  "waiting_min": 0,
+  "approved_at": "2026-11-02T17:16:00-05:00",
+  "hash": "1126097da8309166e279b414d3b06e4aecf2b168740d63787b976d81d02b0cfe",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1102-0125",
+  "board_id": "clinic",
+  "person_id": "dentist-1",
+  "role": "Dentist",
+  "date": "2026-11-02",
+  "covers": {
+   "start": "2026-11-02T11:19:31-05:00",
+   "end": "2026-11-02T14:34:06-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-02T11:19:31-05:00",
+    "end": "2026-11-02T12:15:30-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-11-02T13:34:15-05:00",
+    "end": "2026-11-02T13:56:45-05:00",
+    "name": "Dentist note",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   },
+   {
+    "idx": 3,
+    "start": "2026-11-02T14:15:40-05:00",
+    "end": "2026-11-02T14:34:06-05:00",
+    "name": "Note by dentist",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Hygienist",
+    "handoff_to": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 97,
+  "waiting_min": 0,
+  "approved_at": "2026-11-02T17:05:00-05:00",
+  "hash": "2f7d8697bcd419c017f817d31a41cc3faa1a9c8ab281a80c2aa517a72540a3c9",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1102-0126",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-11-02",
+  "covers": {
+   "start": "2026-11-02T08:02:45-05:00",
+   "end": "2026-11-02T08:09:39-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-02T08:02:45-05:00",
+    "end": "2026-11-02T08:09:39-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #125",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 7,
+  "waiting_min": 0,
+  "approved_at": "2026-11-02T17:24:00-05:00",
+  "hash": "92c73bf96ccbf9b8683e632c5a6e1abe6752a29507351f06556bbfd93afd1fca",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1102-0127",
+  "board_id": "clinic",
+  "person_id": "hyg-1",
+  "role": "Hygienist",
+  "date": "2026-11-02",
+  "covers": {
+   "start": "2026-11-02T08:39:27-05:00",
+   "end": "2026-11-02T09:59:28-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-02T08:39:27-05:00",
+    "end": "2026-11-02T08:54:57-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   },
+   {
+    "idx": 2,
+    "start": "2026-11-02T09:15:12-05:00",
+    "end": "2026-11-02T09:32:29-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   },
+   {
+    "idx": 3,
+    "start": "2026-11-02T09:43:01-05:00",
+    "end": "2026-11-02T09:59:28-05:00",
+    "name": "Perio chart",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "ehr"
+    ],
+    "handoff_from": "Front desk",
+    "handoff_to": "Dentist"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 49,
+  "waiting_min": 0,
+  "approved_at": "2026-11-02T17:15:00-05:00",
+  "hash": "00dc877a98ca1bf0437f0809d8cf65a83eb510a60c83514044216cdd11d83ddc",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1102-0128",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-11-02",
+  "covers": {
+   "start": "2026-11-02T16:38:14-05:00",
+   "end": "2026-11-02T16:52:39-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-02T16:38:14-05:00",
+    "end": "2026-11-02T16:46:31-05:00",
+    "name": "Approve claim $170",
+    "kind": "hands_on",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-11-02T16:44:34-05:00",
+    "end": "2026-11-02T16:52:39-05:00",
+    "name": "Approve claim $220",
+    "kind": "hands_on",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 16,
+  "waiting_min": 0,
+  "approved_at": "2026-11-02T17:21:00-05:00",
+  "hash": "d32c9def3f0357b0590a9e4117088804e53cbc88ac0341cd7895047027269c9d",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1103-0129",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-11-03",
+  "covers": {
+   "start": "2026-11-03T08:00:00-05:00",
+   "end": "2026-11-03T14:47:05-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-03T08:00:00-05:00",
+    "end": "2026-11-03T08:07:38-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_to": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-11-03T14:27:18-05:00",
+    "end": "2026-11-03T14:47:05-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 27,
+  "waiting_min": 0,
+  "approved_at": "2026-11-03T17:20:00-05:00",
+  "hash": "1fa9af872c24835fe9058aea77504ef26dad0119d816e67b0743b6dd2d68c08b",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1103-0130",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-11-03",
+  "covers": {
+   "start": "2026-11-03T08:31:24-05:00",
+   "end": "2026-11-03T09:15:45-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-03T08:31:24-05:00",
+    "end": "2026-11-03T08:39:47-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #128",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   },
+   {
+    "idx": 2,
+    "start": "2026-11-03T09:07:18-05:00",
+    "end": "2026-11-03T09:15:45-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #127",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 17,
+  "waiting_min": 0,
+  "approved_at": "2026-11-03T17:06:00-05:00",
+  "hash": "032e1826c7d79188878821bf0c77211a3bdf38a9a3df8f66afc1b9670a871354",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1103-0131",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-11-03",
+  "covers": {
+   "start": "2026-11-03T16:30:10-05:00",
+   "end": "2026-11-03T16:39:09-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-03T16:30:10-05:00",
+    "end": "2026-11-03T16:39:09-05:00",
+    "name": "Approve claim $830",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   },
+   {
+    "idx": 2,
+    "start": "2026-11-03T16:33:32-05:00",
+    "end": "2026-11-03T16:39:06-05:00",
+    "name": "Approve the claim $570 — missing code",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 0,
+  "hands_on_min": 15,
+  "waiting_min": 0,
+  "approved_at": "2026-11-03T17:18:00-05:00",
+  "hash": "977669e01dc488bd9750417901add0b72f122807d2b122c2c6c2363717bfd025",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1104-0132",
+  "board_id": "clinic",
+  "person_id": "billing-1",
+  "role": "Billing",
+  "date": "2026-11-04",
+  "covers": {
+   "start": "2026-11-04T08:33:00-05:00",
+   "end": "2026-11-04T09:05:46-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-04T08:33:00-05:00",
+    "end": "2026-11-04T09:05:46-05:00",
+    "name": "Claim form",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "pms",
+     "forms"
+    ],
+    "handoff_from": "Dentist",
+    "handoff_to": "Office manager"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 33,
+  "waiting_min": 0,
+  "approved_at": "2026-11-04T17:09:00-05:00",
+  "hash": "6a3323c6d5bbf46b91a38b3724999312d8fa5514ea48d431f8b4198647b825dd",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1104-0133",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-11-04",
+  "covers": {
+   "start": "2026-11-04T08:48:39-05:00",
+   "end": "2026-11-04T09:00:20-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-04T08:48:39-05:00",
+    "end": "2026-11-04T09:00:20-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #123",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 12,
+  "waiting_min": 0,
+  "approved_at": "2026-11-04T17:08:00-05:00",
+  "hash": "5e05811cd24cbbbb07fb3a7c9f863649d62dc23f8e6733f0ed71a2025d83a5d5",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1104-0134",
+  "board_id": "clinic",
+  "person_id": "mgr-1",
+  "role": "Office manager",
+  "date": "2026-11-04",
+  "covers": {
+   "start": "2026-11-04T16:35:01-05:00",
+   "end": "2026-11-04T16:43:50-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-04T16:35:01-05:00",
+    "end": "2026-11-04T16:43:50-05:00",
+    "name": "Approve the claim $570",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "pms"
+    ],
+    "handoff_from": "Billing"
+   }
+  ],
+  "kept_private": 2,
+  "hands_on_min": 9,
+  "waiting_min": 0,
+  "approved_at": "2026-11-04T17:16:00-05:00",
+  "hash": "785c44ad10743fd60347d7219e2a6632dfb92a6bb47403b3c184684e84a35411",
+  "pubkey": "",
+  "sig": ""
+ },
+ {
+  "id": "1105-0135",
+  "board_id": "clinic",
+  "person_id": "front-1",
+  "role": "Front desk",
+  "date": "2026-11-05",
+  "covers": {
+   "start": "2026-11-05T08:09:51-05:00",
+   "end": "2026-11-05T08:20:35-05:00"
+  },
+  "steps": [
+   {
+    "idx": 1,
+    "start": "2026-11-05T08:09:51-05:00",
+    "end": "2026-11-05T08:20:35-05:00",
+    "name": "Schedule treatment",
+    "kind": "hands_on",
+    "case_id": "pre-auth #129",
+    "tools": [
+     "pms",
+     "phone"
+    ],
+    "handoff_from": "Office manager"
+   }
+  ],
+  "kept_private": 1,
+  "hands_on_min": 11,
+  "waiting_min": 0,
+  "approved_at": "2026-11-05T17:20:00-05:00",
+  "hash": "4f3bdf59eb952f7bfca07cbc511ff7832e634c7d6c9f30efd9b8c67ad5f4b0ff",
+  "pubkey": "",
+  "sig": ""
+ }
+]

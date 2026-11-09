@@ -1,0 +1,87 @@
+{
+ "source": "measured",
+ "board_id": "clinic",
+ "recomputed_at": "2026-11-09T23:56:11+09:00",
+ "baseline_h": 90.7,
+ "now_h": 90.7,
+ "headline": "No change approved yet. 6 plans are tested and waiting for a yes.",
+ "loop": [
+  {
+   "n": 1,
+   "name": "Record",
+   "at": "23:56",
+   "status": "done",
+   "note": "135 records from 5 people"
+  },
+  {
+   "n": 2,
+   "name": "Map",
+   "at": "23:56",
+   "status": "done",
+   "note": "v1: 9 steps, 7 names merged"
+  },
+  {
+   "n": 3,
+   "name": "Find",
+   "at": "23:56",
+   "status": "done",
+   "note": "Pre-auths wait 49 hours on the insurer."
+  },
+  {
+   "n": 4,
+   "name": "Test",
+   "at": "23:56",
+   "status": "done",
+   "note": "6 plans, same pre-auths, same luck"
+  },
+  {
+   "n": 5,
+   "name": "Approve",
+   "status": "now",
+   "note": "Auto-approve under $500 needs your yes · predicted -7.8 h"
+  },
+  {
+   "n": 6,
+   "name": "Ask & do",
+   "status": "pending",
+   "note": "each change goes only to the person it touches"
+  },
+  {
+   "n": 7,
+   "name": "Measure",
+   "status": "pending",
+   "note": "two weeks of records after a change, then predicted vs measured"
+  }
+ ],
+ "next_run_at": "2026-11-10T18:00:00",
+ "versions": [
+  {
+   "v": 1,
+   "when": "week 1",
+   "title": "How pre-auths moved before any change",
+   "found": "Measured from records: 90.7 h per pre-auth, 98% waiting",
+   "status": "baseline",
+   "delta_h": 0.0
+  },
+  {
+   "v": 2,
+   "when": "tonight",
+   "title": "Auto-approve under $500 + agent does 'Eligibility check' (Front desk…",
+   "found": "49.0 h wait at insurer wait · 6 plans tested · not yet approved",
+   "status": "needs_yes",
+   "delta_h": 0.0,
+   "predicted_delta_h": -7.8
+  }
+ ],
+ "learned": [
+  {
+   "finding": "7 step names across 5 people were merged into 9 steps.",
+   "action": "Merges above 0.8 similarity are automatic; the rest are asked at end-of-day review."
+  },
+  {
+   "finding": "The longest wait is at insurer wait (49.0 h, Insurer).",
+   "action": "6 plans target it; the best predicts -7.8 h."
+  }
+ ],
+ "sub": "90.7 h at v1 · nothing measured after a change yet"
+}
