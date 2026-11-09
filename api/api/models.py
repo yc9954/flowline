@@ -381,11 +381,12 @@ class D1(Shape):
     dataset: str = "BPI Challenge 2020 Domestic Declarations"
     fit_year: int = 2017
     test_year: int = 2018
-    median_error: float
-    p80_error: float
-    cases: int
-    events: int
-    amount_attr: bool
+    median_error: float | None = None   # None on a fitted board: the real-data check of the method comes from `build`
+    p80_error: float | None = None
+    cases: int | None = None
+    events: int | None = None
+    amount_attr: bool | None = None
+    note: str | None = None
 
 
 class Limit(Shape):

@@ -77,7 +77,7 @@ export interface ModelCheck extends Sourced {
   components: { n: string; name: string; what: string; size: string }[];
   sim_checks: { measure: string; predicted: number; lo: number; hi: number; actual: number; unit: 'h' | '%' | '/day'; in_range: boolean }[];
   demand: { industry: string; naics: string; lift: number; population_lift: number; ci: [number, number]; verdict: 'better' | 'tie' }[];
-  d1: { dataset: string; fit_year: number; test_year: number; median_error: number; p80_error: number; cases: number; events: number; amount_attr: boolean };
+  d1: { dataset: string; fit_year: number; test_year: number; median_error: number | null; p80_error: number | null; cases: number | null; events: number | null; amount_attr: boolean | null; note?: string | null };
   limits: { title: string; tag: string; why: string }[];
 }
 

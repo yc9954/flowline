@@ -43,7 +43,7 @@ export default function ModelPage() {
             `Calibrated ${dayTime(d.calibrated_at)} on ${int(d.records)} approved records`,
             `Team simulator: ${inRange} of ${d.sim_checks.length} predictions landed inside their ${d.sim_checks.length ? 'predicted range' : 'range'}`,
             `Demand model: ${better} of ${d.demand.length} industries beat picking by population in the ${d.d1 ? 'frozen-clock' : ''} backtest`,
-            `D1 fit: ${d.d1.dataset}, fitted ${d.d1.fit_year}, tested ${d.d1.test_year} · median error ${Math.round(d.d1.median_error * 100)}%`,
+            d.d1.median_error == null ? `D1 fit: ${d.d1.note ?? 'not run for this board (method check lives with the engine build)'}` : `D1 fit: ${d.d1.dataset}, fitted ${d.d1.fit_year}, tested ${d.d1.test_year} · median error ${Math.round(d.d1.median_error * 100)}%`,
           ]} />
         </div>
       </div>
@@ -125,7 +125,7 @@ export default function ModelPage() {
 
       <div className="mono-11" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'baseline' }}>
         <span className="label">D1 fit</span>
-        <span>{d.d1.dataset} · fitted {d.d1.fit_year}, tested {d.d1.test_year} · median error {Math.round(d.d1.median_error * 100)}%, p80 {Math.round(d.d1.p80_error * 100)}% · {int(d.d1.cases)} cases, {int(d.d1.events)} events{d.d1.amount_attr ? ' · amount attribute used' : ''}</span>
+        <span>{d.d1.median_error == null ? (d.d1.note ?? 'Real-data check of the method: not run for this board.') : <>{d.d1.dataset} · fitted {d.d1.fit_year}, tested {d.d1.test_year} · median error {Math.round(d.d1.median_error * 100)}%, p80 {Math.round((d.d1.p80_error ?? 0) * 100)}% · {int(d.d1.cases ?? 0)} cases, {int(d.d1.events ?? 0)} events{d.d1.amount_attr ? ' · amount attribute used' : ''}</>}</span>
       </div>
 
       <section aria-label="What it can't call yet" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
