@@ -344,3 +344,29 @@ No licence file is included in this commit; all rights reserved until one is add
 Data: BPI Challenge 2020 Domestic Declarations (TU/e) is licensed **CC BY-NC 4.0** and is used here for the demo fit
 only, not for training a product. US Census Bureau data (CBP/ZBP, ACS) is public domain. Northwind Fitness, its people,
 quotes, decks and mail are fictional and simulated.
+
+## 13. Any company (branch `generalize`)
+
+Flowline is not tied to the demo chain. A board is a company; everything on it comes from that company's own approved records.
+
+1. **Create the company** — on the board's front page ("New company": name, industry NAICS, mail domain, timezone) or
+   `POST /api/boards`. Each board gets its own data directory `data/boards/<id>/out` and its own people; no board can see
+   another's data (a board without data answers `404 {state: "no_data_yet"}` and the UI shows an empty state, never the demo).
+2. **Invite people** — `/b/<id>/people`: add a person (name, role — any role name the company uses — e-mail, where they work:
+   their own Mac or a shared desk), issue a one-time invite code or a `flowline://join?api=…&code=…` link.
+3. **Join from the Mac app** — Settings → *Join a company* → API address + code (or open the link). The app then records the
+   person's day on their machine; only the record they approve at 18:00 reaches the board. Runs default to the person's own
+   Mac; on a person's Mac the agent gets no shell, only the screen and the read-only tools.
+4. **Fit** — once records arrive, `POST /api/boards/<id>/recompute` (or the nightly job) runs
+   `python -m flowline1 fit --records <export> --out data/boards/<id>/out --industry <naics>`: the miner learns the process
+   from the records, the simulator is calibrated from it (no synthetic world), candidate plans are generated from the mined
+   bottleneck, and the ten board files are written with honest labels (`measured` / `simulated` / `not_available`).
+5. **Act** — plans are proposed to the people they touch; a run carries the company's roles and mail domain, so hand-off mail
+   goes to that company's director/finance/PM, never outside its domain.
+
+Verified with a second, unrelated company (`flowline1/examples/make_clinic_records.py`, a five-person dental clinic,
+135 approved records): bottleneck *insurer wait, 49 h per pre-auth*, baseline 90.7 h, best plan −9 % held 15/20, all pages
+render, Northwind untouched. Limits: the demand model covers three NAICS codes (others say so), the agent skill library is
+four skills (a company's own repeated step may need a new skill), and the simulator has no capacity model (waits are
+replayed as measured). Fit-vs-build on Northwind's own records: identical miner output (108.8 h, 78 % waiting, Quote approval),
+plans more conservative than the world engine (−9 % vs −16 %).
