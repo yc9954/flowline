@@ -79,7 +79,8 @@ const CUTS = {
     // the records: from the local cache when present (the tunnel can be slow), else from the API
     const cache = path.join(HERE, 'out', 'records.json');
     const data = fs.existsSync(cache) ? JSON.parse(fs.readFileSync(cache, 'utf8')) : await (await fetch(`${apiBase}/api/boards/northwind/records`)).json();
-    const records = Array.isArray(data) ? data : (data.records || data.items || []);
+    const all = Array.isArray(data) ? data : (data.records || data.items || []);
+    const records = all.filter((x) => (x.source || 'simulated') === 'simulated');   // the board's 309: the five Mac-take records are today's, not the chain's
     await page.evaluate((r) => window.__play(r, 6500), records);
   } },
   7: { route: '/know/knowledge', hold: 9500, prehide: '[data-lane],[data-node],[data-edge-back]', async play(page) {
