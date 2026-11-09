@@ -103,7 +103,7 @@ what was left for whom — never a screen.
 | `data/` | `out/` model output (the 10 board files + answer key), `runs/` executor runs and measurements, `people.json` (the fleet), `raw/` datasets (ignored by git) | — |
 | `fixtures/` | Prototype data in the shared shapes, used until the model has computed real numbers | — |
 | `design/` | Storyboard screens (`.dc.html`) and design notes. Reference only | — |
-| `video/` | The 90-second film: script, recorders, supers, voice, build | `cd video && python3 build.py` |
+| `video/` | The two-minute demo film (113 s): script, recorders, cards, narration, build | `cd video && python3 build.py` |
 
 Shared contract: [SCHEMA.md](SCHEMA.md) — every shape, the canonical hash and signature, and the honest-label rule.
 Component notes: [api/NOTES.md](api/NOTES.md), [flowline1/NOTES.md](flowline1/NOTES.md), [executor/NOTES.md](executor/NOTES.md),
@@ -136,8 +136,10 @@ Component notes: [api/NOTES.md](api/NOTES.md), [flowline1/NOTES.md](flowline1/NO
 
 ## 5. The test case: Northwind Fitness (simulated)
 
-Northwind Fitness is a simulated chain — three clubs in Austin, TX, 28 people, of whom eight office roles (Sales ×2,
-PM, Design ×2, Finance, Director, Legal) record their days. The process under test is the corporate proposal.
+Northwind Fitness is a simulated chain — three gyms in Austin, TX, opening a fourth. The film and the simulation follow
+the **eight people** who touch the corporate-proposal process (Sales ×2, PM, Design ×2, Finance, Director, Legal) and record
+their days; the wider staff (trainers, front desk — 28 in the world model) do not take part in that process. In the demo six
+of the eight have a Linux desk.
 
 **What was simulated (Flowline-1, `flowline1/flowline1/world.py`).** Eleven weeks, eight people, **309 approved records**
 (one per person per working day with activity), every hand-off and every wait, on a SimPy world engine with hidden
@@ -295,12 +297,13 @@ Tests: `uv run pytest` in `api/`, `flowline1/` and `executor/`; `swift test` in 
 
 ## 9. The film
 
-A 90-second film, voice first: problem → market → product → test case → the simulation time-lapse → demo (collect,
-learn, act: six desks live, then the whole take at 50×) → results → close. Script, shot list and honest-label rules:
+A two-minute film (113 s), voice first: problem → market → product → test case → demo (collect · learn · find waits and
+test plans · propose to the person it affects · six desks clear the step at once · the whole run handed back at 50×) → the
+simulation time-lapse (eleven weeks replayed) → results → close. Script, shot list and honest-label rules:
 [video/SCRIPT.md](video/SCRIPT.md). Pipeline (`video/`): `supers_from_data.py` reads `data/out` and the measure files
 so every number on screen agrees with the data → `vo.py` / `vo_higgsfield.py` (narration) → `record_board.mjs`
 (cards and board routes via the CDP screencast) and `record_mac_cuts.sh` (real Mac takes) → `build.py` (crop, supers,
-mix, concat → `out/flowline-90s.mp4`). `video/out/` is not committed; the screenshots in this README are frames from
+mix, subtitles, chapter chips, concat → `out/flowline-90s.mp4`; the file name is historical — the final cut is 113 s). `video/out/` is not committed; the screenshots in this README are frames from
 those recordings.
 
 ## 10. Honest labels, limits
