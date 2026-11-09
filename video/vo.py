@@ -20,7 +20,7 @@ CUTS = {
     4: (5.5, "Our test case: Northwind Fitness, a simulated chain. Three gyms, eight people."),
     5: (3.6, "At six, each laptop drafts how the day went."),
     6: (4.6, "Personal things stay out. Nothing leaves until you approve it."),
-    7: (6.5, "Approved records become one knowledge of how the business works — learned, not drawn."),
+    7: (5.7, "Approved records become one knowledge of how the business works — learned, not drawn."),
     8: (8, "A proposal takes a hundred and nine hours, eighty-five waiting. It tests nine fixes on the same team, same luck."),
     9: (5.5, "It never starts on its own. From the knowledge everyone built, it finds the bottleneck step and offers to take it — only to the person it affects."),
     10: (9.3, "Six people said yes once. Now, mid-work, Flowline clears the same bottleneck on six desks at once — quotes, sheets, decks, packets — each from the knowledge all six built together."),
