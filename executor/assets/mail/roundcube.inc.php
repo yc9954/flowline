@@ -7,8 +7,10 @@ $config['smtp_user'] = '%u';
 $config['smtp_pass'] = '%p';
 $config['imap_conn_options'] = null;
 $config['smtp_conn_options'] = null;
-$config['username_domain'] = 'northwind.local';   // typing "pm" logs in as pm@northwind.local
-$config['product_name'] = 'Northwind Mail';
+// Company name and domain come from the container environment (scripts/mail.sh: FLOWLINE_MAIL_DOMAIN / FLOWLINE_MAIL_TITLE);
+// the Northwind values are the demo defaults. The window title the agent looks for is "<product_name> :: Inbox".
+$config['username_domain'] = getenv('FLOWLINE_MAIL_DOMAIN') ?: 'northwind.local';   // typing "pm" logs in as pm@<domain>
+$config['product_name'] = getenv('FLOWLINE_MAIL_TITLE') ?: 'Northwind Mail';
 $config['support_url'] = '';
 $config['skin'] = 'elastic';
 $config['dark_mode_support'] = false;   // NB: Elastic's meta.json forces this back to true; the desks get light mode

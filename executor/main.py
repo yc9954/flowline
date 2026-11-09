@@ -1,7 +1,9 @@
 """Executor service (SCHEMA §11) on port 8790.
 
 Run API
-  POST /runs {suggestion_id, skill_id, target: "mac"|"desk1"|…|"desk6", person_id?, inputs} → Run (201)
+  POST /runs {suggestion_id, skill_id, target: "mac"|"desk1"|…|"desk6", person_id?, inputs, board?} → Run (201)
+                           board = {id, name, mail_domain, mail_window_title?, people: [{id, role, email}]}: skills resolve
+                           mail recipients by role from it (board.py); absent → the Northwind demo defaults
                            409 when that target already has a running run (one run per desk)
                            unknown skill → Run with status "failed" and the check skill_available=false (201, no crash)
   GET  /runs/{id}          poll (500 ms); ?compact=1 for the fleet shape
@@ -61,6 +63,8 @@ class RunRequest(BaseModel):
     target: str = "desk1"
     person_id: Optional[str] = None
     inputs: dict[str, Any] = {}
+    # the company (track G1): skills resolve mail recipients by role from it; absent → Northwind demo defaults (board.py)
+    board: Optional[dict[str, Any]] = None
 
 
 def _check_target(target: str) -> str:
@@ -122,7 +126,7 @@ def start_run(req: RunRequest) -> RunContext:
     except ModuleNotFoundError:
         skill_mod = None
     run = Run(id=new_run_id(), skill_id=req.skill_id, target=target, suggestion_id=req.suggestion_id,
-              person_id=req.person_id, inputs=req.inputs, model=DEFAULT_MODEL if have_api_key() else None)
+              person_id=req.person_id, inputs=req.inputs, board=req.board, model=DEFAULT_MODEL if have_api_key() else None)
     ctx = RunContext(run)
     if skill_mod is None:
         # a skill the executor does not ship (yet): a clear failed run, not a crash or a 404 the board cannot show
@@ -266,7 +270,8 @@ def _warm_on_startup():
 @app.get("/desk/{target}/view")
 def desk_view(target: str):
     t = _get_target(target)
-    return {"target": target, "display_w": t.view.display_w, "display_h": t.view.display_h,
+    return {"target": target, "platform": "mac" if target == "mac" else "linux",
+            "display_w": t.view.display_w, "display_h": t.view.display_h,
             "view_w": t.view.view_w, "view_h": t.view.view_h, "factor": t.view.factor}
 
 

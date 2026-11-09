@@ -206,8 +206,8 @@ def frame_jpeg(t: Target, width: int = 960, quality: int = 72) -> tuple[bytes, f
 
 def warm(t: Target) -> dict:
     import lo
-    if not isinstance(t.desktop, DockerDesktop):
-        return {"warmed": False, "reason": "only desk containers run LibreOffice with the UNO socket"}
+    if lo.is_mac(t.desktop) and not lo.MAC_SOFFICE:
+        return {"warmed": False, "reason": "LibreOffice for Mac not found (brew install --cask libreoffice)"}
     with t.lock:
         return lo.warm(t.desktop)
 
@@ -229,8 +229,6 @@ def sheet_json(t: Target, path: str) -> dict:
 
 def deck_cells(t: Target, deck: str, slide: int) -> dict:
     import lo
-    if not isinstance(t.desktop, DockerDesktop):
-        raise RuntimeError("read_deck_cells needs the LibreOffice UNO bridge (desk containers only)")
     with t.lock:
         info = lo.uno(t.desktop, "cells", deck.rsplit("/", 1)[-1], str(slide))
     return {"rows": info["cells"], "amount_column": [r[-1] for r in info["cells"]], "modified": info["modified"]}

@@ -34,6 +34,14 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
   <key>LSUIElement</key><true/>
   <key>NSHighResolutionCapable</key><true/>
   <key>NSPrincipalClass</key><string>NSApplication</string>
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLName</key><string>co.sweetspot.flowline.join</string>
+      <key>CFBundleURLSchemes</key><array><string>flowline</string></array>
+      <key>CFBundleTypeRole</key><string>Viewer</string>
+    </dict>
+  </array>
   <key>NSAccessibilityUsageDescription</key>
   <string>Flowline reads the title of the window you are working in to note your work steps. Titles are hashed and name-masked on this Mac and never leave it until you approve a record.</string>
   <key>NSAppleEventsUsageDescription</key>

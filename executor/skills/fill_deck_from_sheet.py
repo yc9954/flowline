@@ -11,21 +11,30 @@ spawn the agent, kill it on Stop (its events are mapped to RunSteps by
 runs.RunContext.apply_event), and verify afterwards — cells vs sheet, sum, file hash
 unchanged, document left modified — so the Run's checks never depend on what the
 model claims.
+
+Inputs: any `sheet` (.ods) and `deck` (.odp) path on the target, `slide`, an optional
+`client` label, `demo_assets` (restore the Northwind deck from executor/assets first;
+default: only when the run works on the demo files under /config/Documents), `leave_open`,
+`max_steps`.  Targets: a desk container (UNO over the socket) or `mac` (this machine;
+lo.py drives the executor's own LibreOffice profile, see lo.MAC_PROFILE).
 """
 from __future__ import annotations
 
 import hashlib
 import json
 import os
-import re
 import subprocess
 import time
 
 import lo
+from board import Board, doc_label
 from bridge import read_target_file
 from desktop import Desktop, DockerDesktop
 from runs import RunContext, have_api_key
 from sheet import fmt_money, parse_amount, read_sheet_bytes
+
+DEMO_SHEET = "/config/Documents/pricing-sheet.ods"
+DEMO_DECK = "/config/Documents/proposal-172.odp"
 
 SKILL = {
     "id": "fill_deck_from_sheet",
@@ -33,12 +42,13 @@ SKILL = {
     "actor": "PM",
     "reviewer": "PM",
     "steps": ["READ THE SHEET", "FILL THE DECK", "CHECK THE TOTAL", "LEAVE IT FOR YOU"],
-    "inputs": {"sheet": "/config/Documents/pricing-sheet.ods", "deck": "/config/Documents/proposal-172.odp", "slide": 6},
+    "inputs": {"sheet": DEMO_SHEET, "deck": DEMO_DECK, "slide": 6, "client": None, "demo_assets": None},
     "saves": False,
 }
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 AGENT_DIR = os.path.join(os.path.dirname(HERE), "agent-ts")
+ASSETS_DIR = os.path.join(os.path.dirname(HERE), "assets")
 BRIDGE_URL = os.environ.get("FLOWLINE_EXECUTOR_URL", f"http://127.0.0.1:{os.environ.get('FLOWLINE_EXECUTOR_PORT', '8790')}")
 
 
@@ -46,18 +56,37 @@ class SkillError(Exception):
     pass
 
 
+def resolve_inputs(inputs: dict | None) -> dict:
+    """Defaults + the demo gate: `demo_assets` is on only when the run works on the demo files."""
+    merged = {**SKILL["inputs"], **{k: v for k, v in (inputs or {}).items() if v is not None}}
+    merged["sheet"] = merged.get("sheet") or DEMO_SHEET
+    merged["deck"] = merged.get("deck") or DEMO_DECK
+    if merged.get("demo_assets") is None:
+        merged["demo_assets"] = merged["sheet"] == DEMO_SHEET and merged["deck"] == DEMO_DECK
+    merged["label"] = doc_label(merged["deck"])
+    return merged
+
+
 def title(inputs: dict | None = None) -> str:
     """Run title for the agent panel, e.g. "Filling proposal #172 pricing from your sheet"."""
-    deck = (inputs or {}).get("deck") or SKILL["inputs"]["deck"]
-    m = re.search(r"(\d{2,5})", deck.rsplit("/", 1)[-1])
-    return f"Filling proposal #{m.group(1)} pricing from your sheet" if m else "Filling the deck's pricing from your sheet"
+    return f"Filling {resolve_inputs(inputs)['label']} pricing from your sheet"
 
 
 def _file_sha(desktop: Desktop, path: str) -> str:
     if isinstance(desktop, DockerDesktop):
         rc, out = desktop.sh(f"sha256sum {path} | cut -d' ' -f1")
         return out.strip()
-    return hashlib.sha256(open(os.path.expanduser(path), "rb").read()).hexdigest()
+    try:
+        return hashlib.sha256(open(os.path.expanduser(path), "rb").read()).hexdigest()
+    except OSError:
+        return ""
+
+
+def _exists(desktop: Desktop, path: str) -> bool:
+    if isinstance(desktop, DockerDesktop):
+        rc, out = desktop.sh(f"test -f '{path}' && echo yes || echo no")
+        return out.strip() == "yes"
+    return os.path.isfile(os.path.expanduser(path))
 
 
 def _save_png(d: str, name: str, png: bytes) -> str:
@@ -68,7 +97,25 @@ def _save_png(d: str, name: str, png: bytes) -> str:
     return p
 
 
-def ensure_deck_open(desktop: DockerDesktop, ctx: RunContext, deck_path: str, slide_n: int) -> None:
+def restore_demo_assets(desktop: Desktop, ctx: RunContext, sheet_path: str, deck_path: str) -> None:
+    """Demo only: the canonical Northwind sheet and deck back in place (a saved deck from an earlier take must not
+    leak into this one); sha256-checked."""
+    for name, path in (("pricing-sheet.ods", sheet_path), ("proposal-172.odp", deck_path)):
+        src = os.path.join(ASSETS_DIR, name)
+        if not os.path.exists(src):
+            raise SkillError(f"assets/{name} missing — run `uv run python assets/make_assets.py`")
+        if isinstance(desktop, DockerDesktop):
+            try:
+                lo.uno(desktop, "close", name)   # an open copy would be what UNO hands back
+            except Exception:
+                pass
+        desktop.put_file(src, path)
+        if _file_sha(desktop, path) != hashlib.sha256(open(src, "rb").read()).hexdigest():
+            raise SkillError(f"could not restore {name} on the desk")
+    ctx.log("prepare_files", "sheet and deck restored from assets (demo_assets)", step=1)
+
+
+def ensure_deck_open(desktop: Desktop, ctx: RunContext, deck_path: str, slide_n: int) -> None:
     deck_name = deck_path.rsplit("/", 1)[-1]
     t = time.perf_counter()
     open_docs: list[str] = []
@@ -84,15 +131,16 @@ def ensure_deck_open(desktop: DockerDesktop, ctx: RunContext, deck_path: str, sl
         if alive:
             lo.open_document(desktop, deck_path)  # the warm (invisible) instance shows it in a normal window
         else:
-            lo.start_soffice(desktop, deck_path, wait_title="Impress")
+            lo.start_soffice(desktop, deck_path, wait_title=None if lo.is_mac(desktop) else "Impress")
         for _ in range(40):
-            if "impress" in desktop.active_window_title().lower():
+            title_now = desktop.active_window_title().lower()
+            if "impress" in title_now or deck_name.lower() in title_now:
                 break
             time.sleep(0.5)
         time.sleep(0.5)
     lo.activate_window(desktop, deck_name)
     time.sleep(0.3)
-    lo.maximize_active(desktop)
+    lo.maximize_active(desktop, deck_name)
     time.sleep(0.5)
     lo.uno(desktop, "goto", deck_name, str(slide_n))
     time.sleep(0.6)
@@ -100,29 +148,40 @@ def ensure_deck_open(desktop: DockerDesktop, ctx: RunContext, deck_path: str, sl
 
 
 def run(ctx: RunContext, desktop: Desktop, inputs: dict) -> None:
-    inputs = {**SKILL["inputs"], **(inputs or {})}
+    inputs = resolve_inputs(inputs)
     sheet_path, deck_path, slide_n = inputs["sheet"], inputs["deck"], int(inputs["slide"])
     deck_name = deck_path.rsplit("/", 1)[-1]
     is_docker = isinstance(desktop, DockerDesktop)
     shots_dir = os.path.join(ctx.runs_dir, ctx.run.id)
+    board = Board.from_run(ctx.run)
+    inputs["board_name"] = board.name
     if not ctx.run.steps:  # main.start_run has already set the steps (and step 1 "now")
         ctx.set_steps(SKILL["steps"])
     if not have_api_key():
         ctx.finish("failed", error="needs ANTHROPIC_API_KEY: the agent loop (agent-ts) cannot run without it")
         return
+    if lo.is_mac(desktop) and not lo.MAC_SOFFICE:
+        ctx.finish("failed", error="LibreOffice for Mac not found (brew install --cask libreoffice, or set FLOWLINE_SOFFICE)")
+        return
 
     try:
-        # --- prepare: the sheet for verification, the deck open on the slide -------------
+        # --- prepare: the files, the sheet for verification, the deck open on the slide ----------
+        if inputs["demo_assets"]:
+            restore_demo_assets(desktop, ctx, sheet_path, deck_path)
+        else:
+            missing = [p for p in (sheet_path, deck_path) if not _exists(desktop, p)]
+            if missing:
+                raise SkillError(f"not on {ctx.run.target}: {', '.join(missing)}")
+            ctx.log("prepare_files", "sheet and deck present; nothing restored", step=1)
         sheet = read_sheet_bytes(read_target_file(desktop, sheet_path))
         ctx.fill_total = len(sheet.items) + 1
         ctx.check("sheet_total_equals_sum", sheet.consistent(), f"sum {sheet.sum_items} vs total {sheet.total}")
         want_amounts = [a for _, a in sheet.items] + [sheet.total]
         labels = [l for l, _ in sheet.items] + ["Total"]
         sha_before = _file_sha(desktop, deck_path)
-        if is_docker:
-            ensure_deck_open(desktop, ctx, deck_path, slide_n)
-            before = lo.uno(desktop, "cells", deck_name, str(slide_n))["cells"]
-            ctx.check("amount_cells_empty_before", not any(r[-1].strip() for r in before), json.dumps([r[-1] for r in before]))
+        ensure_deck_open(desktop, ctx, deck_path, slide_n)
+        before = lo.uno(desktop, "cells", deck_name, str(slide_n))["cells"]
+        ctx.check("amount_cells_empty_before", not any(r[-1].strip() for r in before), json.dumps([r[-1] for r in before]))
         if ctx.stop_requested():
             raise StopIteration
 
@@ -154,8 +213,6 @@ def run(ctx: RunContext, desktop: Desktop, inputs: dict) -> None:
         # --- verify (deterministic, independent of the model's claims) ------------------------
         if ctx.run.steps[2].status != "done":
             ctx.start_step(3, f"Deck total must equal {fmt_money(sheet.total)}")
-        if not is_docker:
-            raise SkillError("cannot verify the deck on this target (needs the LibreOffice UNO bridge)")
         cells = [r[-1] for r in lo.uno(desktop, "cells", deck_name, str(slide_n))["cells"]]
         ctx.log("read_back", f"uno: {cells}", step=3)
         amounts = [parse_amount(c) for c in cells]

@@ -35,14 +35,16 @@ from email.message import EmailMessage
 from email.policy import default as default_policy
 from pathlib import Path
 
+# Host, ports and domain come from the environment; the Northwind values are only defaults for the demo.
 HOST = os.environ.get("FLOWLINE_MAIL_HOST", "localhost")
 SMTP_PORT = int(os.environ.get("FLOWLINE_MAIL_SMTP_PORT", "3025"))
 IMAP_PORT = int(os.environ.get("FLOWLINE_MAIL_IMAP_PORT", "3143"))
 DOMAIN = os.environ.get("FLOWLINE_MAIL_DOMAIN", "northwind.local")
 PASSWORD = os.environ.get("FLOWLINE_MAIL_PASSWORD", "flowline")  # shared test password (test environment)
 
-# login -> (display name, desk)
-PEOPLE = {
+# The six Northwind demo users (login -> (display name, desk)): used by `seed`, `users` and `reset all` only.
+# Skills never look here — they take addresses from the run's board block (board.py).
+DEMO_PEOPLE = {
     "pm": ("Priya Natarajan", "desk1"),
     "finance": ("Northwind Finance", "desk2"),
     "sales": ("Northwind Sales", "desk3"),
@@ -50,6 +52,13 @@ PEOPLE = {
     "studio": ("Studio Manager", "desk5"),
     "director": ("Northwind Director", "desk6"),
 }
+PEOPLE = DEMO_PEOPLE  # backwards-compatible name
+
+
+def configured() -> bool:
+    """A mail server is configured: FLOWLINE_MAIL_HOST is set explicitly (skills otherwise report the mail
+    check as skipped — except the Northwind demo, which keeps the localhost tunnel default; see board.py)."""
+    return bool(os.environ.get("FLOWLINE_MAIL_HOST"))
 
 
 def address(user: str) -> str:
@@ -58,9 +67,10 @@ def address(user: str) -> str:
     return user if "@" in user else f"{user}@{DOMAIN}"
 
 
-def display(user: str) -> str:
+def display(user: str, name: str | None = None) -> str:
+    """'pm' -> 'Priya Natarajan <pm@northwind.local>' (demo users); other addresses get their local part as the name."""
     local = address(user).split("@")[0]
-    name = PEOPLE.get(local, (local.title(),))[0]
+    name = name or (DEMO_PEOPLE.get(local, (local.title(),))[0] if address(user).endswith("@" + DOMAIN) else local.title())
     return email.utils.formataddr((name, address(user)))
 
 
@@ -290,7 +300,8 @@ SEED = [
 
 
 def seed() -> list[dict]:
-    """Put a couple of plausible older threads into every inbox (idempotent enough: skips a subject already present)."""
+    """Put a couple of plausible older threads into every Northwind demo inbox (idempotent enough: skips a subject
+    already present). Demo only: the six DEMO_PEOPLE at @DOMAIN."""
     sent = []
     for days, frm, to, cc, subject, body in SEED:
         if any(d["subject"] == subject for d in list_inbox(to)):
@@ -328,12 +339,12 @@ def _cli(argv=None) -> int:
         dest.write_bytes(data)
         out = {"written": str(dest), "bytes": len(data)}
     elif a.cmd == "reset":
-        users = list(PEOPLE) if a.user == "all" else [a.user]
+        users = list(DEMO_PEOPLE) if a.user == "all" else [a.user]
         out = [reset(u) for u in users]
     elif a.cmd == "seed":
         out = seed()
     else:
-        out = {u: {"address": address(u), "name": n, "desk": d} for u, (n, d) in PEOPLE.items()}
+        out = {u: {"address": address(u), "name": n, "desk": d} for u, (n, d) in DEMO_PEOPLE.items()}
     print(json.dumps(out, indent=2, ensure_ascii=False))
     return 0
 

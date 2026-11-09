@@ -2,6 +2,14 @@
 
 Test environment, test credentials. Everything runs on the Mac mini's docker, on `flownet` next to the desks.
 
+Company-specific values come from the environment — `FLOWLINE_MAIL_DOMAIN` (northwind.local), `FLOWLINE_MAIL_TITLE`
+("Northwind Mail": Roundcube's product name, so the window title is "<title> :: Inbox"), `FLOWLINE_MAIL_USERS`
+(pm,finance,sales,ops,studio,director; index ↔ desk), `FLOWLINE_MAIL_HOST`, `FLOWLINE_MAIL_SMTP_PORT` / `_IMAP_PORT` /
+`_API_PORT`, `FLOWLINE_WEBMAIL_PORT` — for `scripts/mail.sh`, `mail.py`, the Roundcube config and the autologin plugin
+alike. Everything below describes the defaults, i.e. the Northwind demo. The skills themselves never read this file's
+people: they take addresses by role from the run's board block (`board.py`, README.md), and they verify mail over IMAP
+only when `board.mail_domain` **and** `FLOWLINE_MAIL_HOST` are set (the block-less demo keeps the localhost tunnel).
+
 ## Stack
 
 | container | image | on flownet | on the mini (127.0.0.1) |
@@ -20,9 +28,9 @@ scripts/mail.sh reset [login|all]           # empty mailbox(es) — re-take: `re
 scripts/mail.sh desks [N | deskX ...]       # pinned inbox window per desk + screenshot data/mail/deskN.png
 scripts/mail.sh desks-down [N | deskX ...]
 ```
-`down` loses all mail (greenmail is in-memory); `up` + `seed` rebuilds it in ~20 s.
+`down` loses all mail (greenmail is in-memory); `up` + `seed` rebuilds it in ~20 s (`seed` fills the six demo inboxes only).
 
-## People
+## People (the Northwind demo: `mail.py DEMO_PEOPLE`, filled by `seed`; any other login@domain also works, auth is disabled)
 
 | login | address | who | desk |
 |---|---|---|---|

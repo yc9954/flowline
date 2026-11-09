@@ -39,6 +39,13 @@ final class AppController: NSObject, ObservableObject {
     @Published var activeScreens: Int = 0
     @Published var observerStatus = "Noting work steps locally"
 
+    // Join a company (Settings → Join, or a flowline://join?api=…&code=… link)
+    @Published var joinAPI = ""
+    @Published var joinCode = ""
+    @Published var joining = false
+    @Published var joinError: String?
+    @Published var joinEditing = false
+
     // Surfaces
     var statusItem: NSStatusItem!
     var menuPanel: FloatingPanel?
@@ -89,8 +96,63 @@ final class AppController: NSObject, ObservableObject {
         settings.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }.store(in: &cancellables)
 
         if args.contains("--debug-control") { installDebugControl() }
+        if !settings.isJoined {
+            if demoDay {
+                settings.useDemoIdentity()   // the storyboard's person on the mock board, in memory only
+            } else if pendingJoin == nil {
+                openSettings()               // first run: nothing is configured, nothing is posted anywhere
+            }
+        }
+        if let link = pendingJoin { pendingJoin = nil; openJoin(link) }
         if demoDay { Task { await prepareDraft() } }
         if eodNow { Task { await prepareDraft(); showEndOfDayBanner() } }
+    }
+
+    // MARK: Join a company
+
+    /// A `flowline://join?api=…&code=…` URL may arrive before `start()` (launch by URL) or while running.
+    private var pendingJoin: JoinLink?
+    private var started: Bool { statusItem != nil }
+
+    func handle(url: URL) {
+        guard let link = JoinLink.parse(url) else { NSLog("Flowline: ignoring URL %@", url.absoluteString); return }
+        if started { openJoin(link) } else { pendingJoin = link }
+    }
+
+    /// Settings, pre-filled; the person presses Join (nothing is claimed without them).
+    func openJoin(_ link: JoinLink) {
+        if let a = link.api { joinAPI = a }
+        if let code = link.code { joinCode = code }
+        joinError = nil
+        joinEditing = true
+        openSettings()
+    }
+
+    func join() async {
+        let api = joinAPI.trimmingCharacters(in: .whitespacesAndNewlines)
+        let code = joinCode.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !api.isEmpty, !code.isEmpty else { return }
+        joining = true
+        defer { joining = false }
+        do {
+            let claim = try await APIClient.claimInvite(api: api, code: code, device: Host.current().localizedName ?? ProcessInfo.processInfo.hostName)
+            settings.apply(claim: claim, api: api)
+            joinError = nil
+            joinEditing = false
+            joinCode = ""
+            dismissedSuggestions.removeAll()
+            if !demoDay { draft = nil }
+            NSLog("Flowline joined %@ as %@ (%@)", claim.board_id, claim.person_id, claim.role.rawValue)
+        } catch {
+            joinError = "Couldn’t join — " + ((error as? LocalizedError)?.errorDescription ?? error.localizedDescription)
+        }
+    }
+
+    func leaveCompany() {
+        settings.leaveCompany()
+        suggestion = nil
+        joinEditing = false
+        joinError = nil
     }
 
     private func record(_ e: Event, handsOn: Bool) {
@@ -143,7 +205,7 @@ final class AppController: NSObject, ObservableObject {
 
     func openMenuPanel() {
         guard let button = statusItem.button, let bw = button.window else { return }
-        let size = NSSize(width: 328, height: showNeverKeeps ? 480 : 362)
+        let size = NSSize(width: 328, height: showNeverKeeps ? 494 : 376)
         let panel = menuPanel ?? FloatingPanel(size: size, level: .popUpMenu)
         panel.setContent(MenuPanelView().environmentObject(self))
         let br = bw.convertToScreen(button.convert(button.bounds, to: nil))
@@ -167,7 +229,7 @@ final class AppController: NSObject, ObservableObject {
 
     func resizeMenuPanel() {
         guard let p = menuPanel, p.isVisible else { return }
-        let h: CGFloat = showNeverKeeps ? 480 : 362
+        let h: CGFloat = showNeverKeeps ? 494 : 376
         var f = p.frame; f.origin.y = f.maxY - h; f.size.height = h
         p.setFrame(f, display: true)
         p.setContent(MenuPanelView().environmentObject(self))
@@ -324,6 +386,7 @@ final class AppController: NSObject, ObservableObject {
 
     func approveAndShare() async {
         guard let d = draft else { return }
+        guard settings.isJoined else { approveError = "Join a company first (Settings) — there is no board to send this to."; return }
         approveError = nil
         let now = Date()
         let f = DateFormatter(); f.dateFormat = "MMdd"
@@ -368,7 +431,7 @@ final class AppController: NSObject, ObservableObject {
     // MARK: Suggestions + runs
 
     private func pollSuggestions() async {
-        guard suggestion == nil, run == nil, !settings.isPaused else { return }
+        guard settings.isJoined, suggestion == nil, run == nil, !settings.isPaused else { return }
         let list: [Suggestion]
         do { list = try await api.suggestions(person: settings.person_id) }
         catch { NSLog("Flowline suggestions: %@", (error as? LocalizedError)?.errorDescription ?? "\(error)"); return }
@@ -398,7 +461,8 @@ final class AppController: NSObject, ObservableObject {
         runError = nil
         runElapsed = 0
         runStarted = Date()
-        run = Run(id: "", skill_id: s.skill_id, target: "mac", status: .running, started_at: ISO.string(Date()), elapsed_s: 0,
+        let target = settings.runTarget
+        run = Run(id: "", skill_id: s.skill_id, target: target, status: .running, started_at: ISO.string(Date()), elapsed_s: 0,
                   steps: [RunStep(n: 1, label: "Starting", detail: "Asking the executor to begin", status: .now, progress: nil, at_s: nil)],
                   checks: [], title: nil)
         activeScreens += 1
@@ -409,7 +473,7 @@ final class AppController: NSObject, ObservableObject {
         runTimer?.invalidate()
         runTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in Task { @MainActor in await self?.pollRun() } }
         do {
-            let r = try await api.createRun(s)
+            let r = try await api.createRun(s, target: target, person: settings.person_id)
             guard !runFinished else { return } // Stop was pressed while the POST was in flight
             run = r
             if let t = r.title, !t.isEmpty { runTitle = t }
@@ -487,7 +551,7 @@ final class AppController: NSObject, ObservableObject {
     func openSettings() {
         closeMenuPanel()
         if settingsWindow == nil {
-            let w = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 460, height: 580),
+            let w = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 460, height: 640),
                              styleMask: [.titled, .closable], backing: .buffered, defer: false)
             w.title = "Flowline Settings"
             w.isReleasedWhenClosed = false
@@ -523,6 +587,9 @@ final class AppController: NSObject, ObservableObject {
         case "withdraw": await withdraw()
         case "done": recordDone()
         case "settings": openSettings()
+        case "join": openJoin(JoinLink(api: settings.api_base.isEmpty ? "http://localhost:8787" : settings.api_base, code: "DEMO-NORTHWIND"))
+        case "join-now": await join()
+        case "leave": leaveCompany()
         case "poll": await pollSuggestions()
         case "do-it": suggestionAnswer(.do_it)
         case "not-now": suggestionAnswer(.not_now)

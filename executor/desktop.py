@@ -635,6 +635,20 @@ class MacDesktop(Desktop):
         p = subprocess.run(["sh", "-c", cmd], capture_output=True, text=True, timeout=timeout)
         return p.returncode, p.stdout + p.stderr
 
+    # the same file/shell surface as DockerDesktop, on this machine
+    def sh(self, shell_cmd: str, timeout: float = 60) -> tuple[int, str]:
+        return self._run(shell_cmd, timeout)
+
+    def put_file(self, local_path: str, remote_path: str) -> None:
+        import shutil
+        dest = os.path.expanduser(remote_path)
+        os.makedirs(os.path.dirname(dest) or ".", exist_ok=True)
+        shutil.copyfile(local_path, dest)
+
+    def get_file(self, remote_path: str) -> bytes:
+        with open(os.path.expanduser(remote_path), "rb") as f:
+            return f.read()
+
     def _open_file(self, path):
         subprocess.run(["open", path], check=False)
 

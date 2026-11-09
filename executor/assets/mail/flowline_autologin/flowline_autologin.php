@@ -28,7 +28,7 @@ class flowline_autologin extends rcube_plugin
         if (!empty($_GET['_fl_user'])) {
             $user = preg_replace('/[^a-z0-9._-]/i', '', $_GET['_fl_user']);
             if (strpos($user, '@') === false) {
-                $user .= '@northwind.local';
+                $user .= '@' . (getenv('FLOWLINE_MAIL_DOMAIN') ?: 'northwind.local');
             }
             $args['user']        = $user;
             $args['pass']        = getenv('FLOWLINE_MAIL_PASSWORD') ?: 'flowline';

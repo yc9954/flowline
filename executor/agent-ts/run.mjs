@@ -146,7 +146,9 @@ const reportStep = tool({
 
 // The skill decides what the model may use: the packet skills get the screen (computer) and report_step only.
 const allTools = { computer, bash, read_sheet: readSheet, read_deck_cells: readDeckCells, report_step: reportStep };
-const tools = Object.fromEntries(toolNames.map((n) => {
+// On a person's own machine (target "mac") the agent never gets a shell: GUI actions and the read-only tools only.
+const allowed = target === 'mac' ? toolNames.filter((n) => n !== 'bash') : toolNames;
+const tools = Object.fromEntries(allowed.map((n) => {
   if (!allTools[n]) throw new Error(`skill ${skillId} asks for unknown tool ${n}`);
   return [n, allTools[n]];
 }));

@@ -62,6 +62,7 @@ class Run(BaseModel):
     title: Optional[str] = None            # "Filling proposal #172 pricing from your sheet"
     suggestion_id: Optional[str] = None
     person_id: Optional[str] = None        # who this run works for (fleet: people.json)
+    board: Optional[dict[str, Any]] = None # {id, name, mail_domain, mail_window_title?, people:[{id, role, email}]} from the API (board.py)
     last_action: Optional[str] = None      # "left_click 812,440" · "type \"$2,600\"" · "screenshot" (from the agent's tool_call events)
     action_count: int = 0                  # agent tool calls so far (the fleet shows it as `actions`)
     inputs: dict[str, Any] = Field(default_factory=dict)

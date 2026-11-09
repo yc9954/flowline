@@ -124,14 +124,17 @@ import('./skills.mjs').then(m => {
     assert out["fill_deck_from_sheet"]["tools"] == ["computer", "bash", "read_sheet", "read_deck_cells", "report_step"]
 
 
-def test_desk_login_and_mail_subject_are_per_desk():
-    from skills._packet import ALL_STEPS, ROLE, _mail_spec, desk_login
-    assert [desk_login(f"desk{i}") for i in range(1, 7)] == ["pm", "finance", "sales", "ops", "studio", "director"]
-    assert desk_login("desk4", "finance-1") == "finance" and desk_login("desk9") == "pm"
-    spec = _mail_spec(ALL_STEPS, {"sender": "ops", "role": ROLE["ops"]})
-    assert spec["subject"] == "Proposal 172 — for signature · Ops" and spec["attachment"] == "proposal-172.pdf" and spec["cc"] == "finance"
-    rec = _mail_spec(["READ THE QUOTES", "UPDATE THE SHEET", "HAND IT OVER"], {"sender": "finance", "role": "Finance"})
-    assert rec["subject"] == "Quotes reconciled — proposal 172 · Finance" and rec["attachment"] is None and rec["to"] == "pm"
+def test_sender_and_mail_subject_are_per_desk_in_the_demo():
+    from board import Board
+    from skills._packet import ALL_STEPS, _mail_spec
+    b = Board.from_block(None)   # no board block on the run → Northwind defaults
+    assert [b.login(b.sender_for(f"desk{i}", None)) for i in range(1, 7)] == ["pm", "finance", "sales", "ops", "studio", "director"]
+    assert b.sender_for("desk4", "finance-1") == "finance@northwind.local" and b.sender_for("desk9", None) == "pm@northwind.local"
+    spec = _mail_spec(ALL_STEPS, {"sender": "ops@northwind.local", "role": b.role_of("ops@northwind.local"), "deck": "/config/Documents/proposal-172.odp"})
+    assert spec["subject"] == "Proposal 172 — for signature · Ops" and spec["attachment"] == "proposal-172.pdf" and spec["cc"] == "finance@northwind.local"
+    assert spec["to"] == "director@northwind.local" and spec["window_title"] == "Northwind Mail :: Inbox" and spec["domain"] == "northwind.local"
+    rec = _mail_spec(["READ THE QUOTES", "UPDATE THE SHEET", "HAND IT OVER"], {"sender": "finance@northwind.local", "role": "Finance", "deck": "/config/Documents/proposal-172.odp"})
+    assert rec["subject"] == "Quotes reconciled — Proposal 172 · Finance" and rec["attachment"] is None and rec["to"] == "pm@northwind.local"
 
 
 def test_proposal_variants_resolve_files_quotes_and_subjects():
@@ -145,7 +148,7 @@ def test_proposal_variants_resolve_files_quotes_and_subjects():
         assert i["sheet"].endswith(f"/pricing-sheet-{n}.ods") and i["deck"].endswith(f"/proposal-{n}.odp") and i["client"] == v["client"]
         assert [lbl for lbl, _ in v["items"]] == [lbl for lbl, *_ in vendors_for(n)]
         assert f"#{n}" in make_title("proposal_packet", {"proposal": n})
-        spec = _mail_spec(ALL_STEPS, {**i, "sender": "sales", "role": "Sales"})
+        spec = _mail_spec(ALL_STEPS, {**i, "sender": "sales@northwind.local", "role": "Sales"})
         assert spec["subject"] == f"Proposal {n} — for signature · Sales" and spec["attachment"] == f"proposal-{n}.pdf"
         assert f"${v['total']:,}" in fods(v["items"])
     assert set(VARIANTS) == {171, 172, 173}

@@ -7,14 +7,16 @@ struct MenuPanelView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(alignment: .center, spacing: 10) {
+            HStack(alignment: .top, spacing: 10) {
                 MarkBadge(size: 34)
                 VStack(alignment: .leading, spacing: 1) {
                     Text("Flowline").font(Theme.sans(15, .semibold)).foregroundStyle(.black)
-                    Text("\(c.settings.role.rawValue) · \(c.settings.boardName)").font(Theme.sans(12)).foregroundStyle(Theme.mutedText)
+                    Text(c.settings.isJoined ? c.settings.headerLine : "Not joined to a company yet").font(Theme.sans(12)).foregroundStyle(Theme.mutedText)
+                        .lineLimit(2).fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
-                Chip(text: "On this Mac", fg: Theme.teal, bg: Theme.teal.opacity(0.08))
+                Chip(text: c.settings.isJoined ? "On this Mac" : "Set up", fg: c.settings.isJoined ? Theme.teal : Theme.amber,
+                     bg: (c.settings.isJoined ? Theme.teal : Theme.amber).opacity(0.08))
             }
             .padding(.horizontal, 14).padding(.top, 14).padding(.bottom, 12)
 

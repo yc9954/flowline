@@ -20,7 +20,23 @@ progress). No shell, no file readers — everything the agent learns it reads fr
 1920×1080 XFCE desk, and everything it does goes through Thunar, Atril, Calc, Impress and the team webmail
 (Roundcube in the pinned Chromium window, see MAIL.md).
 
-## The task (packet skills)
+## Any company: the board block and real paths
+
+A run carries `board: {id, name, mail_domain, mail_window_title?, people: [{id, role, email}]}` (track G1; `board.py`).
+Recipients are resolved **by role** — signature mails go to the approver (Director → CEO → Owner), cc Finance; the
+reconcile mail goes to the PM; the sender is the person the run works for (`person_id`) — the mail domain, the "nothing
+outside @<domain>" rule and the inbox window title (`board.mail_window_title`, default `"<name> Mail :: Inbox"`) come from
+it and reach the prompt as `inputs.mail`, `inputs.mail_domain`, `inputs.mail_window_title`. Without a block the Northwind
+values below apply, so the demo is unchanged. Subjects name the document from the deck's basename (`Proposal 172` for
+`proposal-172.odp`, `Acme Q4` for `Acme Q4.odp`).
+
+Inputs take any `sheet` / `deck` / `slide` / `quotes_dir` / `out_dir` and a `client` label. `demo_assets` (restore the
+canonical sheet and deck from `assets/`, write fresh quotes, dress the desk) is on only for the demo files under
+/config/Documents; for a real desk prepare() verifies the files exist and dresses nothing (details under *prepare*).
+Mail is verified over IMAP when `board.mail_domain` and `FLOWLINE_MAIL_HOST` are set, otherwise the mail checks read
+`skipped: no mail server configured`.
+
+## The task (packet skills, as the Northwind demo stages it)
 
 On the desk, under `/config/Documents`:
 
@@ -38,12 +54,12 @@ into `For signature/`, and then HANDS IT OVER by e-mail from the webmail window:
 plain-text body → Attach (GTK chooser: ctrl+L, type the full path, then **click the Open button** — in this
 Chromium 156 + GTK 3.24 chooser Enter or a double-click closes the dialog without handing the file to the page; if the
 attachment list stays empty, Attach again, single-click the file, click Open) → Send, always from a fresh Compose. `reconcile_quotes` mails
-pm@northwind.local "Quotes reconciled — proposal 172 · <Role>" without attachment (body: vendor, old → new, new
+the PM (pm@northwind.local in the demo) "Quotes reconciled — Proposal 172 · <Role>" without attachment (body: vendor, old → new, new
 total, sheet saved on the desk — the .ods never uploads through the chooser on some desks, the PDF does); the
-two packet skills mail director@northwind.local, cc finance@, "Proposal 172 — for signature · <Role>" with
-`proposal-172.pdf` attached (body: the three line items and the total). `<Role>` is the sending desk's mailbox
-(desk1 pm → PM, desk2 Finance, desk3 Sales, desk4 Ops, desk5 Studio, desk6 Director; the run's `person_id`
-wins when it names a login), so six desks mailing director@ in the same minute never match each other's mail. The deck stays modified and
+two packet skills mail the approver (director@northwind.local, cc finance@ in the demo), "Proposal 172 — for signature · <Role>" with
+`proposal-172.pdf` attached (body: the three line items and the total). `<Role>` is the sender's role on the board
+(the run's `person_id` → `people[]`; demo desks without a person fall back to desk1 pm → PM, desk2 Finance, desk3 Sales,
+desk4 Ops, desk5 Studio, desk6 Director), so six desks mailing the approver in the same minute never match each other's mail. The deck stays modified and
 unsaved. The prompt's rule: the internal hand-off mail is part of the approved plan and is sent; nothing goes
 to anyone outside @northwind.local.
 
@@ -61,11 +77,18 @@ are generated once with `uv run python assets/make_assets.py --container deskN -
 headless on a desk) and live in `assets/`; prepare only copies them. `fill_deck_from_sheet` stays on 172.
 
 Inputs shape: `{"proposal": 171, "seed": 7, "dress": true, "leave_open": true, "max_steps": 90}` (all
-optional; `sheet`, `deck`, `slide`, `quotes_dir`, `out_dir` override the paths).
+optional; `sheet`, `deck`, `slide`, `quotes_dir`, `out_dir` override the paths and switch `demo_assets`/`dress` off
+unless set; `client` labels the deck for the person).
 
 ## prepare (deterministic, before the agent starts)
 
-`_packet.prepare()` stages the desk: closes Atril/Mousepad/Thunar/app-finder windows and every LibreOffice
+**Real desk (`demo_assets` false — explicit `sheet`/`deck`):** prepare() checks the sheet and deck exist (and, with READ THE
+QUOTES, that `quotes_dir` holds PDFs), creates `out_dir`, reads the sheet (it must add up), leaves every window alone,
+never restarts a LibreOffice that runs without our UNO socket (the deck read-back is then `skipped`), dresses nothing and
+writes truth.json. With our own quote layout the truth is derived from the PDFs; otherwise the deck is verified against
+the sheet as the agent saved it.
+
+**Demo (`demo_assets` true):** `_packet.prepare()` stages the desk: closes Atril/Mousepad/Thunar/app-finder windows and every LibreOffice
 document (UNO, without saving — checked again with `uno list` + `wmctrl`; a document that survives, e.g. a
 modified sheet from an earlier reconcile run, gets a second closeall and then a soffice restart, because
 `uno open` of an already-open URL would hand that stale document back), restores the canonical sheet **and**
@@ -97,10 +120,12 @@ Checks on the Run (SCHEMA §11 `checks`), independent of anything the model said
 * `pdf_exported`, `pdf_contains_amounts` — `For signature/proposal-172.pdf` exists and its text (pypdf)
   carries the four amounts
 * `mail_received`, `mail_attachment_matches_file`, `mail_body_complete`, `mail_cc_received` — over IMAP
-  (`mail.py`): the newest message in the recipient's INBOX **from this desk's own mailbox** with the subject
+  (`mail.py`): the newest message in the recipient's INBOX **from the sender's own mailbox** with the subject
   tail ("for signature · Ops") and, for the signature mails, the attachment, dated after the run start;
   attachment bytes sha256-equal to the exported PDF on the desk; body names the vendor and the new total
-  (reconcile) or the four amounts (packet); finance@ got the copy
+  (reconcile) or the four amounts (packet); Finance got the copy. Without a configured mail server
+  (`board.mail_domain` + `FLOWLINE_MAIL_HOST`; the demo keeps its tunnel default) these read
+  `skipped: no mail server configured` and pass.
 * `nothing_else_changed` — a `find | sha256sum` listing of `/config/Documents` before and after; only the
   sheet and the PDF may differ (lock files ignored)
 * `agent_finished` — exit code 0 (2 = step limit)

@@ -32,6 +32,51 @@ Deployment: `FLOWLINE_DESK_HOST` = ssh host of the docker engine (default `mini`
 `FLOWLINE_EXECUTOR_PORT` / `FLOWLINE_EXECUTOR_URL` for the bridge the agent calls; `FLOWLINE_NODE` to pick a node binary.
 `requires-python = ">=3.12"`; uv manages the interpreter.
 
+## Any company, not just Northwind (branch `generalize`)
+
+* **Board block on the run** (`board.py`). `POST /runs` takes `board: {id, name, mail_domain, mail_window_title?, people: [{id, role,
+  email, name?}]}` (track G1 adds it on the API side; the Mac app only sends `target` + `person_id`). Skills resolve mail
+  recipients **by role**: signature mails → `approver` (Director, else CEO, else Owner), cc Finance; the reconcile mail → PM
+  (else the approver); the sender = the person's own address (`people[].id == run.person_id`), demo desks fall back to the
+  desk number. The mail domain, the "send only inside @<mail_domain>" rule and the inbox window title
+  (`board.mail_window_title`, default `"<board.name> Mail :: Inbox"`) come from the block and reach the agent as
+  `inputs.mail` / `inputs.mail_domain` / `inputs.mail_window_title` (skills.mjs holds Northwind literals only as fallbacks).
+  **Block absent → today's Northwind values** (`board.DEFAULT`: six people, `northwind.local`, "Northwind Mail :: Inbox"), so
+  every demo command is unchanged. A board without anyone to hand over to fails the run with a clear error before the agent starts.
+* **Document names.** Titles and subjects derive from the deck basename (`board.doc_label` / `subject_label`): `proposal-172.odp`
+  or `inputs.proposal` → "proposal #172" / "Proposal 172" (demo unchanged); `Acme Q4.odp` → "Acme Q4". Nothing says "172" unless the file does.
+* **Real paths and the demo gate.** All skills accept any `sheet` / `deck` / `slide` / `quotes_dir` / `out_dir` and a `client`
+  label. `inputs.demo_assets` (restore sheet+deck from `executor/assets/`, write fresh vendor quotes, dress the desk) defaults
+  to **on only when the run works on the Northwind files under /config/Documents** (no `sheet`/`deck` given, or
+  `inputs.proposal`); with explicit paths it is off: prepare() only checks the files exist, creates `out_dir`, never closes
+  windows, never restarts a LibreOffice that lacks our UNO socket (the deck read-back is then reported `skipped`, not failed),
+  dresses nothing. Without a quote truth (real vendor PDFs) the deck is verified against the sheet *as the agent saved it*;
+  our own quote layout on a real desk is read back into a truth (`quotes_truth_from_pdfs`).
+* **Mail verification** runs over IMAP when `board.mail_domain` is set **and** `FLOWLINE_MAIL_HOST` is set (the demo without a
+  block keeps the localhost tunnel default); otherwise the mail checks say `skipped: no mail server configured` and pass.
+  `mail.py` takes host/ports/domain from `FLOWLINE_MAIL_HOST/_SMTP_PORT/_IMAP_PORT/_DOMAIN`; the six Northwind users are
+  `DEMO_PEOPLE`, used by `seed`, `users` and `reset all` only. `scripts/mail.sh` reads the same env plus `FLOWLINE_MAIL_TITLE`,
+  `FLOWLINE_MAIL_USERS`, `FLOWLINE_WEBMAIL_PORT`, `FLOWLINE_MAIL_API_PORT` and forwards them over ssh; Roundcube's
+  `product_name`/`username_domain` and the autologin plugin read `FLOWLINE_MAIL_TITLE`/`FLOWLINE_MAIL_DOMAIN` from the container env.
+* **Mac target really works** (`lo.py`): LibreOffice's bundled Python cannot be launched from a shell on macOS (launch
+  constraint, SIGKILL) and no other interpreter loads pyuno (segfault), so on `mac` the UNO helper runs *inside* the GUI
+  soffice as a user Python script dispatched with `soffice "vnd.sun.star.script:flowline_uno.py$main?language=Python&location=user"`,
+  request/answer through JSON files. The executor uses **its own LibreOffice profile** (`FLOWLINE_LO_PROFILE`, default
+  `data/mac/lo-profile`; `FLOWLINE_SOFFICE` picks the binary, default Homebrew's) — the person's own LibreOffice and profile are
+  never touched or killed. A dispatch is only sent once the profile `.lock` says `IPCServer=true`: dispatching into a
+  half-started instance made the launcher the instance and killed it with the launcher's timeout (the first smoke test).
+  Window sizing is the new UNO `fit` command (no wmctrl), activation goes through `NSRunningApplication` (pyobjc).
+  `MacDesktop` gained `sh`/`put_file`/`get_file` so the skills and `lo.py` treat it like a desk. `/desk/{target}/view` carries
+  `platform` (`mac`|`linux`) and the fill prompt tells the model it is on macOS (cmd shortcuts, do not touch other windows).
+* **Measured on this laptop (2026-11-09 23:48, LibreOffice 26.8.2.2 via Homebrew, claude-sonnet-5-5, scratch copies of the
+  assets)**: `POST /runs {skill_id: fill_deck_from_sheet, target: mac, inputs: {sheet, deck, leave_open: true}}` → **done in
+  48.7 s** (agent 25.8 s, 7 model turns, 2 screenshots, 4 clicks, 4 types); all 12 checks OK (four cells exact, sum = total =
+  $4,290, deck sha256 unchanged, document left modified and unsaved, exit 0). Per action on the Mac: screenshot 314 ms
+  (3024×1964 Retina → 1280×831 for the model), click 7 ms, type 137 ms. Screen Recording and Accessibility were already granted
+  to the process that ran the service (otherwise screenshots are wallpaper-only and CGEvents are dropped — the run would fail
+  its cell checks honestly). The agent's `bash` tool still exists on `mac` (it runs `sh -c` on the person's machine); the prompt
+  discourages it — consider dropping it from the Mac toolset.
+
 ## Decisions
 
 * **Agent loop = Vercel AI SDK** (`ai` 7.0.x, `@ai-sdk/anthropic` 4.0.x): `ToolLoopAgent({model: anthropic(FLOWLINE_MODEL),
@@ -119,7 +164,11 @@ compiler with Claude step names):
 3. `Record.id` example `"1106-0412"`: I use `MMDD-<first 4 hex of sha256(person_id)>`. Is the suffix a person code or a time?
 4. `Event` has no slot for the on-device privacy classification; I added `private: "personal_chat"|"banking"|null` (never leaves
    the device). OK to document in §1?
-5. `Skill.inputs` is `{sheet, deck, slide}`; I also accept `max_steps` (agent step limit, default 25).
+5. `Skill.inputs` is `{sheet, deck, slide}`; I also accept `client`, `demo_assets`, `leave_open`, `max_steps` (agent step limit, default 25).
+8. **Board block (track G1).** `POST /runs` takes `board: {id, name, mail_domain, mail_window_title?, people: [{id, role, email, name?}]}`
+   and the Run echoes it as `run.board`. Roles the skills look for: `Director|CEO|Owner` (approver), `Finance`, `PM`; the sender is
+   `people[].id == person_id`. Please send `role` as the SCHEMA Role strings and `email` lower-case; `mail_window_title` only when
+   the company's webmail is not "<name> Mail".
 6. Idle events with `idle_s ≥ 300` become a `waiting` step named "Away from desk"; `DraftStep.kind` only has hands_on|waiting —
    is "away" (no `waiting_on`) acceptable or should it be a `LeftOut`?
 7. Which Role is the actor's `person_id`? Using `pm-1`, role `PM`, board `northwind`.

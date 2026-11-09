@@ -13,6 +13,8 @@ Endpoints:
   POST   /api/runs                              start a simulated run; steps advance every second
   GET    /api/runs/{id}                         poll
   POST   /api/runs/{id}/stop                    stop
+  POST   /api/invites/{code}/claim {device}     join a company (track G1 contract): → {board_id, board_name, person_id, name, role}
+                                                codes: DEMO-NORTHWIND (Dana, PM on northwind) · ACME-OPS (Jordan, Ops on acme); else 404
 Only the record hash is printed; keys are never involved."""
 import argparse, hashlib, json, sys, time, uuid
 from datetime import datetime, timezone
@@ -37,6 +39,10 @@ suggestion = {
 }
 plan = {"id": "plan-2", "rank": 1, "name": "Agent fills the deck, PM reviews", "sub": "Copy pricing into the proposal deck",
         "hours": 4.0, "status": "proposed", "source": "prototype"}
+INVITES = {
+    "DEMO-NORTHWIND": {"board_id": "northwind", "board_name": "Northwind Fitness", "person_id": "pm-1", "name": "Dana Whitfield", "role": "PM"},
+    "ACME-OPS": {"board_id": "acme", "board_name": "Acme Tooling", "person_id": "ops-7", "name": "Jordan Blake", "role": "Ops"},
+}
 
 RUN_STEPS = [
     ("READ THE SHEET", "Four line items and the total from pricing-sheet #172"),
@@ -149,8 +155,14 @@ class H(BaseHTTPRequestHandler):
             rid = "run-" + uuid.uuid4().hex[:6]
             runs[rid] = {"id": rid, "skill_id": b.get("skill_id", "fill_deck_from_sheet"), "target": b.get("target", "mac"),
                          "started": time.time(), "started_at": datetime.now(timezone.utc).isoformat(), "stopped_at": None}
-            print(f"run {rid} started for suggestion {b.get('suggestion_id')}")
+            print(f"run {rid} started for suggestion {b.get('suggestion_id')} target={b.get('target')} person={b.get('person_id')}")
             return self.send(201, run_view(runs[rid]))
+        if p[:2] == ["api", "invites"] and len(p) == 4 and p[3] == "claim":
+            inv = INVITES.get(p[2].upper())
+            if not inv:
+                return self.send(404, {"error": "no such invite code"})
+            print(f"invite {p[2]} claimed by device {self.body().get('device')!r} → {inv['person_id']} on {inv['board_id']}")
+            return self.send(200, inv)
         if p[:2] == ["api", "runs"] and len(p) == 4 and p[3] == "stop":
             r = runs.get(p[2])
             if not r:

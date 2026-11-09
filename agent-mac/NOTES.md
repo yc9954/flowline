@@ -1,10 +1,34 @@
 # agent-mac — notes and contract questions
 
-Build: `scripts/bundle.sh` (release) → `build/Flowline.app`, ad-hoc signed, `LSUIElement` (no Dock icon).
-Run: `open build/Flowline.app --args --demo-day --eod-now`. Tests: `swift test` (canonical hash vs Python, demo-day compile, privacy).
+Build: `scripts/bundle.sh` (release) → `build/Flowline.app`, ad-hoc signed, `LSUIElement` (no Dock icon), URL scheme `flowline://`.
+Run: `open build/Flowline.app --args --demo-day --eod-now`. Tests: `swift test` (canonical hash vs Python, demo-day compile, privacy, join contract).
 Mock board: `python3 -u scripts/mock_api.py` (port 8787; `--offer` offers the suggestion at once, otherwise
-`curl -X POST localhost:8787/api/boards/northwind/plans/plan-2/approve`).
-Debug driving (only with `--debug-control`): `scripts/drive.sh review|approve|withdraw|done|banner|menu|poll|do-it|stop…`.
+`curl -X POST localhost:8787/api/boards/northwind/plans/plan-2/approve`; invite codes `DEMO-NORTHWIND`, `ACME-OPS`).
+Debug driving (only with `--debug-control`): `scripts/drive.sh review|approve|withdraw|done|banner|menu|poll|do-it|stop|join|join-now|leave…`.
+
+## Joining a company (any board, not just Northwind)
+
+- **Nothing is configured on first run.** Without a stored identity the app opens Settings and neither polls suggestions
+  nor posts records; `approveAndShare` refuses with "Join a company first". `--demo-day` with nothing joined uses the
+  storyboard identity in memory only (pm-1 / Dana Whitfield / PM on `northwind` "Northwind Fitness", mock API :8787) —
+  nothing is written to UserDefaults, so `--demo-day`, `--debug-control` and every `drive.sh` command keep working.
+- **Settings → Join a company**: API address + invite code → `POST {api}/api/invites/{code}/claim {device: <host name>}`
+  (track G1 contract) → `{board_id, board_name, person_id, name, role}` stored as `api_base`, `board_id`, `board_name`,
+  `person_id`, `person_name`, `role` (+ `joined_at`) in UserDefaults. The header reads `person_name · board_name`
+  straight from these; **there is no board-id → name switch** (an unnamed board shows its id). "Change…" re-opens the
+  form, "Leave company" clears the identity, "Manual setup…" exposes the raw fields for developers. The claim decoder
+  (`FlowlineCore/Join.swift`) tolerates a sparse answer but needs `board_id` and `person_id`.
+- **`flowline://join?api=…&code=…`** (an invite mail or the board's Join button): `CFBundleURLTypes` in `bundle.sh`,
+  handled through `kAEGetURL` + `application(_:open:)` in `main.swift`; it opens Settings pre-filled — the person
+  presses Join, nothing is claimed on their behalf. A URL that arrives before `start()` is kept until then. `api`
+  without a scheme gets `http://`; `/join` as path or host both work. Verified: `open "flowline://join?api=http://localhost:8787&code=DEMO-NORTHWIND"`
+  against the mock (`shots/10-settings-first-run.png`, `11-settings-join-prefilled-url.png`, `12-settings-joined.png`,
+  `13-menu-joined.png`).
+- **Run target**: `POST /api/runs {suggestion_id, skill_id, target, person_id, inputs: {}}`; `target` is `mac` (the
+  person's own machine) unless UserDefaults `run_target` is set explicitly (`defaults write co.sweetspot.flowline
+  run_target desk1` — the six-desk demo). The API adds the board block (`board: {id, name, mail_domain, people}`) for the executor.
+- Existing installs keep their stored `person_id`/`board_id`/`api_base` (they count as joined); `board_name` is empty
+  until they re-join, so the header shows the id.
 
 ## Decisions worth knowing
 
@@ -42,6 +66,10 @@ Debug driving (only with `--debug-control`): `scripts/drive.sh review|approve|wi
   Approved records are also kept in `records/<id>.json` (they stay on the device after Withdraw).
 
 ## Contract questions for the integrator (SCHEMA.md)
+
+0. **Invites (track G1).** The app implements `POST {api}/api/invites/{code}/claim` with body `{device}` and expects
+   `{board_id, board_name, person_id, name, role}` (role = SCHEMA Role; unknown → PM). 4xx bodies are shown verbatim
+   in Settings. Until the API ships it, `scripts/mock_api.py` answers for `DEMO-NORTHWIND` and `ACME-OPS`.
 
 1. **Runs endpoint.** §11 puts the executor at `http://localhost:8790/runs`; the brief says the Mac app posts to
    `{api_base}/api/runs` and polls `{api_base}/api/runs/{id}`. The app uses `{api_base}/api/runs…` (API proxies the

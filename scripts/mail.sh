@@ -18,19 +18,29 @@
 # Runs on the mini (docker at /opt/homebrew/bin/docker) or from the laptop: without a local docker the script copies
 # executor/mail.py + executor/assets/mail to mini:~/flowline and re-executes itself over `ssh $FLOWLINE_DESK_HOST`.
 #
-# Ports on the mini (all 127.0.0.1): SMTP 3025, IMAP 3143, greenmail REST API 3081, Roundcube http://127.0.0.1:3180.
-# From the desks: host `mail` (3025/3143) and http://webmail/ . People (login@northwind.local, shared test password in
-# executor/MAIL.md): pm desk1 · finance desk2 · sales desk3 · ops desk4 · studio desk5 · director desk6.
+# Everything company-specific comes from the environment (defaults = the Northwind demo):
+#   FLOWLINE_MAIL_DOMAIN   mail domain (northwind.local)       FLOWLINE_MAIL_TITLE  Roundcube product name = window title prefix
+#   FLOWLINE_MAIL_USERS    logins, comma-separated; index i ↔ desk i (pm,finance,sales,ops,studio,director) — pre-created in
+#                          greenmail and the only accounts `seed` fills (the six Northwind demo users). Any other
+#                          login@domain works too: auth is disabled and greenmail creates mailboxes on first use.
+#   FLOWLINE_MAIL_SMTP_PORT / FLOWLINE_MAIL_IMAP_PORT / FLOWLINE_MAIL_API_PORT / FLOWLINE_WEBMAIL_PORT  published on the
+#                          docker host's 127.0.0.1 (3025 / 3143 / 3081 / 3180)
+# From the desks: host `mail` (3025/3143) and http://webmail/ . Shared test password: executor/MAIL.md.
 set -euo pipefail
 
 HOST="${FLOWLINE_DESK_HOST:-mini}"
 NET="flownet"
 GREENMAIL_IMAGE="${FLOWLINE_GREENMAIL_IMAGE:-greenmail/standalone:2.1.3}"
 ROUNDCUBE_IMAGE="${FLOWLINE_ROUNDCUBE_IMAGE:-roundcube/roundcubemail:1.6.11-apache}"
-DOMAIN="northwind.local"
+DOMAIN="${FLOWLINE_MAIL_DOMAIN:-northwind.local}"
+MAIL_TITLE="${FLOWLINE_MAIL_TITLE:-Northwind Mail}"
 PASSWORD="${FLOWLINE_MAIL_PASSWORD:-flowline}"
-USERS=(pm finance sales ops studio director)       # index i-1 ↔ deskN
-DEFAULT_N=6
+SMTP_PORT="${FLOWLINE_MAIL_SMTP_PORT:-3025}"
+IMAP_PORT="${FLOWLINE_MAIL_IMAP_PORT:-3143}"
+API_PORT="${FLOWLINE_MAIL_API_PORT:-3081}"
+WEBMAIL_PORT="${FLOWLINE_WEBMAIL_PORT:-3180}"
+IFS=',' read -r -a USERS <<< "${FLOWLINE_MAIL_USERS:-pm,finance,sales,ops,studio,director}"   # index i-1 ↔ deskN
+DEFAULT_N="${#USERS[@]}"
 
 cmd="${1:-status}"; shift || true
 
@@ -44,7 +54,10 @@ else DOCKER=""; fi
 if [ "$HOST" != "local" ] && [ "$HOST" != "localhost" ]; then
   # laptop: ship the files the mini needs, then run there
   tar -C "$ROOT" -cf - executor/mail.py executor/assets/mail | ssh "$HOST" 'mkdir -p flowline && tar -xf - -C flowline'
-  ssh "$HOST" "FLOWLINE_DESK_HOST=local FLOWLINE_ROOT=\$HOME/flowline FLOWLINE_MAIL_PASSWORD=$(printf '%q' "$PASSWORD") bash -s -- $(printf '%q ' "$cmd" "$@")" < "$0"
+  ssh "$HOST" "FLOWLINE_DESK_HOST=local FLOWLINE_ROOT=\$HOME/flowline FLOWLINE_MAIL_PASSWORD=$(printf '%q' "$PASSWORD") \
+    FLOWLINE_MAIL_DOMAIN=$(printf '%q' "$DOMAIN") FLOWLINE_MAIL_TITLE=$(printf '%q' "$MAIL_TITLE") FLOWLINE_MAIL_USERS=$(printf '%q' "$(IFS=,; echo "${USERS[*]}")") \
+    FLOWLINE_MAIL_SMTP_PORT=$SMTP_PORT FLOWLINE_MAIL_IMAP_PORT=$IMAP_PORT FLOWLINE_MAIL_API_PORT=$API_PORT FLOWLINE_WEBMAIL_PORT=$WEBMAIL_PORT \
+    bash -s -- $(printf '%q ' "$cmd" "$@")" < "$0"
   rc=$?
   if [ "$cmd" = "desks" ] || [ "$cmd" = "attach-test" ]; then  # bring the screenshots home
     mkdir -p "$ROOT/data/mail"
@@ -74,13 +87,13 @@ up_mail() {
   d network inspect "$NET" >/dev/null 2>&1 || d network create "$NET" >/dev/null
   echo "  mail: starting $GREENMAIL_IMAGE"
   d run -d --name mail --network "$NET" --restart unless-stopped \
-    -p 127.0.0.1:3025:3025 -p 127.0.0.1:3143:3143 -p 127.0.0.1:3081:8080 \
+    -p 127.0.0.1:$SMTP_PORT:3025 -p 127.0.0.1:$IMAP_PORT:3143 -p 127.0.0.1:$API_PORT:8080 \
     -e GREENMAIL_OPTS="-Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled -Dgreenmail.users.login=email -Dgreenmail.users=$(greenmail_users) -Dgreenmail.verbose=false" \
     "$GREENMAIL_IMAGE" >/dev/null
   local i
   for i in $(seq 1 40); do
-    if "$PY" - <<'PY' 2>/dev/null; then echo "  mail: SMTP 3025 / IMAP 3143 up"; return 0; fi
-import socket; s=socket.create_connection(("127.0.0.1",3143),1); b=s.recv(200); s.close(); assert b.startswith(b"* OK")
+    if IMAP_PORT="$IMAP_PORT" "$PY" - <<'PY' 2>/dev/null; then echo "  mail: SMTP $SMTP_PORT / IMAP $IMAP_PORT up"; return 0; fi
+import os, socket; s=socket.create_connection(("127.0.0.1",int(os.environ["IMAP_PORT"])),1); b=s.recv(200); s.close(); assert b.startswith(b"* OK")
 PY
     sleep 0.5
   done
@@ -93,7 +106,8 @@ up_webmail() {
   [ -f "$ASSETS/roundcube.inc.php" ] || { echo "missing $ASSETS/roundcube.inc.php" >&2; return 1; }
   echo "  webmail: starting $ROUNDCUBE_IMAGE"
   d run -d --name webmail --network "$NET" --restart unless-stopped \
-    -p 127.0.0.1:3180:80 \
+    -p 127.0.0.1:$WEBMAIL_PORT:80 \
+    -e FLOWLINE_MAIL_DOMAIN="$DOMAIN" -e FLOWLINE_MAIL_TITLE="$MAIL_TITLE" \
     -e ROUNDCUBEMAIL_DEFAULT_HOST=mail -e ROUNDCUBEMAIL_DEFAULT_PORT=3143 \
     -e ROUNDCUBEMAIL_SMTP_SERVER=mail -e ROUNDCUBEMAIL_SMTP_PORT=3025 \
     -e ROUNDCUBEMAIL_DB_TYPE=sqlite -e ROUNDCUBEMAIL_SKIN=elastic \
@@ -105,10 +119,10 @@ up_webmail() {
     "$ROUNDCUBE_IMAGE" >/dev/null
   local i
   for i in $(seq 1 60); do
-    if curl -fsS -o /dev/null http://127.0.0.1:3180/ 2>/dev/null; then echo "  webmail: http://127.0.0.1:3180 up"; return 0; fi
+    if curl -fsS -o /dev/null http://127.0.0.1:$WEBMAIL_PORT/ 2>/dev/null; then echo "  webmail: http://127.0.0.1:$WEBMAIL_PORT up"; return 0; fi
     sleep 1
   done
-  echo "  webmail: no answer on 3180 in 60 s" >&2; d logs --tail 20 webmail >&2; return 1
+  echo "  webmail: no answer on $WEBMAIL_PORT in 60 s" >&2; d logs --tail 20 webmail >&2; return 1
 }
 
 status() {
@@ -117,17 +131,17 @@ status() {
     if exists "$c"; then printf '%-8s %-10s %s\n' "$c" "$(d inspect -f '{{.State.Status}}' "$c")" "$(d port "$c" 2>/dev/null | tr '\n' ' ')"
     else printf '%-8s %-10s\n' "$c" absent; fi
   done
-  "$PY" - <<'PY' || true
-import socket
-for name, port in (("SMTP", 3025), ("IMAP", 3143)):
+  SMTP_PORT="$SMTP_PORT" IMAP_PORT="$IMAP_PORT" "$PY" - <<'PY' || true
+import os, socket
+for name, port in (("SMTP", int(os.environ["SMTP_PORT"])), ("IMAP", int(os.environ["IMAP_PORT"]))):
     try:
         s = socket.create_connection(("127.0.0.1", port), 2); b = s.recv(200).decode(errors="replace").strip(); s.close()
         print(f"  {name} {port}: {b[:70]}")
     except OSError as e:
         print(f"  {name} {port}: DOWN ({e})")
 PY
-  code=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3180/ 2>/dev/null || echo 000)
-  echo "  Roundcube 3180: HTTP $code"
+  code=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:$WEBMAIL_PORT/ 2>/dev/null || echo 000)
+  echo "  Roundcube $WEBMAIL_PORT: HTTP $code"
   if running webmail; then
     d exec webmail sh -c 'ls /var/www/html/plugins/flowline_autologin/flowline_autologin.php >/dev/null 2>&1 && echo "  autologin plugin: mounted" || echo "  autologin plugin: MISSING"'
   fi
@@ -181,13 +195,13 @@ desk_down() {
 attach_test() {  # drive one attach through the GUI exactly the way that works (see MAIL.md) and prove it in the webmail log
   local c="$1" path="${2:-/config/Documents/pricing-sheet.ods}"
   running "$c" || { echo "  $c: not running" >&2; return 1; }
-  dx "$c" 'wmctrl -l | grep -q "Northwind Mail"' || { echo "  $c: no mail window — scripts/mail.sh desks $c first" >&2; return 1; }
+  dx "$c" "wmctrl -l | grep -q '$MAIL_TITLE'" || { echo "  $c: no mail window — scripts/mail.sh desks $c first" >&2; return 1; }
   local before; before=$(d logs webmail 2>&1 | grep -c "_action=upload")
   # window geometry → absolute coordinates (the window may have been moved)
-  local geo; geo=$(dx "$c" 'xdotool search --name "Northwind Mail" | head -1 | xargs -I{} xdotool getwindowgeometry --shell {}')
+  local geo; geo=$(dx "$c" "xdotool search --name '$MAIL_TITLE' | head -1 | xargs -I{} xdotool getwindowgeometry --shell {}")
   local WX WY; WX=$(echo "$geo" | sed -n 's/^X=//p'); WY=$(echo "$geo" | sed -n 's/^Y=//p')
   if ! dx "$c" 'wmctrl -l | grep -q "Mail :: Compose"'; then
-    dx "$c" "xdotool search --name 'Northwind Mail' | head -1 | xargs xdotool windowactivate --sync; xdotool mousemove $((WX + 38)) $((WY + 80)) click 1"   # Compose (left rail)
+    dx "$c" "xdotool search --name '$MAIL_TITLE' | head -1 | xargs xdotool windowactivate --sync; xdotool mousemove $((WX + 38)) $((WY + 80)) click 1"   # Compose (left rail)
     sleep 2.5
   fi
   dx "$c" 'wmctrl -l | grep -q "Mail :: Compose"' || { echo "  $c: compose view did not open" >&2; return 1; }
@@ -222,9 +236,9 @@ case "$cmd" in
   up) up_mail; up_webmail; status ;;
   down) for c in webmail mail; do exists "$c" && { echo "  removing $c"; d rm -f "$c" >/dev/null; }; done; status ;;
   status) status ;;
-  seed) running mail || { echo "mail is not running — scripts/mail.sh up first" >&2; exit 1; }
-        (cd "$(dirname "$MAILPY")" && "$PY" "$MAILPY" seed | "$PY" -c 'import json,sys; m=json.load(sys.stdin); print(f"seeded {len(m)} messages"); [print("  ", x["to"], "←", x["subject"]) for x in m]') ;;
-  reset) (cd "$(dirname "$MAILPY")" && "$PY" "$MAILPY" reset "${1:-all}") ;;
+  seed) running mail || { echo "mail is not running — scripts/mail.sh up first" >&2; exit 1; }   # Northwind demo users only (mail.py DEMO_PEOPLE)
+        (cd "$(dirname "$MAILPY")" && FLOWLINE_MAIL_DOMAIN="$DOMAIN" FLOWLINE_MAIL_SMTP_PORT="$SMTP_PORT" FLOWLINE_MAIL_IMAP_PORT="$IMAP_PORT" "$PY" "$MAILPY" seed | "$PY" -c 'import json,sys; m=json.load(sys.stdin); print(f"seeded {len(m)} messages"); [print("  ", x["to"], "←", x["subject"]) for x in m]') ;;
+  reset) (cd "$(dirname "$MAILPY")" && FLOWLINE_MAIL_DOMAIN="$DOMAIN" FLOWLINE_MAIL_SMTP_PORT="$SMTP_PORT" FLOWLINE_MAIL_IMAP_PORT="$IMAP_PORT" "$PY" "$MAILPY" reset "${1:-all}") ;;
   desks) fail=0; for c in $(desk_names "$@"); do desk_up "$c" || fail=1; done; [ "$fail" = 0 ] ;;
   desks-down) for c in $(desk_names "$@"); do desk_down "$c"; done ;;
   attach-test) [ -n "${1:-}" ] || { echo "usage: mail.sh attach-test deskN [path]" >&2; exit 2; }; attach_test "$1" "${2:-}" ;;
