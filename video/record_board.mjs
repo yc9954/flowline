@@ -88,15 +88,19 @@ const CUTS = {
     await sleep(1200);
     await stagger(page, '[data-edge-back]', 160, 'none');
     await sleep(600);
-    // the map opens at "fit" (50 %): zoom to 90 % as ONE smooth motion — a CSS transition on the scaled canvas, then four
-    // quick zoom-in clicks that React applies while the transition interpolates (discrete clicks looked like stutter)
+    // the map opens at "fit" (50 %): zoom in as ONE compositor animation — a CSS transform on the map viewport, anchored on
+    // the Approval node — instead of the app's stepped zoom buttons (layout re-runs per step and looked like stutter)
     await page.evaluate(() => {
-      const el = [...document.querySelectorAll('div')].find((d) => /scale\(/.test(d.style.transform) && /^0(px)? 0(px)?$/.test(d.style.transformOrigin));
-      if (el) el.style.transition = 'transform 1.3s cubic-bezier(.2,.8,.2,1)';
+      const inner = [...document.querySelectorAll('div')].find((d) => /scale\(/.test(d.style.transform) && /^0(px)? 0(px)?$/.test(d.style.transformOrigin));
+      const vp = inner && inner.parentElement; if (!vp) return;
+      const node = [...vp.querySelectorAll('[data-node]')].find((n) => /Approval/.test(n.textContent || '')) || vp;
+      const vr = vp.getBoundingClientRect(), nr = node.getBoundingClientRect();
+      vp.style.transformOrigin = `${nr.left + nr.width / 2 - vr.left}px ${nr.top + nr.height / 2 - vr.top}px`;
+      vp.style.transition = 'transform 1.4s cubic-bezier(.2,.8,.2,1)';
+      vp.style.willChange = 'transform';
+      requestAnimationFrame(() => { vp.style.transform = 'scale(1.75)'; });
     });
-    const zin = page.locator('button[aria-label="Zoom in"]');
-    for (let i = 0; i < 4; i++) { if (await zin.count()) await zin.click(); await sleep(40); }
-    await sleep(1600);
+    await sleep(1800);
     const approval = page.locator('[data-node-id="approval"], [data-node]:has-text("Approval")').first();
     if (await approval.count()) { await approval.scrollIntoViewIfNeeded(); await approval.click(); }
   } },
@@ -138,19 +142,20 @@ const CUTS = {
       await sleep(500);
     }
   } },
-  13: { route: '/improve/results', hold: 7000, prehide: '[data-dot-before],[data-dot-after],[data-zip-row]', async play(page) {
+  13: { route: '/improve/results', hold: 14500, prehide: '[data-dot-before],[data-dot-after],[data-zip-row]', async play(page) {
+    // results: 6.5 s on screen, then in-app to "Where to open next" and hold ~6 s (both pages used to flash by)
     await stagger(page, '[data-dot-before]', 15, 'none');
-    await sleep(400);
+    await sleep(500);
     await stagger(page, '[data-dot-after]', 30, 'translateY(-10px)');
-    await countUp(page, '[data-kpi-main]', 108.8, 1400);
-    await sleep(1200);
+    await countUp(page, '[data-kpi-main]', 108.8, 1600);
+    await sleep(3400);
     await page.locator('nav a:has-text("Where to open next"), a:has-text("Where to open next")').first().click();
-    await page.waitForSelector('[data-zip-row]', { timeout: 8000 }).catch(() => {});
+    await page.waitForSelector('[data-zip-row]', { timeout: 15000 }).catch(() => {});
     await sleep(150);
-    await stagger(page, '[data-zip-row]', 120, 'translateX(-8px)');
-    await sleep(900);
+    await stagger(page, '[data-zip-row]', 140, 'translateX(-8px)');
+    await sleep(1400);
     await page.evaluate(() => document.querySelector('[data-zip-row]')?.classList.add('is-hot'));
-    await countUp(page, '[data-lift-main]', 1.0, 1400);
+    await countUp(page, '[data-lift-main]', 1.0, 1600);
   } },
   14: { url: card('results'), hold: 9500, async play() {} },
   15: { route: '/improve/history', hold: 5500, prehide: '[data-loop-step]', async play(page) {   // the loop only — no return to the hero
@@ -214,7 +219,7 @@ for (const [n, cut] of Object.entries(CUTS)) {
     ? { viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 }
     : { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 4 / 3 });
   const page = await ctx.newPage();
-  await page.goto(cut.url || base + cut.route, { waitUntil: cut.url ? 'load' : 'networkidle' });  // the wall never goes idle (frames)
+  await page.goto(cut.url || base + cut.route, { waitUntil: cut.url ? 'load' : 'networkidle', timeout: 90000 });  // the wall never goes idle (frames)
   // elements that an entrance animates in are hidden BEFORE the screencast starts (the stagger reveals them); otherwise
   // the first frames show the finished page, the stagger blanks it and it "loads again"
   if (cut.prehide) await prehide(page, cut.prehide);

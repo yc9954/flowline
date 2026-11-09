@@ -42,8 +42,8 @@ export default function SurfacesPage() {
       <div className="sf-stage" style={{ transform: `scale(${scale})` }}>
         <div style={{ position: 'absolute', left: 72, top: 44, right: 72, display: 'flex', alignItems: 'flex-end', gap: 40 }}>
           <div style={{ flex: 1 }}>
-            <div className="kicker"><span className="label">Northwind Fitness · 28 people · {c.branches} clubs</span><span className="hair" /></div>
-            <h1 style={{ margin: '14px 0 0', fontSize: 40, fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.15 }}>Five people. One knowledge. Five different surfaces.</h1>
+            <div className="kicker"><span className="label">Northwind Fitness · 8 people · {c.branches} gyms · simulated</span><span className="hair" /></div>
+            <h1 style={{ margin: '14px 0 0', fontSize: 40, fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.15 }}>Eight people. One knowledge. Five different surfaces.</h1>
           </div>
           <p style={{ width: 380, fontSize: 15, lineHeight: '24px', color: 'var(--muted)' }}>Multiplayer isn’t everyone in one room. It’s everyone’s work in one knowledge — and nobody has to open a dashboard for it to work.</p>
         </div>

@@ -14,22 +14,22 @@ os.makedirs(OUT, exist_ok=True)
 # Story v3: problem → market → product → test case → THE SIMULATION (time-lapse) → demo: collect · learn · act
 # (six desks live, then the whole runs at 50×) → results → close.
 CUTS = {
-    1: (9.5, "Small multi-site businesses run on processes nobody wrote down. Work waits more than it's worked, and when someone leaves, the process leaves too."),
-    2: (7.5, "Six million small US firms. The tools that map work need system logs — they have none."),
+    1: (9, "Small multi-site businesses run on processes nobody wrote down. Work waits more than it's worked, and when someone leaves, the process leaves too."),
+    2: (7.1, "Six million small US firms. The tools that map work need system logs — they have none."),
     3: (8.5, "Not an ERP: a company-level agent. Approved days join one hub; it finds the bottleneck, proposes the fix, and does the work."),
     4: (5.5, "Our test case: Northwind Fitness, a simulated chain. Three gyms, eight people."),
-    5: (4.5, "At six, each laptop drafts how the day went."),
-    6: (5, "Personal things stay out. Nothing leaves until you approve it."),
+    5: (3.6, "At six, each laptop drafts how the day went."),
+    6: (4.6, "Personal things stay out. Nothing leaves until you approve it."),
     7: (8, "Approved records become one knowledge of how the business works — learned, not drawn."),
-    8: (9, "A proposal takes a hundred and nine hours, eighty-five waiting. It tests nine fixes on the same team, same luck."),
+    8: (8, "A proposal takes a hundred and nine hours, eighty-five waiting. It tests nine fixes on the same team, same luck."),
     9: (5.5, "It never starts on its own. From the knowledge everyone built, it finds the bottleneck step and offers to take it — only to the person it affects."),
-    10: (10, "Six people said yes once. Now, mid-work, Flowline clears the same bottleneck on six desks at once — quotes, sheets, decks, packets — each from the knowledge all six built together."),
+    10: (9.3, "Six people said yes once. Now, mid-work, Flowline clears the same bottleneck on six desks at once — quotes, sheets, decks, packets — each from the knowledge all six built together."),
     11: (8, "Every run ends as a proposal left on the person's desk to check. Nothing saved, nothing sent outside, without them. One knowledge, many hands."),
     12: (8, "Then we ran the whole chain for eleven simulated weeks — three hundred approved days, every hand-off, every wait — on a world engine, not a script."),
-    13: (6, "Cycle time: a hundred and nine hours to eighty-eight. The test said ninety-one."),
-    14: (8.6, "Ten of ten runs correct, zero leaks. On real Census data, its picks were 7.4 times as likely to get new gyms."),
-    15: (5, "Flowline. The agent that runs your company's work — with your people."),
-    16: (2, ""),  # end card, no voice
+    13: (12.0, "Cycle time: a hundred and nine hours to eighty-eight. The test said ninety-one."),
+    14: (8.4, "Ten of ten runs correct, zero leaks. On real Census data, its picks were 7.4 times as likely to get new gyms."),
+    15: (4.7, "Flowline. The agent that runs your company's work — with your people."),
+    16: (1.5, ""),  # end card, no voice
 }
 
 
