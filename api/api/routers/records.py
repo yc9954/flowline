@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
+from fastapi.responses import PlainTextResponse
 from pydantic import ValidationError
 
 from ..canonical import RecordVerifyError, verify_record
@@ -71,6 +72,20 @@ def list_records(
 
 def _newest(r: dict[str, Any]) -> tuple[str, str, str]:
     return (str(r.get("approved_at") or ""), str(r.get("date") or ""), str(r.get("id") or ""))
+
+
+@router.get("/export", response_class=PlainTextResponse, responses={200: {"content": {"application/x-ndjson": {}}}})
+def export_records(board_id: str, db: Database = Depends(get_db)) -> PlainTextResponse:
+    """NDJSON (one signed Record per line) of the board's approved, non-withdrawn records: the input of the
+    nightly `flowline1 fit`. Simulated records are not included — only what people approved."""
+    from .boards import export_records_ndjson  # local import: boards imports nothing from here
+
+    text, n = export_records_ndjson(db, board_id)
+    return PlainTextResponse(
+        text,
+        media_type="application/x-ndjson",
+        headers={"X-Record-Count": str(n), "Content-Disposition": f'attachment; filename="{board_id}-records.ndjson"'},
+    )
 
 
 @router.get("/{rid}", response_model=Record, responses={404: {"model": Message}})

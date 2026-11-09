@@ -12,7 +12,9 @@ from fastapi.staticfiles import StaticFiles
 
 from .config import settings
 from .db import Database
-from .routers import boards, fleet, plans, records, runs, suggestions
+from .files import MissingFile
+from .people import migrate_legacy_people
+from .routers import boards, fleet, onboarding, plans, records, runs, suggestions
 
 
 def create_app() -> FastAPI:
@@ -20,10 +22,21 @@ def create_app() -> FastAPI:
     async def lifespan(app: FastAPI):
         db = Database(settings.db_path)
         db.init()
+        # First start on a deployment that predates boards-in-the-DB: data/people.json → board `northwind`.
+        app.state.migration = migrate_legacy_people(db)
         app.state.db = db
         yield
 
-    app = FastAPI(title="Flowline API", version="0.1.0", lifespan=lifespan)
+    app = FastAPI(title="Flowline API", version="0.2.0", lifespan=lifespan)
+
+    # Flat 404 bodies (not nested under "detail") so clients can switch on `state`.
+    @app.exception_handler(MissingFile)
+    async def _no_data(_request: Request, exc: MissingFile) -> JSONResponse:
+        return JSONResponse(exc.detail(), status_code=404)
+
+    @app.exception_handler(onboarding.BoardNotFound)
+    async def _no_board(_request: Request, exc: onboarding.BoardNotFound) -> JSONResponse:
+        return JSONResponse(exc.detail(), status_code=404)
 
     app.add_middleware(
         CORSMiddleware,
@@ -33,6 +46,7 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
+    app.include_router(onboarding.router)
     app.include_router(records.router)
     app.include_router(boards.router)
     app.include_router(plans.router)

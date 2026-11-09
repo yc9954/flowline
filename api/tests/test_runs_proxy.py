@@ -36,6 +36,7 @@ class _Stub(BaseHTTPRequestHandler):
                 "started_at": "2026-11-09T10:00:00+00:00", "elapsed_s": 0,
                 "steps": [{"n": 1, "label": "READ THE SHEET", "detail": "", "status": "now"}], "checks": [],
                 "_polls": 0,
+                "_payload": payload,  # what the API sent (tests inspect the board block)
             }
             _Stub.runs[rid] = run
             return self._send(201, {k: v for k, v in run.items() if not k.startswith("_")})
@@ -64,12 +65,14 @@ class _Stub(BaseHTTPRequestHandler):
 @pytest.fixture()
 def executor(monkeypatch):
     _Stub.runs = {}
+    _Stub.finish_after_polls = 1
     srv = HTTPServer(("127.0.0.1", 0), _Stub)
     t = threading.Thread(target=srv.serve_forever, daemon=True)
     t.start()
     monkeypatch.setenv("FLOWLINE_EXECUTOR_URL", f"http://127.0.0.1:{srv.server_port}")
     yield srv
     srv.shutdown()
+    _Stub.finish_after_polls = 1
 
 
 def test_run_lifecycle_marks_suggestion_done(dirs, executor, client):
@@ -83,6 +86,11 @@ def test_run_lifecycle_marks_suggestion_done(dirs, executor, client):
     assert r.status_code == 201, r.text
     run = r.json()
     assert run["status"] == "running" and run["id"] == "run-1"
+    # SCHEMA §11: every run request carries the board block, even for a board the DB does not know (id only).
+    sent = _Stub.runs["run-1"]["_payload"]
+    assert sent["board"] == {"id": BOARD, "name": BOARD, "mail_domain": None, "people": [],
+                             "mail_window_title": "Northwind Mail :: Inbox"}
+    assert sent["inputs"] == {"sheet": "Pricing Q4", "deck": "Northwind proposal", "slide": 7}
 
     s = client.get(f"/api/suggestions/{sid}").json()
     assert s["status"] == "accepted" and s["run_id"] == "run-1"

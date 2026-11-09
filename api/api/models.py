@@ -585,12 +585,23 @@ class Run(Shape):
     last_action: str | None = None
 
 
+class BoardBlock(Shape):
+    """Board config the API attaches to every executor run request (SCHEMA §11 `board`)."""
+
+    id: str
+    name: str
+    mail_domain: str | None = None
+    mail_window_title: str | None = None  # only when the board has a known webmail window title (legacy demo)
+    people: list[dict[str, Any]] = Field(default_factory=list)  # [{id, role, email, name}]
+
+
 class RunRequest(Shape):
     suggestion_id: str
     skill_id: str
     target: str = "mac"  # "mac" | "desk1" … "desk6"
     person_id: str | None = None
     inputs: dict[str, Any] = Field(default_factory=dict)
+    board: BoardBlock | None = None  # filled by the API from the suggestion's board; callers may omit it
 
 
 class SkillInputs(Shape):
@@ -639,33 +650,161 @@ class Surfaces(Shape):
     source: Source | None = None
 
 
+# ---------------------------------------------------------------- Boards & people (DB)
+
+
+class Board(Shape):
+    id: str
+    name: str
+    industry_naics: str | None = None
+    mail_domain: str | None = None
+    timezone: str = "UTC"
+    created_at: str | None = None
+
+
+class BoardCreate(Shape):
+    id: str | None = None  # slugified from name when absent
+    name: str
+    industry_naics: str | None = None
+    mail_domain: str | None = None
+    timezone: str | None = None
+
+
+class BoardPatch(Shape):
+    name: str | None = None
+    industry_naics: str | None = None
+    mail_domain: str | None = None
+    timezone: str | None = None
+
+
+class BoardSummary(Board):
+    people: int
+    records: int
+    has_data: bool
+
+
+class BoardDetail(BoardSummary):
+    data_dir: str
+    legacy_fallback: bool = False
+
+
+class Person(Shape):
+    board_id: str
+    id: str
+    name: str
+    role: str
+    email: str | None = None
+    target: str = "mac"  # "mac" | "desk1" … "deskN"
+    skill_id: str | None = None
+    pre_approved: bool = False
+    inputs: dict[str, Any] = Field(default_factory=dict)
+    invite_code: str | None = None
+    invite_status: Literal["not_invited", "invited", "joined"] = "not_invited"
+    invited_at: str | None = None  # when the current code was issued
+    claimed_at: str | None = None  # when a device claimed it (joined_at is the same value)
+    joined_at: str | None = None
+    claimed_device: str | None = None
+    created_at: str | None = None
+
+
+class PersonInvite(Person):
+    api_url: str  # what the person types into the Mac app next to the code
+
+
+class PersonCreate(Shape):
+    id: str | None = None  # slugified from name when absent
+    name: str
+    role: str
+    email: str | None = None
+    target: str | None = None
+    skill_id: str | None = None
+    pre_approved: bool = False
+    inputs: dict[str, Any] = Field(default_factory=dict)
+
+
+class PersonPatch(Shape):
+    name: str | None = None
+    role: str | None = None
+    email: str | None = None
+    target: str | None = None
+    skill_id: str | None = None
+    pre_approved: bool | None = None
+    inputs: dict[str, Any] | None = None
+
+
+class ClaimRequest(Shape):
+    device: str | None = None
+
+
+class ClaimResponse(Shape):
+    board_id: str
+    board_name: str
+    person_id: str
+    name: str
+    role: str
+    api_base_hint: str
+    target: str | None = None
+    skill_id: str | None = None
+
+
+class NoData(Shape):
+    """404 body when a board has no data file yet (never another board's data)."""
+
+    detail: str
+    state: Literal["no_data_yet"] = "no_data_yet"
+    needs: str
+
+
+class NoSuchBoard(Shape):
+    """404 body when the board id is not in the DB."""
+
+    detail: str
+    state: Literal["no_such_board"] = "no_such_board"
+
+
 # ---------------------------------------------------------------- API-only shapes
 
 
 class FileStatus(Shape):
     name: str
     path: str | None
-    served_from: Literal["data_out", "fixtures", "missing"]
+    served_from: Literal["board", "data_out", "fixtures", "missing"]
     source: str | None = None
     mtime: str | None = None
+    state: Literal["no_data_yet"] | None = None
 
 
-class RecomputeStatus(Shape):
+class RecomputeJob(Shape):
+    job_id: str | None = None
+    board_id: str | None = None
     state: Literal["idle", "running", "done", "failed"]
     started_at: str | None = None
     finished_at: str | None = None
     returncode: int | None = None
     command: str | None = None
+    records: str | None = None
+    records_exported: int | None = None
+    out: str | None = None
+    industry: str | None = None
     tail: str | None = None
+    stderr: str | None = None
+
+
+RecomputeStatus = RecomputeJob
 
 
 class BoardStatus(Shape):
     board_id: str
-    data_out: str
+    board: Board | None = None
+    data_dir: str  # the board's own directory (data/boards/{id}/out)
+    legacy_fallback: bool  # True while northwind still reads data/out + fixtures
+    data_out: str  # legacy single-company dir (only consulted when legacy_fallback)
     fixtures: str
     files: list[FileStatus]
+    people: int
     records: int
-    recompute: RecomputeStatus
+    has_data: bool
+    recompute: RecomputeJob
     executor_url: str
     board_dist_served: bool
 

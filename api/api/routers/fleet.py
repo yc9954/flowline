@@ -1,13 +1,13 @@
-"""The fleet: six people, six desks, one plan (SCHEMA §11 + people.json).
+"""The fleet: a board's people, their desks, one plan (SCHEMA §11 + the DB `people` table).
 
   GET  /api/boards/{board}/fleet         people with their latest suggestion and run, counters, event feed
   POST /api/boards/{board}/fleet/reset   stop the board's running runs, clear its suggestions and cached runs (re-take)
   GET  /api/desk/{target}/frame.jpg?w=   live JPEG of a desk, streamed from the executor (Cache-Control: no-store)
 
 Fan-out (`fan_out`, called by suggestions.respond on do_it and by runs.start_run): when FLOWLINE_FLEET=1, every
-person in people.json with `pre_approved: true` and a still-offered suggestion gets their run started on their own
+person of the board with `pre_approved: true` and a still-offered suggestion gets their run started on their own
 desk and the suggestion marked accepted with `pre_approved: true`. The person who answered keeps the normal path
-(the Mac app POSTs /api/runs itself).
+(the Mac app POSTs /api/runs itself). Every run request carries the board block (id, name, mail_domain, people).
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from fastapi.responses import StreamingResponse
 from ..config import settings
 from ..db import Database
 from ..deps import get_db
-from ..people import effective_skill, fleet_enabled, load_people, skill_override
+from ..people import board_block, effective_skill, fleet_enabled, load_people, skill_override
 from .runs import _forward
 
 router = APIRouter(prefix="/api", tags=["fleet"])
@@ -39,7 +39,9 @@ def _model() -> str:
 
 # ---------------------------------------------------------------- starting runs
 
-async def start_person_run(db: Database, sug: dict[str, Any], person: dict[str, Any], *, pre_approved: bool) -> dict[str, Any]:
+async def start_person_run(
+    db: Database, sug: dict[str, Any], person: dict[str, Any], *, pre_approved: bool, board: dict[str, Any] | None = None
+) -> dict[str, Any]:
     """POST the run for one person's suggestion to the executor and record it. Never raises: errors come back as {error}."""
     body = {
         "suggestion_id": sug["id"],
@@ -47,6 +49,7 @@ async def start_person_run(db: Database, sug: dict[str, Any], person: dict[str, 
         "target": person["target"],
         "person_id": person["id"],
         "inputs": dict(person.get("inputs") or {}),
+        "board": board if board is not None else board_block(db, sug["board_id"]),
     }
     try:
         run = await _forward("POST", "/runs", body)
@@ -69,20 +72,21 @@ async def fan_out(db: Database, board_id: str, *, except_person: str | None = No
     """Start the runs of every pre-approved person whose suggestion is still offered (idempotent)."""
     if not fleet_enabled():
         return []
-    people = load_people(board_id)
+    people = load_people(db, board_id)
     if not people:
         return []
     offered: dict[str, dict[str, Any]] = {}
     for s in db.list_board_suggestions(board_id):  # newest first → first seen per person wins
         if s["status"] == "offered" and s["person_id"] not in offered:
             offered[s["person_id"]] = s
+    block = board_block(db, board_id)
     jobs = []
     for p in people:
         if not p["pre_approved"] or p["id"] == except_person:
             continue
         s = offered.get(p["id"])
         if s is not None:
-            jobs.append(start_person_run(db, s, p, pre_approved=True))
+            jobs.append(start_person_run(db, s, p, pre_approved=True, board=block))
     return list(await asyncio.gather(*jobs)) if jobs else []
 
 
@@ -148,7 +152,7 @@ def _state(sug: dict[str, Any] | None, run: dict[str, Any] | None) -> str:
 
 @router.get("/boards/{board_id}/fleet")
 async def fleet(board_id: str, db: Database = Depends(get_db)) -> dict[str, Any]:
-    people = load_people(board_id)
+    people = load_people(db, board_id)
     sugs = db.list_board_suggestions(board_id)
     latest: dict[str, dict[str, Any]] = {}
     for s in sugs:  # newest first
@@ -178,7 +182,7 @@ async def fleet(board_id: str, db: Database = Depends(get_db)) -> dict[str, Any]
                 events.append({"at": a.get("at"), "at_s": a.get("at_s"), "kind": a.get("kind"), "text": a.get("text"),
                                "person_id": p["id"], "name": p["name"], "role": p["role"], "target": p["target"]})
         rows.append({
-            "person": {k: p[k] for k in ("id", "name", "role", "target", "skill_id", "pre_approved")},
+            "person": {k: p.get(k) for k in ("id", "name", "role", "email", "target", "skill_id", "pre_approved")},
             "suggestion": None if s is None else {k: s.get(k) for k in ("id", "status", "title", "skill_id", "plan_id", "run_id", "pre_approved", "responded_at")},
             "run": run,
             "state": _state(s, run),

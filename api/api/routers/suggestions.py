@@ -56,13 +56,7 @@ async def respond(sid: str, body: RespondRequest, db: Database = Depends(get_db)
         # FLOWLINE_FLEET=1: the first yes also starts every pre-approved colleague's run on their own desk.
         # This person's own run is started by the app's POST /api/runs (unchanged path).
         from .fleet import fan_out
-        started = await fan_out(db, out.get("board_id") or s.get("board_id") or _board_of(db, sid), except_person=person)
+        started = await fan_out(db, out["board_id"], except_person=person)
         if started:
             out["fleet_started"] = started
     return out
-
-
-def _board_of(db: Database, sid: str) -> str:
-    with db.connect() as con:
-        r = con.execute("SELECT board_id FROM suggestions WHERE id=?", (sid,)).fetchone()
-    return r["board_id"] if r else "northwind"

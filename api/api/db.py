@@ -1,12 +1,14 @@
 """SQLite storage (stdlib sqlite3). One connection per call; WAL mode; created on startup.
 
-Tables: records, suggestions, plan_approvals, runs_cache, plus accept_tally for the
-Beta-Bernoulli acceptance rate per (person, skill).
+Tables: boards, people (one company = one board; its people with their desk, skill and invite code),
+records, suggestions, plan_approvals, runs_cache, plus accept_tally for the Beta-Bernoulli acceptance
+rate per (person, skill).
 """
 
 from __future__ import annotations
 
 import json
+import secrets
 import sqlite3
 import uuid
 from contextlib import contextmanager
@@ -15,6 +17,33 @@ from pathlib import Path
 from typing import Any, Iterator
 
 SCHEMA = """
+CREATE TABLE IF NOT EXISTS boards (
+    id             TEXT PRIMARY KEY,
+    name           TEXT NOT NULL,
+    industry_naics TEXT,
+    mail_domain    TEXT,
+    timezone       TEXT NOT NULL DEFAULT 'UTC',
+    created_at     TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS people (
+    board_id     TEXT NOT NULL,
+    id           TEXT NOT NULL,
+    name         TEXT NOT NULL,
+    role         TEXT NOT NULL,
+    email        TEXT,
+    target       TEXT,                     -- "mac" (default) or deskN
+    skill_id     TEXT,
+    pre_approved INTEGER NOT NULL DEFAULT 0,
+    inputs_json  TEXT NOT NULL DEFAULT '{}',
+    invite_code  TEXT UNIQUE,
+    invited_at   TEXT,                     -- when the current code was issued
+    claimed_at   TEXT,
+    claimed_device TEXT,
+    created_at   TEXT NOT NULL,
+    PRIMARY KEY (board_id, id)
+);
+
 CREATE TABLE IF NOT EXISTS records (
     board_id    TEXT NOT NULL,
     id          TEXT NOT NULL,
@@ -87,6 +116,19 @@ def new_id(prefix: str) -> str:
     return f"{prefix}-{uuid.uuid4().hex[:10]}"
 
 
+# Invite codes: 8 chars, no 0/O/1/I so they survive being read aloud or typed from a screen.
+INVITE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+INVITE_LEN = 8
+
+
+def new_invite_code() -> str:
+    return "".join(secrets.choice(INVITE_ALPHABET) for _ in range(INVITE_LEN))
+
+
+class IntegrityConflict(Exception):
+    """A row with this key already exists."""
+
+
 class Database:
     def __init__(self, path: Path | str):
         self.path = Path(path)
@@ -111,6 +153,198 @@ class Database:
             raise
         finally:
             con.close()
+
+    # -------------------------------------------------------------- boards
+
+    @staticmethod
+    def _row_to_board(r: sqlite3.Row) -> dict[str, Any]:
+        return {
+            "id": r["id"],
+            "name": r["name"],
+            "industry_naics": r["industry_naics"],
+            "mail_domain": r["mail_domain"],
+            "timezone": r["timezone"],
+            "created_at": r["created_at"],
+        }
+
+    def boards_empty(self) -> bool:
+        with self.connect() as con:
+            return con.execute("SELECT COUNT(*) FROM boards").fetchone()[0] == 0
+
+    def list_boards(self) -> list[dict[str, Any]]:
+        with self.connect() as con:
+            rows = con.execute("SELECT * FROM boards ORDER BY created_at, id").fetchall()
+        return [self._row_to_board(r) for r in rows]
+
+    def get_board(self, board_id: str) -> dict[str, Any] | None:
+        with self.connect() as con:
+            r = con.execute("SELECT * FROM boards WHERE id=?", (board_id,)).fetchone()
+        return None if r is None else self._row_to_board(r)
+
+    def insert_board(
+        self,
+        board_id: str,
+        name: str,
+        *,
+        industry_naics: str | None = None,
+        mail_domain: str | None = None,
+        timezone_name: str | None = None,
+    ) -> dict[str, Any]:
+        with self.connect() as con:
+            try:
+                con.execute(
+                    "INSERT INTO boards (id, name, industry_naics, mail_domain, timezone, created_at) VALUES (?,?,?,?,?,?)",
+                    (board_id, name, industry_naics, mail_domain, timezone_name or "UTC", now_iso()),
+                )
+            except sqlite3.IntegrityError as exc:
+                raise IntegrityConflict(f"board '{board_id}' already exists") from exc
+        board = self.get_board(board_id)
+        assert board is not None
+        return board
+
+    def update_board(self, board_id: str, patch: dict[str, Any]) -> dict[str, Any] | None:
+        allowed = {"name", "industry_naics", "mail_domain", "timezone"}
+        fields = {k: v for k, v in patch.items() if k in allowed}
+        if fields:
+            sets = ", ".join(f"{k}=?" for k in fields)
+            with self.connect() as con:
+                con.execute(f"UPDATE boards SET {sets} WHERE id=?", (*fields.values(), board_id))
+        return self.get_board(board_id)
+
+    # -------------------------------------------------------------- people
+
+    @staticmethod
+    def _row_to_person(r: sqlite3.Row) -> dict[str, Any]:
+        try:
+            inputs = json.loads(r["inputs_json"] or "{}")
+        except ValueError:
+            inputs = {}
+        return {
+            "board_id": r["board_id"],
+            "id": r["id"],
+            "name": r["name"],
+            "role": r["role"],
+            "email": r["email"],
+            "target": r["target"] or "mac",
+            "skill_id": r["skill_id"],
+            "pre_approved": bool(r["pre_approved"]),
+            "inputs": inputs if isinstance(inputs, dict) else {},
+            "invite_code": r["invite_code"],
+            "invite_status": "joined" if r["claimed_at"] else ("invited" if r["invite_code"] else "not_invited"),
+            "invited_at": r["invited_at"],
+            "claimed_at": r["claimed_at"],
+            "joined_at": r["claimed_at"],  # alias the board UI reads
+            "claimed_device": r["claimed_device"],
+            "created_at": r["created_at"],
+        }
+
+    def list_people(self, board_id: str) -> list[dict[str, Any]]:
+        with self.connect() as con:
+            rows = con.execute(
+                "SELECT * FROM people WHERE board_id=? ORDER BY created_at, rowid", (board_id,)
+            ).fetchall()
+        return [self._row_to_person(r) for r in rows]
+
+    def count_people(self, board_id: str) -> int:
+        with self.connect() as con:
+            return con.execute("SELECT COUNT(*) FROM people WHERE board_id=?", (board_id,)).fetchone()[0]
+
+    def get_person(self, board_id: str, person_id: str) -> dict[str, Any] | None:
+        with self.connect() as con:
+            r = con.execute("SELECT * FROM people WHERE board_id=? AND id=?", (board_id, person_id)).fetchone()
+        return None if r is None else self._row_to_person(r)
+
+    def find_person(self, person_id: str) -> dict[str, Any] | None:
+        """A person by id across boards (person ids are unique per board; the first match wins)."""
+        with self.connect() as con:
+            r = con.execute("SELECT * FROM people WHERE id=? ORDER BY created_at LIMIT 1", (person_id,)).fetchone()
+        return None if r is None else self._row_to_person(r)
+
+    def insert_person(self, board_id: str, person: dict[str, Any]) -> dict[str, Any]:
+        """Insert with a fresh invite code. Raises IntegrityConflict if (board_id, id) exists."""
+        for _ in range(20):  # a code collision is astronomically unlikely; retry anyway
+            code = new_invite_code()
+            try:
+                with self.connect() as con:
+                    con.execute(
+                        """INSERT INTO people (board_id, id, name, role, email, target, skill_id, pre_approved,
+                                               inputs_json, invite_code, invited_at, created_at)
+                           VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+                        (
+                            board_id,
+                            person["id"],
+                            person["name"],
+                            person["role"],
+                            person.get("email"),
+                            person.get("target") or "mac",
+                            person.get("skill_id"),
+                            int(bool(person.get("pre_approved", False))),
+                            json.dumps(person.get("inputs") or {}, ensure_ascii=False),
+                            code,
+                            now_iso(),
+                            now_iso(),
+                        ),
+                    )
+                break
+            except sqlite3.IntegrityError as exc:
+                if "invite_code" in str(exc):
+                    continue
+                raise IntegrityConflict(f"person '{person['id']}' already exists on board '{board_id}'") from exc
+        out = self.get_person(board_id, person["id"])
+        assert out is not None
+        return out
+
+    def update_person(self, board_id: str, person_id: str, patch: dict[str, Any]) -> dict[str, Any] | None:
+        cols: dict[str, Any] = {}
+        for k in ("name", "role", "email", "target", "skill_id"):
+            if k in patch:
+                cols[k] = patch[k]
+        if "pre_approved" in patch:
+            cols["pre_approved"] = int(bool(patch["pre_approved"]))
+        if "inputs" in patch:
+            cols["inputs_json"] = json.dumps(patch["inputs"] or {}, ensure_ascii=False)
+        if cols:
+            sets = ", ".join(f"{k}=?" for k in cols)
+            with self.connect() as con:
+                con.execute(f"UPDATE people SET {sets} WHERE board_id=? AND id=?", (*cols.values(), board_id, person_id))
+        return self.get_person(board_id, person_id)
+
+    def delete_person(self, board_id: str, person_id: str) -> bool:
+        with self.connect() as con:
+            return con.execute("DELETE FROM people WHERE board_id=? AND id=?", (board_id, person_id)).rowcount > 0
+
+    def reissue_invite(self, board_id: str, person_id: str) -> dict[str, Any] | None:
+        """New code, claim cleared (the old code stops working)."""
+        for _ in range(20):
+            code = new_invite_code()
+            try:
+                with self.connect() as con:
+                    cur = con.execute(
+                        "UPDATE people SET invite_code=?, invited_at=?, claimed_at=NULL, claimed_device=NULL WHERE board_id=? AND id=?",
+                        (code, now_iso(), board_id, person_id),
+                    )
+                    if cur.rowcount == 0:
+                        return None
+                break
+            except sqlite3.IntegrityError:
+                continue
+        return self.get_person(board_id, person_id)
+
+    def person_by_invite(self, code: str) -> dict[str, Any] | None:
+        with self.connect() as con:
+            r = con.execute("SELECT * FROM people WHERE invite_code=?", (code,)).fetchone()
+        return None if r is None else self._row_to_person(r)
+
+    def claim_invite(self, code: str, device: str | None) -> dict[str, Any] | None:
+        """Atomically mark the code claimed; None if it was already claimed (or unknown)."""
+        with self.connect() as con:
+            cur = con.execute(
+                "UPDATE people SET claimed_at=?, claimed_device=? WHERE invite_code=? AND claimed_at IS NULL",
+                (now_iso(), device, code),
+            )
+            if cur.rowcount == 0:
+                return None
+        return self.person_by_invite(code)
 
     # -------------------------------------------------------------- records
 
@@ -267,6 +501,7 @@ class Database:
 
     def _row_to_suggestion(self, r: sqlite3.Row) -> dict[str, Any]:
         s = json.loads(r["body"])
+        s["board_id"] = r["board_id"]
         s["status"] = r["status"]
         s["created_at"] = r["created_at"]
         s["responded_at"] = r["responded_at"]

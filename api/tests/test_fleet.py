@@ -1,35 +1,33 @@
-"""Fleet: people.json → one suggestion per person; do_it fans out to the pre-approved people (FLOWLINE_FLEET=1);
-GET /fleet merges people, suggestions and runs; reset clears the board."""
+"""Fleet: the board's people (DB) → one suggestion per person; do_it fans out to the pre-approved people
+(FLOWLINE_FLEET=1); GET /fleet merges people, suggestions and runs; reset clears the board."""
 
 from __future__ import annotations
 
-import json
-
-from tests.conftest import BOARD, plans_doc, write_json
+from tests.conftest import BOARD, add_people, make_board, plans_doc, write_json
 from tests.test_runs_proxy import _Stub, executor  # noqa: F401  (fixture)
 
-PEOPLE = {
-    "board_id": BOARD,
-    "people": [
-        {"id": "pm-1", "name": "Dana", "role": "PM", "target": "desk1", "skill_id": "fill_deck_from_sheet", "pre_approved": False},
-        {"id": "fin-1", "name": "Marcus", "role": "Finance", "target": "desk2", "skill_id": "reconcile_quotes", "pre_approved": True},
-        {"id": "sales-1", "name": "Priya", "role": "Sales", "target": "desk3", "skill_id": "fill_deck_from_sheet", "pre_approved": True,
-         "inputs": {"deck": "/config/Documents/proposal-172.odp"}},
-        {"id": "ops-1", "name": "Tomás", "role": "Ops", "target": "desk4", "skill_id": "signature_packet", "pre_approved": True},
-    ],
-}
+PEOPLE = [
+    {"id": "pm-1", "name": "Dana", "role": "PM", "target": "desk1", "skill_id": "fill_deck_from_sheet", "pre_approved": False,
+     "email": "pm@northwind.local"},
+    {"id": "fin-1", "name": "Marcus", "role": "Finance", "target": "desk2", "skill_id": "reconcile_quotes", "pre_approved": True},
+    {"id": "sales-1", "name": "Priya", "role": "Sales", "target": "desk3", "skill_id": "fill_deck_from_sheet", "pre_approved": True,
+     "inputs": {"deck": "/config/Documents/proposal-172.odp"}},
+    {"id": "ops-1", "name": "Tomás", "role": "Ops", "target": "desk4", "skill_id": "signature_packet", "pre_approved": True,
+     "inputs": {"proposal": 172}},
+]
 
 
-def _setup(dirs, monkeypatch, fleet="1", override=None):
+def _setup(dirs, monkeypatch, client, fleet="1", override=None):
     write_json(dirs["fixtures"] / "plans.json", plans_doc())
-    write_json(dirs["tmp"] / "people.json", PEOPLE)
+    make_board(client)
+    add_people(client, BOARD, PEOPLE)
     monkeypatch.setenv("FLOWLINE_FLEET", fleet)
     if override:
         monkeypatch.setenv("FLOWLINE_FLEET_SKILL_OVERRIDE", override)
 
 
-def test_people_json_gives_one_suggestion_per_person(dirs, monkeypatch, client):
-    _setup(dirs, monkeypatch)
+def test_board_people_give_one_suggestion_per_person(dirs, monkeypatch, client):
+    _setup(dirs, monkeypatch, client)
     body = client.post(f"/api/boards/{BOARD}/plans/plan-b/approve").json()
     assert len(body["suggestions_created"]) == 4
     fin = client.get("/api/people/fin-1/suggestions").json()
@@ -38,13 +36,16 @@ def test_people_json_gives_one_suggestion_per_person(dirs, monkeypatch, client):
     assert fin[0]["target"] == "desk2"
     pm = client.get("/api/people/pm-1/suggestions").json()
     assert pm[0]["skill_id"] == "fill_deck_from_sheet" and pm[0]["title"].startswith("Fill this deck")
+    # titles come from the skill copy + the person's own inputs, never from a hard-coded case number
+    ops = client.get("/api/people/ops-1/suggestions").json()[0]
+    assert ops["title"] == "Get proposal #172 ready for signature?"
     # second approval: nobody gets a duplicate offer
     assert client.post(f"/api/boards/{BOARD}/plans/plan-b/approve").json()["suggestions_created"] == []
 
 
 def test_do_it_fans_out_to_pre_approved_people(dirs, monkeypatch, executor, client):  # noqa: F811
     _Stub.finish_after_polls = 99
-    _setup(dirs, monkeypatch, override="fill_deck_from_sheet")
+    _setup(dirs, monkeypatch, client, override="fill_deck_from_sheet")
     client.post(f"/api/boards/{BOARD}/plans/plan-b/approve")
     pm_sid = client.get("/api/people/pm-1/suggestions").json()[0]["id"]
 
@@ -55,6 +56,12 @@ def test_do_it_fans_out_to_pre_approved_people(dirs, monkeypatch, executor, clie
     assert {s["target"] for s in started} == {"desk2", "desk3", "desk4"}
     # the override ran everyone on the deck skill; the suggestions keep their own skill
     assert all(run["skill_id"] == "fill_deck_from_sheet" for run in _Stub.runs.values())
+    # every fanned-out run carried the board block (SCHEMA §11) so skills can address mail by role
+    block = _Stub.runs["run-1"]["_payload"]["board"]
+    assert block["id"] == BOARD and block["name"] == "Northwind Fitness" and block["mail_domain"] == "northwind.local"
+    assert {p["role"] for p in block["people"]} == {"PM", "Finance", "Sales", "Ops"}
+    assert next(p for p in block["people"] if p["id"] == "pm-1") == {"id": "pm-1", "role": "PM", "email": "pm@northwind.local", "name": "Dana"}
+    assert block["mail_window_title"] == "Northwind Mail :: Inbox"  # legacy board only
     fin = client.get("/api/people/fin-1/suggestions?all=1").json()[0]
     assert fin["status"] == "accepted" and fin["pre_approved"] is True and fin["run_id"]
     # pm-1 answered live: accepted later by POST /api/runs (the Mac app's path), not pre_approved
@@ -80,7 +87,7 @@ def test_do_it_fans_out_to_pre_approved_people(dirs, monkeypatch, executor, clie
 
 
 def test_fleet_off_keeps_single_run(dirs, monkeypatch, executor, client):  # noqa: F811
-    _setup(dirs, monkeypatch, fleet="0")
+    _setup(dirs, monkeypatch, client, fleet="0")
     client.post(f"/api/boards/{BOARD}/plans/plan-b/approve")
     pm_sid = client.get("/api/people/pm-1/suggestions").json()[0]["id"]
     r = client.post(f"/api/suggestions/{pm_sid}/respond", json={"answer": "do_it"})

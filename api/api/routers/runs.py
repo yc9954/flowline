@@ -7,13 +7,13 @@ from __future__ import annotations
 from typing import Any
 
 import httpx
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, HTTPException, status
 
 from ..config import settings
 from ..db import Database
 from ..deps import get_db
 from ..models import Message, Run, RunRequest
-from ..people import effective_skill, person_by_id
+from ..people import board_block, effective_skill, person_by_id
 
 router = APIRouter(prefix="/api/runs", tags=["runs"])
 
@@ -63,12 +63,16 @@ async def start_run(body: RunRequest, db: Database = Depends(get_db)) -> Any:
         raise HTTPException(404, f"suggestion '{body.suggestion_id}' not found")
     if sug["status"] == "never":
         raise HTTPException(409, "this person asked not to be offered this skill again")
-    payload = body.model_dump()
+    board_id = sug["board_id"]
+    payload = body.model_dump(exclude_none=True)
     payload["skill_id"] = effective_skill(payload.get("skill_id") or sug["skill_id"])
     payload.setdefault("person_id", sug["person_id"])
-    person = person_by_id(sug["person_id"])
+    payload.setdefault("inputs", {})
+    person = person_by_id(db, sug["person_id"], board_id)
     if person and not payload.get("inputs"):
         payload["inputs"] = dict(person.get("inputs") or {})
+    # SCHEMA §11: the executor learns the company it works for (mail by role) from the board block, never from a file.
+    payload["board"] = board_block(db, board_id)
     run = await _forward("POST", "/runs", payload)
     if isinstance(run, dict) and run.get("id"):
         if sug["status"] == "offered":
@@ -76,17 +80,10 @@ async def start_run(body: RunRequest, db: Database = Depends(get_db)) -> Any:
         db.set_suggestion_status(sug["id"], "accepted", run_id=run["id"])
     out = _record_run(db, run, body.suggestion_id)
     from .fleet import fan_out  # FLOWLINE_FLEET=1: the colleagues who pre-approved start now too (idempotent)
-    board_id = _board_of(db, sug["id"])
     started = await fan_out(db, board_id, except_person=sug["person_id"])
     if started and isinstance(out, dict):
         out["fleet_started"] = started
     return out
-
-
-def _board_of(db: Database, sid: str) -> str:
-    with db.connect() as con:
-        r = con.execute("SELECT board_id FROM suggestions WHERE id=?", (sid,)).fetchone()
-    return r["board_id"] if r else "northwind"
 
 
 @router.get("/{run_id}", response_model=Run, responses={503: {"model": Message}})

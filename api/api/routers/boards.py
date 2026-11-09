@@ -1,7 +1,13 @@
-"""Read endpoints for SCHEMA sections 3-11 (file-backed), plus /status and /recompute."""
+"""Read endpoints for SCHEMA sections 3-11 (file-backed, per board), plus /status and /recompute.
+
+Every file comes from data/boards/{board_id}/out/ (the legacy board `northwind` falls back to data/out and
+fixtures/ while it has no directory of its own). A missing file is 404 with
+{"detail", "state": "no_data_yet", "needs"} — never another board's data.
+"""
 
 from __future__ import annotations
 
+import json
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
@@ -9,7 +15,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from ..config import settings
 from ..db import Database
 from ..deps import get_db
-from ..files import MissingFile, store
+from ..files import store
 from ..models import (
     BoardStatus,
     Expansion,
@@ -17,9 +23,11 @@ from ..models import (
     History,
     Message,
     ModelCheck,
+    NoData,
     Ontology,
     Opening,
     PlansPage,
+    RecomputeJob,
     Results,
     Surfaces,
 )
@@ -27,54 +35,55 @@ from ..recompute import recompute
 
 router = APIRouter(prefix="/api/boards/{board_id}", tags=["board"])
 
+NO_DATA = {404: {"model": NoData}}
 
-def load(name: str) -> Any:
+
+def load(name: str, board_id: str) -> Any:
+    """MissingFile propagates: main.create_app turns it into the flat 404 {detail, state: no_data_yet, needs}."""
     try:
-        return store.get(name).data
-    except MissingFile as exc:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, str(exc)) from exc
+        return store.get(name, board_id).data
     except ValueError as exc:  # json decode error
-        raise HTTPException(status.HTTP_502_BAD_GATEWAY, f"'{name}.json' is not valid JSON: {exc}") from exc
+        raise HTTPException(status.HTTP_502_BAD_GATEWAY, f"'{name}.json' for board '{board_id}' is not valid JSON: {exc}") from exc
 
 
 def _with_board(doc: Any, board_id: str) -> Any:
-    # Files are per deployment (one board for the demo); stamp the URL board id if absent.
+    # Stamp the URL board id if the file lacks it (files inside data/boards/{id}/ are that board's by location).
     if isinstance(doc, dict) and "board_id" not in doc:
         doc = {"board_id": board_id, **doc}
     return doc
 
 
-@router.get("/ontology", response_model=Ontology, responses={404: {"model": Message}})
+@router.get("/ontology", response_model=Ontology, responses=NO_DATA)
 def ontology(board_id: str) -> Any:
-    return _with_board(load("ontology"), board_id)
+    return _with_board(load("ontology", board_id), board_id)
 
 
-@router.get("/finding", response_model=Finding, responses={404: {"model": Message}})
+@router.get("/finding", response_model=Finding, responses=NO_DATA)
 def finding(board_id: str) -> Any:
-    return _with_board(load("finding"), board_id)
+    return _with_board(load("finding", board_id), board_id)
 
 
-@router.get("/plans", response_model=PlansPage, responses={404: {"model": Message}})
+@router.get("/plans", response_model=PlansPage, responses=NO_DATA)
 def plans(board_id: str) -> Any:
-    return _with_board(load("plans"), board_id)
+    return _with_board(load("plans", board_id), board_id)
 
 
-@router.get("/results", response_model=Results, responses={404: {"model": Message}})
+@router.get("/results", response_model=Results, responses=NO_DATA)
 def results(board_id: str) -> Any:
-    return _with_board(load("results"), board_id)
+    return _with_board(load("results", board_id), board_id)
 
 
-@router.get("/history", response_model=History, responses={404: {"model": Message}})
+@router.get("/history", response_model=History, responses=NO_DATA)
 def history(board_id: str) -> Any:
-    return _with_board(load("history"), board_id)
+    return _with_board(load("history", board_id), board_id)
 
 
-@router.get("/model", response_model=ModelCheck, responses={404: {"model": Message}})
+@router.get("/model", response_model=ModelCheck, responses=NO_DATA)
 def model(board_id: str) -> Any:
-    return _with_board(load("model"), board_id)
+    return _with_board(load("model", board_id), board_id)
 
 
-@router.get("/expansion", response_model=Expansion, responses={404: {"model": Message}})
+@router.get("/expansion", response_model=Expansion, responses=NO_DATA)
 def expansion(
     board_id: str,
     industry: str | None = Query(default=None, description="NAICS code, e.g. 713940"),
@@ -85,7 +94,7 @@ def expansion(
     * ``{"industries": [...], "by_industry": {"<naics>": Expansion, ...}, "default": "<naics>"}``;
     * a JSON list of Expansion objects, each with its own ``industry``.
     """
-    doc = load("expansion")
+    doc = load("expansion", board_id)
     chosen = _select_industry(doc, industry)
     return _with_board(chosen, board_id)
 
@@ -134,39 +143,79 @@ def _select_industry(doc: Any, industry: str | None) -> Any:
     return doc
 
 
-@router.get("/opening", response_model=Opening, responses={404: {"model": Message}})
+@router.get("/opening", response_model=Opening, responses=NO_DATA)
 def opening(board_id: str) -> Any:
-    return _with_board(load("opening"), board_id)
+    return _with_board(load("opening", board_id), board_id)
 
 
-@router.get("/surfaces", response_model=Surfaces, responses={404: {"model": Message}})
+@router.get("/surfaces", response_model=Surfaces, responses=NO_DATA)
 def surfaces(board_id: str) -> Any:
-    return load("surfaces")
+    return load("surfaces", board_id)
+
+
+# ---------------------------------------------------------------- status
 
 
 @router.get("/status", response_model=BoardStatus)
 def board_status(board_id: str, request: Request, db: Database = Depends(get_db)) -> dict[str, Any]:
     return {
         "board_id": board_id,
+        "board": db.get_board(board_id),
+        "data_dir": str(store.board_out(board_id)),
+        "legacy_fallback": store.legacy_fallback(board_id),
         "data_out": str(settings.data_out),
         "fixtures": str(settings.fixtures),
-        "files": store.status(),
+        "files": store.status(board_id),
+        "people": db.count_people(board_id),
         "records": db.count_records(board_id),
-        "recompute": dict(recompute.state),
+        "has_data": store.has_data(board_id),
+        "recompute": recompute.latest(board_id),
         "executor_url": settings.executor_url,
         "board_dist_served": bool(getattr(request.app.state, "board_dist_served", False)),
     }
 
 
+# ---------------------------------------------------------------- records → fit
+
+
+def export_records_ndjson(db: Database, board_id: str) -> tuple[str, int]:
+    """NDJSON of the board's approved, non-withdrawn (posted, signed) records — the input of `flowline1 fit`."""
+    rows = db.list_records(board_id)
+    text = "".join(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n" for r in rows)
+    return text, len(rows)
+
+
 @router.post(
     "/recompute",
     status_code=status.HTTP_202_ACCEPTED,
-    responses={503: {"model": Message}, 409: {"model": Message}},
+    response_model=RecomputeJob,
+    responses={409: {"model": Message}},
 )
-def start_recompute(board_id: str) -> dict[str, Any]:
-    ok, why = recompute.available()
-    if not ok:
-        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, f"cannot recompute: {why}")
-    if not recompute.start():
-        raise HTTPException(status.HTTP_409_CONFLICT, "a recompute is already running; see /status")
-    return {"board_id": board_id, "started": True, **recompute.state}
+def start_recompute(board_id: str, db: Database = Depends(get_db)) -> dict[str, Any]:
+    """Export the records, then run `flowline1 fit` in the background. 202 with the job; poll /recompute/{job_id}."""
+    if recompute.running(board_id):
+        raise HTTPException(status.HTTP_409_CONFLICT, f"a fit is already running for board '{board_id}'; see /status")
+    board = db.get_board(board_id)
+    board_dir = settings.board_dir(board_id)
+    board_dir.mkdir(parents=True, exist_ok=True)
+    text, n = export_records_ndjson(db, board_id)
+    records_path = board_dir / "records.ndjson"
+    records_path.write_text(text, encoding="utf-8")
+    job = recompute.start(
+        board_id,
+        records_path,
+        settings.board_out(board_id),
+        industry=board["industry_naics"] if board else None,
+        records_exported=n,
+    )
+    if job is None:
+        raise HTTPException(status.HTTP_409_CONFLICT, f"a fit is already running for board '{board_id}'; see /status")
+    return job
+
+
+@router.get("/recompute/{job_id}", response_model=RecomputeJob, responses={404: {"model": Message}})
+def get_recompute(board_id: str, job_id: str) -> dict[str, Any]:
+    job = recompute.job(job_id)
+    if job is None or job["board_id"] != board_id:
+        raise HTTPException(404, f"no fit job '{job_id}' for board '{board_id}' (jobs are kept in memory until restart)")
+    return job

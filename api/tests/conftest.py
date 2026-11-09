@@ -24,6 +24,7 @@ def dirs(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Path]:
     out.mkdir()
     fx.mkdir()
     monkeypatch.setenv("FLOWLINE_DATA_OUT", str(out))
+    monkeypatch.setenv("FLOWLINE_BOARDS_DIR", str(tmp_path / "boards"))  # per-board dirs; absent unless a test writes one
     monkeypatch.setenv("FLOWLINE_FIXTURES", str(fx))
     monkeypatch.setenv("FLOWLINE_DB", str(tmp_path / "api.sqlite"))
     monkeypatch.setenv("FLOWLINE_MODEL_DIR", str(tmp_path / "no-flowline1"))
@@ -32,7 +33,9 @@ def dirs(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Path]:
     monkeypatch.setenv("FLOWLINE_PEOPLE", str(tmp_path / "people.json"))  # absent unless a test writes it
     monkeypatch.setenv("FLOWLINE_FLEET", "0")
     monkeypatch.delenv("FLOWLINE_FLEET_SKILL_OVERRIDE", raising=False)
-    return {"out": out, "fixtures": fx, "tmp": tmp_path}
+    monkeypatch.delenv("FLOWLINE_FIT_CMD", raising=False)
+    monkeypatch.delenv("FLOWLINE_PUBLIC_URL", raising=False)
+    return {"out": out, "fixtures": fx, "tmp": tmp_path, "boards": tmp_path / "boards"}
 
 
 @pytest.fixture()
@@ -42,10 +45,26 @@ def client(dirs: dict[str, Path]) -> TestClient:
     import api.recompute
 
     api.files.store.clear()  # fresh cache per test
-    api.recompute.recompute.state.update(state="idle", started_at=None, finished_at=None, returncode=None, command=None, tail=None)
+    api.recompute.recompute.reset()
     app = api.main.create_app()
     with TestClient(app) as c:
         yield c
+
+
+def make_board(client: TestClient, board_id: str = BOARD, name: str = "Northwind Fitness", **over: Any) -> dict[str, Any]:
+    body = {"id": board_id, "name": name, "industry_naics": "713940", "mail_domain": f"{board_id}.local", **over}
+    r = client.post("/api/boards", json=body)
+    assert r.status_code == 201, r.text
+    return r.json()
+
+
+def add_people(client: TestClient, board_id: str, people: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    out = []
+    for p in people:
+        r = client.post(f"/api/boards/{board_id}/people", json=p)
+        assert r.status_code == 201, r.text
+        out.append(r.json())
+    return out
 
 
 @pytest.fixture()

@@ -33,11 +33,48 @@ scripts/mail.sh up && scripts/mail.sh seed           # greenmail (SMTP 3025 / IM
 scripts/mail.sh desks                                # pinned, logged-in "Northwind Mail :: Inbox" window on every desk
 ssh -fN -L 3143:localhost:3143 -L 3025:localhost:3025 mini   # mail helper from the laptop: cd executor && uv run python mail.py list pm
 ```
-API with the fleet on: `FLOWLINE_FLEET=1` (first "Do it" on a plan also starts the pre-approved teammates' runs, `data/people.json`);
+API with the fleet on: `FLOWLINE_FLEET=1` (first "Do it" on a plan also starts the pre-approved teammates' runs — the board's people
+in the DB, `GET /api/boards/northwind/people`; `data/people.json` was migrated there on first start);
 `FLOWLINE_FLEET_SKILL_OVERRIDE=fill_deck_from_sheet` runs everyone on the short skill. Board: `/run/fleet` (state only — role, step rail, last action; the
 board never shows a screen; `?frames=1` turns live frames on for development). The six-desk wall for the film is `video/wall.html`
 (filming rig, recorded by `record_board.mjs --only 10`). Re-take: `scripts/desks.sh reset 6 && scripts/mail.sh reset all && scripts/mail.sh seed &&
 curl -X POST localhost:18787/api/boards/northwind/fleet/reset`. Mail is in-memory: a mini reboot needs `mail.sh up && mail.sh seed` again.
+
+## Onboarding a company (boards & people)
+
+One board per company; boards and people live in the API's SQLite (`data/api.sqlite`, SCHEMA §14). On the first start after
+this change the API migrates `data/people.json` into board `northwind` by itself — nothing to do for the demo.
+
+```bash
+API=http://localhost:18787
+curl -s $API/api/boards | jq                                                  # every board: people, records, has_data
+curl -s -X POST $API/api/boards -H 'content-type: application/json' \
+  -d '{"name":"Acme Dental Group","industry_naics":"621210","mail_domain":"acme.local","timezone":"America/Chicago"}'
+#  → {"id":"acme-dental-group", ...}   (pass "id" to pick the slug yourself)
+curl -s -X POST $API/api/boards/acme-dental-group/people -H 'content-type: application/json' \
+  -d '{"name":"Dana Whitfield","role":"PM","email":"dana@acme.local","target":"desk1","skill_id":"fill_deck_from_sheet"}'
+#  → {"id":"dana-whitfield","invite_code":"K7PX2MRQ","invite_status":"invited", ...}
+curl -s $API/api/boards/acme-dental-group/people | jq '.[] | {id, role, email, target, invite_code, invite_status}'
+curl -s -X PATCH $API/api/boards/acme-dental-group/people/dana-whitfield -H 'content-type: application/json' -d '{"pre_approved":true}'
+curl -s -X POST $API/api/boards/acme-dental-group/people/dana-whitfield/invite      # new code (old one dies), + api_url
+curl -s -X POST $API/api/invites/K7PX2MRQ/claim -H 'content-type: application/json' -d '{"device":"Dana MacBook"}'
+#  → {"board_id","board_name","person_id","name","role","target","skill_id","api_base_hint"}; a second claim is 409
+curl -s $API/api/boards/acme-dental-group/status | jq '{data_dir, legacy_fallback, has_data, files: [.files[] | {name, served_from}]}'
+curl -s $API/api/boards/acme-dental-group/ontology   # 404 {"detail","state":"no_data_yet","needs":"approved records → nightly fit ..."}
+```
+
+Records → fit (nightly, or by hand): the board's approved records go out as NDJSON and `flowline1 fit` writes the board's files.
+
+```bash
+curl -s $API/api/boards/acme-dental-group/records/export > acme.ndjson        # approved, non-withdrawn, one Record per line
+curl -s -X POST $API/api/boards/acme-dental-group/recompute                    # 202 {"job_id":"fit-…","state":"running",...}
+curl -s $API/api/boards/acme-dental-group/recompute/fit-…                      # done | failed (stderr in the body)
+```
+`FLOWLINE_FIT_CMD` overrides the command (placeholders `{records} {out} {industry} {board_id}`); the default runs
+`uv run --directory flowline1 python -m flowline1 fit --records … --out data/boards/<id>/out --industry <naics>`. Until
+`flowline1 fit` exists the job ends `failed` with the command's stderr. Every run the API posts to the executor carries
+`board: {id, name, mail_domain, people: [{id, role, email, name}]}` so skills mail by role (SCHEMA §11). The Mac app
+learns its board from the invite claim (`api_base_hint`); the board shows `/` (boards) and `/b/<id>/people`.
 
 ## Model (Flowline-1)
 
@@ -46,7 +83,8 @@ cd flowline1 && uv run python -m flowline1 build --out ../data/out --seed 15   #
 uv run python -m flowline1 check                                              # metrics vs BUILD-PLAN targets
 uv run python -m flowline1 demand --recompute                                 # full Census backtest (minutes)
 ```
-The API picks up `data/out/*.json` on mtime; sync to the mini after a rebuild. Baseline numbers (seed 15): 108.8 h per
+The API picks up `data/out/*.json` on mtime (the legacy location: `northwind` reads it until `data/boards/northwind/` exists;
+every other board reads `data/boards/<id>/out/`); sync to the mini after a rebuild. Baseline numbers (seed 15): 108.8 h per
 proposal, 78 % waiting, signature wait 24.7 h; best plan auto-approve < $5k + agent fills the deck 91.4 h (−16 %),
 measured after the change 87.7 h; 4/4 model checks in range; D1 BPIC 2020 median error 17.5 % / P80 4.1 %; D2 7.4× vs 5.7×.
 
