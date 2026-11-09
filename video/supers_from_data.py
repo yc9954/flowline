@@ -63,20 +63,20 @@ def main():
     saved = (date.fromisoformat(opn["was"]) - date.fromisoformat(opn["opens"])).days
 
     supers = {
-        1: "", 2: "", 4: "", 5: "", 14: "", 16: "",           # cards and the simulation carry their own type
+        1: "", 2: "", 4: "", 12: "", 14: "", 16: "",          # cards and the simulation carry their own type
         3: "Multiplayer AI for the whole company · one hub · proposes first, then does the work",
-        6: "Northwind Fitness · simulated team · on-device, nothing sent until approved",
-        7: "Personal items never leave the laptop",
-        8: f"{steps} steps · {roles} roles — learned, not drawn",
-        9: f"{wait_h:.0f} h for one signature · {n_plans} plans tested on the same team",
-        10: "Asked only of the person it affects",
-        11: "Six desks · six jobs · one approval each · filmed side by side for this demo",
-        12: "The whole runs at 50× · every one left for a person · nothing saved or sent outside without one",
+        5: "Northwind Fitness · simulated team · on-device, nothing sent until approved",
+        6: "Personal items never leave the laptop",
+        7: f"{steps} steps · {roles} roles — learned, not drawn",
+        8: f"{wait_h:.0f} h for one signature · {n_plans} plans tested on the same team",
+        9: "It proposes first — only to the person it affects · never on its own",
+        10: "One knowledge, six desks · the bottleneck step done for each person · not autopilot",
+        11: "Left for the person to check · 50× · one hub, many hands",
         13: f"{before:.0f} h → {after:.1f} h · the test predicted {pred:.1f}",
         15: "Flowline — the agent that runs the company's work, with its people",
     }
     vo = {
-        9: f"A proposal takes {words(before)} hours, {words(waiting_h)} waiting. It tests {words(n_plans)} fixes on the same team, same luck.",
+        8: f"A proposal takes {words(before)} hours, {words(waiting_h)} waiting. It tests {words(n_plans)} fixes on the same team, same luck.",
         13: f"Cycle time: {words(before)} hours to {words(after)}. The test said {words(pred)}.",
         14: f"{words(runs_ok).capitalize()} of {words(runs_n)} runs correct, {words(leaks)} leaks. "
             f"On real Census data, its picks were {lift:g} times as likely to get new gyms.",

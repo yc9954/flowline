@@ -39,6 +39,17 @@ where, and when a person leaves, the process leaves with them.
 
 Sources are linked in [§11](#11-sources).
 
+### What we heard
+
+Before building, we met people who run health-care and fitness centres — small chains, an owner who operates, a handful
+of staff across sites. The same things came up every time. The work that matters (a corporate proposal, a membership
+deal, a new site) passes between three or four people and then waits on one person's sign-off, often for a day or more.
+Nothing about how it moves is written down; the know-how sits with whoever has done it longest, and when that person
+leaves it leaves with them. Nobody there will adopt an ERP or write procedures — they are running classes. And they are
+wary of anything that watches their staff's screens. That shaped the product: records are approved by the person
+before they leave the laptop, the board never shows a screen, and the agent proposes before it ever acts.
+
+
 ## 2. What Flowline is
 
 **Who it is for, and why.** A multi-site service business runs on processes nobody has written down. Work spends most of
@@ -63,12 +74,18 @@ measure.
    (9 plans × 20 seeds, common random numbers) and ranks them.
 5. **Propose.** The board shows the winning plan; the people it touches see only their part, in their own surface — a
    notch banner, an inbox approval, a line on a phone.
-6. **Do, with consent.** On "Do it", an agent does the repeated step on that person's desk and leaves the result for
-   them to check. Nothing is saved or sent outside without a person.
+6. **Do, with consent.** On "Do it", an agent clears that one bottleneck step on the person's desk — mid-work, with the
+   files they already have open — and leaves the result for them to check. It is not autopilot: it never starts on its
+   own, it does the step the knowledge singled out, and nothing is saved or sent outside without a person.
 7. **Measure.** Records after the change are compared with the prediction; the model is recalibrated every night.
 
 One knowledge, many surfaces: a line on the CEO's phone, one approval in Finance's inbox, a notch banner for the
 branch manager, an end-of-day review for staff. Only the expansion lead opens a full board.
+
+**Multiplayer, in one hub.** Six people's approved days make one knowledge; that knowledge finds the one step everyone
+waits on; six people each say yes once; and the same step is then cleared on six desks at the same time, each from what
+all six built together — then handed back. The fleet page (*Agents on desks*) is that hub's view: who is on which step,
+what was left for whom — never a screen.
 
 ## 3. Architecture
 

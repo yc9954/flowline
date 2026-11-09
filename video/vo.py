@@ -14,22 +14,22 @@ os.makedirs(OUT, exist_ok=True)
 # Story v3: problem → market → product → test case → THE SIMULATION (time-lapse) → demo: collect · learn · act
 # (six desks live, then the whole runs at 50×) → results → close.
 CUTS = {
-    1: (8, "Small multi-site businesses run on processes nobody wrote down. Work waits more than it's worked, and when someone leaves, the process leaves too."),
-    2: (5.5, "Six million small US firms. The tools that map work need system logs — they have none."),
-    3: (7, "Not an ERP: a company-level agent. Approved days join one hub; it finds the bottleneck, proposes the fix, and does the work."),
-    4: (4, "Our test case: Northwind Fitness, a simulated chain. Three gyms, eight people."),
-    5: (7.3, "We ran it for eleven simulated weeks — three hundred approved days, every hand-off, every wait — on a world engine, not a script."),
-    6: (3.3, "At six, each laptop drafts how the day went."),
-    7: (4, "Personal things stay out. Nothing leaves until you approve it."),
-    8: (3.8, "Approved records become one knowledge of how the business works."),
-    9: (7.5, "A proposal takes a hundred and nine hours, eighty-five waiting. It tests nine fixes on the same team, same luck."),
-    10: (2.7, "Then it asks only the people it affects."),
-    11: (7.5, "Six desks start at once, each on its own job: quotes read off PDFs, a sheet corrected, decks filled, packets mailed to the director."),
-    12: (5, "Seven minutes at fifty times speed. Every run ends left for a person. Nothing saved, nothing sent out, without one."),
-    13: (4, "Cycle time: a hundred and nine hours to eighty-eight. The test said ninety-one."),
-    14: (6.5, "Ten of ten runs correct, zero leaks. On real Census data, its picks were 7.4 times as likely to get new gyms."),
-    15: (4, "Flowline. The agent that runs your company's work — with your people."),
-    16: (1.3, ""),  # end card, no voice
+    1: (9.5, "Small multi-site businesses run on processes nobody wrote down. Work waits more than it's worked, and when someone leaves, the process leaves too."),
+    2: (7.5, "Six million small US firms. The tools that map work need system logs — they have none."),
+    3: (8.5, "Not an ERP: a company-level agent. Approved days join one hub; it finds the bottleneck, proposes the fix, and does the work."),
+    4: (5.5, "Our test case: Northwind Fitness, a simulated chain. Three gyms, eight people."),
+    5: (4.5, "At six, each laptop drafts how the day went."),
+    6: (5, "Personal things stay out. Nothing leaves until you approve it."),
+    7: (8, "Approved records become one knowledge of how the business works — learned, not drawn."),
+    8: (9, "A proposal takes a hundred and nine hours, eighty-five waiting. It tests nine fixes on the same team, same luck."),
+    9: (5.5, "It never starts on its own. From the knowledge everyone built, it finds the bottleneck step and offers to take it — only to the person it affects."),
+    10: (10, "Six people said yes once. Now, mid-work, Flowline clears the same bottleneck on six desks at once — quotes, sheets, decks, packets — each from the knowledge all six built together."),
+    11: (8, "Every run ends as a proposal left on the person's desk to check. Nothing saved, nothing sent outside, without them. One knowledge, many hands."),
+    12: (8, "Then we ran the whole chain for eleven simulated weeks — three hundred approved days, every hand-off, every wait — on a world engine, not a script."),
+    13: (6, "Cycle time: a hundred and nine hours to eighty-eight. The test said ninety-one."),
+    14: (8.6, "Ten of ten runs correct, zero leaks. On real Census data, its picks were 7.4 times as likely to get new gyms."),
+    15: (5, "Flowline. The agent that runs your company's work — with your people."),
+    16: (2, ""),  # end card, no voice
 }
 
 

@@ -10,6 +10,8 @@ Sources: `card` = `cards.html?card=…` recorded by `record_board.mjs`; `board` 
 1920×1080 (1440×900 @ DPR 4/3); `mac` = screen recording of the Flowline menu-bar app (ffmpeg avfoundation, 3024×1964 →
 crop below the menu bar → 1920×1080).
 
+> **v4 (final, 2-minute cut, 117.8 s):** the order became problem → market → product → test case → collect (notch, review) → learn (knowledge, zoomed) → find (waits → nine plans) → **propose** (suggestion notch, never on its own) → **act** (six desks, one knowledge, mid-work) → **hand back** (the whole runs at 50×) → **the simulation** (eleven weeks replayed) → results → results card → the loop → end card. Cut numbers, targets and narration lines are the source of truth in `vo.py` (`CUTS`), supers/chapter chips in `supers_from_data.py` / `build.py` (`CHAPTER`), recording recipes in `record_board.mjs`. Subtitles = the narration, centred; chapter chips top-left/centre. The table below is the earlier 90-second version kept for reference.
+
 | # | Target | VO (Holden, tempo 1.15) | Super | Source | Motion |
 |---|---|---|---|---|---|
 | 01 | 8.5 s | Small multi-site businesses run on processes nobody wrote down. Work waits more than it's worked — and when someone leaves, the process leaves with them. | — | card `problem` | Three lines land with the voice; evidence row (58 % use AI · 14 % in operations · 0 system logs). Fade in. |

@@ -75,21 +75,32 @@ const CUTS = {
     await stagger(page, '[data-wire]', 160, 'none');
   } },
   4: { url: card('test'), hold: 6000, async play() {} },
-  5: { url: 'file://' + path.join(HERE, 'sim.html'), hold: 10000, async play(page) {
-    const data = await (await fetch(`${apiBase}/api/boards/northwind/records`)).json();
+  12: { url: 'file://' + path.join(HERE, 'sim.html'), hold: 13000, async play(page) {
+    // the records: from the local cache when present (the tunnel can be slow), else from the API
+    const cache = path.join(HERE, 'out', 'records.json');
+    const data = fs.existsSync(cache) ? JSON.parse(fs.readFileSync(cache, 'utf8')) : await (await fetch(`${apiBase}/api/boards/northwind/records`)).json();
     const records = Array.isArray(data) ? data : (data.records || data.items || []);
     await page.evaluate((r) => window.__play(r, 6500), records);
   } },
-  8: { route: '/know/knowledge', hold: 7500, prehide: '[data-lane],[data-node],[data-edge-back]', async play(page) {
-    await stagger(page, '[data-lane]', 120, 'none');
-    await stagger(page, '[data-node]', 60, 'scale(.92)');
-    await sleep(1400);
-    await stagger(page, '[data-edge-back]', 200, 'none');
-    await sleep(900);
+  7: { route: '/know/knowledge', hold: 9500, prehide: '[data-lane],[data-node],[data-edge-back]', async play(page) {
+    await stagger(page, '[data-lane]', 100, 'none');
+    await stagger(page, '[data-node]', 45, 'scale(.92)');
+    await sleep(1200);
+    await stagger(page, '[data-edge-back]', 160, 'none');
+    await sleep(600);
+    // the map opens at "fit" (50 %): zoom to 90 % as ONE smooth motion — a CSS transition on the scaled canvas, then four
+    // quick zoom-in clicks that React applies while the transition interpolates (discrete clicks looked like stutter)
+    await page.evaluate(() => {
+      const el = [...document.querySelectorAll('div')].find((d) => /scale\(/.test(d.style.transform) && /^0(px)? 0(px)?$/.test(d.style.transformOrigin));
+      if (el) el.style.transition = 'transform 1.3s cubic-bezier(.2,.8,.2,1)';
+    });
+    const zin = page.locator('button[aria-label="Zoom in"]');
+    for (let i = 0; i < 4; i++) { if (await zin.count()) await zin.click(); await sleep(40); }
+    await sleep(1600);
     const approval = page.locator('[data-node-id="approval"], [data-node]:has-text("Approval")').first();
-    if (await approval.count()) await approval.click();
+    if (await approval.count()) { await approval.scrollIntoViewIfNeeded(); await approval.click(); }
   } },
-  9: { route: '/know/waits', hold: 9500, prehide: '[data-kpi],[data-plan-row],[data-best-card]', async play(page) {
+  8: { route: '/know/waits', hold: 12000, prehide: '[data-kpi],[data-plan-row],[data-best-card]', async play(page) {
     // waits: 2.2 s, then the nine plans get the rest of the cut (they used to flash by)
     await stagger(page, '[data-kpi]', 90, 'translateY(6px)');
     await sleep(250);
@@ -100,10 +111,13 @@ const CUTS = {
       bar.style.transition = 'none'; bar.style.width = '0px';
       requestAnimationFrame(() => { bar.style.transition = 'width .9s cubic-bezier(.2,.8,.2,1)'; bar.style.width = w; });
     });
-    await sleep(1700);
-    await gotoHidden(page, base + '/improve/plans', '[data-plan-row],[data-best-card]', '[data-plan-row]');
-    await stagger(page, '[data-plan-row]', 70, 'translateY(8px)');
-    await sleep(1100);
+    await sleep(2200);
+    // in-app navigation (no reload, no boot): the shell stays, the rows appear as soon as the data is in
+    await page.locator('nav a:has-text("Plans to test"), a:has-text("Plans to test")').first().click();
+    await page.waitForSelector('[data-plan-row]', { timeout: 8000 }).catch(() => {});
+    await sleep(150);
+    await stagger(page, '[data-plan-row]', 110, 'translateY(8px)');
+    await sleep(2200);
     await stagger(page, '[data-best-card]', 0, 'translateY(6px)');
     await sleep(500);
     const btn = page.locator('button:has-text("Approve this plan")').first();
@@ -112,7 +126,7 @@ const CUTS = {
   // the fleet: the FILMING RIG wall.html (six desks side by side — the board itself never shows a screen), recorded while
   // the six runs are live (record_mac_cuts.sh 9 starts them and launches this cut). The run state is fetched here in Node
   // and pushed into the page (no CORS). Long hold — build.py picks the window with START[10].
-  11: { url: 'file://' + path.join(HERE, 'wall.html') + '?api=' + encodeURIComponent(apiBase),
+  10: { url: 'file://' + path.join(HERE, 'wall.html') + '?api=' + encodeURIComponent(apiBase),
         hold: Number(process.env.FLEET_HOLD_MS || 420000), async play(page) {
     const api = apiBase;
     const t0 = Date.now();
@@ -130,7 +144,9 @@ const CUTS = {
     await stagger(page, '[data-dot-after]', 30, 'translateY(-10px)');
     await countUp(page, '[data-kpi-main]', 108.8, 1400);
     await sleep(1200);
-    await gotoHidden(page, base + '/decide/expand?industry=713940', '[data-zip-row]', '[data-zip-row]');
+    await page.locator('nav a:has-text("Where to open next"), a:has-text("Where to open next")').first().click();
+    await page.waitForSelector('[data-zip-row]', { timeout: 8000 }).catch(() => {});
+    await sleep(150);
     await stagger(page, '[data-zip-row]', 120, 'translateX(-8px)');
     await sleep(900);
     await page.evaluate(() => document.querySelector('[data-zip-row]')?.classList.add('is-hot'));

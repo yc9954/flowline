@@ -27,8 +27,8 @@ rec() { cliclick m:1500,975 >/dev/null 2>&1 || true; ($HERE/record_mac.sh "$1" "
 launch() { ( "$APP" --demo-day --debug-control --no-observe "$@" >/tmp/flowline-app.log 2>&1 & ); }
 
 case $CUT in
-  6)
-    rec 6 12
+  5)
+    rec 5 12
     launch --eod-now            # notch peeks ~3.5 s after launch (prepareDraft first); the peek is mostly behind the menu bar on camera
     sleep 5
     $DRIVE notch-open           # open state (400×112): "Your day is drafted" + Review — this is what the film shows
@@ -36,29 +36,29 @@ case $CUT in
     $DRIVE menu                 # menu-bar panel: NOTED TODAY / SENT TO TEAM 0
     sleep 3
     ;;
-  7)
+  6)
     launch --eod-now; sleep 3
     $DRIVE review; sleep 2.5    # review window up before we roll
-    rec 7 8
+    rec 6 8
     sleep 3                     # camera holds on the review and left-out column
     $DRIVE approve              # posts the signed record to the API, shows the record sheet
     sleep 4
     ;;
-  10)
+  9)
     defaults write co.sweetspot.flowline run_target desk1
     launch; sleep 3
     # offer the suggestion: approve the best plan on the board (creates one suggestion per person), then make the app poll now
     curl -s -X POST "$API/api/boards/northwind/plans/$(curl -s $API/api/boards/northwind/plans | python3 -c 'import sys,json;p=json.load(sys.stdin)["plans"];print([x for x in p if x.get("best")][0]["id"])')/approve" >/dev/null
     sleep 1; $DRIVE poll; sleep 1.5
-    rec 10 10
+    rec 9 10
     $DRIVE notch-open           # the full suggestion (400×134): "8× last week · fill the deck?" + Do it / Later
     sleep 3
     $DRIVE do-it                # the PM's run starts; the API fans out the pre-approved runs; the glow comes up
-    ( cd $HERE && FLEET_HOLD_MS=${FLEET_HOLD_MS:-420000} BOARD_BASE=$BOARD node record_board.mjs --base $BOARD --only 11 > /tmp/flowline-fleet-rec.log 2>&1 & )
+    ( cd $HERE && FLEET_HOLD_MS=${FLEET_HOLD_MS:-420000} BOARD_BASE=$BOARD node record_board.mjs --base $BOARD --only 10 > /tmp/flowline-fleet-rec.log 2>&1 & )
     sleep 6
     ;;
-  *) echo "usage: $0 6|7|10 [api_base]"; exit 1 ;;
+  *) echo "usage: $0 5|6|9 [api_base]"; exit 1 ;;
 esac
 sleep 1.5
-if [[ $CUT != 10 ]]; then pkill -x Flowline 2>/dev/null || true; fi   # cut 9 leaves the app up while the fleet records
+if [[ $CUT != 9 ]]; then pkill -x Flowline 2>/dev/null || true; fi   # cut 9 leaves the app up while the fleet records
 printf "cut %s recorded -> out/cuts/%02d.mov\n" "$CUT" "$CUT"

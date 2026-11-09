@@ -39,7 +39,10 @@ PUSH = {}  # no slow pushes: zoompan rounds the crop origin per frame, which rea
 MENUBAR_FRACTION = 50 / 1964
 START = json.load(open(os.path.join(OUT, "start.json"))) if os.path.exists(os.path.join(OUT, "start.json")) else {}
 START = {int(k): float(v) for k, v in START.items()}  # seconds to skip at the head of a recording (out/start.json, e.g. {"10": 95})
-SUB_BAND = {11, 12}  # the wall: letterbox the bottom so the subtitle never covers the desk labels
+CHAPTER = {5: 'COLLECT · each person\'s day, on their machine', 6: 'COLLECT · approved by the person', 7: 'LEARN · one knowledge of the business',
+           8: 'FIND · where work waits · test the fixes', 9: 'PROPOSE · from everyone\'s knowledge, to the person it affects', 10: 'ACT · one knowledge, six desks, mid-work',
+           11: 'HAND BACK · left for the person · 50×', 13: 'RESULTS · cycle time', 15: 'THE LOOP · every night'}  # top-left chapter chip for the judges
+SUB_BAND = {10, 11}  # the wall: letterbox the bottom so the subtitle never covers the desk labels
 FADE_OUT = {16}
 FADE_IN = {1, 16}
 
@@ -99,6 +102,20 @@ def super_png(text, path, max_w=1500):
     return w, h
 
 
+def chip_png(text, path):
+    """Small chapter chip: Geist Mono 22px, white on black 82%."""
+    from PIL import Image, ImageDraw, ImageFont
+    font = ImageFont.truetype(MONO, 22)
+    pad_x, pad_y = 14, 9
+    tmp = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
+    l, t, r, b = tmp.textbbox((0, 0), text.upper(), font=font)
+    im = Image.new("RGBA", (r - l + 2 * pad_x + 16, b - t + 2 * pad_y), (0, 0, 0, int(255 * 0.82)))
+    d = ImageDraw.Draw(im)
+    d.rectangle((pad_x, (im.height - 8) // 2, pad_x + 8, (im.height - 8) // 2 + 8), fill=(109, 93, 246, 255))
+    d.text((pad_x + 16 - l, pad_y - t), text.upper(), font=font, fill=(255, 255, 255, 255))
+    im.save(path)
+
+
 def segment(n, cut, vo, dur, super_text, vo_s=None):
     still = cut.lower().endswith(".png")
     if still:
@@ -112,7 +129,7 @@ def segment(n, cut, vo, dur, super_text, vo_s=None):
         ch = int(w * 9 / 16)
         menubar = int(h * MENUBAR_FRACTION)
         vf.append(f"crop={w}:{ch}:0:{min(menubar, h - ch)}")
-    vf.append("scale=1920:960:flags=lanczos,pad=1920:1080:0:0:black,fps=30,format=yuv420p" if n in SUB_BAND else "scale=1920:1080:flags=lanczos,fps=30,format=yuv420p")
+    vf.append("scale=1920:940:flags=lanczos,pad=1920:1080:0:60:black,fps=30,format=yuv420p" if n in SUB_BAND else "scale=1920:1080:flags=lanczos,fps=30,format=yuv420p")  # wall: bands for the chip (top) and the subtitle (bottom)
     src_dur -= START.get(n, 0.0)
     if src_dur < dur:  # hold the last frame
         vf.append(f"tpad=stop_mode=clone:stop_duration={dur - src_dur + 0.5:.2f}")
@@ -136,6 +153,14 @@ def segment(n, cut, vo, dur, super_text, vo_s=None):
         show = max(1.5, min(dur - 0.3, (vo_s or dur) + 0.4))   # the subtitle stays while the line is spoken
         graph += f";{last}[2:v]overlay=(W-w)/2:H-64-h:enable='between(t,0.3,{0.3 + show:.2f})':shortest=1[v1]"
         last = "[v1]"
+    if n in CHAPTER:
+        chip = os.path.join(SEG, f"{n:02d}_chapter.png")
+        chip_png(CHAPTER[n], chip)
+        inputs += ["-loop", "1", "-i", chip]
+        idx = 3 if super_text else 2
+        pos = "48:12" if n in SUB_BAND else ("48:24" if n in (5, 6, 9) else "(W-w)/2:24")   # wall: top band · mac: top-left (notch is centre) · board: top centre
+        graph += f";{last}[{idx}:v]overlay={pos}:shortest=1[vc]"
+        last = "[vc]"
     if n in FADE_OUT or n in FADE_IN:
         fades = []
         if n in FADE_IN:
@@ -151,7 +176,7 @@ def segment(n, cut, vo, dur, super_text, vo_s=None):
     return seg, dur
 
 
-TIMELAPSE = {12: (11, 50, 420)}  # cut 12 = the whole 7-minute wall take (cut 11's recording) at 50×
+TIMELAPSE = {11: (10, 50, 420)}  # cut 12 = the whole 7-minute wall take (cut 11's recording) at 50×
 
 
 def make_timelapses():
