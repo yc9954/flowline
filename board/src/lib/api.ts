@@ -1,6 +1,10 @@
-// Fetches /api/... and falls back to the fixture in ../../fixtures when the API is down,
-// so the board always renders. Every page shows where its data came from.
-import { useEffect, useRef, useState } from 'react';
+// Fetches /api/boards/{board}/... for the board on the URL. Three outcomes, and the page shows which one it got:
+//   data     — the API answered (or ?fixtures=1 forced the demo fixture)
+//   empty    — 404 { state: "no_data_yet" }: the board exists but the model has nothing yet → empty state, never fixtures
+//   offline  — unreachable / 5xx / wrong shape → "API offline" with a retry, never fixtures
+// Fixtures in ../../fixtures are the demo's prototype data and render only with ?fixtures=1.
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useBoard } from './board';
 import type {
   Expansion, ExpansionFixture, Finding, History, ModelCheck, Ontology, Opening, PlansPage, Results, Surfaces, WorkRecord,
 } from './types';
@@ -16,71 +20,88 @@ import openingFx from '../../../fixtures/opening.json';
 import surfacesFx from '../../../fixtures/surfaces.json';
 import recordsFx from '../../../fixtures/records.json';
 
-export const BOARD = 'northwind';
-export const API = `/api/boards/${BOARD}`;
-
 export type Origin = 'api' | 'fixture';
-export interface Loaded<T> { data: T; origin: Origin; fetchedAt: Date; error?: string }
+/** The page has data to render. */
+export interface Loaded<T> { kind: 'data'; data: T; origin: Origin; fetchedAt: Date; error?: string }
+export interface Empty { kind: 'empty'; state: string; detail?: string }
+export interface Offline { kind: 'offline'; error: string; status: number }
+export type Fetched<T> = Loaded<T> | Empty | Offline;
+/** What a hook returns: `null` while loading, otherwise the outcome plus a retry. */
+export type Result<T> = (Fetched<T> & { retry: () => void }) | null;
 
-const cache = new Map<string, Promise<Loaded<unknown>>>();
+const cache = new Map<string, Promise<Fetched<unknown>>>();
 
 type Valid<T> = (x: unknown) => x is T;
 
 /** QA switch: `?fixtures=1` on any route renders from the fixtures even when the API is up. */
 export const forcedFixtures = () => typeof location !== 'undefined' && new URLSearchParams(location.search).has('fixtures');
 
-async function fetchOrFixture<T>(path: string, fixture: () => T, valid?: Valid<T>, signal?: AbortSignal): Promise<Loaded<T>> {
-  if (forcedFixtures()) return { data: fixture(), origin: 'fixture', fetchedAt: new Date(), error: 'forced' };
+const isObj = (x: unknown): x is Record<string, unknown> => !!x && typeof x === 'object' && !Array.isArray(x);
+
+async function fetchOutcome<T>(path: string, fixture: () => T, valid?: Valid<T>, signal?: AbortSignal): Promise<Fetched<T>> {
+  if (forcedFixtures()) return { kind: 'data', data: fixture(), origin: 'fixture', fetchedAt: new Date(), error: 'forced' };
   try {
     const res = await fetch(path, { signal, headers: { accept: 'application/json' } });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (res.status === 404) {
+      let body: unknown = null;
+      try { body = await res.json(); } catch { /* no body */ }
+      if (isObj(body) && typeof body.state === 'string') return { kind: 'empty', state: body.state, detail: typeof body.detail === 'string' ? body.detail : undefined };
+      // a 404 without a state: the board is unknown to the API, or the route is not implemented
+      const detail = isObj(body) && typeof body.detail === 'string' ? body.detail : 'HTTP 404';
+      if (/no API route/i.test(detail)) return { kind: 'offline', error: `${detail} (not implemented by this API)`, status: 404 };
+      return { kind: 'empty', state: 'no_such_board', detail };
+    }
+    if (!res.ok) return { kind: 'offline', error: `HTTP ${res.status}`, status: res.status };
     const data: unknown = await res.json();
-    if (valid && !valid(data)) throw new Error('unexpected shape from the API');
+    if (valid && !valid(data)) return { kind: 'offline', error: 'unexpected shape from the API', status: res.status };
     const hdr = res.headers.get('date');
-    return { data: data as T, origin: 'api', fetchedAt: hdr ? new Date(hdr) : new Date() };
+    return { kind: 'data', data: data as T, origin: 'api', fetchedAt: hdr ? new Date(hdr) : new Date() };
   } catch (e) {
-    const error = e instanceof Error ? e.message : String(e);
-    return { data: fixture(), origin: 'fixture', fetchedAt: new Date(), error };
+    return { kind: 'offline', error: e instanceof Error ? e.message : String(e), status: 0 };
   }
 }
 
-const isObj = (x: unknown): x is Record<string, unknown> => !!x && typeof x === 'object' && !Array.isArray(x);
 /** The page can only render if these keys hold arrays. */
 const hasArrays = <T,>(...keys: string[]): Valid<T> => (x: unknown): x is T => isObj(x) && keys.every((k) => Array.isArray(x[k]));
 
-export function load<T>(path: string, fixture: () => T, valid?: Valid<T>): Promise<Loaded<T>> {
-  let p = cache.get(path) as Promise<Loaded<T>> | undefined;
+export function load<T>(path: string, fixture: () => T, valid?: Valid<T>, force = false): Promise<Fetched<T>> {
+  let p = force ? undefined : (cache.get(path) as Promise<Fetched<T>> | undefined);
   if (!p) {
-    p = fetchOrFixture(path, fixture, valid);
-    cache.set(path, p as Promise<Loaded<unknown>>);
-    // do not keep failures cached forever: retry on the next mount after 15 s
-    p.then((r) => { if (r.origin === 'fixture') setTimeout(() => cache.delete(path), 15000); });
+    p = fetchOutcome(path, fixture, valid);
+    cache.set(path, p as Promise<Fetched<unknown>>);
+    // offline answers are retried on the next mount after 15 s; empty ones after 60 s (records arrive in the evening)
+    p.then((r) => {
+      if (r.kind === 'offline') setTimeout(() => cache.delete(path), 15000);
+      else if (r.kind === 'empty') setTimeout(() => cache.delete(path), 60000);
+    });
   }
   return p;
 }
 
-export function useLoad<T>(path: string, fixture: () => T, valid?: Valid<T>): Loaded<T> | null {
-  const [state, setState] = useState<Loaded<T> | null>(null);
+export function useLoad<T>(path: string, fixture: () => T, valid?: Valid<T>): Result<T> {
+  const [state, setState] = useState<Fetched<T> | null>(null);
+  const [tick, setTick] = useState(0);
   const alive = useRef(true);
   useEffect(() => {
     alive.current = true;
     setState(null);
-    load(path, fixture, valid).then((r) => { if (alive.current) setState(r); });
+    load(path, fixture, valid, tick > 0).then((r) => { if (alive.current) setState(r); });
     return () => { alive.current = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [path]);
-  return state;
+  }, [path, tick]);
+  const retry = useCallback(() => { cache.delete(path); setTick((t) => t + 1); }, [path]);
+  return state ? { ...state, retry } : null;
 }
 
-// ---- typed loaders -------------------------------------------------------
-export const useOntology = () => useLoad<Ontology>(`${API}/ontology`, () => ontologyFx as unknown as Ontology, hasArrays('nodes', 'edges', 'roles'));
-export const useFinding = () => useLoad<Finding>(`${API}/finding`, () => findingFx as unknown as Finding, hasArrays('map', 'sent_back', 'repeated'));
-export const usePlans = () => useLoad<PlansPage>(`${API}/plans`, () => plansFx as unknown as PlansPage, hasArrays('plans'));
-export const useResults = () => useLoad<Results>(`${API}/results`, () => resultsFx as unknown as Results, hasArrays('series', 'kpis', 'who'));
-export const useHistory = () => useLoad<History>(`${API}/history`, () => historyFx as unknown as History, hasArrays('loop', 'versions', 'learned'));
-export const useModel = () => useLoad<ModelCheck>(`${API}/model`, () => modelFx as unknown as ModelCheck, hasArrays('components', 'sim_checks', 'demand', 'limits'));
-export const useOpening = () => useLoad<Opening>(`${API}/opening`, () => openingFx as unknown as Opening, hasArrays('workstreams', 'blockers'));
-export const useSurfaces = () => useLoad<Surfaces>(`${API}/surfaces`, () => surfacesFx as unknown as Surfaces, hasArrays('finance_inbox', 'expansion_lead'));
+// ---- typed loaders (all relative to the board on the URL) --------------------------------------------------
+export const useOntology = () => useLoad<Ontology>(`${useBoard().api}/ontology`, () => ontologyFx as unknown as Ontology, hasArrays('nodes', 'edges', 'roles'));
+export const useFinding = () => useLoad<Finding>(`${useBoard().api}/finding`, () => findingFx as unknown as Finding, hasArrays('map', 'sent_back', 'repeated'));
+export const usePlans = () => useLoad<PlansPage>(`${useBoard().api}/plans`, () => plansFx as unknown as PlansPage, hasArrays('plans'));
+export const useResults = () => useLoad<Results>(`${useBoard().api}/results`, () => resultsFx as unknown as Results, hasArrays('series', 'kpis', 'who'));
+export const useHistory = () => useLoad<History>(`${useBoard().api}/history`, () => historyFx as unknown as History, hasArrays('loop', 'versions', 'learned'));
+export const useModel = () => useLoad<ModelCheck>(`${useBoard().api}/model`, () => modelFx as unknown as ModelCheck, hasArrays('components', 'sim_checks', 'demand', 'limits'));
+export const useOpening = () => useLoad<Opening>(`${useBoard().api}/opening`, () => openingFx as unknown as Opening, hasArrays('workstreams', 'blockers'));
+export const useSurfaces = () => useLoad<Surfaces>(`${useBoard().api}/surfaces`, () => surfacesFx as unknown as Surfaces, hasArrays('finance_inbox', 'expansion_lead'));
 
 // The fixture holds every industry; the API returns one flat Expansion per ?industry=. Merge here.
 export function expansionFixture(industry?: string): Expansion {
@@ -93,30 +114,33 @@ export function expansionFixture(industry?: string): Expansion {
   };
 }
 export const useExpansion = (industry?: string) =>
-  useLoad<Expansion>(`${API}/expansion${industry ? `?industry=${encodeURIComponent(industry)}` : ''}`, () => expansionFixture(industry), hasArrays('zips', 'industries'));
+  useLoad<Expansion>(`${useBoard().api}/expansion${industry ? `?industry=${encodeURIComponent(industry)}` : ''}`, () => expansionFixture(industry), hasArrays('zips', 'industries'));
 
 // Records list: accept either a bare array or { records: [...] }.
 export const useRecords = () =>
-  useLoad<WorkRecord[]>(`${API}/records`, () => recordsFx as unknown as WorkRecord[], (x): x is WorkRecord[] => Array.isArray(x) || (isObj(x) && Array.isArray(x.records)));
+  useLoad<WorkRecord[]>(`${useBoard().api}/records`, () => recordsFx as unknown as WorkRecord[], (x): x is WorkRecord[] => Array.isArray(x) || (isObj(x) && Array.isArray(x.records)));
 export function asRecordList(x: unknown): WorkRecord[] {
   if (Array.isArray(x)) return x as WorkRecord[];
   if (x && typeof x === 'object' && Array.isArray((x as { records?: unknown }).records)) return (x as { records: WorkRecord[] }).records;
   return [];
 }
 
-/** Records on the board: the API's record list length, else the ontology's records_used. Used by every page (sidebar). */
-export function useRecordCount(): number | null {
+/** Records on the board: the API's record list length, else the ontology's records_used, else `fallback` (the board record's count). */
+export function useRecordCount(fallback?: number | null): number | null {
   const recs = useRecords();
   const ont = useOntology();
-  if (!recs || !ont) return null;
-  const n = recs.origin === 'api' ? asRecordList(recs.data).length : 0;
-  return n > 0 ? n : ont.data.records_used;
+  if (!recs || !ont) return fallback ?? null;
+  const n = recs.kind === 'data' && recs.origin === 'api' ? asRecordList(recs.data).length : 0;
+  if (n > 0) return n;
+  if (ont.kind === 'data') return ont.data.records_used;
+  if (recs.kind === 'data') return asRecordList(recs.data).length;
+  return fallback ?? null;
 }
 
-// ---- writes ---------------------------------------------------------------
-export async function approvePlan(planId: string): Promise<{ ok: boolean; status: number; body?: unknown; error?: string }> {
+// ---- writes ---------------------------------------------------------------------------------------------------
+export async function approvePlan(api: string, planId: string): Promise<{ ok: boolean; status: number; body?: unknown; error?: string }> {
   try {
-    const res = await fetch(`${API}/plans/${encodeURIComponent(planId)}/approve`, { method: 'POST', headers: { accept: 'application/json' } });
+    const res = await fetch(`${api}/plans/${encodeURIComponent(planId)}/approve`, { method: 'POST', headers: { accept: 'application/json' } });
     let body: unknown = undefined;
     try { body = await res.json(); } catch { /* empty body is fine */ }
     return { ok: res.ok, status: res.status, body };
@@ -125,11 +149,48 @@ export async function approvePlan(planId: string): Promise<{ ok: boolean; status
   }
 }
 
-export async function withdrawRecord(id: string): Promise<{ ok: boolean; status: number; error?: string }> {
+export async function withdrawRecord(api: string, id: string): Promise<{ ok: boolean; status: number; error?: string }> {
   try {
-    const res = await fetch(`${API}/records/${encodeURIComponent(id)}`, { method: 'DELETE' });
+    const res = await fetch(`${api}/records/${encodeURIComponent(id)}`, { method: 'DELETE' });
     return { ok: res.ok, status: res.status };
   } catch (e) {
     return { ok: false, status: 0, error: e instanceof Error ? e.message : String(e) };
   }
 }
+
+// ---- people (onboarding) --------------------------------------------------------------------------------------
+export type InviteStatus = 'not_invited' | 'invited' | 'joined';
+export interface Person {
+  id: string; name: string; role: string; email?: string | null; target: string /* "mac" | "desk1"… */;
+  skill_id?: string | null; pre_approved: boolean;
+  invite_status: InviteStatus; invite_code?: string | null; joined_at?: string | null; invited_at?: string | null;
+}
+export function asPeople(x: unknown): Person[] {
+  const arr = Array.isArray(x) ? x : isObj(x) && Array.isArray(x.people) ? x.people : [];
+  return arr.filter(isObj).map((p) => ({
+    id: String(p.id ?? ''), name: String(p.name ?? ''), role: String(p.role ?? ''), email: typeof p.email === 'string' ? p.email : null,
+    target: String(p.target ?? 'mac'), skill_id: typeof p.skill_id === 'string' ? p.skill_id : null, pre_approved: p.pre_approved === true,
+    invite_status: (p.invite_status === 'invited' || p.invite_status === 'joined' ? p.invite_status : p.joined_at ? 'joined' : p.invite_code || p.invited_at ? 'invited' : 'not_invited') as InviteStatus,
+    invite_code: typeof p.invite_code === 'string' ? p.invite_code : null,
+    joined_at: typeof p.joined_at === 'string' ? p.joined_at : null, invited_at: typeof p.invited_at === 'string' ? p.invited_at : null,
+  })).filter((p) => p.id);
+}
+export const usePeople = () => useLoad<unknown>(`${useBoard().api}/people`, () => [], (x): x is unknown => Array.isArray(x) || (isObj(x) && Array.isArray(x.people)));
+
+export interface NewPerson { name: string; role: string; email: string; target: string; skill_id: string; pre_approved: boolean }
+type WriteResult<T> = { ok: true; body: T } | { ok: false; error: string; status: number };
+async function post<T>(url: string, body?: unknown): Promise<WriteResult<T>> {
+  try {
+    const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) });
+    let out: unknown = null;
+    try { out = await res.json(); } catch { /* empty */ }
+    if (!res.ok) return { ok: false, status: res.status, error: isObj(out) && typeof out.detail === 'string' ? out.detail : `HTTP ${res.status}` };
+    return { ok: true, body: out as T };
+  } catch (e) {
+    return { ok: false, status: 0, error: e instanceof Error ? e.message : String(e) };
+  }
+}
+export const addPerson = (api: string, p: NewPerson) => post<unknown>(`${api}/people`, p);
+export const issueInvite = (api: string, pid: string) => post<{ invite_code?: string; api_url?: string }>(`${api}/people/${encodeURIComponent(pid)}/invite`);
+/** Drop the cached people list after a write so the next load refetches. */
+export const forgetPeople = (api: string) => cache.delete(`${api}/people`);

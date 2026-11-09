@@ -1,6 +1,8 @@
 import { useModel } from '../lib/api';
+import { useBoardName } from '../lib/board';
 import { dayTime, int } from '../lib/format';
 import { AskWhy, Kicker, Loading, NextLink, SourceChip, StackedHeader, Stamp, Verdict } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import './pages.css';
 
 const fmtVal = (v: number, unit: 'h' | '%' | '/day') => (unit === '%' ? `${Math.round(v)}%` : v.toFixed(1));
@@ -8,7 +10,9 @@ const fmtRange = (lo: number, hi: number, unit: 'h' | '%' | '/day') => (unit ===
 
 export default function ModelPage() {
   const res = useModel();
+  const { name } = useBoardName();
   if (!res) return <main className="main tight"><Loading what="model check" /></main>;
+  if (res.kind !== 'data') return <NotReady res={res} crumbs={[{ label: 'Trust' }, { label: 'Model check' }]} what="model check" className="main tight" />;
   const d = res.data;
   const inRange = d.sim_checks.filter((s) => s.in_range).length;
   const allIn = inRange === d.sim_checks.length;
@@ -25,10 +29,10 @@ export default function ModelPage() {
     <main className="main tight">
       <SourceChip source={d.source} />
       <StackedHeader
-        crumbs={[{ label: 'Northwind Fitness' }, { label: 'Trust' }, { label: 'Model check' }]}
+        crumbs={[{ label: 'Trust' }, { label: 'Model check' }]}
         stamp={<Stamp origin={res.origin} error={res.error} at={d.calibrated_at} />}
         title="Flowline-1 · model check"
-        right={`Northwind · calibrated ${dayTime(d.calibrated_at)} · ${int(d.records)} approved records`}
+        right={`${name} · calibrated ${dayTime(d.calibrated_at)} · ${int(d.records)} approved records`}
       />
 
       <div>

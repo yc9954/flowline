@@ -3,13 +3,16 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import type { Loaded, Origin } from '../lib/api';
+import { useBoard, useBoardName } from '../lib/board';
 import { dayTime, sourceLabel } from '../lib/format';
 import { ArrowRight, ExportIcon, ShareIcon } from './Icons';
 
+/** Breadcrumb after the board's own crumb (which `Crumbs` prepends). `to` is board-relative ("/know/waits"). */
 export interface Crumb { label: string; to?: string }
 
-export function Stamp({ origin, at, label = 'recomputed', extra, error }: { origin: Origin; at?: string | Date; label?: string; extra?: string; error?: string }) {
+export function Stamp({ origin, at, label = 'recomputed', extra, error }: { origin: Origin | 'offline'; at?: string | Date; label?: string; extra?: string; error?: string }) {
   const when = at ? dayTime(at) : '';
+  if (origin === 'offline') return <span className="stamp" title={error}><span className="dot fixture" />API offline{extra ? ` · ${extra}` : ''}</span>;
   if (origin === 'fixture') {
     const why = error === 'forced' ? 'forced' : error && /shape/.test(error) ? 'API shape mismatch' : 'API offline';
     return <span className="stamp" title={error}><span className="dot fixture" />fixture · {why}{extra ? ` · ${extra}` : ''}</span>;
@@ -32,13 +35,17 @@ export function HeaderButtons() {
   );
 }
 
+/** The board's name (from GET /api/boards/{id}) leads every breadcrumb; the rest comes from the page. */
 export function Crumbs({ items }: { items: Crumb[] }) {
+  const { path } = useBoard();
+  const { name } = useBoardName();
+  const all: Crumb[] = [{ label: name, to: '/know/waits' }, ...items];
   return (
     <nav aria-label="Breadcrumb" className="crumbs">
-      {items.map((c, i) => (
+      {all.map((c, i) => (
         <span key={i} style={{ display: 'contents' }}>
           {i > 0 && <span aria-hidden="true">/</span>}
-          {i === items.length - 1 ? <span aria-current="page" className="current">{c.label}</span> : c.to ? <Link to={c.to}>{c.label}</Link> : <span>{c.label}</span>}
+          {i === all.length - 1 ? <span aria-current="page" className="current">{c.label}</span> : c.to ? <Link to={path(c.to)}>{c.label}</Link> : <span>{c.label}</span>}
         </span>
       ))}
     </nav>
@@ -114,8 +121,16 @@ export function Verdict({ strong, rest, children }: { strong: ReactNode; rest: R
   );
 }
 
+/** Primary "next" button; `to` is board-relative. */
 export function NextLink({ to, children, arrow = true }: { to: string; children: ReactNode; arrow?: boolean }) {
-  return <Link to={to} className="btn-primary">{children}{arrow && <ArrowRight />}</Link>;
+  const { path } = useBoard();
+  return <Link to={path(to)} className="btn-primary">{children}{arrow && <ArrowRight />}</Link>;
+}
+
+/** A plain link that stays inside the current board; `to` is board-relative. */
+export function BLink({ to, className, children, ...rest }: { to: string; className?: string; children: ReactNode; title?: string; style?: React.CSSProperties; 'aria-pressed'?: boolean }) {
+  const { path } = useBoard();
+  return <Link to={path(to)} className={className} {...rest}>{children}</Link>;
 }
 
 /** "Ask why" — a static popover with the source label and the records/weeks behind the headline. */

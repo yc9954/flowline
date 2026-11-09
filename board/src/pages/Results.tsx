@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom';
 import { useResults } from '../lib/api';
 import { h1, niceTicks } from '../lib/format';
-import { AskWhy, Kicker, Loading, DataStamp, NextLink, PageHeader, SourceChip, Verdict } from '../components/Chrome';
+import { AskWhy, BLink, Kicker, Loading, DataStamp, NextLink, PageHeader, SourceChip, Verdict } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import './pages.css';
+
+const CRUMBS = [{ label: 'Improve' }, { label: 'Results' }];
 
 export default function ResultsPage() {
   const res = useResults();
   if (!res) return <main className="main"><Loading what="results" /></main>;
+  if (res.kind !== 'data') return <NotReady res={res} crumbs={CRUMBS} what="results" />;
   const d = res.data;
   const before = d.series.filter((s) => !s.after), after = d.series.filter((s) => s.after);
   const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
@@ -32,7 +35,7 @@ export default function ResultsPage() {
   return (
     <main className="main">
       <SourceChip source={d.source} />
-      <PageHeader crumbs={[{ label: 'Northwind Fitness' }, { label: 'Client proposals', to: '/know/waits' }, { label: 'Results' }]} stamp={<DataStamp res={res} data={d} />} />
+      <PageHeader crumbs={CRUMBS} stamp={<DataStamp res={res} data={d} />} />
 
       <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -40,7 +43,7 @@ export default function ResultsPage() {
           <div className="headline-row">
             <h1 className="headline" style={{ fontSize: 38 }}>{d.headline}</h1>
             <AskWhy source={d.source} lines={[
-              `${d.records} approved records · ${d.people} people · ${d.weeks} weeks (${before.length} proposals before the change, ${after.length} after)`,
+              `${d.records} approved records · ${d.people} people · ${d.weeks} weeks (${before.length} cases before the change, ${after.length} after)`,
               `Predicted ${h1(d.predicted.mid)} (${d.predicted.lo}–${d.predicted.hi}) · measured ${h1(d.measured)}`,
               `Change: ${d.change}`,
             ]} />
@@ -52,9 +55,9 @@ export default function ResultsPage() {
           </div>
         </div>
 
-        <section aria-label="Cycle time per proposal, before and after the change" className="chart-card">
+        <section aria-label="Cycle time per case, before and after the change" className="chart-card">
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span className="label">Hours per proposal</span>
+            <span className="label">Hours per case</span>
             <span className="legend" style={{ marginLeft: 'auto' }}><span className="sq" style={{ background: '#B8BEC2' }} />Before</span>
             <span className="legend"><span className="sq" style={{ background: '#0F766E' }} />After</span>
             <span className="legend"><span style={{ width: 12, height: 8, background: 'rgba(15,118,110,0.16)' }} />Predicted</span>
@@ -126,7 +129,7 @@ export default function ResultsPage() {
       </div>
 
       <Verdict strong="The loop starts again." rest="Keep this change, then test plans for the next constraint.">
-        <Link to="/improve/history" className="btn lg">Keep this change</Link>
+        <BLink to="/improve/history" className="btn lg">Keep this change</BLink>
         <NextLink to="/know/waits">Test the next constraint</NextLink>
       </Verdict>
     </main>

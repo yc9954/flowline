@@ -1,11 +1,14 @@
 import { useFinding } from '../lib/api';
 import { h1, pct, roleLabel } from '../lib/format';
+import { capitalize } from '../lib/industry';
 import { AskWhy, Kicker, Loading, DataStamp, NextLink, PageHeader, SourceChip, Stat, Verdict } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import './pages.css';
 
 export default function WaitsPage() {
   const res = useFinding();
   if (!res) return <main className="main"><Loading what="finding" /></main>;
+  if (res.kind !== 'data') return <NotReady res={res} crumbs={[{ label: 'Know' }, { label: 'Where work waits' }]} what="finding" />;
   const d = res.data;
   const total = d.kpis.cycle_time_h;
   const map = d.map;
@@ -35,7 +38,7 @@ export default function WaitsPage() {
   return (
     <main className="main">
       <SourceChip source={d.source} />
-      <PageHeader crumbs={[{ label: 'Northwind Fitness' }, { label: d.process[0].toUpperCase() + d.process.slice(1), to: '/know/waits' }, { label: 'Where work waits' }]} stamp={<DataStamp res={res} data={d} />} />
+      <PageHeader crumbs={[{ label: capitalize(d.process) }, { label: 'Where work waits' }]} stamp={<DataStamp res={res} data={d} />} />
 
       <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -63,7 +66,7 @@ export default function WaitsPage() {
           <span className="label">Process map · built from records, not interviews</span>
           <span className="legend" style={{ marginLeft: 'auto' }}><span className="sq" style={{ background: '#171717' }} />Stage span</span>
           <span className="legend"><span className="sq" style={{ background: '#FCBB00' }} />Hand-off wait</span>
-          <span className="mono-11">avg per proposal · {d.records} records</span>
+          <span className="mono-11">avg per case · {d.records} records</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'stretch' }}>
           {map.map((s, i) => {
@@ -91,7 +94,7 @@ export default function WaitsPage() {
         </div>
         <div style={{ marginTop: 14, paddingTop: 10, borderTop: '1px solid var(--muted-2)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span className="label">To scale · one proposal, {first.name.toLowerCase()} → {last.name.toLowerCase()} · stage spans include nights</span>
+            <span className="label">To scale · one case, {first.name.toLowerCase()} → {last.name.toLowerCase()} · stage spans include nights</span>
             <span className="mono-11" style={{ marginLeft: 'auto' }}>{h1(d.to_scale.hands_on_h)} in stages · {h1(d.to_scale.waiting_h)} waiting between stages</span>
           </div>
           <div style={{ position: 'relative', marginTop: 18 }}>
@@ -118,7 +121,7 @@ export default function WaitsPage() {
 
       <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
         <section aria-label="Sent back" style={{ flex: '1 1 0', minWidth: 0 }}>
-          <div className="sec-head"><h2>Sent back</h2><span className="label">Rework loops · share of proposals</span></div>
+          <div className="sec-head"><h2>Sent back</h2><span className="label">Rework loops · share of cases</span></div>
           <div className="table">
             <div className="thead" style={{ gridTemplateColumns: 'minmax(0, 1fr) 84px 92px 128px', columnGap: 12 }}><span>Reason</span><span>Back to</span><span className="right">Cost each</span><span className="right">Share</span></div>
             {d.sent_back.map((o, i) => (

@@ -1,22 +1,27 @@
 import { useHistory, useResults } from '../lib/api';
 import { dayTime } from '../lib/format';
 import { AskWhy, Kicker, Loading, DataStamp, NextLink, PageHeader, SourceChip, Verdict } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import { Check } from '../components/Icons';
 import './pages.css';
+
+const CRUMBS = [{ label: 'Improve' }, { label: 'Process history' }];
 
 export default function HistoryPage() {
   const res = useHistory();
   const results = useResults();
   if (!res || !results) return <main className="main"><Loading what="history" /></main>;
+  if (res.kind !== 'data') return <NotReady res={res} crumbs={CRUMBS} what="process history" />;
   const d = res.data;
+  const measured = results.kind === 'data' ? results.data : null;  // Results only fills gaps in §7; the page stands without it
   const versions = [...d.versions].sort((a, b) => b.v - a.v);
   const baseline = versions.find((v) => v.status === 'baseline');
   const live = versions.filter((v) => v.status === 'live');
   // absolute hours: §7 baseline_h / now_h, else the baseline row's hours (v1 delta_h when it is absolute,
   // otherwise Results' first KPI "before"), and the measured cycle time now
-  const kpiBefore = parseFloat(results.data.kpis[0]?.before ?? '');
+  const kpiBefore = parseFloat(measured?.kpis[0]?.before ?? '');
   const baselineH = d.baseline_h ?? (baseline && baseline.delta_h > 0 ? baseline.delta_h : isNaN(kpiBefore) ? undefined : kpiBefore);
-  const now = d.now_h ?? (results.data.measured ?? (baselineH != null ? baselineH + live.reduce((a, v) => a + v.delta_h, 0) : undefined));
+  const now = d.now_h ?? (measured?.measured ?? (baselineH != null ? baselineH + live.reduce((a, v) => a + v.delta_h, 0) : undefined));
   const pending = versions.find((v) => v.status === 'needs_yes');
   const changes = live.length;
   const words = ['zero', 'once', 'twice', 'three times', 'four times', 'five times', 'six times'];
@@ -27,15 +32,15 @@ export default function HistoryPage() {
   return (
     <main className="main">
       <SourceChip source={d.source} />
-      <PageHeader crumbs={[{ label: 'Northwind Fitness' }, { label: 'Client proposals', to: '/know/waits' }, { label: 'Process history' }]} stamp={<DataStamp res={res} data={d} />} />
+      <PageHeader crumbs={CRUMBS} stamp={<DataStamp res={res} data={d} />} />
 
       <div>
-        <Kicker>Process history · client proposals · {versions.length} versions</Kicker>
+        <Kicker>Process history · {versions.length} versions</Kicker>
         <div className="headline-row">
           <h1 className="headline" style={{ marginTop: 12, lineHeight: 1.25 }}>{d.headline}</h1>
           <AskWhy source={d.source} lines={[
             `${versions.length} versions of the process; ${changes} changes live, ${pending ? '1 waiting for a yes' : 'none pending'}`,
-            baseline && baselineH != null && now != null ? `${fmt(baselineH)} per proposal at v${baseline.v} · ${fmt(now)} now` : '',
+            baseline && baselineH != null && now != null ? `${fmt(baselineH)} per case at v${baseline.v} · ${fmt(now)} now` : '',
             `Next loop run ${dayTime(d.next_run_at)}`,
           ].filter(Boolean)} />
         </div>

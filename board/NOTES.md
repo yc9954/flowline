@@ -7,19 +7,53 @@ Owner: board (web app). Questions here are for the integrator who owns `SCHEMA.m
 ```
 cd board
 pnpm install
-pnpm dev            # http://localhost:5173, proxies /api → http://localhost:8787
+pnpm dev            # http://localhost:5173, proxies /api → $FLOWLINE_API (default http://localhost:8787)
 pnpm build          # tsc -b && vite build → dist/ (served by the API in production)
 scripts/shots.sh fixture | api | 1280   # headless-Chrome renders into board/shots/
+node scripts/smoke.mjs http://localhost:5173   # Playwright: screenshots + route/empty-state/literal checks (uses ../video's playwright)
 ```
 
-Every page fetches `/api/boards/northwind/...`. If the request fails (API down, non-2xx, or the JSON lacks the
-arrays the page needs) it falls back to the matching file in `../fixtures` and the header stamp says
-`fixture · API offline` (or `· API shape mismatch`). Append `?fixtures=1` to any route to force fixture mode for
-QA. The stamp shows the API's `Date` header when the data came from the API.
+### Boards and routes
 
-Routes: `/decide/expand[?industry=NAICS]`, `/decide/opening`, `/improve/plans`, `/improve/results`,
-`/improve/history`, `/know/knowledge`, `/know/waits`, `/know/records[/:id]`, `/trust/model`, `/surfaces`.
-`/` redirects to `/know/waits`.
+The board on the URL decides everything: `/b/:boardId/...`. `src/lib/board.tsx` holds the `useBoard()` store
+(id, `/api/boards/{id}` prefix, `path()` for board-relative links) and `useBoardInfo()` (GET `/api/boards/{id}`:
+name, industry NAICS, people, records, has_data). Nothing about a company is a constant in the code; the industry
+words (label, "gyms"/"practices"/"cafés", the frontline role) come from the NAICS map in `src/lib/industry.ts`,
+with the code itself as the fallback label.
+
+| route | page |
+|---|---|
+| `/` | board list from `GET /api/boards` + "New company" form (`POST /api/boards`) |
+| `/b/:id` | → `/b/:id/know/waits` |
+| `/b/:id/know/waits` · `know/knowledge` · `know/records[/:rid]` | Know |
+| `/b/:id/decide/expand[?industry=NAICS]` · `decide/opening` | Decide |
+| `/b/:id/improve/plans` · `improve/results` · `improve/history` | Improve |
+| `/b/:id/trust/model` | Trust |
+| `/b/:id/run/fleet` · `/b/:id/people` | Run: agents on desks; people, add a person, invite codes |
+| `/b/:id/surfaces` | the hero (no sidebar) |
+| `/surfaces`, `/decide/*`, `/improve/*`, `/know/*`, `/trust/*`, `/run/*` | legacy: → `/b/northwind/<same path+query>` when `GET /api/boards` lists `northwind` (or cannot be reached); otherwise → `/` |
+
+The legacy redirect is what keeps `video/record_board.mjs` (`--base http://localhost:5173` + `/know/waits` …)
+and `scripts/shots.sh` recording without changes.
+
+### Three outcomes per page
+
+- **data** — the API answered; the stamp shows `recomputed <time>` / `fetched <time>`.
+- **empty** — the API answered 404 `{ "state": "no_data_yet" }` (or any 404 with a `state`): the page renders an
+  empty state from the board's counts ("No approved records yet — N people invited, M records so far; the first
+  fit runs …") with a link to `/people`. A 404 without a `state` means the board is unknown → "no board called …".
+- **offline** — unreachable, 5xx or the JSON lacks the arrays the page needs: "API offline" + Retry.
+
+Fixtures (`../fixtures`) render **only** with `?fixtures=1` (QA / recording); they are the demo's prototype data
+and never stand in for a real board.
+
+### Contract stub (dev only)
+
+`scripts/contractStub.ts` is a Vite middleware that answers the onboarding routes in memory while the API lacks
+them — `GET/POST /api/boards`, `GET /api/boards/{id}`, `GET/POST …/people`, `POST …/people/{pid}/invite` — and
+answers 404 `{state:"no_data_yet"}` for every data route of a board created through it. Each request is tried
+against the real API first (its 404 says "no API route for …"), so the stub steps aside route by route as the API
+implements them. `FLOWLINE_STUB=0` disables it. Boards created in the stub vanish on restart.
 
 ## Fixtures (`../fixtures/*.json`, all `"source": "prototype"`)
 

@@ -1,8 +1,11 @@
-// /run/fleet — six people, six Linux desks, one plan. Live frames from the executor (every 500 ms), the run state
-// from GET /api/boards/northwind/fleet (every 1 s). Click a card for the large view of that desk.
+// /b/:boardId/run/fleet — every person on the board and the desk their agent works at (a Linux desk, or their own
+// Mac). The run state comes from GET /api/boards/{id}/fleet (every 1 s); live frames only with ?frames=1.
+// Click a card for the large view of that desk.
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { API } from '../lib/api';
+import { useBoard } from '../lib/board';
+import { numberWord } from '../lib/industry';
 import { Kicker, PageHeader, Stamp } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import { EdgeGlow } from '../components/EdgeGlow';
 import { Check } from '../components/Icons';
 import './pages.css';
@@ -29,27 +32,42 @@ interface Fleet {
   events: FleetEvent[]; agent: string; fleet_enabled: boolean; skill_override?: string | null;
 }
 
-// one colour per desk, the glow's family: violet, blue, orange, teal, pink, lime
+// one colour per card, the glow's family: violet, blue, orange, teal, pink, lime (cycles when there are more people)
 const DESK_COLOURS = ['#6D5BD0', '#3B73FF', '#FF5F1F', '#0F766E', '#E0409A', '#84CC16'];
-const deskColour = (target: string) => DESK_COLOURS[(parseInt(target.replace(/\D/g, ''), 10) - 1 + DESK_COLOURS.length) % DESK_COLOURS.length] ?? DESK_COLOURS[0];
+const deskColour = (i: number) => DESK_COLOURS[((i % DESK_COLOURS.length) + DESK_COLOURS.length) % DESK_COLOURS.length];
+/** "desk3" stays "desk3"; a person whose agent runs on their own machine shows as such. */
+const targetLabel = (target: string) => (target === 'mac' ? 'their own Mac' : target);
 // the agent's coordinates live in its screenshot space (≤1280 wide; the bridge scales ×1.5 to the 1920×1080 desk)
 const VIEW_W = 1280, VIEW_H = 720;
 const STATE_LABEL: Record<State, string> = { waiting: 'waiting', running: 'running', left_for_you: 'left for you ✓', stopped: 'stopped', failed: 'failed' };
 const demoGlow = () => typeof location !== 'undefined' && new URLSearchParams(location.search).has('glow');
 
 // ---- polling ------------------------------------------------------------------------------------------------
-function useFleet(intervalMs = 1000): { data: Fleet | null; error: string | null; at: Date | null } {
+/** `empty` is set when the API answers 404 { state } for this board (nothing to run yet); `error` for everything else. */
+function useFleet(api: string, intervalMs = 1000): { data: Fleet | null; error: string | null; empty: string | null; at: Date | null; retry: () => void } {
   const [data, setData] = useState<Fleet | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [empty, setEmpty] = useState<string | null>(null);
   const [at, setAt] = useState<Date | null>(null);
+  const [tick, setTick] = useState(0);
   useEffect(() => {
     let alive = true, timer = 0;
     const poll = async () => {
       try {
-        const res = await fetch(`${API}/fleet`, { headers: { accept: 'application/json' } });
+        const res = await fetch(`${api}/fleet`, { headers: { accept: 'application/json' } });
+        if (res.status === 404) {
+          let body: unknown = null;
+          try { body = await res.json(); } catch { /* no body */ }
+          const b = body as { state?: string; detail?: string } | null;
+          if (b?.state) { if (alive) { setEmpty(b.state); setError(null); } }
+          else if (alive) setError(b?.detail && /no API route/i.test(b.detail) ? `${b.detail} (not implemented by this API)` : b?.state === undefined && b?.detail ? b.detail : 'HTTP 404');
+          if (alive) timer = window.setTimeout(poll, Math.max(intervalMs, 5000));
+          return;
+        }
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const d = (await res.json()) as Fleet;
-        if (alive) { setData(d); setError(null); setAt(new Date()); }
+        if (!Array.isArray(d?.people)) throw new Error('unexpected shape from the API');
+        if (alive) { setData(d); setError(null); setEmpty(null); setAt(new Date()); }
       } catch (e) {
         if (alive) setError(e instanceof Error ? e.message : String(e));
       }
@@ -57,8 +75,8 @@ function useFleet(intervalMs = 1000): { data: Fleet | null; error: string | null
     };
     poll();
     return () => { alive = false; window.clearTimeout(timer); };
-  }, [intervalMs]);
-  return { data, error, at };
+  }, [api, intervalMs, tick]);
+  return { data, error, empty, at, retry: () => setTick((t) => t + 1) };
 }
 
 /** The board never shows a person's screen. Live frames exist only for the filming rig / development (?frames=1);
@@ -126,10 +144,11 @@ function StepRail({ steps }: { steps: RunStep[] }) {
   );
 }
 
+/** Before a run exists the rail shows the skill's generic shape; the run's own steps replace it the moment it starts. */
 function placeholderSteps(skill: string): RunStep[] {
   const labels = skill === 'fill_deck_from_sheet'
     ? ['READ THE SHEET', 'FILL THE DECK', 'CHECK THE TOTAL', 'LEAVE IT FOR YOU']
-    : ['READ THE QUOTES', 'UPDATE THE SHEET', 'FILL THE DECK', 'EXPORT FOR SIGNATURE', 'LEAVE IT FOR YOU'];
+    : ['READ THE INPUTS', 'DO THE WORK', 'CHECK THE RESULT', 'LEAVE IT FOR YOU'];
   return labels.map((label, i) => ({ n: i + 1, label, detail: '', status: 'pending' as const }));
 }
 
@@ -157,15 +176,15 @@ function pointerState(run: Run | null): { x: number; y: number; key: string; kin
 }
 
 /** ?glow=1: a stand-in run with one click per desk, so pointers can be recorded without live runs. */
-function demoRun(target: string): Run {
-  const n = parseInt(target.replace(/\D/g, ''), 10) || 1;
+function demoRun(target: string, i: number): Run {
+  const n = parseInt(target.replace(/\D/g, ''), 10) || i + 1;
   const x = 300 + ((n * 173) % 700), y = 160 + ((n * 97) % 420);
   return { id: `demo-${target}`, skill_id: 'demo', target, status: 'running', started_at: '', elapsed_s: 0, steps: [], checks: [],
     recent_actions: [{ at_s: n, kind: 'computer.left_click', text: `left_click ${x},${y}`, x, y }] };
 }
 
 /** Labelled agent pointer over a live frame (multiplayer-canvas style). Transform/opacity only. */
-function AgentCursor({ run, role, target, visible, size = 18 }: { run: Run | null; role: string; target: string; visible: boolean; size?: number }) {
+function AgentCursor({ run, role, colour, visible, size = 18 }: { run: Run | null; role: string; colour: string; visible: boolean; size?: number }) {
   const box = useRef<HTMLDivElement>(null);
   const [dims, setDims] = useState({ w: 0, h: 0 });
   const [echo, setEcho] = useState<string | null>(null);
@@ -186,7 +205,6 @@ function AgentCursor({ run, role, target, visible, size = 18 }: { run: Run | nul
     if (p.kind.endsWith('click')) setPulse((n) => n + 1);
     if (p.typed) { setEcho(p.typed); const id = window.setTimeout(() => setEcho(null), 1500); return () => window.clearTimeout(id); }
   }, [p?.key]); // eslint-disable-line react-hooks/exhaustive-deps
-  const colour = deskColour(target);
   const show = visible && !!p && dims.w > 0;
   const x = p ? (p.x / VIEW_W) * dims.w : 0, y = p ? (p.y / VIEW_H) * dims.h : 0;
   const flip = p ? p.x / VIEW_W > 0.5 : false;  // the pill is ~140 px wide at card scale
@@ -201,20 +219,21 @@ function AgentCursor({ run, role, target, visible, size = 18 }: { run: Run | nul
   );
 }
 
-function DeskCard({ row, glow, onOpen }: { row: FleetRow; glow: boolean; onOpen: () => void }) {
+function DeskCard({ row, i, glow, onOpen }: { row: FleetRow; i: number; glow: boolean; onOpen: () => void }) {
   const { person, run, state, suggestion } = row;
-  const steps = run?.steps?.length ? run.steps : placeholderSteps(person.skill_id);
+  const steps = run?.steps?.length ? run.steps : placeholderSteps(person.skill_id ?? '');
   const cur = currentStep(steps, run);
   const done = steps.filter((s) => s.status === 'done').length;
   const title = run?.title ?? suggestion?.title?.replace(/\?$/, '') ?? '—';
   const frameState = state === 'left_for_you' ? 'done' : state;
+  const onMac = person.target === 'mac';
   return (
-    <button type="button" className={`fleet-card is-${frameState}`} data-fleet-card data-target={person.target} data-person={person.id} data-state={state} onClick={onOpen} aria-label={`${person.name}, ${person.role}, ${person.target}: ${STATE_LABEL[state]}`}>
+    <button type="button" className={`fleet-card is-${frameState}`} data-fleet-card data-target={person.target} data-person={person.id} data-state={state} onClick={onOpen} aria-label={`${person.name}, ${person.role}, ${targetLabel(person.target)}: ${STATE_LABEL[state]}`}>
       <div className={`frame-wrap ${frameState}`}>
-        {showFrames() ? <LiveFrame target={person.target} width={960} /> : <DeskPlaceholder role={person.role} state={state} />}
+        {showFrames() && !onMac ? <LiveFrame target={person.target} width={960} /> : <DeskPlaceholder role={person.role} state={state} />}
         <EdgeGlow active={glow} thickness={26} />
-        {showFrames() && <AgentCursor run={run ?? (glow ? demoRun(person.target) : null)} role={person.role} target={person.target} visible={glow || state === 'running'} size={18} />}
-        <span className="desk-tag">{person.target}</span>
+        {showFrames() && !onMac && <AgentCursor run={run ?? (glow ? demoRun(person.target, i) : null)} role={person.role} colour={deskColour(i)} visible={glow || state === 'running'} size={18} />}
+        <span className="desk-tag">{targetLabel(person.target)}</span>
         <StateChip state={state} />
       </div>
       <div className="fleet-who">
@@ -236,10 +255,11 @@ function DeskCard({ row, glow, onOpen }: { row: FleetRow; glow: boolean; onOpen:
   );
 }
 
-function BigView({ row, events, glow, onClose }: { row: FleetRow; events: FleetEvent[]; glow: boolean; onClose: () => void }) {
+function BigView({ row, i, events, glow, onClose }: { row: FleetRow; i: number; events: FleetEvent[]; glow: boolean; onClose: () => void }) {
   const { person, run, state, suggestion } = row;
-  const steps = run?.steps?.length ? run.steps : placeholderSteps(person.skill_id);
+  const steps = run?.steps?.length ? run.steps : placeholderSteps(person.skill_id ?? '');
   const frameState = state === 'left_for_you' ? 'done' : state;
+  const onMac = person.target === 'mac';
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', onKey);
@@ -247,18 +267,18 @@ function BigView({ row, events, glow, onClose }: { row: FleetRow; events: FleetE
   }, [onClose]);
   const mine = events.filter((e) => e.person_id === person.id).slice(0, 14);
   return (
-    <div className="fleet-big" data-fleet-big data-target={person.target} role="dialog" aria-label={`${person.target} — ${person.name}`}>
+    <div className="fleet-big" data-fleet-big data-target={person.target} role="dialog" aria-label={`${targetLabel(person.target)} — ${person.name}`}>
       <div className="stage">
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
-          <span className="label">{person.target} · {person.role}</span>
+          <span className="label">{targetLabel(person.target)} · {person.role}</span>
           <span style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em' }}>{person.name}</span>
           <span className="mono-11" style={{ marginLeft: 'auto' }}>{run ? `${mmss(run.elapsed_s)} · ${run.actions ?? 0} actions` : ''}</span>
           <StateChip state={state} />
         </div>
         <div className={`frame-wrap ${frameState}`}>
-          {showFrames() ? <LiveFrame target={person.target} width={1920} /> : <DeskPlaceholder role={person.role} state={state} big />}
+          {showFrames() && !onMac ? <LiveFrame target={person.target} width={1920} /> : <DeskPlaceholder role={person.role} state={state} big />}
           <EdgeGlow active={glow} thickness={70} />
-          {showFrames() && <AgentCursor run={run ?? (glow ? demoRun(person.target) : null)} role={person.role} target={person.target} visible={glow || state === 'running'} size={26} />}
+          {showFrames() && !onMac && <AgentCursor run={run ?? (glow ? demoRun(person.target, i) : null)} role={person.role} colour={deskColour(i)} visible={glow || state === 'running'} size={26} />}
         </div>
         <div className="last-action" style={{ fontSize: 12 }}>{run?.last_action ?? <span className="dim">no action yet</span>}</div>
       </div>
@@ -266,7 +286,7 @@ function BigView({ row, events, glow, onClose }: { row: FleetRow; events: FleetE
         <div>
           <div className="label" style={{ marginBottom: 6 }}>Run</div>
           <div style={{ fontSize: 15, fontWeight: 600, lineHeight: 1.3 }}>{run?.title ?? suggestion?.title ?? '—'}</div>
-          <div className="mono-11" style={{ marginTop: 4 }}>{run ? `${run.skill_id} · ${run.id}` : suggestion ? `${suggestion.skill_id} · ${suggestion.status}` : person.skill_id}</div>
+          <div className="mono-11" style={{ marginTop: 4 }}>{run ? `${run.skill_id} · ${run.id}` : suggestion ? `${suggestion.skill_id} · ${suggestion.status}` : person.skill_id || 'no skill offered yet'}</div>
         </div>
         <ol className="steps-v">
           {steps.map((s) => (
@@ -304,38 +324,46 @@ function BigView({ row, events, glow, onClose }: { row: FleetRow; events: FleetE
 }
 
 // ---- page ---------------------------------------------------------------------------------------------------
+const CRUMBS = [{ label: 'Run' }, { label: 'Agents on desks' }];
+
 export default function FleetPage() {
-  const { data, error, at } = useFleet(1000);
+  const { api } = useBoard();
+  const { data, error, empty, at, retry } = useFleet(api, 1000);
   const [open, setOpen] = useState<string | null>(null);
   const close = useCallback(() => setOpen(null), []);
   const demo = demoGlow();
   if (!data) {
+    if (empty) return <NotReady res={{ kind: 'empty', state: empty, retry }} crumbs={CRUMBS} what="agents on desks" className="main canvas" />;
+    if (error) return <NotReady res={{ kind: 'offline', error: `${error} — the fleet needs the API started with FLOWLINE_FLEET=1`, status: 0, retry }} crumbs={CRUMBS} what="the fleet" className="main canvas" />;
     return (
       <main className="main canvas">
-        <PageHeader crumbs={[{ label: 'Northwind Fitness' }, { label: 'Client proposals', to: '/know/waits' }, { label: 'Agents on desks' }]} stamp={<Stamp origin={error ? 'fixture' : 'api'} error={error ?? undefined} label="live" />} />
-        <div className="loading">{error ? `fleet API offline (${error}) — start the API with FLOWLINE_FLEET=1` : 'connecting to the fleet…'}</div>
+        <PageHeader crumbs={CRUMBS} stamp={<Stamp origin="api" label="live" />} />
+        <div className="loading">connecting to the fleet…</div>
       </main>
     );
   }
   const c = data.counters;
   const rows = data.people;
-  const big = open ? rows.find((r) => r.person.target === open) ?? null : null;
+  const desks = rows.filter((r) => r.person.target !== 'mac').length, macs = rows.length - desks;
+  const bigIdx = open ? rows.findIndex((r) => r.person.id === open) : -1;
+  const big = bigIdx >= 0 ? rows[bigIdx] : null;
+  const where = desks && macs ? `${numberWord(desks)} ${desks === 1 ? 'desk' : 'desks'} and ${numberWord(macs)} ${macs === 1 ? 'Mac' : 'Macs'}` : desks ? `${numberWord(desks)} ${desks === 1 ? 'desk' : 'desks'}` : `${numberWord(macs)} ${macs === 1 ? 'Mac' : 'Macs'}`;
   const headline = c.running > 0
     ? `${c.running} ${c.running === 1 ? 'desk is' : 'desks are'} working. ${c.done > 0 ? `${c.done} left for people to check.` : 'Nothing is saved until someone looks.'}`
     : c.done > 0
       ? `${c.done} of ${rows.length} runs left for people to check. Nothing was saved by an agent.`
-      : 'Six people, six desks, one yes.';
+      : rows.length === 0 ? 'Nobody on this board yet — invite people first.' : `${numberWord(rows.length)[0].toUpperCase()}${numberWord(rows.length).slice(1)} ${rows.length === 1 ? 'person' : 'people'}, ${where}, one yes.`;
   return (
     <main className="main canvas" style={{ minHeight: '100vh' }}>
-      <PageHeader crumbs={[{ label: 'Northwind Fitness' }, { label: 'Client proposals', to: '/know/waits' }, { label: 'Agents on desks' }]} stamp={<Stamp origin={error ? 'fixture' : 'api'} error={error ?? undefined} at={at ?? undefined} label="live" extra={data.skill_override ? `override ${data.skill_override}` : undefined} />} />
+      <PageHeader crumbs={CRUMBS} stamp={<Stamp origin={error ? 'offline' : 'api'} error={error ?? undefined} at={at ?? undefined} label="live" extra={data.skill_override ? `override ${data.skill_override}` : undefined} />} />
       <div>
-        <Kicker>Run · agents on desks · {rows.length} people · {data.fleet_enabled ? 'pre-approved runs start together' : 'one run at a time'}</Kicker>
+        <Kicker>Run · agents on desks · {rows.length} {rows.length === 1 ? 'person' : 'people'} · {data.fleet_enabled ? 'pre-approved runs start together' : 'one run at a time'}</Kicker>
         <h1 className="headline" style={{ marginTop: 10, fontSize: 26 }} data-fleet-headline>{headline}</h1>
       </div>
 
       <div className="fleet-layout">
-        <section className="fleet-grid" data-fleet-grid aria-label="Six desks">
-          {rows.map((r) => <DeskCard key={r.person.id} row={r} glow={demo || r.state === 'running'} onOpen={() => setOpen(r.person.target)} />)}
+        <section className="fleet-grid" data-fleet-grid aria-label="Desks">
+          {rows.map((r, i) => <DeskCard key={r.person.id} row={r} i={i} glow={demo || r.state === 'running'} onOpen={() => setOpen(r.person.id)} />)}
         </section>
 
         <aside className="fleet-rail" data-fleet-rail aria-label="Live events and counters">
@@ -353,7 +381,7 @@ export default function FleetPage() {
               {data.events.map((e, i) => (
                 <li key={`${e.person_id}-${e.at ?? ''}-${i}`}>
                   <span className="t">{clock(e.at) || (e.at_s != null ? mmss(e.at_s) : '')}</span>
-                  <span className="who" title={e.name}>{e.target}</span>
+                  <span className="who" title={`${e.name} · ${targetLabel(e.target)}`}>{e.target === 'mac' ? e.name.split(/\s+/)[0] : e.target}</span>
                   <span className={`what ${e.kind === 'step' ? 'step' : ''}`} title={e.text}>{e.text}</span>
                 </li>
               ))}
@@ -363,7 +391,7 @@ export default function FleetPage() {
         </aside>
       </div>
 
-      {big && <BigView row={big} events={data.events} glow={demo || big.state === 'running'} onClose={close} />}
+      {big && <BigView row={big} i={bigIdx} events={data.events} glow={demo || big.state === 'running'} onClose={close} />}
     </main>
   );
 }

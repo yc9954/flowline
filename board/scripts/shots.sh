@@ -24,15 +24,15 @@ shot() { # name route [width]
     --window-size="${w},${H}" --screenshot="$OUT/${name}${SUF}.png" "$url" >/dev/null 2>&1 || echo "failed: $route"
   echo "shot ${name}${SUF} (${w}x${H}) <- $url"
 }
-shot decide-expand    /decide/expand
-shot decide-expand-coffee "/decide/expand?industry=722515"
-shot decide-opening   /decide/opening
-shot improve-plans    /improve/plans
-shot improve-results  /improve/results
-shot improve-history  /improve/history
-if [ "$MODE" = "1280" ]; then shot know-knowledge /know/knowledge; else shot know-knowledge /know/knowledge 2000; fi
-shot know-waits       /know/waits
-shot know-records     /know/records
-shot know-record-open /know/records/1106-0412
-shot trust-model      /trust/model
-shot surfaces         /surfaces
+shot decide-expand /b/northwind/decide/expand
+shot decide-expand-coffee "/b/northwind/decide/expand?industry=722515"
+shot decide-opening /b/northwind/decide/opening
+shot improve-plans /b/northwind/improve/plans
+shot improve-results /b/northwind/improve/results
+shot improve-history /b/northwind/improve/history
+if [ "$MODE" = "1280" ]; then shot know-knowledge /b/northwind/know/knowledge; else shot know-knowledge /b/northwind/know/knowledge 2000; fi
+shot know-waits /b/northwind/know/waits
+shot know-records /b/northwind/know/records
+shot know-record-open /b/northwind/know/records/1106-0412
+shot trust-model /b/northwind/trust/model
+shot surfaces /b/northwind/surfaces

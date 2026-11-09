@@ -1,7 +1,9 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useExpansion } from '../lib/api';
 import { dayMon, int, signed1, signedInt } from '../lib/format';
-import { AskWhy, Kicker, Loading, DataStamp, NextLink, SourceChip, StackedHeader, Stat, Verdict } from '../components/Chrome';
+import { industry as industryWords } from '../lib/industry';
+import { AskWhy, BLink, Kicker, Loading, DataStamp, NextLink, SourceChip, StackedHeader, Stat, Verdict } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import { BUCKETS, HexMap } from '../components/HexMap';
 import './pages.css';
 
@@ -10,6 +12,7 @@ export default function ExpandPage() {
   const industry = params.get('industry') ?? undefined;
   const res = useExpansion(industry);
   if (!res) return <main className="main tight"><Loading what="expansion" /></main>;
+  if (res.kind !== 'data') return <NotReady res={res} crumbs={[{ label: 'Expansion' }, { label: 'Where to open next' }]} what="expansion" className="main tight" />;
   const d = res.data;
   const zips = [...d.zips].sort((a, b) => a.rank - b.rank);
   const top = zips.filter((z) => z.rank <= 5);
@@ -24,19 +27,21 @@ export default function ExpandPage() {
   const ties = bt.by_industry.filter((b) => b.verdict === 'tie');
   const cur = bt.by_industry.find((b) => b.naics === d.industry);
   const indName = d.industries.find((i) => i.naics === d.industry)?.name ?? d.industry;
+  const words = industryWords(d.industry);
+  const sitesWord = words.known ? words.sites : indName.toLowerCase();  // "gyms", "practices", "cafés"…
   const movedUp = Math.round((new Date(d.opening.was).getTime() - new Date(d.opening.date).getTime()) / 86400000);
 
   return (
     <main className="main tight">
       <SourceChip source={d.source} />
       <StackedHeader
-        crumbs={[{ label: 'Northwind Fitness' }, { label: 'Expansion' }, { label: 'Where to open next' }]}
+        crumbs={[{ label: 'Expansion' }, { label: 'Where to open next' }]}
         stamp={<DataStamp res={res} data={d} />}
         title={`Where to open next · ${d.city}`}
         right={`${d.zips_considered} ZIPs · ${d.branches} branches · ${int(d.records)} records`}
       >
         {d.industries.map((i) => (
-          <Link key={i.naics} to={`/decide/expand?industry=${i.naics}`} className={`tab${i.naics === d.industry ? ' on' : ''}`} aria-pressed={i.naics === d.industry}>{i.name} · {i.naics}</Link>
+          <BLink key={i.naics} to={`/decide/expand?industry=${i.naics}`} className={`tab${i.naics === d.industry ? ' on' : ''}`} aria-pressed={i.naics === d.industry}>{i.name} · {i.naics}</BLink>
         ))}
       </StackedHeader>
 
@@ -67,7 +72,7 @@ export default function ExpandPage() {
             <div>
               <div style={{ display: 'flex', gap: 2 }}>{BUCKETS.map((c) => <span key={c} style={{ flex: 1, height: 8, background: c }} />)}</div>
               <div className="mono" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 3, fontSize: 9, color: 'var(--muted)' }}><span>0</span><span>+1</span><span>+2</span><span>+3</span><span>+4</span></div>
-              <div style={{ marginTop: 4, fontSize: 11, lineHeight: '15px', color: 'var(--muted)' }}>Predicted net new {indName.toLowerCase() === 'fitness' ? 'gyms' : indName.toLowerCase()}, {bt.frozen_at} → {bt.scored_on}</div>
+              <div style={{ marginTop: 4, fontSize: 11, lineHeight: '15px', color: 'var(--muted)' }}>Predicted net new {sitesWord}, {bt.frozen_at} → {bt.scored_on}</div>
             </div>
             <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 10, paddingTop: 8, borderTop: '1px solid var(--muted-2)', fontSize: 11, color: 'var(--muted)' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><span style={{ width: 12, height: 12, border: '2px solid #171717', background: '#3B73FF', borderRadius: 2 }} />pick</span>

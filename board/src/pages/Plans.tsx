@@ -1,18 +1,22 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { approvePlan, usePlans } from '../lib/api';
+import { useBoard } from '../lib/board';
 import { h1, niceTicks, pct, signedPct } from '../lib/format';
-import { AskWhy, Kicker, Loading, DataStamp, PageHeader, SourceChip, Verdict } from '../components/Chrome';
+import { AskWhy, BLink, Kicker, Loading, DataStamp, PageHeader, SourceChip, Verdict } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import { ArrowRight, Check } from '../components/Icons';
 import './pages.css';
 
 const COLS = '26px minmax(0, 236px) minmax(0, 1fr) 56px 64px';
+const CRUMBS = [{ label: 'Improve' }, { label: 'Plans to test' }];
 
 export default function PlansPage() {
+  const { api } = useBoard();
   const res = usePlans();
   const [approved, setApproved] = useState<{ id: string; ok: boolean; msg: string } | null>(null);
   const [busy, setBusy] = useState(false);
   if (!res) return <main className="main"><Loading what="plans" /></main>;
+  if (res.kind !== 'data') return <NotReady res={res} crumbs={CRUMBS} what="plans" />;
   const d = res.data;
   // tolerate partial plan objects from a stub API: default what the design needs
   const plans = [...d.plans]
@@ -35,16 +39,16 @@ export default function PlansPage() {
 
   async function onApprove() {
     setBusy(true);
-    const r = await approvePlan(best.id);
+    const r = await approvePlan(api, best.id);
     setBusy(false);
     if (r.ok) setApproved({ id: best.id, ok: true, msg: `Plan ${best.rank} approved. Each change goes only to ${best.who.filter((w) => !/nothing/i.test(w.change)).map((w) => `the ${w.role}`).join(' and ')}.` });
-    else setApproved({ id: best.id, ok: false, msg: r.status === 0 ? 'API offline — nothing was sent. Start the API on 8787 and try again.' : `The API answered ${r.status}; nothing was changed.` });
+    else setApproved({ id: best.id, ok: false, msg: r.status === 0 ? 'API offline — nothing was sent. Try again when the API is back.' : `The API answered ${r.status}; nothing was changed.` });
   }
 
   return (
     <main className="main">
       <SourceChip source={d.source} />
-      <PageHeader crumbs={[{ label: 'Northwind Fitness' }, { label: 'Client proposals', to: '/know/waits' }, { label: 'Plans to test' }]} stamp={<DataStamp res={res} data={d} />} />
+      <PageHeader crumbs={CRUMBS} stamp={<DataStamp res={res} data={d} />} />
 
       <div>
         <Kicker>{plans.length} plans · same team, same {d.weeks} weeks, same luck · {d.reruns} reruns</Kicker>
@@ -53,7 +57,7 @@ export default function PlansPage() {
           <AskWhy source={d.source} lines={[
             `${plans.length} plans replayed on the same team, the same ${d.weeks} weeks of requests, the same luck`,
             `${d.reruns} reruns per plan with new luck; the best plan held in ${best.held_best_n} of ${d.reruns}`,
-            `Today: ${h1(d.today_h)} per proposal · best plan: ${h1(best.hours)} (${best.range_h[0]}–${best.range_h[1]} across reruns)`,
+            `Today: ${h1(d.today_h)} per case · best plan: ${h1(best.hours)} (${best.range_h[0]}–${best.range_h[1]} across reruns)`,
           ]} />
         </div>
         <p className="sub">Every plan replays the same requests and meetings. Only the plan changes, so the gap is the plan.</p>
@@ -97,7 +101,7 @@ export default function PlansPage() {
               );
             })}
             <div className="trow plan-foot" style={{ gridTemplateColumns: COLS, columnGap: 14 }}>
-              <span /><span className="label" style={{ alignSelf: 'center' }}>Hours per proposal</span>
+              <span /><span className="label" style={{ alignSelf: 'center' }}>Hours per case</span>
               <div style={{ position: 'relative' }}>
                 {ticks.map((v) => {
                   const x = (v / max) * 100;
@@ -144,7 +148,7 @@ export default function PlansPage() {
       </div>
 
       <Verdict strong={`Plan ${best.rank} wins on the same team, with the same luck.`} rest={runnerUp ? `The next best plan is ${(runnerUp.hours - best.hours).toFixed(1)} h slower; nothing changes until you approve.` : 'Nothing changes until you approve.'}>
-        <Link to="/know/waits" className="btn lg">Back to where work waits</Link>
+        <BLink to="/know/waits" className="btn lg">Back to where work waits</BLink>
       </Verdict>
     </main>
   );

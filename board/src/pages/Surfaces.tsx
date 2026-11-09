@@ -1,26 +1,39 @@
 // "One knowledge, many surfaces" hero (Surfaces.dc.html, §11). A fixed 1440×900 stage scaled to the viewport.
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useExpansion, useOntology, useRecordCount, useSurfaces } from '../lib/api';
+import { useBoard, useBoardName } from '../lib/board';
 import { int, longDate, hhmm, signed1 } from '../lib/format';
-import { Loading, SourceChip } from '../components/Chrome';
+import { capitalize, industry, numberWord } from '../lib/industry';
+import { BLink, Loading, SourceChip } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import { HexMap } from '../components/HexMap';
 import { Logo } from '../components/Icons';
 import './Surfaces.css';
 
+const CRUMBS = [{ label: 'Surfaces' }];
+
 export default function SurfacesPage() {
+  const { id } = useBoard();
+  const { name, board } = useBoardName();
   const s = useSurfaces();
   const o = useOntology();
   const x = useExpansion();
-  const m = useRecordCount();
+  const m = useRecordCount(board?.records);
   const [scale, setScale] = useState(1);
   useEffect(() => {
     const upd = () => setScale(Math.min(1, window.innerWidth / 1440));
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
-  if (!s || !o || !x || m == null) return <main className="main"><Loading what="surfaces" /></main>;
+  if (!s || !o || !x) return <main className="main"><Loading what="surfaces" /></main>;
+  // the hero needs all three files; the first one that is not data decides what to show instead
+  if (s.kind !== 'data') return <div className="shell"><NotReady res={s} crumbs={CRUMBS} what="surfaces" /></div>;
+  if (o.kind !== 'data') return <div className="shell"><NotReady res={o} crumbs={CRUMBS} what="company knowledge" /></div>;
+  if (x.kind !== 'data') return <div className="shell"><NotReady res={x} crumbs={CRUMBS} what="expansion" /></div>;
   const d = s.data, ont = o.data, exp = x.data;
   const c = ont.counts;
+  const words = industry(board?.industry ?? exp.industry);
+  const people = board?.people ?? 0;
+  const source = d.source ?? ont.source ?? 'measured';
   const lead = d.expansion_lead.slice().sort((a, b) => a.rank - b.rank);
   const predicted = (zip: string) => exp.zips.find((z) => z.zip === zip)?.predicted;
   const nodes = [
@@ -38,12 +51,12 @@ export default function SurfacesPage() {
 
   return (
     <div className="sf-root" style={{ height: 900 * scale }}>
-      <SourceChip source={d.source ?? ont.source} />
+      <SourceChip source={source} />
       <div className="sf-stage" style={{ transform: `scale(${scale})` }}>
         <div style={{ position: 'absolute', left: 72, top: 44, right: 72, display: 'flex', alignItems: 'flex-end', gap: 40 }}>
           <div style={{ flex: 1 }}>
-            <div className="kicker"><span className="label">Northwind Fitness · 8 people · {c.branches} gyms · simulated</span><span className="hair" /></div>
-            <h1 style={{ margin: '14px 0 0', fontSize: 40, fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.15 }}>Eight people. One knowledge. Five different surfaces.</h1>
+            <div className="kicker"><span className="label">{name}{people ? ` · ${people} people` : ''} · {c.branches} {c.branches === 1 ? words.site : words.sites} · {source}</span><span className="hair" /></div>
+            <h1 style={{ margin: '14px 0 0', fontSize: 40, fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.15 }}>{people ? `${capitalize(numberWord(people))} people.` : 'One company.'} One knowledge. Five different surfaces.</h1>
           </div>
           <p style={{ width: 380, fontSize: 15, lineHeight: '24px', color: 'var(--muted)' }}>Multiplayer isn’t everyone in one room. It’s everyone’s work in one knowledge — and nobody has to open a dashboard for it to work.</p>
         </div>
@@ -63,11 +76,11 @@ export default function SurfacesPage() {
               <div key={n.label} className="sf-node" style={{ left: n.x, top: n.y }}><span style={{ width: 10, height: 10, borderRadius: n.r, background: n.color }} />{n.label}<span className="mono-10">{int(n.n)}</span></div>
             ))}
             <div style={{ position: 'absolute', left: 140, top: 112, transform: 'translate(-50%, -50%)', background: '#171717', color: '#fff', padding: '7px 10px', borderRadius: 3, textAlign: 'center' }}>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: 'rgba(255,255,255,0.6)' }}>FLOWLINE-1</div><div style={{ fontSize: 12, fontWeight: 600 }}>Northwind</div>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: 'rgba(255,255,255,0.6)' }}>FLOWLINE-1</div><div style={{ fontSize: 12, fontWeight: 600, maxWidth: 96, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name.split(/\s+/)[0]}</div>
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', borderTop: '1px solid var(--border)', paddingTop: 10, marginTop: 4 }}>
-            <div><div className="num" style={{ fontSize: 20 }}>{int(m)}</div><div className="label-9">records</div></div>
+            <div><div className="num" style={{ fontSize: 20 }}>{m != null ? int(m) : '—'}</div><div className="label-9">records</div></div>
             <div><div className="num" style={{ fontSize: 20 }}>{int(c.zip_areas)}</div><div className="label-9">ZIP areas</div></div>
             <div><div className="num" style={{ fontSize: 20 }}>0</div><div className="label-9">screens shared</div></div>
           </div>
@@ -82,11 +95,11 @@ export default function SurfacesPage() {
             <div className="num" style={{ textAlign: 'center', fontSize: 54, letterSpacing: '-0.02em', lineHeight: 1.05 }}>7:40</div>
             <div style={{ position: 'absolute', left: 9, right: 9, top: 150, background: 'rgba(255,255,255,0.94)', color: '#000', borderRadius: 16, padding: '10px 11px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, color: 'var(--muted)' }}><span style={{ width: 16, height: 16, borderRadius: 4, background: '#000', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Logo size={10} width={3} /></span>FLOWLINE<span style={{ marginLeft: 'auto' }}>now</span></div>
-              <div style={{ fontSize: 12.5, fontWeight: 600, marginTop: 6, lineHeight: 1.3 }}>Next club · {lead[0]?.zip ?? '—'}</div>
+              <div style={{ fontSize: 12.5, fontWeight: 600, marginTop: 6, lineHeight: 1.3 }}>Next {words.site} · {lead[0]?.zip ?? '—'}</div>
               <div style={{ fontSize: 11.5, lineHeight: 1.38, marginTop: 2, color: 'var(--ink-2)' }}>{d.ceo_line}</div>
             </div>
             <div style={{ position: 'absolute', left: 15, right: 15, top: 292, background: 'rgba(255,255,255,0.55)', color: '#000', borderRadius: 14, padding: '8px 10px', opacity: 0.85 }}>
-              <div style={{ fontSize: 10, color: 'var(--muted)' }}>CALENDAR · 08:00</div><div style={{ fontSize: 11, fontWeight: 600, marginTop: 2 }}>Ops sync · Club 2</div>
+              <div style={{ fontSize: 10, color: 'var(--muted)' }}>CALENDAR · 08:00</div><div style={{ fontSize: 11, fontWeight: 600, marginTop: 2 }}>Ops sync · all {words.sites}</div>
             </div>
             <span style={{ position: 'absolute', left: 22, bottom: 26, width: 34, height: 34, borderRadius: '50%', background: 'rgba(255,255,255,0.18)' }} />
             <span style={{ position: 'absolute', right: 22, bottom: 26, width: 34, height: 34, borderRadius: '50%', background: 'rgba(255,255,255,0.18)' }} />
@@ -95,8 +108,8 @@ export default function SurfacesPage() {
         </section>
         <Caption left={72} top={616} width={196} who="CEO" what="One line on the phone. No dashboard." tag="gets · one line" />
 
-        {/* Trainer notch */}
-        <section data-surface aria-label="Trainer: laptop notch" className="sf-laptop" style={{ left: 302, top: 196, width: 220, height: 132 }}>
+        {/* Frontline notch: the person on the floor (trainer, physician, barista…) */}
+        <section data-surface aria-label={`${words.frontline}: laptop notch`} className="sf-laptop" style={{ left: 302, top: 196, width: 220, height: 132 }}>
           <div className="sf-laptop-screen">
             <div style={{ height: 10, background: 'rgba(255,255,255,0.7)' }} />
             <div className="sf-notch" style={{ width: 176 }}>
@@ -108,7 +121,7 @@ export default function SurfacesPage() {
           </div>
         </section>
         <div style={{ position: 'absolute', left: 290, top: 328, width: 244, height: 8, background: '#2a2f36', borderRadius: '0 0 6px 6px' }} />
-        <Caption left={302} top={336} width={220} who="Trainer" what="Nothing all day. Two minutes at 18:00." tag="gives · day record" />
+        <Caption left={302} top={336} width={220} who={words.frontline} what="Nothing all day. Two minutes at 18:00." tag="gives · day record" />
 
         {/* Finance inbox */}
         <section data-surface aria-label="Finance: inbox" className="sf-inbox">
@@ -138,7 +151,7 @@ export default function SurfacesPage() {
         <section data-surface aria-label="Expansion lead: browser" className="sf-browser">
           <div style={{ height: 28, flex: '0 0 28px', display: 'flex', alignItems: 'center', gap: 6, padding: '0 10px', borderBottom: '1px solid var(--muted-2)', background: '#f7f8f9' }}>
             <span className="sf-dot" /><span className="sf-dot" /><span className="sf-dot" />
-            <span className="mono" style={{ marginLeft: 10, flex: 1, height: 16, borderRadius: 4, background: '#fff', border: '1px solid var(--muted-2)', fontSize: 9, color: 'var(--muted)', display: 'flex', alignItems: 'center', padding: '0 6px' }}>flowline.app/northwind/expand</span>
+            <span className="mono" style={{ marginLeft: 10, flex: 1, height: 16, borderRadius: 4, background: '#fff', border: '1px solid var(--muted-2)', fontSize: 9, color: 'var(--muted)', display: 'flex', alignItems: 'center', padding: '0 6px' }}>flowline.app/{id}/expand</span>
           </div>
           <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
             <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
@@ -151,7 +164,7 @@ export default function SurfacesPage() {
                   <div key={l.zip} style={{ display: 'flex', alignItems: 'center', padding: '7px 0', borderTop: i === 0 ? '1px solid #171717' : '1px solid var(--muted-2)' }}><span className="mono-10" style={{ width: 14 }}>{l.rank}</span><span style={{ fontWeight: i === 0 ? 600 : 400 }}>{l.zip}</span>{predicted(l.zip) != null && <span className="mono" style={{ marginLeft: 'auto', fontSize: 11 }}>{signed1(predicted(l.zip)!)}</span>}</div>
                 ))}
               </div>
-              <div style={{ fontSize: 10, color: 'var(--muted)', marginTop: 8, lineHeight: 1.4 }}>New {industryName.toLowerCase() === 'fitness' ? 'gyms' : 'sites'} expected by ZIP · recomputed nightly</div>
+              <div style={{ fontSize: 10, color: 'var(--muted)', marginTop: 8, lineHeight: 1.4 }}>New {words.known ? words.sites : industryName.toLowerCase() || 'sites'} expected by ZIP · recomputed nightly</div>
             </div>
           </div>
         </section>
@@ -171,7 +184,7 @@ export default function SurfacesPage() {
           </div>
           <div className="sf-notch" style={{ width: 368, top: 4, borderRadius: '0 0 14px 14px', padding: '12px 14px 11px', display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 8, letterSpacing: 1, color: 'rgba(255,255,255,0.6)' }}><span className="sq s6" style={{ background: '#9d8cf0' }} />BLOCKER · CLUB 4 OPENING</div>
+              <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 8, letterSpacing: 1, color: 'rgba(255,255,255,0.6)' }}><span className="sq s6" style={{ background: '#9d8cf0' }} />BLOCKER · NEXT {words.site.toUpperCase()} OPENING</div>
               <div style={{ fontSize: 12, fontWeight: 600, marginTop: 3, lineHeight: 1.3 }}>{d.branch_mgr_blocker.title}</div>
             </div>
             {d.branch_mgr_blocker.actions.map((a, i) => <span key={a} className={`sf-btn ${i === 0 ? 'white' : 'ghost'}`} style={{ height: 22, fontSize: 10.5 }}>{a}</span>)}
@@ -185,7 +198,7 @@ export default function SurfacesPage() {
           <div><div className="label">Flowline-1 computes</div><div style={{ fontSize: 15, lineHeight: '23px', marginTop: 6 }}>The best next move — where to open, what to change — from your records plus what’s around each site. Every night.</div></div>
           <div><div className="label">Each person gets</div><div style={{ fontSize: 15, lineHeight: '23px', marginTop: 6 }}>Only the decision or task that is theirs, where they already are. The blocker clears; the plan moves.</div></div>
         </div>
-        <Link to="/know/waits" className="mono-10 sf-back">open the board →</Link>
+        <BLink to="/know/waits" className="mono-10 sf-back">open the board →</BLink>
       </div>
     </div>
   );
@@ -195,7 +208,7 @@ function Caption({ left, top, width, who, what, tag, link }: { left: number; top
   return (
     <div style={{ position: 'absolute', left, top, width }}>
       <div style={{ marginTop: 12 }}><div style={{ fontSize: 15, fontWeight: 600 }}>{who}</div><div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 2, lineHeight: '18px' }}>{what}</div></div>
-      <div className="label" style={{ marginTop: 6, color: '#5a48c0' }}>{link ? <Link to={link} style={{ color: 'inherit', textDecoration: 'none' }}>{tag}</Link> : tag}</div>
+      <div className="label" style={{ marginTop: 6, color: '#5a48c0' }}>{link ? <BLink to={link} style={{ color: 'inherit', textDecoration: 'none' }}>{tag}</BLink> : tag}</div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { layoutGraph, LANE_H, LANE_TOP, NODE_H, NODE_W, ROLE_COL } from '../lib/
 import { dayTime, h1, minutes, pct, roleColor, roleLabel } from '../lib/format';
 import type { OntNode } from '../lib/types';
 import { AskWhy, Loading, SourceChip, StackedHeader, Stamp } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import { KindGlyph } from '../components/Icons';
 import './Knowledge.css';
 
@@ -14,7 +15,7 @@ export default function KnowledgePage() {
   const [view, setView] = useState({ w: 0, h: 0, sx: 0, sy: 0 });
   const scroller = useRef<HTMLElement>(null);
 
-  const d = res?.data;
+  const d = res?.kind === 'data' ? res.data : undefined;
   useEffect(() => {
     if (d && selected == null) {
       const pick = d.nodes.find((n) => n.bottleneck) ?? d.nodes.find((n) => n.critical_path) ?? d.nodes[0];
@@ -40,6 +41,7 @@ export default function KnowledgePage() {
     fitted.current = true;
     if (L.naturalWidth > view.w) setZoom(Math.max(0.5, Math.floor((view.w / L.naturalWidth) * 20) / 20));
   }, [L, view.w]);
+  if (res && res.kind !== 'data') return <NotReady res={res} crumbs={[{ label: 'Know' }, { label: 'Company knowledge' }]} what="company knowledge" className="main canvas" />;
   if (!res || !d || !L) return <main className="main canvas"><Loading what="company knowledge" /></main>;
 
   const sel = selected ? d.nodes.find((n) => n.id === selected) ?? null : null;
@@ -56,9 +58,9 @@ export default function KnowledgePage() {
     <main className="main canvas">
       <SourceChip source={d.source} />
       <StackedHeader
-        crumbs={[{ label: 'Northwind Fitness' }, { label: 'Company knowledge' }, { label: 'Client proposals' }]}
+        crumbs={[{ label: 'Know' }, { label: 'Company knowledge' }]}
         stamp={<Stamp origin={res.origin} error={res.error} at={d.recomputed_at} extra={`v${d.version}`} />}
-        title={<>Company knowledge <span style={{ color: 'var(--muted)', fontWeight: 400 }}>· client proposals</span></>}
+        title={<>Company knowledge <span style={{ color: 'var(--muted)', fontWeight: 400 }}>· {d.records_used} records</span></>}
       >
         <span className="kn-legend">
           <span><KindGlyph kind="event" stroke="#171717" />event</span>

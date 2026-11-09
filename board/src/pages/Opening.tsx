@@ -1,6 +1,7 @@
 import { useOpening } from '../lib/api';
 import { dayMon, daysBetween, isoWeek, parseDate, roleColor, roleLabel, roleShort, wdDayMon, weekday } from '../lib/format';
 import { AskWhy, Kicker, Loading, DataStamp, NextLink, SourceChip, StackedHeader, Verdict } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import { AgentBadge, DigestIcon, InboxIcon, NotchIcon } from '../components/Icons';
 import './pages.css';
 
@@ -9,6 +10,7 @@ const LEFT = 272;
 export default function OpeningPage() {
   const res = useOpening();
   if (!res) return <main className="main tight"><Loading what="opening" /></main>;
+  if (res.kind !== 'data') return <NotReady res={res} crumbs={[{ label: 'Expansion', to: '/decide/expand' }, { label: 'Opening branch' }]} what="opening" className="main tight" />;
   const d = res.data;
 
   // timeline: from the Monday of the earliest start to the end of the week holding the latest end/opening
@@ -37,7 +39,7 @@ export default function OpeningPage() {
     <main className="main tight">
       <SourceChip source={d.source} />
       <StackedHeader
-        crumbs={[{ label: 'Northwind Fitness' }, { label: 'Expansion', to: '/decide/expand' }, { label: `Opening branch ${d.branch}` }]}
+        crumbs={[{ label: 'Expansion', to: '/decide/expand' }, { label: `Opening branch ${d.branch}` }]}
         stamp={<DataStamp res={res} data={d} />}
         title={`Opening branch ${d.branch} · ${d.zip}, ${d.name}`}
         right={`playbook from ${d.playbook_from} · ${d.steps} steps`}

@@ -1,17 +1,23 @@
 import { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { asRecordList, useRecords, withdrawRecord } from '../lib/api';
+import { useBoard, useBoardName } from '../lib/board';
 import { dayMonYear, hhmm, hhmmss, hoursMinutes, longDate, roleLabel } from '../lib/format';
 import type { WorkRecord } from '../lib/types';
-import { AskWhy, Kicker, Loading, DataStamp, NextLink, PageHeader, SourceChip, Verdict } from '../components/Chrome';
+import { AskWhy, BLink, Kicker, Loading, DataStamp, NextLink, PageHeader, SourceChip, Verdict } from '../components/Chrome';
+import { NotReady } from '../components/NotReady';
 import { Check, ShieldCheck } from '../components/Icons';
 import './Records.css';
+
+const CRUMBS = [{ label: 'Know' }, { label: 'Approved records' }];
 
 export default function RecordsPage() {
   const res = useRecords();
   const { id } = useParams();
+  const { path } = useBoard();
   const nav = useNavigate();
   if (!res) return <main className="main"><Loading what="records" /></main>;
+  if (res.kind !== 'data') return <NotReady res={res} crumbs={CRUMBS} what="approved records" />;
   const records = asRecordList(res.data).slice().sort((a, b) => (a.approved_at < b.approved_at ? 1 : -1));
   const open = id ? records.find((r) => r.id === id) : undefined;
   const people = new Set(records.map((r) => r.person_id)).size;
@@ -22,7 +28,7 @@ export default function RecordsPage() {
   return (
     <main className="main">
       <SourceChip source={source} />
-      <PageHeader crumbs={[{ label: 'Northwind Fitness' }, { label: 'Know' }, { label: 'Approved records' }]} stamp={<DataStamp res={res} data={{}} />} />
+      <PageHeader crumbs={CRUMBS} stamp={<DataStamp res={res} data={{}} />} />
 
       <div>
         <Kicker>Approved records · {records.length} on the board · {people} people · {days} days</Kicker>
@@ -43,7 +49,7 @@ export default function RecordsPage() {
         </div>
         {records.length === 0 && <div className="paper-row muted" style={{ gridTemplateColumns: '1fr' }}>No approved records yet. Records arrive each evening after the end-of-day review.</div>}
         {records.map((r) => (
-          <Link key={r.id} to={`/know/records/${r.id}`} className="paper-row">
+          <BLink key={r.id} to={`/know/records/${r.id}`} className="paper-row">
             <span className="mono-11">{r.id}</span>
             <span><strong>{roleLabel(r.role)}</strong> <span className="mono-10">· {r.person_id}</span></span>
             <span>{longDate(r.date)}</span>
@@ -53,7 +59,7 @@ export default function RecordsPage() {
             <span className="mono-11 right">{r.kept_private} item{r.kept_private === 1 ? '' : 's'}</span>
             <span className="mono-11 right">{hhmm(r.approved_at)}</span>
             <span className="right"><span className="chip teal" style={{ gap: 4 }}><Check size={9} stroke="#0b5f58" />verified</span></span>
-          </Link>
+          </BLink>
         ))}
       </section>
 
@@ -61,12 +67,14 @@ export default function RecordsPage() {
         <NextLink to="/know/knowledge">See what they add up to</NextLink>
       </Verdict>
 
-      {open && <RecordSheet r={open} onClose={() => nav('/know/records')} />}
+      {open && <RecordSheet r={open} onClose={() => nav(path('/know/records'))} />}
     </main>
   );
 }
 
 function RecordSheet({ r, onClose }: { r: WorkRecord; onClose: () => void }) {
+  const { api } = useBoard();
+  const { name: boardName } = useBoardName();
   const [state, setState] = useState<'idle' | 'confirm' | 'busy' | 'done' | 'error'>('idle');
   const [msg, setMsg] = useState('');
   const [copied, setCopied] = useState(false);
@@ -76,7 +84,7 @@ function RecordSheet({ r, onClose }: { r: WorkRecord; onClose: () => void }) {
   const short = (h: string) => (h.length > 16 ? `${h.slice(0, 8)}…${h.slice(-6)}` : h);
   async function withdraw() {
     setState('busy');
-    const res = await withdrawRecord(r.id);
+    const res = await withdrawRecord(api, r.id);
     if (res.ok) { setState('done'); setMsg('Withdrawn. The record is off the board; the steps stay on the device.'); }
     else { setState('error'); setMsg(res.status === 0 ? 'API offline — nothing was withdrawn.' : `The API answered ${res.status}; nothing was withdrawn.`); }
   }
@@ -99,7 +107,7 @@ function RecordSheet({ r, onClose }: { r: WorkRecord; onClose: () => void }) {
           </div>
 
           <div className="p-meta">
-            <div><span className="p-label">Board</span>&nbsp; {r.board_id === 'northwind' ? 'Northwind Fitness board' : r.board_id}</div>
+            <div><span className="p-label">Board</span>&nbsp; {boardName} board</div>
             <div><span className="p-label">Role</span>&nbsp; {roleLabel(r.role)}</div>
             <div><span className="p-label">Covers</span>&nbsp; {hhmm(r.covers.start)}–{hhmm(r.covers.end)}</div>
             <div style={{ textAlign: 'right' }}><span className="p-label">Approved</span>&nbsp; {dayMonYear(r.approved_at)} · {hhmmss(r.approved_at)}</div>
@@ -142,7 +150,7 @@ function RecordSheet({ r, onClose }: { r: WorkRecord; onClose: () => void }) {
             <div className="p-black">
               <ShieldCheck stroke="#34d399" />
               <div style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-                <div style={{ fontSize: 14, fontWeight: 600, lineHeight: '20px' }}>Added to the Northwind Fitness board</div>
+                <div style={{ fontSize: 14, fontWeight: 600, lineHeight: '20px' }}>Added to the {boardName} board</div>
                 <div style={{ fontSize: 13, lineHeight: '20px', color: 'rgba(255,255,255,0.74)', marginTop: 4 }}>Signed on the person’s machine. The team sees steps, times and hand-offs — never screens, messages or files.</div>
                 <div className="mono" style={{ marginTop: 'auto', paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.16)', fontSize: 10, letterSpacing: '0.5px', color: 'rgba(255,255,255,0.7)' }}>Posted {hhmmss(r.approved_at)} · {steps.length} of {steps.length} steps visible to the board</div>
               </div>
