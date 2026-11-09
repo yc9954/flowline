@@ -26,7 +26,7 @@ CUTS = {
     10: (9.3, "Six people said yes once. Now, mid-work, Flowline clears the same bottleneck on six desks at once — quotes, sheets, decks, packets — each from the knowledge all six built together."),
     11: (8, "Every run ends as a proposal left on the person's desk to check. Nothing saved, nothing sent outside, without them. One knowledge, many hands."),
     12: (8, "Then we ran the whole chain for eleven simulated weeks — three hundred approved days, every hand-off, every wait — on a world engine, not a script."),
-    13: (12.0, "Cycle time: a hundred and nine hours to eighty-eight. The test said ninety-one."),
+    13: (8.0, "Cycle time: a hundred and nine hours to eighty-eight. The test said ninety-one."),
     14: (8.4, "Ten of ten runs correct, zero leaks. On real Census data, its picks were 7.4 times as likely to get new gyms."),
     15: (4.7, "Flowline. The agent that runs your company's work — with your people."),
     16: (1.5, ""),  # end card, no voice
