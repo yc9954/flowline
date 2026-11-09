@@ -6,7 +6,7 @@ import { industryLabel } from '../lib/industry';
 import { Logo } from './Icons';
 
 const groups: { name: string; items: { to: string; label: string }[] }[] = [
-  { name: 'Decide', items: [{ to: '/decide/expand', label: 'Where to open next' }, { to: '/decide/opening', label: 'Opening branch' }] },
+  { name: 'Decide', items: [{ to: '/decide/expand', label: 'Where to open next' }, { to: '/decide/opening', label: 'Opening the next site' }] },
   { name: 'Improve', items: [{ to: '/improve/plans', label: 'Plans to test' }, { to: '/improve/results', label: 'Results' }, { to: '/improve/history', label: 'Process history' }] },
   { name: 'Know', items: [{ to: '/know/knowledge', label: 'Company knowledge' }, { to: '/know/waits', label: 'Where work waits' }, { to: '/know/records', label: 'Approved records' }] },
   { name: 'Trust', items: [{ to: '/trust/model', label: 'Model check' }] },
@@ -36,7 +36,7 @@ export function Sidebar() {
           <div className="sidebar-group">{g.name}</div>
           {g.items.map((it) => (
             <NavLink key={it.to} to={path(it.to)} className={({ isActive }) => `nav${isActive ? ' active' : ''}`}>
-              {it.to === '/decide/opening' && branch != null ? `Opening branch ${branch}` : it.label}
+              {it.to === '/decide/opening' ? (branch ? `Opening site ${branch}` : 'Opening the next site') : it.label}
             </NavLink>
           ))}
         </div>

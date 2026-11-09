@@ -56,7 +56,7 @@ export default function WaitsPage() {
         <div className="kpi-grid">
           <Stat attrs={{ 'data-kpi': '' }} label="Cycle time" value={h1(d.kpis.cycle_time_h)} sub={`${first.name.toLowerCase()} → ${last.name.toLowerCase()}`} />
           <Stat attrs={{ 'data-kpi': '' }} label="Waiting" value={pct(d.kpis.waiting_share)} sub="of each cycle" />
-          <Stat soft attrs={{ 'data-kpi': '' }} label="Quotes under $5k" value={pct(d.kpis.small_quotes_share)} sub={`${pct(d.kpis.small_quotes_unchanged)} approved unchanged`} />
+          <Stat soft attrs={{ 'data-kpi': '' }} label="Small cases" value={pct(d.kpis.small_quotes_share)} sub={`${pct(d.kpis.small_quotes_unchanged)} approved unchanged`} />
           <Stat soft attrs={{ 'data-kpi': '' }} label="Repeated by hand" value={`${d.kpis.repeated_by_hand_h_per_wk.toFixed(0)} h / wk`} sub={d.repeated[0] ? `${d.repeated[0].task.toLowerCase().replace(/^copy /, '')}` : ''} />
         </div>
       </div>

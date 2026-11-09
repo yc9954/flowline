@@ -13,7 +13,20 @@ export default function ExpandPage() {
   const res = useExpansion(industry);
   if (!res) return <main className="main tight"><Loading what="expansion" /></main>;
   if (res.kind !== 'data') return <NotReady res={res} crumbs={[{ label: 'Expansion' }, { label: 'Where to open next' }]} what="expansion" className="main tight" />;
-  const d = res.data;
+  const d = res.data as typeof res.data & { source?: string; reason?: string; backtest?: { source?: string; reason?: string } };
+  if (d.source === 'not_available' || !Array.isArray(d.zips) || d.zips.length === 0) {
+    const reason = d.reason || d.backtest?.reason || 'no demand model for this industry yet';
+    return (
+      <main className="main tight">
+        <div className="empty" data-empty="expansion">
+          <div className="kicker"><span className="label">Expansion · not available</span><span className="hair" /></div>
+          <h1 className="headline" style={{ marginTop: 10 }}>No site ranking for this industry yet.</h1>
+          <p className="muted" style={{ maxWidth: 720 }}>{reason}</p>
+          <p className="muted" style={{ maxWidth: 720 }}>The demand model is backtested per industry on US Census business patterns; a board gets a ranking once its industry is in that backtest.</p>
+        </div>
+      </main>
+    );
+  }
   const zips = [...d.zips].sort((a, b) => a.rank - b.rank);
   const top = zips.filter((z) => z.rank <= 5);
   const pick = zips.find((z) => z.pick) ?? zips[0];
