@@ -86,11 +86,14 @@ const CUTS = {
   7: { route: '/know/knowledge', hold: 9500, prehide: '[data-lane],[data-node],[data-edge-back]', async play(page) {
     await stagger(page, '[data-lane]', 100, 'none');
     await stagger(page, '[data-node]', 45, 'scale(.92)');
-    await sleep(1200);
-    await stagger(page, '[data-edge-back]', 160, 'none');
     await sleep(600);
-    // the map opens at "fit" (50 %): zoom in as ONE compositor animation — a CSS transform on the map viewport, anchored on
-    // the Approval node — instead of the app's stepped zoom buttons (layout re-runs per step and looked like stutter)
+    await stagger(page, '[data-edge-back]', 160, 'none');
+    await sleep(400);
+    // select the bottleneck first (the inspector re-renders the map), THEN zoom in as one compositor transform anchored
+    // on the Approval node — zooming before the click lost the transform on re-render and looked like a snap back
+    const approval = page.locator('[data-node-id="approval"], [data-node]:has-text("Approval")').first();
+    if (await approval.count()) { await approval.scrollIntoViewIfNeeded(); await approval.click(); }
+    await sleep(500);
     await page.evaluate(() => {
       const inner = [...document.querySelectorAll('div')].find((d) => /scale\(/.test(d.style.transform) && /^0(px)? 0(px)?$/.test(d.style.transformOrigin));
       const vp = inner && inner.parentElement; if (!vp) return;
@@ -99,11 +102,9 @@ const CUTS = {
       vp.style.transformOrigin = `${nr.left + nr.width / 2 - vr.left}px ${nr.top + nr.height / 2 - vr.top}px`;
       vp.style.transition = 'transform 1.4s cubic-bezier(.2,.8,.2,1)';
       vp.style.willChange = 'transform';
-      requestAnimationFrame(() => { vp.style.transform = 'scale(1.75)'; });
+      requestAnimationFrame(() => { vp.style.transform = 'scale(1.7)'; });
     });
-    await sleep(1800);
-    const approval = page.locator('[data-node-id="approval"], [data-node]:has-text("Approval")').first();
-    if (await approval.count()) { await approval.scrollIntoViewIfNeeded(); await approval.click(); }
+    await sleep(2500);
   } },
   8: { route: '/know/waits', hold: 12000, prehide: '[data-kpi],[data-plan-row],[data-best-card]', async play(page) {
     // waits: 2.2 s, then the nine plans get the rest of the cut (they used to flash by)
