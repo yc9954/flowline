@@ -64,6 +64,8 @@ def _summary(db: Database, board: dict[str, Any]) -> dict[str, Any]:
     bid = board["id"]
     return {
         **board,
+        "industry": board.get("industry_naics"),   # alias the board UI reads
+        "api_url": settings.public_url,            # shown in invite instructions when set (FLOWLINE_PUBLIC_URL)
         "people": db.count_people(bid),
         "records": db.count_records(bid),
         "has_data": store.has_data(bid),
@@ -89,7 +91,7 @@ def create_board(body: BoardCreate, db: Database = Depends(get_db)) -> dict[str,
         return db.insert_board(
             board_id,
             body.name.strip(),
-            industry_naics=body.industry_naics,
+            industry_naics=body.naics(),
             mail_domain=(body.mail_domain or "").strip().lower() or None,
             timezone_name=body.timezone,
         )

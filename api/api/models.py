@@ -660,14 +660,28 @@ class Board(Shape):
     mail_domain: str | None = None
     timezone: str = "UTC"
     created_at: str | None = None
+    api_url: str | None = None  # FLOWLINE_PUBLIC_URL, shown in invite instructions
+
+    @property
+    def industry(self) -> str | None:  # alias the board UI reads
+        return self.industry_naics
+
+    def model_dump(self, *a, **k):  # type: ignore[override]
+        d = super().model_dump(*a, **k)
+        d["industry"] = self.industry_naics
+        return d
 
 
 class BoardCreate(Shape):
     id: str | None = None  # slugified from name when absent
     name: str
     industry_naics: str | None = None
+    industry: str | None = None  # alias accepted from the board UI
     mail_domain: str | None = None
     timezone: str | None = None
+
+    def naics(self) -> str | None:
+        return self.industry_naics or self.industry
 
 
 class BoardPatch(Shape):

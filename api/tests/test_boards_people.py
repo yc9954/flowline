@@ -36,7 +36,7 @@ def test_board_create_list_get_patch(client):
 
     boards = client.get("/api/boards").json()
     assert [x["id"] for x in boards] == ["acme-dental-group", "blue-sky"]
-    assert boards[0] == {**b, "people": 0, "records": 0, "has_data": False}
+    assert boards[0] == {**b, "industry": b["industry_naics"], "api_url": None, "people": 0, "records": 0, "has_data": False}
 
     r = client.get("/api/boards/nope")
     assert r.status_code == 404 and r.json() == {"detail": "board 'nope' does not exist; create it with POST /api/boards", "state": "no_such_board"}
