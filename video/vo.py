@@ -22,14 +22,14 @@ CUTS = {
     6: (3.3, "At six, each laptop drafts how the day went."),
     7: (4, "Personal things stay out. Nothing leaves until you approve it."),
     8: (3.8, "Approved records become one knowledge of how the business works."),
-    9: (6.5, "A proposal takes a hundred and nine hours, eighty-five waiting. It tests nine fixes on the same team, same luck."),
+    9: (7.5, "A proposal takes a hundred and nine hours, eighty-five waiting. It tests nine fixes on the same team, same luck."),
     10: (2.7, "Then it asks only the people it affects."),
     11: (7.5, "Six desks start at once, each on its own job: quotes read off PDFs, a sheet corrected, decks filled, packets mailed to the director."),
     12: (5, "Seven minutes at fifty times speed. Every run ends left for a person. Nothing saved, nothing sent out, without one."),
     13: (4, "Cycle time: a hundred and nine hours to eighty-eight. The test said ninety-one."),
     14: (6.5, "Ten of ten runs correct, zero leaks. On real Census data, its picks were 7.4 times as likely to get new gyms."),
     15: (4, "Flowline. The agent that runs your company's work — with your people."),
-    16: (1.8, ""),  # end card, no voice
+    16: (1.3, ""),  # end card, no voice
 }
 
 

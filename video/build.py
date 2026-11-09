@@ -39,6 +39,7 @@ PUSH = {}  # no slow pushes: zoompan rounds the crop origin per frame, which rea
 MENUBAR_FRACTION = 50 / 1964
 START = json.load(open(os.path.join(OUT, "start.json"))) if os.path.exists(os.path.join(OUT, "start.json")) else {}
 START = {int(k): float(v) for k, v in START.items()}  # seconds to skip at the head of a recording (out/start.json, e.g. {"10": 95})
+SUB_BAND = {11, 12}  # the wall: letterbox the bottom so the subtitle never covers the desk labels
 FADE_OUT = {16}
 FADE_IN = {1, 16}
 
@@ -69,21 +70,36 @@ def esc(t):
     return t.replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'").replace("%", "\\%")
 
 
-def super_png(text, path):
-    """Render the super (Instrument Sans 34px, white on black 82%) to a PNG with alpha; returns (w, h)."""
+def super_png(text, path, max_w=1500):
+    """Render a centred subtitle (Instrument Sans 36px, white on black 78%, wrapped to max_w) to a PNG; returns (w, h)."""
     from PIL import Image, ImageDraw, ImageFont
-    font = ImageFont.truetype(FONT, 34)
-    pad = 18
+    font = ImageFont.truetype(FONT, 36)
+    pad_x, pad_y, gap = 26, 16, 8
     tmp = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
-    l, t, r, b = tmp.textbbox((0, 0), text, font=font)
-    w, h = r - l + 2 * pad, b - t + 2 * pad
-    im = Image.new("RGBA", (w, h), (0, 0, 0, int(255 * 0.82)))
-    ImageDraw.Draw(im).text((pad - l, pad - t), text, font=font, fill=(255, 255, 255, 255))
+    words, lines, cur = text.split(), [], ""
+    for wd in words:
+        trial = (cur + " " + wd).strip()
+        if tmp.textbbox((0, 0), trial, font=font)[2] > max_w - 2 * pad_x and cur:
+            lines.append(cur); cur = wd
+        else:
+            cur = trial
+    if cur:
+        lines.append(cur)
+    boxes = [tmp.textbbox((0, 0), ln, font=font) for ln in lines]
+    lh = max(b[3] - b[1] for b in boxes) + gap
+    w = max(b[2] - b[0] for b in boxes) + 2 * pad_x
+    h = lh * len(lines) - gap + 2 * pad_y
+    im = Image.new("RGBA", (w, h), (0, 0, 0, int(255 * 0.78)))
+    d = ImageDraw.Draw(im)
+    y = pad_y
+    for ln, bx in zip(lines, boxes):
+        d.text(((w - (bx[2] - bx[0])) / 2 - bx[0], y - bx[1]), ln, font=font, fill=(255, 255, 255, 255))
+        y += lh
     im.save(path)
     return w, h
 
 
-def segment(n, cut, vo, dur, super_text):
+def segment(n, cut, vo, dur, super_text, vo_s=None):
     still = cut.lower().endswith(".png")
     if still:
         from PIL import Image
@@ -96,7 +112,7 @@ def segment(n, cut, vo, dur, super_text):
         ch = int(w * 9 / 16)
         menubar = int(h * MENUBAR_FRACTION)
         vf.append(f"crop={w}:{ch}:0:{min(menubar, h - ch)}")
-    vf.append("scale=1920:1080:flags=lanczos,fps=30,format=yuv420p")
+    vf.append("scale=1920:960:flags=lanczos,pad=1920:1080:0:0:black,fps=30,format=yuv420p" if n in SUB_BAND else "scale=1920:1080:flags=lanczos,fps=30,format=yuv420p")
     src_dur -= START.get(n, 0.0)
     if src_dur < dur:  # hold the last frame
         vf.append(f"tpad=stop_mode=clone:stop_duration={dur - src_dur + 0.5:.2f}")
@@ -117,8 +133,8 @@ def segment(n, cut, vo, dur, super_text):
         png = os.path.join(SEG, f"{n:02d}_super.png")
         super_png(super_text, png)
         inputs += ["-loop", "1", "-i", png]
-        show = max(2.0, min(dur - 0.6, 3.2))
-        graph += f";{last}[2:v]overlay=72:H-72-h:enable='between(t,0.6,{0.6 + show:.2f})':shortest=1[v1]"
+        show = max(1.5, min(dur - 0.3, (vo_s or dur) + 0.4))   # the subtitle stays while the line is spoken
+        graph += f";{last}[2:v]overlay=(W-w)/2:H-64-h:enable='between(t,0.3,{0.3 + show:.2f})':shortest=1[v1]"
         last = "[v1]"
     if n in FADE_OUT or n in FADE_IN:
         fades = []
@@ -173,7 +189,7 @@ def main():
             continue
         vo = find(os.path.join(OUT, "vo", f"{n:02d}.wav")) or find(os.path.join(OUT, "vo", f"{n:02d}.aiff"))
         dur = max(timing[n]["target_s"], (timing[n]["vo_s"] or 0) + 0.4)  # VO starts at 0.3 s
-        seg, d = segment(n, cut, vo, dur, supers.get(n, ""))
+        seg, d = segment(n, cut, vo, dur, timing[n]["text"] or "", timing[n]["vo_s"])   # subtitle = the narration line
         segs.append(seg); total += d
         print(f"cut {n:02d}: {d:4.1f}s  {os.path.basename(cut)}")
     lst = os.path.join(SEG, "list.txt")

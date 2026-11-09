@@ -1,0 +1,322 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="1330" viewBox="0 0 1300 1330" font-family="Inter, -apple-system, 'Segoe UI', system-ui, Helvetica, Arial, sans-serif" fill="#1b1f24">
+  <title>Flowline architecture</title>
+  <desc>Six people's laptops send approved, Ed25519-signed records to one hub (Board API, Flowline-1, Board, Executor, Agent loop); the executor drives six Linux desks and verifies over team mail. The board never shows a screen.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 1 1 L 9 5 L 1 9 z" fill="#8a9199"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #c9ced3; stroke-width: 1.5; stroke-dasharray: 5 4; }
+      .container { fill: #fbfbfc; stroke: #c9ced3; stroke-width: 1.5; stroke-dasharray: 7 5; }
+      .solid { fill: #ffffff; stroke: #c9ced3; stroke-width: 1.5; }
+      .name { font-weight: 700; font-size: 16px; fill: #1b1f24; letter-spacing: -0.01em; }
+      .big { font-weight: 700; font-size: 18px; fill: #1b1f24; letter-spacing: -0.01em; }
+      .mono { font-family: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #6b7280; }
+      .mono-xs { font-family: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #6b7280; }
+      .body { font-size: 12.5px; fill: #3f4650; }
+      .label { font-family: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #6b7280; }
+      .arrow { fill: none; stroke: #8a9199; stroke-width: 1.2; marker-end: url(#arrow); }
+      .thin { fill: none; stroke: #b4bac0; stroke-width: 1; marker-end: url(#arrow); }
+      .accent { fill: #6D5DF6; }
+      .note { font-size: 12px; fill: #3f4650; }
+      .icon { fill: none; stroke: #6b7280; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1300" height="1330" fill="#ffffff"/>
+
+  <!-- header -->
+  <text x="40" y="34" class="label">FLOWLINE · ARCHITECTURE</text>
+  <text x="1260" y="34" class="label" text-anchor="end">github.com/yc9954/flowline · c0mpiled-17 · 2026-11-09</text>
+
+  <!-- ============ People row ============ -->
+  <rect x="40" y="56" width="970" height="252" rx="14" class="container"/>
+  <text x="62" y="86" class="big">People</text>
+  <text x="140" y="86" class="mono">six laptops · one Flowline agent each · nothing leaves until the person approves</text>
+
+  <!-- laptop glyph as a reusable symbol -->
+  <symbol id="laptop" viewBox="0 0 44 30">
+    <rect x="6" y="2" width="32" height="20" rx="2.5" class="icon"/>
+    <rect x="9" y="5" width="26" height="14" rx="1" fill="#f1f3f5" stroke="none"/>
+    <path d="M2 25 L42 25 L39 28 L5 28 Z" class="icon"/>
+  </symbol>
+  <symbol id="screen" viewBox="0 0 44 34">
+    <rect x="4" y="2" width="36" height="24" rx="2.5" class="icon"/>
+    <rect x="7" y="5" width="30" height="18" rx="1" fill="#f1f3f5" stroke="none"/>
+    <path d="M22 26 L22 31 M14 32 L30 32" class="icon"/>
+  </symbol>
+  <symbol id="server" viewBox="0 0 24 24">
+    <rect x="3" y="3" width="18" height="7" rx="1.5" class="icon"/>
+    <rect x="3" y="14" width="18" height="7" rx="1.5" class="icon"/>
+    <circle cx="7" cy="6.5" r="1" fill="#6b7280" stroke="none"/>
+    <circle cx="7" cy="17.5" r="1" fill="#6b7280" stroke="none"/>
+  </symbol>
+  <symbol id="mail" viewBox="0 0 24 24">
+    <rect x="3" y="5" width="18" height="14" rx="2" class="icon"/>
+    <path d="M3.5 6.5 L12 13 L20.5 6.5" class="icon"/>
+  </symbol>
+
+  <!-- six person boxes: x = 62 + i*158, w 148 -->
+  <g id="people">
+    <g transform="translate(62,104)">
+      <rect width="148" height="118" rx="10" class="box"/>
+      <use href="#laptop" x="52" y="12" width="44" height="30"/>
+      <text x="74" y="66" class="name" text-anchor="middle">PM</text>
+      <text x="74" y="86" class="mono-xs" text-anchor="middle">Flowline agent</text>
+      <text x="74" y="101" class="mono-xs" text-anchor="middle">menu bar · on-device</text>
+    </g>
+    <g transform="translate(220,104)">
+      <rect width="148" height="118" rx="10" class="box"/>
+      <use href="#laptop" x="52" y="12" width="44" height="30"/>
+      <text x="74" y="66" class="name" text-anchor="middle">Finance</text>
+      <text x="74" y="86" class="mono-xs" text-anchor="middle">Flowline agent</text>
+      <text x="74" y="101" class="mono-xs" text-anchor="middle">menu bar · on-device</text>
+    </g>
+    <g transform="translate(378,104)">
+      <rect width="148" height="118" rx="10" class="box"/>
+      <use href="#laptop" x="52" y="12" width="44" height="30"/>
+      <text x="74" y="66" class="name" text-anchor="middle">Sales</text>
+      <text x="74" y="86" class="mono-xs" text-anchor="middle">Flowline agent</text>
+      <text x="74" y="101" class="mono-xs" text-anchor="middle">menu bar · on-device</text>
+    </g>
+    <g transform="translate(536,104)">
+      <rect width="148" height="118" rx="10" class="box"/>
+      <use href="#laptop" x="52" y="12" width="44" height="30"/>
+      <text x="74" y="66" class="name" text-anchor="middle">Ops</text>
+      <text x="74" y="86" class="mono-xs" text-anchor="middle">Flowline agent</text>
+      <text x="74" y="101" class="mono-xs" text-anchor="middle">menu bar · on-device</text>
+    </g>
+    <g transform="translate(694,104)">
+      <rect width="148" height="118" rx="10" class="box"/>
+      <use href="#laptop" x="52" y="12" width="44" height="30"/>
+      <text x="74" y="66" class="name" text-anchor="middle">Branch manager</text>
+      <text x="74" y="86" class="mono-xs" text-anchor="middle">Flowline agent</text>
+      <text x="74" y="101" class="mono-xs" text-anchor="middle">menu bar · on-device</text>
+    </g>
+    <g transform="translate(852,104)">
+      <rect width="148" height="118" rx="10" class="box"/>
+      <use href="#laptop" x="52" y="12" width="44" height="30"/>
+      <text x="74" y="66" class="name" text-anchor="middle">Owner's assistant</text>
+      <text x="74" y="86" class="mono-xs" text-anchor="middle">Flowline agent</text>
+      <text x="74" y="101" class="mono-xs" text-anchor="middle">menu bar · on-device</text>
+    </g>
+  </g>
+  <text x="62" y="248" class="body" font-weight="600">Each agent</text>
+  <text x="150" y="248" class="mono">observes on-device · drafts the day at 18:00 · the person approves (left-out column) · Ed25519-signed record</text>
+  <text x="62" y="270" class="mono-xs">agent-mac/ (macOS menu bar) · executor/observer.py + compiler.py (Linux desks) · SCHEMA.md §1–2, §12</text>
+  <text x="62" y="290" class="mono-xs">on-device only: Event samples · DraftDay · left_out — deleted after the record is approved</text>
+
+  <!-- main arrow: people -> hub -->
+  <path d="M 525 308 L 525 356" class="arrow"/>
+  <text x="538" y="328" class="label">approved records only</text>
+  <text x="538" y="343" class="label">steps, times, hand-offs — no screens, no text</text>
+
+  <!-- PM "Do it" arrow -> Board API -->
+  <path d="M 136 222 L 136 404" class="thin"/>
+  <text x="146" y="328" class="label">Do it → POST /api/runs</text>
+  <text x="146" y="343" class="label">(the PM answers a suggestion in the notch)</text>
+
+  <!-- ============ Hub ============ -->
+  <rect x="40" y="356" width="970" height="680" rx="16" class="container"/>
+  <use href="#server" x="60" y="372" width="22" height="22"/>
+  <text x="90" y="389" class="big">Flowline hub</text>
+  <text x="210" y="389" class="mono">your server · api :8787 · executor :8790 · the board never shows a screen</text>
+
+  <!-- Board API -->
+  <g transform="translate(70,404)">
+    <rect width="400" height="132" rx="10" class="box"/>
+    <text x="18" y="28" class="name">Board API</text>
+    <text x="18" y="46" class="mono">api/ · FastAPI + SQLite · :8787</text>
+    <text x="18" y="72" class="body">records ingest with signature check (hash + Ed25519)</text>
+    <text x="18" y="91" class="body">knowledge · plans · results · suggestions · fleet state</text>
+    <text x="18" y="110" class="body">serves board/dist at / · reads data/out/*.json on mtime</text>
+  </g>
+
+  <!-- Flowline-1 -->
+  <g transform="translate(580,404)">
+    <rect width="400" height="170" rx="10" class="box"/>
+    <text x="18" y="28" class="name">Flowline-1</text>
+    <text x="18" y="46" class="mono">flowline1/ · world engine · rebuilt nightly (~10 s)</text>
+    <text x="18" y="72" class="body">process miner → SimPy team simulator</text>
+    <text x="18" y="91" class="body">9 plans × 20 seeds, common random numbers</text>
+    <text x="18" y="110" class="body">→ calibration → demand model</text>
+    <text x="18" y="129" class="body">(US Census ZBP/CBP, clock frozen at 2020)</text>
+    <text x="18" y="148" class="body">→ model checks (predicted vs measured, BPIC 2020 fit)</text>
+  </g>
+
+  <!-- API <-> Flowline-1 -->
+  <path d="M 470 440 L 576 440" class="thin"/>
+  <text x="523" y="432" class="label" text-anchor="middle">POST /recompute</text>
+  <path d="M 580 500 L 474 500" class="thin"/>
+  <text x="523" y="516" class="label" text-anchor="middle">data/out/*.json</text>
+  <text x="523" y="529" class="label" text-anchor="middle">10 board files</text>
+
+  <!-- Board -->
+  <g transform="translate(70,630)">
+    <rect width="400" height="236" rx="10" class="box"/>
+    <text x="18" y="28" class="name">Board</text>
+    <text x="18" y="46" class="mono">board/ · React + Vite · served by the API</text>
+    <text x="18" y="74" class="body">Where work waits</text>
+    <text x="18" y="94" class="body">Plans to test</text>
+    <text x="18" y="114" class="body">Results</text>
+    <text x="18" y="134" class="body">Process history</text>
+    <text x="18" y="154" class="body">Company knowledge</text>
+    <text x="210" y="74" class="body">Approved records</text>
+    <text x="210" y="94" class="body">Model check</text>
+    <text x="210" y="114" class="body">Where to open next</text>
+    <text x="210" y="134" class="body">Opening branch 4</text>
+    <text x="210" y="154" class="body">Agents on desks</text>
+    <text x="18" y="184" class="mono">/know · /improve · /trust · /decide · /run</text>
+    <text x="18" y="206" class="body"><tspan class="accent" font-weight="700">Agents on desks</tspan> shows state only — role, step rail, last action.</text>
+    <text x="18" y="222" class="body">Never a screen.</text>
+  </g>
+  <path d="M 270 536 L 270 626" class="thin"/>
+  <text x="262" y="562" class="label" text-anchor="end">GET /api/boards/northwind/…</text>
+
+  <!-- API -> Executor elbow -->
+  <path d="M 420 536 L 420 596 L 780 596 L 780 626" class="arrow"/>
+  <text x="432" y="588" class="label">POST /runs — one per desk · pre-approved teammates start together (FLOWLINE_FLEET=1)</text>
+
+  <!-- Executor -->
+  <g transform="translate(580,630)">
+    <rect width="400" height="104" rx="10" class="box"/>
+    <text x="18" y="28" class="name">Executor</text>
+    <text x="18" y="46" class="mono">executor/ · Run API + desktop bridge · :8790</text>
+    <text x="18" y="72" class="body">one Target per desk · persistent helper inside the container</text>
+    <text x="18" y="91" class="body">409 when busy · frame/action events · Stop kills the agent</text>
+  </g>
+
+  <!-- Executor -> Agent loop -->
+  <path d="M 780 734 L 780 774" class="thin"/>
+  <text x="790" y="758" class="label">spawns agent-ts/run.mjs per run</text>
+
+  <!-- Agent loop -->
+  <g transform="translate(580,778)">
+    <rect width="400" height="214" rx="10" class="box"/>
+    <text x="18" y="28" class="name">Agent loop</text>
+    <text x="18" y="46" class="mono">executor/agent-ts · Vercel AI SDK ToolLoopAgent</text>
+    <text x="18" y="72" class="body">Anthropic computerToolset_20260801 + bash_20250124</text>
+    <text x="18" y="91" class="body">+ read_sheet · read_deck_cells · report_step (fill_deck only)</text>
+    <text x="18" y="117" class="body">skills: fill_deck_from_sheet · proposal_packet</text>
+    <text x="18" y="136" class="body">reconcile_quotes · signature_packet</text>
+    <text x="18" y="162" class="body">deterministic verification after the agent exits:</text>
+    <text x="18" y="181" class="body">UNO read-back · sha256 · IMAP · Documents tree diff</text>
+    <text x="18" y="200" class="mono-xs">the model never saves or sends outside · Python verifies</text>
+  </g>
+
+  <!-- ============ Desks + mail ============ -->
+  <!-- executor -> desks -->
+  <path d="M 700 992 L 700 1020 L 400 1020 L 400 1078" class="arrow"/>
+  <text x="410" y="1050" class="label">clicks, keys, screenshots over the desktop bridge</text>
+  <text x="410" y="1064" class="label">screenshots never reach the board</text>
+
+  <!-- executor -> mail (verify) -->
+  <path d="M 900 992 L 900 1078" class="thin"/>
+  <text x="910" y="1040" class="label">verify over IMAP</text>
+  <text x="910" y="1054" class="label">(mail.py)</text>
+
+  <rect x="40" y="1080" width="720" height="176" rx="14" class="container"/>
+  <text x="62" y="1108" class="big">Linux desks</text>
+  <text x="190" y="1108" class="mono">desk1…desk6 · Docker · XFCE 1920×1080 · LibreOffice · Chromium webmail</text>
+  <g id="desks">
+    <g transform="translate(62,1126)">
+      <rect width="104" height="100" rx="8" class="solid"/>
+      <use href="#screen" x="30" y="10" width="44" height="34"/>
+      <text x="52" y="66" class="body" text-anchor="middle" font-weight="600">desk1</text>
+      <text x="52" y="84" class="mono-xs" text-anchor="middle">PM</text>
+    </g>
+    <g transform="translate(176,1126)">
+      <rect width="104" height="100" rx="8" class="solid"/>
+      <use href="#screen" x="30" y="10" width="44" height="34"/>
+      <text x="52" y="66" class="body" text-anchor="middle" font-weight="600">desk2</text>
+      <text x="52" y="84" class="mono-xs" text-anchor="middle">Finance</text>
+    </g>
+    <g transform="translate(290,1126)">
+      <rect width="104" height="100" rx="8" class="solid"/>
+      <use href="#screen" x="30" y="10" width="44" height="34"/>
+      <text x="52" y="66" class="body" text-anchor="middle" font-weight="600">desk3</text>
+      <text x="52" y="84" class="mono-xs" text-anchor="middle">Sales</text>
+    </g>
+    <g transform="translate(404,1126)">
+      <rect width="104" height="100" rx="8" class="solid"/>
+      <use href="#screen" x="30" y="10" width="44" height="34"/>
+      <text x="52" y="66" class="body" text-anchor="middle" font-weight="600">desk4</text>
+      <text x="52" y="84" class="mono-xs" text-anchor="middle">Ops</text>
+    </g>
+    <g transform="translate(518,1126)">
+      <rect width="104" height="100" rx="8" class="solid"/>
+      <use href="#screen" x="30" y="10" width="44" height="34"/>
+      <text x="52" y="66" class="body" text-anchor="middle" font-weight="600">desk5</text>
+      <text x="52" y="84" class="mono-xs" text-anchor="middle">Branch manager</text>
+    </g>
+    <g transform="translate(632,1126)">
+      <rect width="104" height="100" rx="8" class="solid"/>
+      <use href="#screen" x="30" y="10" width="44" height="34"/>
+      <text x="52" y="66" class="body" text-anchor="middle" font-weight="600">desk6</text>
+      <text x="52" y="84" class="mono-xs" text-anchor="middle">Assistant</text>
+    </g>
+  </g>
+  <text x="62" y="1246" class="mono-xs">stand-ins for six laptops in the demo (flowline/desk:1 on one Docker host) · one run at a time per desk</text>
+
+  <!-- mail -->
+  <g transform="translate(790,1080)">
+    <rect width="220" height="176" rx="14" class="container"/>
+    <use href="#mail" x="18" y="18" width="22" height="22"/>
+    <text x="48" y="35" class="name">Team mail</text>
+    <text x="18" y="58" class="mono-xs">greenmail SMTP/IMAP + Roundcube</text>
+    <text x="18" y="84" class="body">hand-off mail between desks</text>
+    <text x="18" y="103" class="body">pm@ · director@ · cc finance@</text>
+    <text x="18" y="130" class="body">only inside @northwind.local —</text>
+    <text x="18" y="149" class="body">nothing leaves without a person</text>
+  </g>
+  <path d="M 760 1168 L 786 1168" class="thin"/>
+
+  <!-- ============ Side notes ============ -->
+  <g transform="translate(1036,356)">
+    <rect width="224" height="98" rx="10" class="solid"/>
+    <rect x="0" y="14" width="3" height="70" rx="1.5" class="accent"/>
+    <text x="18" y="30" class="note" font-weight="700">Only approved records</text>
+    <text x="18" y="48" class="note" font-weight="700">leave a laptop.</text>
+    <text x="18" y="70" class="mono-xs">steps · times · hand-offs · waits</text>
+    <text x="18" y="84" class="mono-xs">signed by the device key</text>
+  </g>
+  <g transform="translate(1036,470)">
+    <rect width="224" height="98" rx="10" class="solid"/>
+    <rect x="0" y="14" width="3" height="70" rx="1.5" class="accent"/>
+    <text x="18" y="30" class="note" font-weight="700">The board never shows</text>
+    <text x="18" y="48" class="note" font-weight="700">a screen.</text>
+    <text x="18" y="70" class="mono-xs">/run/fleet = state only</text>
+    <text x="18" y="84" class="mono-xs">six-desk wall = filming rig</text>
+  </g>
+  <g transform="translate(1036,584)">
+    <rect width="224" height="112" rx="10" class="solid"/>
+    <rect x="0" y="14" width="3" height="84" rx="1.5" class="accent"/>
+    <text x="18" y="30" class="note" font-weight="700">Simulated team.</text>
+    <text x="18" y="48" class="note">Northwind Fitness is a SimPy world:</text>
+    <text x="18" y="64" class="note">8 people, 11 weeks, 309 records.</text>
+    <text x="18" y="86" class="mono-xs">only the Census backtest is real</text>
+    <text x="18" y="100" class="mono-xs">data (7.4× vs 5.7× population)</text>
+  </g>
+  <g transform="translate(1036,712)">
+    <rect width="224" height="112" rx="10" class="solid"/>
+    <rect x="0" y="14" width="3" height="84" rx="1.5" class="accent"/>
+    <text x="18" y="30" class="note" font-weight="700">Every number is labelled.</text>
+    <text x="18" y="48" class="note">measured · simulated · prototype</text>
+    <text x="18" y="64" class="note">per block, from the API's own</text>
+    <text x="18" y="80" class="note">source field.</text>
+    <text x="18" y="100" class="mono-xs">SCHEMA.md §13</text>
+  </g>
+  <g transform="translate(1036,840)">
+    <rect width="224" height="124" rx="10" class="solid"/>
+    <rect x="0" y="14" width="3" height="96" rx="1.5" class="accent"/>
+    <text x="18" y="30" class="note" font-weight="700">In the demo</text>
+    <text x="18" y="48" class="note">the PM's Mac runs the menu-bar</text>
+    <text x="18" y="64" class="note">app and answers live; the five</text>
+    <text x="18" y="80" class="note">teammates pre-approved their</text>
+    <text x="18" y="96" class="note">skill in data/people.json.</text>
+    <text x="18" y="114" class="mono-xs">RUNBOOK.md · Fleet</text>
+  </g>
+
+  <!-- footer -->
+  <text x="40" y="1300" class="mono-xs">Arrows carry data, not screens. Model: claude-sonnet-5-5 (env FLOWLINE_MODEL). Key material: device keychain (Mac) or ~/.flowline/key (Linux). Ports and shapes: SCHEMA.md.</text>
+</svg>

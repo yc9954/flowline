@@ -87,7 +87,7 @@ node record_board.mjs --base http://localhost:5173     # board cuts 1,4,5,6,8,9,
 ./stage_mac.sh sheet && ./record_mac_cuts.sh 2 && ./record_mac_cuts.sh 3
 ./stage_mac.sh viewer && ./record_mac_cuts.sh 7        # live take: executor fills the deck on desk1
 ./stage_mac.sh clear
-node render_endcard.mjs github.com/ORG/flowline        # end card with the repo URL
+node render_endcard.mjs github.com/yc9954/flowline        # end card with the repo URL
 python3 build.py [--music track.mp3]                   # → out/flowline-90s.mp4
 ```
 Mac takes: light mode, Dock hidden by the crop, menu bar cropped (real clock), backdrop hides the desktop.

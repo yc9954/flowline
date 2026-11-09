@@ -18,10 +18,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // Hide the elements an entrance will reveal (a style rule; the stagger's inline opacity wins over it).
 async function prehide(page, sel) { await page.addStyleTag({ content: `${sel}{opacity:0}` }); }
 // Navigate mid-cut without a flash of the finished page: commit → hide → settle.
-async function gotoHidden(page, url, sel) {
+async function gotoHidden(page, url, sel, readySel) {
   await page.goto(url, { waitUntil: 'commit' });
   if (sel) { try { await prehide(page, sel); } catch {} }
-  await page.waitForLoadState('networkidle');
+  if (readySel) await page.waitForSelector(readySel, { timeout: 8000 }).catch(() => {});   // the data is in: no long "loading" on camera
+  else await page.waitForLoadState('networkidle');
 }
 
 // Entrance: fade children of a container in one after another.
@@ -89,21 +90,22 @@ const CUTS = {
     if (await approval.count()) await approval.click();
   } },
   9: { route: '/know/waits', hold: 9500, prehide: '[data-kpi],[data-plan-row],[data-best-card]', async play(page) {
-    await stagger(page, '[data-kpi]', 120, 'translateY(6px)');
-    await sleep(600);
+    // waits: 2.2 s, then the nine plans get the rest of the cut (they used to flash by)
+    await stagger(page, '[data-kpi]', 90, 'translateY(6px)');
+    await sleep(250);
     await page.evaluate(() => {
       const bar = document.querySelector('[data-wait-bar]');
       if (!bar) return;
       const w = bar.style.width || getComputedStyle(bar).width;
       bar.style.transition = 'none'; bar.style.width = '0px';
-      requestAnimationFrame(() => { bar.style.transition = 'width 1.2s cubic-bezier(.2,.8,.2,1)'; bar.style.width = w; });
+      requestAnimationFrame(() => { bar.style.transition = 'width .9s cubic-bezier(.2,.8,.2,1)'; bar.style.width = w; });
     });
-    await sleep(3400);
-    await gotoHidden(page, base + '/improve/plans', '[data-plan-row],[data-best-card]');
-    await stagger(page, '[data-plan-row]', 110, 'translateY(8px)');
-    await sleep(1800);
+    await sleep(1700);
+    await gotoHidden(page, base + '/improve/plans', '[data-plan-row],[data-best-card]', '[data-plan-row]');
+    await stagger(page, '[data-plan-row]', 70, 'translateY(8px)');
+    await sleep(1100);
     await stagger(page, '[data-best-card]', 0, 'translateY(6px)');
-    await sleep(600);
+    await sleep(500);
     const btn = page.locator('button:has-text("Approve this plan")').first();
     if (await btn.count()) await btn.hover();
   } },
@@ -128,7 +130,7 @@ const CUTS = {
     await stagger(page, '[data-dot-after]', 30, 'translateY(-10px)');
     await countUp(page, '[data-kpi-main]', 108.8, 1400);
     await sleep(1200);
-    await gotoHidden(page, base + '/decide/expand?industry=713940', '[data-zip-row]');
+    await gotoHidden(page, base + '/decide/expand?industry=713940', '[data-zip-row]', '[data-zip-row]');
     await stagger(page, '[data-zip-row]', 120, 'translateX(-8px)');
     await sleep(900);
     await page.evaluate(() => document.querySelector('[data-zip-row]')?.classList.add('is-hot'));
